@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+
+
+.img {
+  border-radius: 8px;
+}
+
+.image{
+width: 120px;
+height: 160px;
+}
+.name{
+
+  text-align: center;
+  font-size: 25px;
+  text-shadow: 10px 10px 60px rgb(75, 4, 4);
+  line-height: 2em;
+
+}
+.desc{
+  color: rgb(73, 70, 70);
+  font-size: 15px
+}
+.bouton:hover{
+  cursor: pointer;
+  background: #ffc107;
+  ;
+}
+.bouton{
+  border: none;
+  outline: none;
+  height: 30px;
+  background: #4e4d4d;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+
+  margin-left: 10%;
+
+  position: center;
+}

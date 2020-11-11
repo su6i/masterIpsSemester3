@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="jumbotron text-center">
+    <p class="lead">Welcome to</p>
+    <h1>Electronic shop</h1>
+    <div>
+      <div *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a [routerLink]="['/register']" class="nav-link" class="btn btn-primary" aria-disabled="true">Sign UP</a>
+      </div>
+      <div *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a [routerLink]="['/login']" class="btn btn-default">Sign in</a>
+      </div>
+      <div id="signout" *ngIf="authService.loggedIn()" v>
+        <a class="nav-link" (click)="onLogoutClick()" href="#" aria-disabled="true" class="btn btn-default">Sign out</a>
+      </div>
+    </div>
+    <div class="shenasname">
+      Project: MEAN stack technology <br>
+      Cours: Technologies avancées du web <br>
+      Professor: Pierre POMPIDOR <br>
+      By: <b>Hassina</b> BOUFATIS and <b>Amir</b> SHIRALI POUR <br>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 leftpane">
+      <h3>Apple</h3>
+      <a [routerLink]="['/categories/Apple']">
+        <img src="/assets/image/apple.png" alt="Apple logo" class="logo">
+      </a>
+      <p>Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that
+        designs, develops and sells consumer electronics, computer software, and online services. It is considered one
+        of the Big Tech technology companies, alongside Amazon, Google, Microsoft, and Facebook.</p>
+    </div>
+    <div class="vl"></div>
+    <div class="col-md-4 middlepane">
+      <h3>Samsung</h3>
+      <a [routerLink]="['/categories/Samsung']">
+        <img src="/assets/image/samsung.svg" alt="Samsung logo" class="logo">
+      </a>
+      <p>The Samsung Group is a South Korean multinational conglomerate headquartered in Samsung Town, Seoul. It
+        comprises numerous affiliated businesses, most of them united under the Samsung brand, and is the largest South
+        Korean chaebol. Samsung was founded by Lee Byung-chul in 1938 as a trading company.</p>
+    </div>
+    <div class="vl"></div>
+    <div class="col-md-4 rightpane">
+      <h3>Huawei</h3>
+      <a [routerLink]="['/categories/Huawei']">
+        <img src="/assets/image/huawei.png" alt="Huawei logo" class="logo">
+      </a>
+      <p>Huawei Technologies Co., Ltd. is a Chinese multinational technology company headquartered in Shenzhen,
+        Guangdong. It designs, develops, and sells telecommunications equipment and consumer electronics. The company
+        was founded in 1987 by Ren Zhengfei, a former Deputy Regimental Chief in the People's Liberation Army.</p>
+    </div>
+  </div>
+</div>

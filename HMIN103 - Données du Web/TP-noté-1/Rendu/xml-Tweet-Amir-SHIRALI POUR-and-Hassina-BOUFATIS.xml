@@ -1,0 +1,194 @@
+<!-- Amir SHIRALI POUR and Hassina BOUFATIS -->
+<tweeter>
+	<tweets>
+		<tweet tweetID="tweet1" userID="user1">
+			<message language="">
+				<text>This is #Trump a sample text</text>
+				<hashtag>Chips</hashtag>
+				<hashtag>Chocolat</hashtag>
+				<hashtag>Glace</hashtag>
+				<usernameReference>@usernameReference</usernameReference>
+				<font>
+					<size>size</size>
+					<type>type</type>
+					<color>color</color>
+				</font>
+			</message>
+			<retweet>
+				<retweetNumber>15</retweetNumber>
+			</retweet>
+			<reply authorisation="yes"></reply>
+			<date>
+				<seconds>seconds</seconds>
+				<timeZone>timeZone</timeZone>
+			</date>
+			<author>
+				<username>aissa</username>
+				<Name>Aissatou</Name>
+				<geoCoordinates>geoCoordinates</geoCoordinates>
+				<city>city</city>
+				<country>Senegal</country>
+				<OSDescription>OSDescription</OSDescription>
+				<profileLink>profileLink</profileLink>
+			</author>
+			<image url="/src/image/photo.jpg"></image>
+			<video url="/src/video/video.mp4"></video>
+		</tweet>
+		<tweet tweetID="tweet2" userID="user2">
+			<message language="english">
+				<text>Some text</text>
+				<hashtag>FDS</hashtag>
+				<hashtag>Computer</hashtag>
+				<hashtag>Science</hashtag>
+				<hashtag>blabla</hashtag>
+				<usernameReference>@usernameReference</usernameReference>
+				<font>
+					<size>size</size>
+					<type>type</type>
+					<color>color</color>
+				</font>
+			</message>
+			<retweet>
+				<retweetNumber>13</retweetNumber>
+			</retweet>
+			<reply authorisation="yes"></reply>
+			<date>
+				<seconds>seconds</seconds>
+				<timeZone>timeZone</timeZone>
+			</date>
+			<author>
+				<username>elass</username>
+				<Name>Elhadj</Name>
+				<geoCoordinates>geoCoordinates</geoCoordinates>
+				<city>city</city>
+				<country>Senegal</country>
+				<OSDescription>OSDescription</OSDescription>
+				<profileLink>profileLink</profileLink>
+			</author>
+			<image url="/src/image/photo.jpg"></image>
+			<video url="/src/video/video.mp4"></video>
+		</tweet>
+		<tweet tweetID="tweet3" userID="user3">
+			<message language="">
+				<text>Example text</text>
+				<hashtag>tweet</hashtag>
+				<hashtag>premier</hashtag>
+				<hashtag>FaceBook</hashtag>
+				<hashtag>Google</hashtag>
+				<usernameReference>@usernameReference</usernameReference>
+				<font>
+					<size>size</size>
+					<type>type</type>
+					<color>color</color>
+				</font>
+			</message>
+			<retweet>
+				<retweetNumber>28</retweetNumber>
+			</retweet>
+			<reply authorisation=""></reply>
+			<date>
+				<seconds>seconds</seconds>
+				<timeZone>timeZone</timeZone>
+			</date>
+			<author>
+				<username>emasalari</username>
+				<Name>Amir</Name>
+				<geoCoordinates>geoCoordinates</geoCoordinates>
+				<city>Ahvaz</city>
+				<country>Iran</country>
+				<OSDescription>OSDescription</OSDescription>
+				<profileLink>profileLink</profileLink>
+			</author>
+			<image url="/src/image/photo.jpg"></image>
+			<video url="/src/video/video.mp4"></video>
+		</tweet>
+		<tweet tweetID="tweet4" userID="user1">
+			<message language="arabic">
+				<text>text</text>
+				<hashtag>Senior</hashtag>
+				<hashtag>XML</hashtag>
+				<hashtag>Joe</hashtag>
+				<hashtag>Hello</hashtag>
+				<usernameReference>@usernameReference</usernameReference>
+				<font>
+					<size>size</size>
+					<type>type</type>
+					<color>color</color>
+				</font>
+			</message>
+			<retweet>
+				<retweetNumber>33</retweetNumber>
+			</retweet>
+			<reply authorisation=""></reply>
+			<date>
+				<seconds>seconds</seconds>
+				<timeZone>timeZone</timeZone>
+			</date>
+			<author>
+				<username>hashas</username>
+				<Name>Hassan</Name>
+				<geoCoordinates>geoCoordinates</geoCoordinates>
+				<city>Moscow</city>
+				<country>Russia</country>
+				<OSDescription>OSDescription</OSDescription>
+				<profileLink>profileLink</profileLink>
+			</author>
+			<image url="/src/image/photo.jpg"></image>
+			<video url="/src/video/video.mp4"></video>
+		</tweet>
+		<tweet tweetID="tweet5" userID="user2">
+			<message language="">
+				<text>text</text>
+				<hashtag>Banana</hashtag>
+				<hashtag>Avocado</hashtag>
+				<hashtag>Orange</hashtag>
+				<hashtag>Apple</hashtag>
+				<usernameReference>@usernameReference</usernameReference>
+				<font>
+					<size>size</size>
+					<type>type</type>
+					<color>color</color>
+				</font>
+			</message>
+			<retweet>
+				<retweetNumber>123</retweetNumber>
+			</retweet>
+			<reply authorisation=""></reply>
+			<date>
+				<seconds>seconds</seconds>
+				<timeZone>timeZone</timeZone>
+			</date>
+			<author>
+				<username>sina</username>
+				<Name>Hassina</Name>
+				<geoCoordinates>geoCoordinates</geoCoordinates>
+				<city>city</city>
+				<country>Algeria</country>
+				<OSDescription>OSDescription</OSDescription>
+				<profileLink>profileLink</profileLink>
+			</author>
+			<image url="/src/image/photo.jpg"></image>
+			<video url="/src/video/video.mp4"></video>
+		</tweet>
+	</tweets>
+	<users>
+		<user userID="user1">
+			<profileDiscription></profileDiscription>
+			<photo>photo</photo>
+			<following>following</following>
+			<follower>follower</follower>
+		</user>
+		<user userID="user2">
+			<profileDiscription></profileDiscription>
+			<photo>photo</photo>
+			<following>following</following>
+			<follower>follower</follower>
+		</user>
+		<user userID="user3">
+			<profileDiscription></profileDiscription>
+			<photo>photo</photo>
+			<following>following</following>
+			<follower>follower</follower>
+		</user>
+	</users>
+</tweeter>

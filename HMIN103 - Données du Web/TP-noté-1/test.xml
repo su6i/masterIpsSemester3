@@ -1,0 +1,41 @@
+<!Doctype tweet[
+
+<!ELEMENT tweet(tweet+)> 
+<!ATTLIST tweet idt ID #REQUIRED> 
+<!ELEMENT tweet (message*, date, auteur, utilisateur*, url)> 
+<!ELEMENT message(texte, hashtage*, refUti, fondtexte)> 
+<!ATTLIST message langue #REQUIRED> 
+<!ELEMENT message (retweet |reponse)> 
+<!ELEMENT retweet > 
+<!ATTLIST reponse autoriser (oui|non) 'oui'> 
+<!ELEMENT reponse (#PCDATA)> 
+<!ELEMENT message texte (#PCDATA)> 
+<!ELEMENT message hashtage (#CDATA)> 
+<!ELEMENT message refUti (#CDATA)> 
+<!ELEMENT fondtexte (taille, type, couleur) > 
+<!ATTLIST fondtexte taille (#CDATA) >
+<!ATTLIST fondtexte type (#CDATA) >  
+<!ATTLIST fondtexte couleur > 
+<!ELEMENT message retweet (#PCDATA) > 
+<!ELEMENT date(temps,fuseauh) > 
+<!ATTLIST date temps(enseconde) > 
+<!ATTLIST date fuseauh > 
+<!ELEMENT auteur(coordonnee?,ville?, pays?,description_sys?,nom,lienProfile)> 
+<!ATTLIST auteur ide ID #REQUIRED> 
+<!ELEMENT auteur coordonnee (#PCDATA)> 
+<!ELEMENT auteur ville (#PCDATA)> 
+<!ELEMENT auteur pays (#PCDATA)> 
+<!ELEMENT auteur description_sys (#PCDATA)> 
+<!ELEMENT auteur nom (#PCDATA)>  
+<!ELEMENT auteur lienProfile (#PCDATA)> 
+<!ATTLIST utilisateur IDREF #REQUIRED>
+<!ELEMENT utilisateur (description_profile,photo,abonné,suivipar)> 
+<!ELEMENT utilisateur description_profile (#PCDATA)> 
+<!ELEMENT utilisateur photo > 
+<!ELEMENT utilisateur abonné (#PCDATA)> 
+<!ELEMENT utilisateur suivipar (#PCDATA)> 
+<!ELEMENT url (images,video)> 
+<!ATTLIST url images (#CDATA)> 
+<!ATTLIST url video > 
+
+]> 

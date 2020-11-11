@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tweeter>
+   <tweet> hello
+      <message langue="">
+         <text>This is #Trump a sample text</text>
+         <hashtag>Chips</hashtag>
+         <hashtag>Chocolat</hashtag>
+         <hashtag>Glace</hashtag>
+         <usernameReference>@usernameReference</usernameReference>
+         <font>
+            <size>size</size>
+            <type>type</type>
+            <color>color</color>
+         </font>
+      </message>
+      <retweet>
+         <retweetNumber></retweetNumber>
+      </retweet>
+      <reply authorisation=""></reply>
+      <date>
+         <seconds>seconds</seconds>
+         <timeZone>timeZone</timeZone>
+      </date>
+      <author>
+         <username></username>
+         <Name>Aissatou</Name>
+         <geographicCoordinates>geographicCoordinates</geographicCoordinates>
+         <city>city</city>
+         <country>Senegal</country>
+         <operatingSystemDescription>operatingSystemDescription</operatingSystemDescription>
+         <profileLink>profileLink</profileLink>
+      </author>
+      
+      <image url="/src/image/photo.jpg"></image>
+      <video url="/src/video/video.mp4"></video>
+
+   </tweet>
+   <tweet>
+      <message langue="">
+         <text>Some text</text>
+         <hashtag>FDS</hashtag>
+         <hashtag>Computer</hashtag>
+         <hashtag>Science</hashtag>
+         <hashtag>blabla</hashtag>
+         <usernameReference>@usernameReference</usernameReference>
+         <font>
+            <size>size</size>
+            <type>type</type>
+            <color>color</color>
+         </font>
+      </message>
+      <retweet>
+         <retweetNumber></retweetNumber>
+      </retweet>
+      <reply authorisation=""></reply>
+      <date>
+         <seconds>seconds</seconds>
+         <timeZone>timeZone</timeZone>
+      </date>
+      <author>
+         <Name>Elhadj</Name>
+         <geographicCoordinates>geographicCoordinates</geographicCoordinates>
+         <city>city</city>
+         <country>Senegal</country>
+         <operatingSystemDescription>operatingSystemDescription</operatingSystemDescription>
+         <profileLink>profileLink</profileLink>
+      </author>
+      
+      <image url="/src/image/photo.jpg"></image>
+      <video url="/src/video/video.mp4"></video>
+
+   </tweet>
+   <tweet>
+      <message langue="">
+         <text>Example text</text>
+         <hashtag>tweet</hashtag>
+         <hashtag>premier</hashtag>
+         <hashtag>FaceBook</hashtag>
+         <hashtag>Google</hashtag>
+         <usernameReference>@usernameReference</usernameReference>
+         <font>
+            <size>size</size>
+            <type>type</type>
+            <color>color</color>
+         </font>
+      </message>
+      <retweet>
+         <retweetNumber></retweetNumber>
+      </retweet>
+      <reply authorisation=""></reply>
+      <date>
+         <seconds>seconds</seconds>
+         <timeZone>timeZone</timeZone>
+      </date>
+      <author>
+         <Name>Amir</Name>
+         <geographicCoordinates>geographicCoordinates</geographicCoordinates>
+         <city>Ahvaz</city>
+         <country>Iran</country>
+         <operatingSystemDescription>operatingSystemDescription</operatingSystemDescription>
+         <profileLink>profileLink</profileLink>
+      </author>
+      
+      <image url="/src/image/photo.jpg"></image>
+      <video url="/src/video/video.mp4"></video>
+
+   </tweet>
+   <tweet>
+      <message langue="">
+         <text>text</text>
+         <hashtag>Senior</hashtag>
+         <hashtag>XML</hashtag>
+         <hashtag>Joe</hashtag>
+         <hashtag>Hello</hashtag>
+         <usernameReference>@usernameReference</usernameReference>
+         <font>
+            <size>size</size>
+            <type>type</type>
+            <color>color</color>
+         </font>
+      </message>
+      <retweet>
+         <retweetNumber></retweetNumber>
+      </retweet>
+      <reply authorisation=""></reply>
+      <date>
+         <seconds>seconds</seconds>
+         <timeZone>timeZone</timeZone>
+      </date>
+      <author>
+         <Name>Imane</Name>
+         <geographicCoordinates>geographicCoordinates</geographicCoordinates>
+         <city>city</city>
+         <country>Algeria</country>
+         <operatingSystemDescription>operatingSystemDescription</operatingSystemDescription>
+         <profileLink>profileLink</profileLink>
+      </author>
+      
+      <image url="/src/image/photo.jpg"></image>
+      <video url="/src/video/video.mp4"></video>
+
+   </tweet>
+   <tweet>
+      <message langue="">
+         <text>text</text>
+         <hashtag>Banana</hashtag>
+         <hashtag>Avocado</hashtag>
+         <hashtag>Orange</hashtag>
+         <hashtag>Apple</hashtag>
+         <usernameReference>@usernameReference</usernameReference>
+         <font>
+            <size>size</size>
+            <type>type</type>
+            <color>color</color>
+         </font>
+      </message>
+      <retweet>
+         <retweetNumber></retweetNumber>
+      </retweet>
+      <reply authorisation=""></reply>
+      <date>
+         <seconds>seconds</seconds>
+         <timeZone>timeZone</timeZone>
+      </date>
+      <author>
+         <Name>Hassina</Name>
+         <geographicCoordinates>geographicCoordinates</geographicCoordinates>
+         <city>city</city>
+         <country>Algeria</country>
+         <operatingSystemDescription>operatingSystemDescription</operatingSystemDescription>
+         <profileLink>profileLink</profileLink>
+      </author>
+      
+      <image url="/src/image/photo.jpg"></image>
+      <video url="/src/video/video.mp4"></video>
+
+   </tweet>
+<user>
+      <profileDiscription></profileDiscription>
+      <photo>photo</photo>
+      <following>following</following>
+      <follower>follower</follower>
+   </user>
+   <user>
+      <profileDiscription></profileDiscription>
+      <photo>photo</photo>
+      <following>following</following>
+      <follower>follower</follower>
+   </user>
+   <user>
+      <profileDiscription></profileDiscription>
+      <photo>photo</photo>
+      <following>following</following>
+      <follower>follower</follower>
+   </user>
+
+</tweeter>

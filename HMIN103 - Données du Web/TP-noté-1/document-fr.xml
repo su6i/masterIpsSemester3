@@ -1,0 +1,266 @@
+<doc>
+   <tweet id="">
+      <message langue="">
+         <texte>Amir</texte>
+         <hashtag>hashtag</hashtag>
+         <refUti>refUti</refUti>
+         <fondtexte> 
+           <taille>taille</taille>
+           <type>type</type>
+           <couleur>couleur</couleur>
+         </fondtexte>
+         <retweet>retweet</retweet>
+      </message>
+      <date> 
+          <temps>temps</temps>
+          <fuseauh>fuseauh</fuseauh>
+      </date>
+      <auteur id="">
+          <coordonnee>coordonnee</coordonnee>
+          <ville>ville</ville>
+          <pays>pays</pays>
+          <description_sys>description_sys</description_sys>
+          <nom>nom</nom>
+          <lienProfile>lienProfile</lienProfile>
+      </auteur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+
+      <url>
+        <image>image</image>
+        <video>video</video>
+      </url>
+   </tweet>
+
+   <tweet id=""> 
+   <message langue="">
+         <texte>Elhadj</texte>
+         <hashtag>hashtag</hashtag>
+         <refUti>refUti</refUti>
+         <fondtexte> 
+           <taille>taille</taille>
+           <type>type</type>
+           <couleur>couleur</couleur>
+         </fondtexte>
+         <retweet>retweet</retweet>
+      </message>
+      <date> 
+          <temps>temps</temps>
+          <fuseauh>fuseauh</fuseauh>
+      </date>
+      <auteur id="">
+          <coordonnee>coordonnee</coordonnee>
+          <ville>ville</ville>
+          <pays>pays</pays>
+          <description_sys>description_sys</description_sys>
+          <nom>nom</nom>
+          <lienProfile>lienProfile</lienProfile>
+      </auteur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+
+      <url>
+        <image>image</image>
+        <video>video</video>
+      </url>
+      
+   </tweet>
+
+   <tweet id="">
+   <message langue="">
+         <texte>Aissatou</texte>
+         <hashtag>hashtag</hashtag>
+         <refUti>refUti</refUti>
+         <fondtexte> 
+           <taille>taille</taille>
+           <type>type</type>
+           <couleur>couleur</couleur>
+         </fondtexte>
+         <retweet>retweet</retweet>
+      </message>
+      <date> 
+          <temps>temps</temps>
+          <fuseauh>fuseauh</fuseauh>
+      </date>
+      <auteur id="">
+          <coordonnee>coordonnee</coordonnee>
+          <ville>ville</ville>
+          <pays>pays</pays>
+          <description_sys>description_sys</description_sys>
+          <nom>nom</nom>
+          <lienProfile>lienProfile</lienProfile>
+      </auteur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+
+      <url>
+        <image>image</image>
+        <video>video</video>
+      </url>
+      
+   </tweet>
+
+   <tweet id="">
+   <message langue="">
+         <texte>texte</texte>
+         <hashtag>hashtag</hashtag>
+         <refUti>refUti</refUti>
+         <fondtexte> 
+           <taille>taille</taille>
+           <type>type</type>
+           <couleur>couleur</couleur>
+         </fondtexte>
+         <retweet>retweet</retweet>
+      </message>
+      <date> 
+          <temps>temps</temps>
+          <fuseauh>fuseauh</fuseauh>
+      </date>
+      <auteur id="">
+          <coordonnee>coordonnee</coordonnee>
+          <ville>ville</ville>
+          <pays>pays</pays>
+          <description_sys>description_sys</description_sys>
+          <nom>nom</nom>
+          <lienProfile>lienProfile</lienProfile>
+      </auteur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+      <url>
+        <image>image</image>
+        <video>video</video>
+      </url>
+      
+   </tweet>
+
+   <tweet id="">
+   <message langue="">
+         <texte>texte</texte>
+         <hashtag>hashtag</hashtag>
+         <refUti>refUti</refUti>
+         <fondtexte> 
+           <taille>taille</taille>
+           <type>type</type>
+           <couleur>couleur</couleur>
+         </fondtexte>
+         <retweet>retweet</retweet>
+      </message>
+      <date> 
+          <temps>temps</temps>
+          <fuseauh>fuseauh</fuseauh>
+      </date>
+      <auteur id="">
+          <coordonnee>coordonnee</coordonnee>
+          <ville>ville</ville>
+          <pays>pays</pays>
+          <description_sys>description_sys</description_sys>
+          <nom>nom</nom>
+          <lienProfile>lienProfile</lienProfile>
+      </auteur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+
+        <utilisateur>
+            <description_profile></description_profile>
+            <photo>photo</photo>
+            <abonné>abonné</abonné>
+            <suivipar>suivipar</suivipar>
+        </utilisateur>
+        <url>
+          <image>image</image>
+          <video>video</video>
+        </url>
+   </tweet>
+  </doc>

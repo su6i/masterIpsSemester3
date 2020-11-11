@@ -1,0 +1,34 @@
+<mat-card>
+  <form (submit)="onAddComment(commentForm)" #commentForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter a title for your comment."
+        ngModel
+        name="title"
+        required
+        minlength="3"
+        #title="ngModel">
+        <mat-error *ngIf="title.invalid">Please enter a Title with a minimum of 3 caracters.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        rows="3"
+        matInput
+        placeholder="Enter your comment here."
+        ngModel
+        name="content"
+        required
+        minlength="4"
+        #content="ngModel">
+      </textarea>
+      <mat-error *ngIf="content.invalid">Please enter a Comment with a minimum of 4 caracters.</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit">
+      Add Comment
+    </button>
+  </form>
+</mat-card>

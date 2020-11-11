@@ -1,0 +1,44 @@
+<!-- Amir SHIRALI POUR and Hassina BOUFATIS -->
+
+<!Doctype tweet[
+
+<!ELEMENT tweet(tweet+)> 
+<!ATTLIST tweet idtweet ID #REQUIRED> 
+<!ELEMENT tweet (message*, date, author, user*, url)> 
+<!ELEMENT message(text, hashtage*, usernameReference, font)> 
+<!ATTLIST message language #REQUIRED> 
+<!ELEMENT message (retweet |reply)> 
+<!ELEMENT retweet> 
+<!ATTLIST reply authorization (yes|no) 'yes'> 
+<!ELEMENT reply (#PCDATA)> 
+<!ELEMENT message text (#PCDATA)> 
+<!ELEMENT message hashtage (#CDATA)> 
+<!ELEMENT message usernameReference (#CDATA)> 
+<!ELEMENT font (size, type, color)> 
+<!ATTLIST font size (#CDATA)>
+<!ATTLIST font type (#CDATA)>  
+<!ATTLIST font color> 
+<!ELEMENT message retweet (#PCDATA)> 
+<!ELEMENT date(seconds,timezone)> 
+<!ATTLIST date seconds> 
+<!ATTLIST date timezone> 
+<!ELEMENT author(geoCoordinates?, city?, country?, OSDescription?, name, profileLink)> 
+<!ATTLIST author idName ID #REQUIRED> 
+<!ELEMENT author geoCoordinates (#PCDATA)> 
+<!ELEMENT author city (#PCDATA)> 
+<!ELEMENT author country (#PCDATA)> 
+<!ELEMENT author OSDescription (#PCDATA)> 
+<!ELEMENT author name (#PCDATA)>  
+<!ELEMENT author profileLink (#PCDATA)> 
+<!ATTLIST user IDREF #REQUIRED>
+<!ELEMENT user (profileDiscription, photo, follower, following)> 
+<!ELEMENT user profileDiscription (#PCDATA)> 
+<!ELEMENT user photo> 
+<!ELEMENT user follower (#PCDATA)> 
+<!ELEMENT user following (#PCDATA)> 
+<!ELEMENT image (url)> 
+<!ELEMENT video (url)> 
+<!ATTLIST image url (#CDATA)> 
+<!ATTLIST video url (#CDATA)> 
+
+]> 
