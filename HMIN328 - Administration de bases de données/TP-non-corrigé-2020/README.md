@@ -5,9 +5,9 @@ Useful commands:
 ---
 
 `show user;`  
-`col "name of table" for a10;`
-`col VALUE off` -- deactivate col command
-`set serveroutput on;` -- environmental variable
+`col "name of table" for a10;`  
+`col VALUE off` -- deactivate col command  
+`set serveroutput on;` -- environmental variable  
 `grant execute on Finances to public;` -- to all  
 `grant execute on Finances to E20190009681;` -- to a specific person  
 `desc dbms_metadata;`  
@@ -22,11 +22,11 @@ Useful commands:
 `show all;` -- show all environmental variable  
 `select trim(to_char(sysdate, 'DAY')) from emp;`
 
-`SELECT table_name,comments FROM dictionary WHERE table_name like 'DBA_USERS_%' ORDER BY table_name;`
+`SELECT table_name,comments FROM dictionary WHERE table_name like 'DBA_USERS_%' ORDER BY table_name;`  
 `SELECT table_name,comments FROM dictionary WHERE table_name like 'ALL_%' ORDER BY table_name;`  
 `SELECT table_name,comments FROM dictionary WHERE table_name like 'USER_%' ORDER BY table_name;`
 
-`select * from ALL_USERS;`
+`select * from ALL_USERS;`  
 `select * from ALL_TRIGGERS;`
 
 `select * from v$instance;`  
@@ -38,7 +38,7 @@ v$sga, v$sgainfo, v\$sgastat ou show SGA
 
 v$sql, v$sqlarea, v\$sqltext associate to the "library cache" (sharedpool)
 
-`select osuser from v$session;` -- Show connected users
+`select osuser from v$session;` -- Show connected users  
 We can't do the command "col" on the "desc" colomns.
 
 `select substr(sql_text, 1,60), parsing_schema_name from v$sqlarea where rownum < 10;`
