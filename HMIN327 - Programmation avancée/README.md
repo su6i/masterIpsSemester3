@@ -25,3 +25,13 @@ Patron de Conception
 DAO = Data Access Object
 
 Specification JavaEE, JPA: Java Persistence API (Hibernate)
+
+#### Spring boot:   
+---------------------------------------   
+
+Install Spring boot on Mac with brew command:
+`brew tap pivotal/tap`   
+`brew install springboot maven`   
+`brew cask install springtoolsuite`   
+
+Homebrew will install *spring* to `/usr/local/bin`.
