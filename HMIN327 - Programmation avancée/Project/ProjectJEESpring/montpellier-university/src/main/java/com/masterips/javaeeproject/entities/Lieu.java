@@ -3,6 +3,7 @@ package com.masterips.javaeeproject.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,14 +17,23 @@ public class Lieu implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
+	@Column(name = "insee_code", length = 5)
 	private String codeInsee;
-	private String nomCom;
-	private double longitude;
-	private double latitude;
 	
 	@ManyToOne
 	@JoinColumn(name="fk_numDep")
 	private Departement dep;
+	
+	@Column(name = "commun_name", length = 30)
+	private String nomCom;
+	
+	@Column(name = "longitude")
+	private double longitude;
+	
+	@Column(name = "latitude")
+	private double latitude;
+	
+	
 
 	public String getCodeInsee() {
 		return codeInsee;

@@ -2,6 +2,8 @@ package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,19 +20,33 @@ public class Monument implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
+	@Column(name = "monument_code", length = 5)
 	private String codeM;
+	
+	@Column(name = "monument_name", length = 25)
 	private String nomM;
+	
+	@Column(name = "owner", length = 10)
 	private String proprietaire;
+	
+	@Column(name = "monument_type", length = 16)
 	private String typeMonument;
+	
+	@Column(name = "longitude")
 	private double longitude;
+	
+	@Column(name = "latitude")
 	private double latitude;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_CodeInsee")
+	@JoinColumn(name="fk_insee_code")
 	private Lieu   localisation;
 	
 	@ManyToMany
 	private Set<Celebrite> associeACelebrite;
+	
+	
+	
 	public String getCodeM() {
 		return codeM;
 	}
