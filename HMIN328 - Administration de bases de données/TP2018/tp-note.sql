@@ -1,4 +1,4 @@
---tp note 2018 Mehdi NASRI
+--tp note 2018
 
 create or replace procedure InformationStockageTable(Usager in varchar, nomtable in varchar)
 as
