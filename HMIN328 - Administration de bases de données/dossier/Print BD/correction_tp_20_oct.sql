@@ -40,7 +40,6 @@ rpad(t.lecturesCache,15)
 );
 end loop;
 dbms_output.put_line('************************************************'); end;
-Fichier : /home/mehdi/administration de...rcices/CorrectionTP_20_oct.sPqalge 2 sur 2
  end tpnote1; /
 exec tpnote1.structurecommune exec tpnote1.vuelibrairieRequetes
 -------------------------------------------------------------------
