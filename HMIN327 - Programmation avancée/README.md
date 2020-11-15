@@ -29,7 +29,7 @@ Specification JavaEE, JPA: Java Persistence API (Hibernate)
 #### Spring boot:   
 ---------------------------------------   
 
-Install Spring boot on Mac with brew command:
+Install Spring boot on Mac with brew command:   
 `brew tap pivotal/tap`   
 `brew install springboot maven`   
 `brew cask install springtoolsuite`   
