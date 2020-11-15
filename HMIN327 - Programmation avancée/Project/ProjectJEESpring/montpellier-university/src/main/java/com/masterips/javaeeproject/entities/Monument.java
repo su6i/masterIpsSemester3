@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import java.util.Set;
 
 @Entity
+@Table(name = "monument")
 public class Monument implements Serializable {
 	 /**
 	 * 

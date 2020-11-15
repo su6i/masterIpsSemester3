@@ -35,7 +35,7 @@ public class Departement implements Serializable {
 	@Column(name = "region_number", length = 4)
 	private String numRegion;
 	
-	@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="fk_numDep",fetch=FetchType.LAZY)
 	private Set<Lieu> lieuSet;
 	
 	
