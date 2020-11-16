@@ -18,57 +18,60 @@ public class Celebrite implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "celebrity_number")
+	@Column(name = "numCelebrite")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private int numCelebrite;
+	private int celebrity_number;
 	
-	@Column(name = "family", length = 16)
-	private String nom;
+	@Column(name = "nom", length = 16)
+	private String family;
 	
-	@Column(name = "name", length = 16)
-	private String prenom;
+	@Column(name = "prenom", length = 16)
+	private String name;
 	
-	@Column(name = "nationality", length = 10)
-	private String nationalite;
+	@Column(name = "nationalite", length = 10)
+	private String nationality;
 	
-	@Column(name = "era", length = 6)
-	private String epoque;
-	
-	
-	
-	
-	public int getNumCelebrite() {
-		return numCelebrite;
+	@Column(name = "epoque", length = 6)
+	private String era;
+
+	public int getCelebrity_number() {
+		return celebrity_number;
 	}
-	public void setNumCelebrite(int numCelebrite) {
-		this.numCelebrite = numCelebrite;
+
+	public void setCelebrity_number(int celebrity_number) {
+		this.celebrity_number = celebrity_number;
 	}
-	public String getNom() {
-		return nom;
+
+	public String getFamily() {
+		return family;
 	}
-	public void setNom(String nom) {
-		this.nom = nom;
+
+	public void setFamily(String family) {
+		this.family = family;
 	}
-	public String getPrenom() {
-		return prenom;
+
+	public String getName() {
+		return name;
 	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getNationalite() {
-		return nationalite;
+
+	public String getNationality() {
+		return nationality;
 	}
-	public void setNationalite(String nationalite) {
-		this.nationalite = nationalite;
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
-	public String getEpoque() {
-		return epoque;
+
+	public String getEra() {
+		return era;
 	}
-	public void setEpoque(String epoque) {
-		this.epoque = epoque;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+	public void setEra(String era) {
+		this.era = era;
 	}
 	
 	
