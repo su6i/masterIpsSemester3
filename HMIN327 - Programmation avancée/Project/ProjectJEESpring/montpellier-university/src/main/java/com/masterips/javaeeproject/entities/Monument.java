@@ -1,7 +1,6 @@
 package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +40,7 @@ public class Monument implements Serializable {
 	private double latitude;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_insee_code")
+	@JoinColumn(name="fk_codeInsee")
 	private Lieu   localisation;
 	
 	@ManyToMany

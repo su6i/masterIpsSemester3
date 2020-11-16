@@ -1,6 +1,4 @@
 package com.masterips.javaeeproject.entities;
-
-import java.util.Set;
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -12,7 +10,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "celebrite")
+@Table(name = "celebrity")
 public class Celebrite implements Serializable {
 	 /**
 	 * 

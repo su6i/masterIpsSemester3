@@ -1,7 +1,7 @@
 package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,11 +20,11 @@ public class Departement implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	@Column(name = "departement")
+	@Column(name = "departement_number", length = 4)
 	private String numDep;
 	
-	@Column(name = "departement", length = 4)
-	private String dep;
+	//@Column(name = "departement", length = 4)
+	//private String dep;
 	
 	@Column(name = "chef_lieu", length = 46)
 	private String chefLieu;
@@ -35,7 +35,7 @@ public class Departement implements Serializable {
 	@Column(name = "region_number", length = 4)
 	private String numRegion;
 	
-	@OneToMany(mappedBy="fk_numDep",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
 	private Set<Lieu> lieuSet;
 	
 	
