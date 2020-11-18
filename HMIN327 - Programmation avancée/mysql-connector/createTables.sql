@@ -1,0 +1,82 @@
+-- to drop table with foreign keys in SQL
+SET FOREIGN_KEY_CHECKS = 0;
+
+
+-- Lieu(codeInsee varchar(5), dep varchar(4), nomCom varchar(46), longitude float, latitude float)
+-- avec Lieu(dep)⊆Departement(dep)
+
+-- An example tuple: 
+-- drop table lieu;
+create table if not exists lieu (
+	codeInsee varchar(5), 
+    dep varchar(4), 
+    nomCom varchar(46), 
+    longitude float, 
+    latitude float,
+	constraint pk_lieu primary key (codeInsee),
+    constraint fk_lieu foreign key (dep) references departement(dep)
+);
+
+-- We need to add this line after that we created departement table, because we have 3 tables that are related with a foreign key.
+-- ,constraint fk_lieu foreign key (dep) references departement(dep)
+
+-- ------------------------------------------------------------------------------------------
+-- Departement(dep varchar(4), chefLieu varchar(46), nomDep varchar(30), reg varchar(4)) avec
+-- Departement(chefLieu)⊆Lieu(codeInsee)
+
+-- An example tuple: insert into departement values ('12','AVEYRON','12202');                                      
+-- drop table departement;
+
+create table if not exists departement(
+	dep varchar(4), 
+    chefLieu varchar(46), 
+    nomDep varchar(30), 
+    reg varchar(4),
+	constraint pk_departement primary key (dep),
+    constraint fk_departement foreign key (chefLieu) references lieu(codeInsee)
+);
+
+
+-- ------------------------------------------------------------------------------------------
+-- Monument(codeM varchar(5), nomM varchar(25) proprietaire varchar(10), typeMonument varchar(16), longitude float, latitude float, codeLieu varchar(5))
+-- avec Monument(codeLieu)⊆Lieu(codeInsee)
+
+-- An example tuple: insert into monument values ('spfb05nwqmvu','HOTEL DE GANGES','PRIVE','HOTEL_PARTICULIER',3.87639,43.611334,'34172');  
+-- drop table monument;
+
+create table if not exists monument(
+	codeM varchar(5), 
+    nomM varchar(25), 
+    proprietaire varchar(10), 
+    typeMonument varchar(16), 
+    longitude float, 
+    latitude float, 
+    codeLieu varchar(5),
+	constraint pk_monument primary key (codeM),
+    constraint fk_monument foreign key (codeLieu) references lieu(codeInsee)
+);
+
+
+-- ------------------------------------------------------------------------------------------
+-- Celebrite(numCelebrite integer, nom varchar(16), prenom varchar(16), nationalite varchar(10), epoque varchar(6))
+
+create table if not exists celebrite (
+	numCelebrite integer, 
+    nom varchar(16), 
+    prenom varchar(16), 
+    nationalite varchar(10), 
+    epoque varchar(6),
+    constraint pk_celebrite primary key (numCelebrite)
+);
+
+
+
+-- ------------------------------------------------------------------------------------------
+-- AssocieA(codeM varchar(5), numCelebrite integer)
+-- avec AssocieA(codeM)⊆Monument(codeM) et AssocieA(numCelebrite)⊆Celebrite(numCelebrite)
+
+
+
+
+-- to activate foreign keys verification in SQL
+SET FOREIGN_KEY_CHECKS = 1;
