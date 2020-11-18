@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "celebrity")
+@Table(name = "celebrite")
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -18,61 +18,98 @@ public class Celebrite implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "numCelebrite")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private int celebrity_number;
+	private int numCelebrite;
 	
-	@Column(name = "nom", length = 16)
-	private String family;
+	@Column(length = 16)
+	private String nom;
 	
-	@Column(name = "prenom", length = 16)
-	private String name;
+	@Column(length = 16)
+	private String prenom;
 	
-	@Column(name = "nationalite", length = 10)
-	private String nationality;
+	@Column(length = 10)
+	private String nationalite;
 	
-	@Column(name = "epoque", length = 6)
-	private String era;
+	@Column(length = 6)
+	private String epoque;
+	
+	
 
-	public int getCelebrity_number() {
-		return celebrity_number;
+	public Celebrite() {
+		super();
 	}
 
-	public void setCelebrity_number(int celebrity_number) {
-		this.celebrity_number = celebrity_number;
+
+
+	public Celebrite(int numCelebrite, String nom, String prenom, String nationalite, String epoque) {
+		super();
+		this.numCelebrite = numCelebrite;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.nationalite = nationalite;
+		this.epoque = epoque;
 	}
 
-	public String getFamily() {
-		return family;
+
+
+	public int getNumCelebrite() {
+		return numCelebrite;
 	}
 
-	public void setFamily(String family) {
-		this.family = family;
+
+
+	public void setNumCelebrite(int numCelebrite) {
+		this.numCelebrite = numCelebrite;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getNom() {
+		return nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public String getNationality() {
-		return nationality;
+
+
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
-	public String getEra() {
-		return era;
+
+
+	public String getNationalite() {
+		return nationalite;
 	}
 
-	public void setEra(String era) {
-		this.era = era;
+
+
+	public void setNationalite(String nationalite) {
+		this.nationalite = nationalite;
 	}
+
+
+
+	public String getEpoque() {
+		return epoque;
+	}
+
+
+
+	public void setEpoque(String epoque) {
+		this.epoque = epoque;
+	}
+
 	
 	
 	

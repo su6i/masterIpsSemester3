@@ -5,7 +5,7 @@ spring:
 # Mysql
     datasource:
         driver-class-name: "com.mysql.cj.jdbc.Driver"
-        url: "jdbc:mysql://localhost:3306/programmationAvancee"
+        url: "jdbc:mysql://localhost:3306/project_generated"
         username: root
         password: 
         platform: mysql
@@ -13,7 +13,7 @@ spring:
     jpa:
         show-sql: true
         hibernate:
-                  ddl-auto: update
+                  ddl-auto: create-drop
         properties:
                    hibernate:
                              dialect: "org.hibernate.dialect.MySQL5Dialect"

@@ -8,66 +8,81 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "departement")
 public class Departement implements Serializable {
 	 /**
-	 * 
+	 * insert into departement values ('12','AVEYRON','12202');  
 	 */
 	private static final long serialVersionUID = 1L;
 	
+
 	@Id	
 	@Column(name = "numDep", length = 4)
-	private String departement_number;
-		
-	@Column(name = "chefLieu", length = 46)
-	private String chef_lieu;
-	
+	private String numDep;
+				
 	@Column(name = "nomDep", length = 30)
-	private String department_name;
+	private String nomDep;
 	
 	@Column(name = "reg", length = 4)
-	private String region_number;
+	private String reg;
 	
-	@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
-	private Set<Lieu> lieuSet;
+	@OneToOne
+	@JoinColumn(name="chefLieu")
+	//@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
+	private Lieu codeInsee;
 
-	public String getDepartement_number() {
-		return departement_number;
-	}
-
-	public void setDepartement_number(String departement_number) {
-		this.departement_number = departement_number;
-	}
-
-	public String getDepartment_name() {
-		return department_name;
-	}
-
-	public void setDepartment_name(String department_name) {
-		this.department_name = department_name;
-	}
-
-	public String getRegion_number() {
-		return region_number;
-	}
-
-	public void setRegion_number(String region_number) {
-		this.region_number = region_number;
-	}
-
-	public String getChef_lieu() {
-		return chef_lieu;
-	}
-
-	public void setChef_lieu(String chef_lieu) {
-		this.chef_lieu = chef_lieu;
-	}
 	
-	
+	public Departement() {
+		super();
+	}
+
+	// insert into departement values ('34','HERAULT','34172');                                     
+	// Hibernate: insert into departement (chef_lieu, nom_dep, reg, num_dep) values (?, ?, ?, ?)
+
+
+	public Departement(String numDep, Lieu chefLieu, String nomDep, String reg) {
+		super();
+		this.numDep = numDep;
+		this.nomDep = nomDep;
+		this.reg = reg;
+	}
+
+
+	public String getNumDep() {
+		return numDep;
+	}
+
+
+	public void setNumDep(String numDep) {
+		this.numDep = numDep;
+	}
+
+
+	public String getNomDep() {
+		return nomDep;
+	}
+
+
+	public void setNomDep(String nomDep) {
+		this.nomDep = nomDep;
+	}
+
+
+	public String getReg() {
+		return reg;
+	}
+
+
+	public void setReg(String reg) {
+		this.reg = reg;
+	}
+
 	
 	
 }

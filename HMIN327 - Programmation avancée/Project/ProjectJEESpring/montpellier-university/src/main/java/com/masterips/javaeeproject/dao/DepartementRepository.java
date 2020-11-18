@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.masterips.javaeeproject.entities.Departement;
 
-public interface DepartementRepository extends JpaRepository<Departement, Integer> {
+public interface DepartementRepository extends JpaRepository<Departement, String> {
 
 }
