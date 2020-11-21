@@ -1,7 +1,7 @@
 # Data Mining Project
 ## Master 2 Informatique pour les sciences
 ### Professor: Konstantin TODOROV
-### By: Cherif, Arezki, Amir SHIRALI POUR
+### By: Cherif KHEFFACHE, Arezki KACIOUI, Amir SHIRALI POUR
 -------------------------------------------------------
 
 Jupyter Notebook Docker used in our project:   
@@ -9,3 +9,10 @@ Jupyter Notebook Docker used in our project:
 
 Useful resources:   
 - [Docker tutorial](https://www.scalyr.com/blog/create-docker-image/)
+
+
+
+
+
+
+
