@@ -8,15 +8,24 @@ Prof: Pierre POMPIDOR
 
 ----------------------------------------
 ## Final view:
-![Home page before login](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/home-page-signied-out.png)
-![Home page logged in](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/home-page-signied-in.png)
-![Profile page](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/profile.png)
-![Products page](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/products.png)
-![Product details](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/product-details.png)
-![Search Bar](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/search-bar.png)
-![Search Bar - Multiple selection](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/search-bar-multiple-selection.png)
-![Orders page](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/orders.png)
-![Order details page](https://github.com/su6i/technoduwebavance/blob/master/authProject/src/assets/image/order-details.png)
+![Home page before login](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/home-page-signied-out.png)
+
+![Home page logged in](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/home-page-signied-in.png)
+
+![Profile page](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/profile.png)
+
+![Products page](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/products.png)
+
+![Product details](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/product-details.png)
+
+![Search Bar](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/search-bar.png)
+
+![Search Bar - Multiple selection](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/search-bar-multiple-selection.png)
+
+![Orders page](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/orders.png)
+
+![Order details page](https://github.com/su6i/masterIpsSemester3/blob/master/HMIN325M%20-%20Technologies%20avancées%20du%20web/MEAN/MEANProject/authProject/src/assets/image/order-details.png)
+
 ----------------------------------------   
 Install:
 
