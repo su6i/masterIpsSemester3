@@ -1,0 +1,19 @@
+<html>
+<body> <b> Gestion des membres : </b> <br/><br/>
+<div id="inscription" style="width: 500px; height:100%; float:left">
+    <h3> Inscription </h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+</div>
+
+<div id="listeMembres">
+    <h3>Membres</h1>
+    <ul>
+    {% for membre in membres %}
+    <li> {{ membre.nom }} {{ membre.prenom }} </li>
+    {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
