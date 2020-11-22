@@ -1,0 +1,6 @@
+Python Tips and Tricks
+----------------------
+1. python-32 -c 'import sys;print("%x" % sys.maxsize, sys.maxsize > 2**32)': if the response = '7fffffff' --> 32bit and if response = '7fffffffffffffff' ---> 64bit
+2. help(Command): This function is used to get the documentation of specified module, class, function, variables etc.
+3. dir("Command"): Returns list of the attributes and methods of any object.
+4. python -m json.tool dataBase/articles.json: Json pretty-print in the Terminal

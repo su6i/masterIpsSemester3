@@ -1,0 +1,93 @@
+pyenv:
+PyEnv is a tool for manage all versions of Python that you need install in your system.
+---------------------------------------------------------
+Before install:
+	+ install all dependencies on Ubuntu Linux:
+		- sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+		libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev \
+		libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+		
+	+ install all dependencies on Mac:
+		- brew install openssl readline sqlite3 xz zlib
+		- sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+
+Install on Linux and Mac:
+	- curl https://pyenv.run | bash
+
+- List of all commands:
+	- pyenv commands
+
+- Update list of python versions:
+	- pyenv update
+
+- Uninstall pyenv:
+	- rm -fr ~/.pyenv
+	+ Then remove three below lines from ~/.bashrc file:
+		- export PATH="$HOME/.pyenv/bin:$PATH"
+		eval "$(pyenv init -)"
+		eval "$(pyenv virtualenv-init -)"
+
+- Show list of all python v3.6, 3.7 and 3.8:
+	- pyenv install --list | grep " 3\.[678]"
+
+- Show all available pythons:
+	- pyenv install --list
+
+- Install Python version 3.8.1:
+	- pyenv install -v 3.8.1
+
+- You can remove any version of Python that you don't need:
+	- Either by removing it's folder: Ex: rm -rf ~/.pyenv/versions/2.7.15
+	- Or by the uninstall command: Ex: pyenv uninstall 2.7.15
+
+- 
+- List of all installed version of Pythons:
+	- pyenv versions
+
+- Show current version:
+	- python -v
+		or
+	- python --version
+
+- Find the address of current version of Python:
+	- which python
+	- penv which python
+
+- Change the default version of Python:
+	- pyenv global 3.8.1
+
+- Go back to the system version of Python as the default:
+	- pyenv global system
+
+- Get more information about any command by --help option:
+	- pyenv --help
+		or
+	- pyenv global --help
+
+- creates a .python-version file in your current directory. If you have pyenv active in your environment, this file will automatically activate this version for you.
+	- pyenv local 2.7.15
+
+- The shell command is used to set a shell-specific Python version. For example, if you wanted to test out the 3.8-dev version of Python, you can do this:
+	- pyenv shell 3.8.1
+
+- Note that there are for level of execution of Python:
+	- pyenv shell
+	- pyenv local
+	- pyenv global
+	- System Python
+
+---------------------------------------------------------
+PyEnv Virtual Environments:
+	- pyenv virtualenv <python_version> <environment_name>
+	- pyenv virtualenv 3.6.8 myFinanceWithPythonProject
+
+Note that: <python_version> is optional
+
+- Creating .python_version file in your current directory (project directory):
+	- pyenv local myFinanceWithPythonProject
+
+- Activating virtual environmento:
+	- pyenv activate <virtual_environment_name>
+
+- Deactivating virtual environment:
+	- pyenv deactivate

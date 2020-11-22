@@ -1,0 +1,10 @@
+marker_size=15
+plt.scatter(xyz[:,0], xyz[:,1], marker_size, c=xyz[:,2]): A scatter plot of y vs x with varying marker size and/or color.
+plt.title("Point observations"): Set a title for the axes.
+plt.xlabel("Easting"): Set the label for the x-axis.
+plt.ylabel("Northing"): Set the label for the y-axis.
+cbar= plt.colorbar(): Add a colorbar to a plot.
+cbar.set_label("elevation (m)", labelpad=+1): Set a label that will be displayed in the legend.
+plt.show(): Display a figure.
+plt.clf(): Clear the current figure.
+xyz=np.array(np.random.random((100,3))): Genereate 3 * 100 random numbers like ([0.1122, 0.2242, 0.5456]
