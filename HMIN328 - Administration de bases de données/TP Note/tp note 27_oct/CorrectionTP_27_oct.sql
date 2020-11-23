@@ -66,5 +66,5 @@ end tpnote2;
 /
 
 exec tpnote2.BlocsMoinsRemplisCommune
-exec tpnote2.AllocationUsager('MNASRI')
+exec tpnote2.AllocationUsager('Amir')
 exec tpnote2.AllocationTous

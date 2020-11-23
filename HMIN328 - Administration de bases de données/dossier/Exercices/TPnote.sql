@@ -68,9 +68,9 @@ end;
 end TPnote;
 /
 
-exec TPnote.InformationStockageTable('MNASRI', 'COMMUNE')
-exec TPnote.InformationStockageIndex('MNASRI', 'COMMUNE')
-exec TPnote.blocsCache('MNASRI', 'INDEX')
+exec TPnote.InformationStockageTable('Amir', 'COMMUNE')
+exec TPnote.InformationStockageIndex('Amir', 'COMMUNE')
+exec TPnote.blocsCache('Amir', 'INDEX')
 
 ------------------------------------------------------------------------------
 
