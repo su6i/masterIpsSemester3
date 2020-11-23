@@ -1,0 +1,3 @@
+!conda list       # With "!" we can execute a shell command in Jupyter cell
+%lsmagic          # List of all available line and cell magics
+%%timeit          # Time of execute a list of command in the cell that comes after this command

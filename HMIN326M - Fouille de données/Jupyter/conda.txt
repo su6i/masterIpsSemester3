@@ -1,0 +1,24 @@
+Virtual environment's related commands in conda (Install and remove etc.):
+
+conda create -n terEnv python=3.7.6     # create a virtual environment with the name "terEnv" and with python version 3.6.7
+conda env list                          # List of all available virtual environments
+conda activate terEnv                   # Activate a virtual environment
+conda deactivate                        # Deactivate a virtual environment
+conda env remove -n terEnv              # Remove a virtual environment
+
+# ----------------------------------------------------
+Running Jupyter notebook in virtual environment:
+
+Do these commands in the virtual environment
+pip install jupyter
+pip install ipykernel
+python -m ipykernel install --user --name terEnv --display-name "terEnv"
+jupyter notebook
+# ----------------------------------------------------
+Install spaCy module for NLP:
+
+conda install -c conda-forge spacy
+python -m spacy download en # default English model (~50MB)
+python -m spacy download en_core_web_md # larger English model (~1GB)
+python -m spacy download it # default Italian model (~36.5MB)
+
