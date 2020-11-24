@@ -22,7 +22,12 @@ spring:
       active:
         - "dev"         
         
+  
 
 
 server:
   port: 8080
+  
+  error:
+    whitelabel:
+       enabled: false

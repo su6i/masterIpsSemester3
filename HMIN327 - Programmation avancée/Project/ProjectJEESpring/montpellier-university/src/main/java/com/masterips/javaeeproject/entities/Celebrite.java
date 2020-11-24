@@ -41,25 +41,12 @@ public class Celebrite implements Serializable {
 
 
 
-	public Celebrite(int numCelebrite, String nom, String prenom, String nationalite, String epoque) {
+	public Celebrite(String nom, String prenom, String nationalite, String epoque) {
 		super();
-		this.numCelebrite = numCelebrite;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.nationalite = nationalite;
 		this.epoque = epoque;
-	}
-
-
-
-	public int getNumCelebrite() {
-		return numCelebrite;
-	}
-
-
-
-	public void setNumCelebrite(int numCelebrite) {
-		this.numCelebrite = numCelebrite;
 	}
 
 

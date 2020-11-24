@@ -1,3 +1,24 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- drop table departement;
+create table if not exists departement(
+	dep varchar(4), 
+    nomDep varchar(23), 
+    chefLieu varchar(5), 
+    -- reg varchar(5),   -- reg varchar(4),
+	constraint pk_departement primary key (dep),
+    constraint fk_departement foreign key (chefLieu) references lieu(codeInsee)
+);
+
+
+-- ALTER TABLE departement ADD chefLieu varchar(5);
+-- INSERT INTO departement (chefLieu) select codeInsee from lieu, departement where reg = codeInsee;
+
+
+-- example of lieu: insert into  lieu values ('34172','MONTPELLIER',3.876716,43.610769,'34');
+
+
+
 insert into departement values ('01','AIN','01053');                                
 insert into departement values ('02','AISNE','02408');                                  
 insert into departement values ('03','ALLIER','03190');                                      

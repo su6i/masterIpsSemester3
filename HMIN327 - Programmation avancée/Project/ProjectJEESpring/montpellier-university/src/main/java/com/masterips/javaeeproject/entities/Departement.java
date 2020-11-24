@@ -2,14 +2,10 @@ package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,14 +24,12 @@ public class Departement implements Serializable {
 				
 	@Column(name = "nomDep", length = 30)
 	private String nomDep;
-	
-	@Column(name = "reg", length = 4)
-	private String reg;
-	
-	@OneToOne
-	@JoinColumn(name="chefLieu")
+		
+	//@OneToOne
+	//@JoinColumn(name="chefLieu")
 	//@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
-	private Lieu codeInsee;
+	@Column(name = "chefLieuDepCodeInsee", length = 5)
+	private String codeInsee;
 
 	
 	public Departement() {
@@ -46,11 +40,12 @@ public class Departement implements Serializable {
 	// Hibernate: insert into departement (chef_lieu, nom_dep, reg, num_dep) values (?, ?, ?, ?)
 
 
-	public Departement(String numDep, Lieu chefLieu, String nomDep, String reg) {
+	public Departement(String numDep, String nomDep, String codeInsee) {
 		super();
 		this.numDep = numDep;
 		this.nomDep = nomDep;
-		this.reg = reg;
+		this.codeInsee = codeInsee;
+		
 	}
 
 
@@ -71,16 +66,6 @@ public class Departement implements Serializable {
 
 	public void setNomDep(String nomDep) {
 		this.nomDep = nomDep;
-	}
-
-
-	public String getReg() {
-		return reg;
-	}
-
-
-	public void setReg(String reg) {
-		this.reg = reg;
 	}
 
 	

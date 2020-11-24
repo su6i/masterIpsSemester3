@@ -1,5 +1,19 @@
-insert into monument values ('spfb05ty554b','HOTEL DUFFAU','PRIVE','HOTEL_PARTICULIER',3.87521667,43.6140222,'34172');                                          
-insert into monument values ('spfb070h0d5t','HOTEL DE MONTFERRIER','PRIVE','HOTEL_PARTICULIER',3.8782,43.6109278,'34172');                                                            
+drop table monument;
+create table if not exists monument(
+	codeM varchar(12),  -- codeM varchar(5),
+    nomM varchar(47), -- nomM varchar(25), 
+    proprietaire varchar(10), 
+    typeMonument varchar(17), -- typeMonument varchar(16), 
+    longitude float, 
+    latitude float, 
+    codeLieu varchar(5),
+	constraint pk_monument primary key (codeM),
+    constraint fk_monument foreign key (codeLieu) references lieu(codeInsee)
+);
+
+
+-- insert into monument values ('spfb05ty554b','HOTEL DUFFAU','PRIVE','HOTEL_PARTICULIER',3.87521667,43.6140222,'34172');                                          
+-- insert into monument values ('spfb070h0d5t','HOTEL DE MONTFERRIER','PRIVE','HOTEL_PARTICULIER',3.8782,43.6109278,'34172');                                                            
 insert into monument values ('spfb070hzm8g','HOTEL DE GRIFFY','PRIVE','HOTEL_PARTICULIER',3.87848611,43.611075,'34172');                                                            
 insert into monument values ('spfb070q3mv0','HOTEL ESTORC','PRIVE','HOTEL_PARTICULIER',3.87857778,43.6113333,'34172');                                                       
 insert into monument values ('spfb070qgp2u','HOTEL DE LA SOCIETE ROYALE DES SCIENCES','PRIVE','HOTEL_PARTICULIER',3.87864722,43.6114278,'34172');                                                            

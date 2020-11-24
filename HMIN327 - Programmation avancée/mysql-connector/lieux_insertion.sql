@@ -1,3 +1,15 @@
+-- create table if not exists lieu (
+-- 	codeInsee varchar(5), 
+--     nomCom varchar(46), 
+--     longitude float, 
+--     latitude float,
+--     dep varchar(4), 
+-- 	constraint pk_lieu primary key (codeInsee),
+--     constraint fk_lieu foreign key (dep) references departement(dep)
+-- );
+
+
+
 insert into  lieu values ('34172','MONTPELLIER',3.876716,43.610769,'34');
 insert into  lieu values ('34198','PEROLS',3.954211,43.563782,'34');
 insert into  lieu values ('34199','PEZENAS',3.423193,43.461531,'34');

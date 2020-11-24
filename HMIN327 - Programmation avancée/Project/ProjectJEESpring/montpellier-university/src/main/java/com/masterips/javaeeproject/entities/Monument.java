@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,16 +22,16 @@ public class Monument implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	@Column(length = 5)
+	@Column(name="code_M", length = 12)
 	private String codeM;
 	
-	@Column(length = 25)
+	@Column(name="nom_M", length = 47)
 	private String nomM;
 	
 	@Column(length = 10)
 	private String proprietaire;
 	
-	@Column(length = 16)
+	@Column(name="typeMonument", length = 17)
 	private String typeMonument;
 	
 	@Column(name = "longitude")
@@ -44,18 +45,22 @@ public class Monument implements Serializable {
 	private Lieu localisation;
 	
 	@ManyToMany
-	private Set<Celebrite> associeACelebrite;
+	@JoinTable( 
+    joinColumns = @JoinColumn( name = "codeM" ),
+    inverseJoinColumns = @JoinColumn( name = "numCelebrite" ) )
+	private Set<Celebrite> associea_celebrite;
 
 	
 	public Monument() {
 		super();
 	}
 
+	
 
 	// insert into monument values ('spfb0725nhcx','HOTEL DE BEAULAC','PRIVE','HOTEL_PARTICULIER',3.87843333,43.6121444,'34172');                                                            
 
 	public Monument(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
-			double latitude, String codeLieu) {
+			double latitude, Lieu localisation) {
 		super();
 		this.codeM = codeM;
 		this.nomM = nomM;
@@ -63,8 +68,10 @@ public class Monument implements Serializable {
 		this.typeMonument = typeMonument;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		this.localisation = localisation;
 	}
-
+	
+	
 
 	public String getCodeM() {
 		return codeM;

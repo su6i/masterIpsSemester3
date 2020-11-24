@@ -23,16 +23,14 @@ public class Lieu implements Serializable {
 	private String codeInsee;
 	
 	@ManyToOne
-	@JoinColumn(name="dep")
+	@JoinColumn
 	private Departement dep;
 	
 	@Column(length = 30)
 	private String nomCom;
 		
-	@Column(name = "longitude")
 	private double longitude;
 	
-	@Column(name = "latitude")
 	private double latitude;
 	
 	
@@ -45,13 +43,13 @@ public class Lieu implements Serializable {
 	// 		Lieu l1 = new Lieu("34172","MONTPELLIER",3.876716,43.610769,"34");
 
 
-	public Lieu(String codeInsee, Departement dep, String nomCom, double longitude, double latitude) {
+	public Lieu(String codeInsee, String nomCom, double longitude, double latitude, Departement dep) {
 		super();
 		this.codeInsee = codeInsee;
-		this.dep = dep;
 		this.nomCom = nomCom;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		this.dep = dep;
 	}
 
 
