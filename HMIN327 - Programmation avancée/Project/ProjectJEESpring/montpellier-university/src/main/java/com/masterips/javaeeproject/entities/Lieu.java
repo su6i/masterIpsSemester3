@@ -121,9 +121,14 @@ public class Lieu implements Serializable {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+	
 
-
-
+	@Override
+    public String toString() {
+        return "Code Insee=" + this.codeInsee + "Nom Commune: " + this.nomCom + ", Departement: " 
+        					 + dep +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
+    }
+	
 	
 	
 	

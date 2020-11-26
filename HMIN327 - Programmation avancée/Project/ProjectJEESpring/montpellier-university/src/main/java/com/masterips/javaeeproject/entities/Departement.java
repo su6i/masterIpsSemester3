@@ -25,11 +25,11 @@ public class Departement implements Serializable {
 	@Column(name = "nomDep", length = 30)
 	private String nomDep;
 		
-	//@OneToOne
-	//@JoinColumn(name="chefLieu")
+	@OneToOne
+	@JoinColumn(name="chefLieu")
 	//@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
-	@Column(name = "chefLieuDepCodeInsee", length = 5)
-	private String codeInsee;
+//	@Column(name = "chefLieuDepCodeInsee", length = 5)
+	private Lieu codeInsee;
 
 	
 	public Departement() {
@@ -40,7 +40,7 @@ public class Departement implements Serializable {
 	// Hibernate: insert into departement (chef_lieu, nom_dep, reg, num_dep) values (?, ?, ?, ?)
 
 
-	public Departement(String numDep, String nomDep, String codeInsee) {
+	public Departement(String numDep, String nomDep, Lieu codeInsee) {
 		super();
 		this.numDep = numDep;
 		this.nomDep = nomDep;
@@ -67,7 +67,13 @@ public class Departement implements Serializable {
 	public void setNomDep(String nomDep) {
 		this.nomDep = nomDep;
 	}
-
+	
+	
+	@Override
+    public String toString() {
+        return "Numéro Departement: " + this.numDep + ", Nom Departement: " + this.nomDep + ", Code Insee: " + this.codeInsee  ;
+        					 
+    }
 	
 	
 }

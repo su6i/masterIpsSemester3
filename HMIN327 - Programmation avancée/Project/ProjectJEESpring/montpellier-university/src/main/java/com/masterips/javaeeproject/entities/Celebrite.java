@@ -99,5 +99,11 @@ public class Celebrite implements Serializable {
 
 	
 	
+	@Override
+    public String toString() {
+        return "Nom Celebrite: " + this.nom + "Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
+        	   "Epoque: " + this.epoque ;
+    }
+	
 	
 }

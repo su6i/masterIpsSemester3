@@ -29,12 +29,12 @@ public interface AppService {
 //	L’originalité sera une plus-value à votre travail et les aspects relatifs à l'orgonomie et à la restitution visuelle seront également considérés.
 
 	
-	public Departement addDepartement(Departement departement);
+	public void addDepartement(Departement departement);
 	public Departement getDepartement(String numDep);
 	
-	public Lieu addLieu(Lieu lieu);
+	public void addLieu(Lieu lieu);
 	
-	public Monument addMonument(Monument monument);
+	public void addMonument(Monument monument);
 	public void addMonumentToLieu(Long codeM, String codeInsee);
 	public float getDistanceBetweenMonuments(String nomMonA,String nomMonB);
 	public List<Monument> getListMonumentsByDep(String nomDep);

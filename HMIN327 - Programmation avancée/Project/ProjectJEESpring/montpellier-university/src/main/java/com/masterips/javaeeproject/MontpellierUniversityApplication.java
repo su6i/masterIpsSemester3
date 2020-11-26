@@ -68,10 +68,10 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 
 	 
 		  // First added department
-		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER", "34172"));
+		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER", null)); //l34172
 		departementRepository.save(herault);
 
-		Departement isere = new Departement("38","ISERE","38185"); 
+		Departement isere = new Departement("38","ISERE", null);  //"38185"
 		departementRepository.save(isere);
 
 		
@@ -89,6 +89,16 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		 (String nom, String prenom, String nationalite, String epoque)
 		Celebrite amir = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
 		celebriteRepository.save(amir);
+		
+		herault = departementRepository.updateDepartement("38","ISERE", l34172);
+		departementRepository.save(herault);
+		
+//		String query = "ALTER TABLE tablename MODIFY `col 1` INT(5)";
+//		Statement stmt = co.createStatement();
+//		int rslt = stmt.executeUpdate(query);
+
+
+		System.out.println("\n\n\n"+herault+ "\n\n\n");
 		
 		
 		

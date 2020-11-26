@@ -33,34 +33,35 @@ public class AppServicelmplementation implements AppService {
 	
 	@Autowired
 	private CelebriteRepository celebriteRepository;
-	
 
 	@Override
-	public Departement addDepartement(Departement departement) {
+	public void addDepartement(Departement departement) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
 	public Departement getDepartement(String numDep) {
 		
 		
-		 Departement d = departementRepository.findOne("34"); 
+		 Departement d = departementRepository.findOne(numDep); 
 		 if(numDep==null) throw new RuntimeException("Can't find entered department");
 		 
 		 return d;
 	}
-
+	
+	
+	
 	@Override
-	public Lieu addLieu(Lieu lieu) {
+	public void addLieu(Lieu lieu) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public Monument addMonument(Monument monument) {
+	public void addMonument(Monument monument) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
@@ -88,9 +89,12 @@ public class AppServicelmplementation implements AppService {
 	}
 
 	@Override
-	public Celebrite addCelebrite(Celebrite c) {
+	public Celebrite addCelebrite(Celebrite celebrite) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+
 
 }
