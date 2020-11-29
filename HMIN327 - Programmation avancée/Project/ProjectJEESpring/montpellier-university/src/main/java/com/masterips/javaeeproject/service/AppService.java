@@ -41,6 +41,7 @@ public interface AppService {
 	public List<Monument> getListMonumentsByLieu(String nomCom);
 	
 	public Celebrite addCelebrite(Celebrite celebrite);
+	
 
 	//public AssocieA addAssociation(AssocieA associeA);
 

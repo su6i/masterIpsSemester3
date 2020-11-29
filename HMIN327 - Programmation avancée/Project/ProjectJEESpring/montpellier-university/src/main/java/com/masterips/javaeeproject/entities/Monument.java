@@ -2,6 +2,7 @@ package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,10 +23,10 @@ public class Monument implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	@Column(name="code_M", length = 12)
+	@Column(name="code_m", length = 12)
 	private String codeM;
 	
-	@Column(name="nom_M", length = 47)
+	@Column(name="nom_m", length = 47)
 	private String nomM;
 	
 	@Column(length = 10)
@@ -40,19 +41,29 @@ public class Monument implements Serializable {
 	@Column(name = "latitude")
 	private double latitude;
 		
-	@ManyToOne
-	@JoinColumn(name="codeLieu")
-	private Lieu localisation;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
+	private Lieu lieu;
+	
+	@Column(name = "codeLieu", length = 5)
+	private String codeLieu;
 	
 	@ManyToMany
 	@JoinTable( 
-    joinColumns = @JoinColumn( name = "codeM" ),
-    inverseJoinColumns = @JoinColumn( name = "numCelebrite" ) )
+	    joinColumns = @JoinColumn( name = "code_m" ),
+	    inverseJoinColumns = @JoinColumn( name = "num_celebrite" ) 
+    )
 	private Set<Celebrite> associea_celebrite;
+
 
 	
 	public Monument() {
 		super();
+	}
+	
+	public Monument(String codeM) {
+		super();
+		this.setCodeM(codeM);
 	}
 
 	
@@ -60,15 +71,17 @@ public class Monument implements Serializable {
 	// insert into monument values ('spfb0725nhcx','HOTEL DE BEAULAC','PRIVE','HOTEL_PARTICULIER',3.87843333,43.6121444,'34172');                                                            
 
 	public Monument(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
-			double latitude, Lieu localisation) {
+			double latitude, String codeLieu) {
 		super();
-		this.codeM = codeM;
-		this.nomM = nomM;
-		this.proprietaire = proprietaire;
-		this.typeMonument = typeMonument;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.localisation = localisation;
+		this.setCodeM(codeM);
+		this.setNomM(nomM);
+		this.setProprietaire(proprietaire);
+		this.setTypeMonument(typeMonument);
+		this.setLongitude(longitude);
+		this.setLatitude(latitude);
+		
+		lieu = new Lieu(codeLieu);
+		this.codeLieu = codeLieu;
 	}
 	
 	
@@ -132,12 +145,16 @@ public class Monument implements Serializable {
 		this.latitude = latitude;
 	}
 
+	
+	public Monument getMonument() {
+		return this;
+	}
 
 	@Override
     public String toString() {
         return "Code Monument: " + this.codeM + "Nom Monument: " + this.nomM + ", Proprietaire: " + this.proprietaire +
         	   "Type Monument: " + this.typeMonument + "Longitude: " + this.longitude + ", Latitude: " + this.latitude	+
-        	   "Localisation: " + this.localisation;
+        	   "Localisation: " + this.codeLieu;
     }
 
 	

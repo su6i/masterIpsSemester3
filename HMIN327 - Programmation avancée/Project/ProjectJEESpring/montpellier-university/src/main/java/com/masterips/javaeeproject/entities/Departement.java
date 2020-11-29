@@ -2,6 +2,7 @@ package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,27 +26,43 @@ public class Departement implements Serializable {
 	@Column(name = "nomDep", length = 30)
 	private String nomDep;
 		
-	@OneToOne
-	@JoinColumn(name="chefLieu")
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
 	//@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
 //	@Column(name = "chefLieuDepCodeInsee", length = 5)
-	private Lieu codeInsee;
+	private Lieu lieu;
+
+	@Column(name = "chefLieu", length = 5)
+	private String chefLieu;
+
+
 
 	
 	public Departement() {
 		super();
 	}
+	
+	public Departement(String numDep) {
+		super();
+		this.setNumDep(numDep);
+	}
 
+	
 	// insert into departement values ('34','HERAULT','34172');                                     
 	// Hibernate: insert into departement (chef_lieu, nom_dep, reg, num_dep) values (?, ?, ?, ?)
 
 
-	public Departement(String numDep, String nomDep, Lieu codeInsee) {
+	public Departement(String numDep, String nomDep, String chefLieu) {
 		super();
-		this.numDep = numDep;
-		this.nomDep = nomDep;
-		this.codeInsee = codeInsee;
+		this.setNumDep(numDep);
+		this.setNomDep(nomDep);
 		
+		
+		lieu = new Lieu(chefLieu);
+		this.chefLieu = chefLieu;
+//		this.chefLieu = this.lieu.getCodeInsee();
+		
+
 	}
 
 
@@ -69,9 +86,29 @@ public class Departement implements Serializable {
 	}
 	
 	
+
+	public String getChefLieu() {
+		return chefLieu;
+	}
+
+	public void setChefLieu(String chefLieu) {
+		this.chefLieu = chefLieu;
+	}
+
+	public Departement getDepartement() {
+		return this;
+	}
+	
+	public void setDepartement(Departement departement) {
+		departement.setDepartement(this);
+	}
+
+
+	
 	@Override
     public String toString() {
-        return "Numéro Departement: " + this.numDep + ", Nom Departement: " + this.nomDep + ", Code Insee: " + this.codeInsee  ;
+        return "Numéro Departement: " + this.numDep + ", Nom Departement: " + this.nomDep +
+        		", Chef Lieu: " + this.chefLieu  ;
         					 
     }
 	

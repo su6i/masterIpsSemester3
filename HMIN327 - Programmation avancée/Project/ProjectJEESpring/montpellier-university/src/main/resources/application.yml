@@ -14,6 +14,11 @@ spring:
         show-sql: true
         hibernate:
                   ddl-auto: update
+                  naming:
+                     #physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategy"
+                     implicit-strategy: "org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl"
+                    
+             
         properties:
                    hibernate:
                              dialect: "org.hibernate.dialect.MySQL5Dialect"
@@ -31,3 +36,5 @@ server:
   error:
     whitelabel:
        enabled: false
+       
+# debug: true

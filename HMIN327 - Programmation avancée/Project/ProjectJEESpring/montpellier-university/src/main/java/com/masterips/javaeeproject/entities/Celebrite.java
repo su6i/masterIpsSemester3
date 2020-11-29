@@ -7,10 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "celebrite")
+@Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
+
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -97,6 +99,10 @@ public class Celebrite implements Serializable {
 		this.epoque = epoque;
 	}
 
+	
+	public Celebrite getCelebrite() {
+		return this;
+	}
 	
 	
 	@Override

@@ -2,12 +2,13 @@ package com.masterips.javaeeproject.entities;
 
 import java.io.Serializable;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +23,9 @@ public class Lieu implements Serializable {
 	@Column(length = 5)
 	private String codeInsee;
 	
-	@ManyToOne
-	@JoinColumn
-	private Departement dep;
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name="dep", insertable=false ,updatable=false)
+	private Departement departement;
 	
 	@Column(length = 30)
 	private String nomCom;
@@ -32,31 +33,41 @@ public class Lieu implements Serializable {
 	private double longitude;
 	
 	private double latitude;
+
+	@Column(name = "dep", length = 4)
+	private String dep;
 	
 	
 
 	public Lieu() {
 		super();
 	}
-
+	
+	public Lieu(String codeInsee) {
+		super();
+		this.setCodeInsee(codeInsee);
+	}
+	
 
 	// 		Lieu l1 = new Lieu("34172","MONTPELLIER",3.876716,43.610769,"34");
 
 
-	public Lieu(String codeInsee, String nomCom, double longitude, double latitude, Departement dep) {
+	public Lieu(String codeInsee, String nomCom, double longitude, double latitude, String dep) {
 		super();
-		this.codeInsee = codeInsee;
-		this.nomCom = nomCom;
-		this.longitude = longitude;
-		this.latitude = latitude;
-		this.dep = dep;
+		this.setCodeInsee(codeInsee);
+		this.setNomCom(nomCom);
+		this.setLongitude(longitude);
+		this.setLatitude(latitude);
+		
+		departement = new Departement(dep);
+		this.dep = this.departement.getNumDep();
 	}
 
 
 
 
 	public String getCodeInsee() {
-		return codeInsee;
+		return this.codeInsee;
 	}
 
 
@@ -69,16 +80,16 @@ public class Lieu implements Serializable {
 
 
 
-	public Departement getDep() {
-		return dep;
-	}
-
-
-
-
-	public void setDep(Departement dep) {
-		this.dep = dep;
-	}
+//	public Departement getDep() {
+//		return dep;
+//	}
+//
+//
+//
+//
+//	public void setDep(Departement dep) {
+//		this.dep = dep;
+//	}
 
 
 
@@ -98,7 +109,7 @@ public class Lieu implements Serializable {
 
 
 	public double getLongitude() {
-		return longitude;
+		return this.longitude;
 	}
 
 
@@ -112,7 +123,7 @@ public class Lieu implements Serializable {
 
 
 	public double getLatitude() {
-		return latitude;
+		return this.latitude;
 	}
 
 
@@ -122,12 +133,55 @@ public class Lieu implements Serializable {
 		this.latitude = latitude;
 	}
 	
+	
+	public Lieu getLieu() {
+		return this;
+	}
+	
+	
+	public void setLieu(Lieu lieu) {
+		lieu.setLieu(this);
+	}
+	
+	public String getDep() {
+		return this.dep;
+	}
+
+	public void setDep(String dep) {
+		this.dep = dep;
+	}
+	
+	
+	//------------------------------
+	
+//	public Inscription getInscription() {
+//
+//		return inscription;
+//	}
+//
+//	public void setInscription(Inscription inscription) {
+//		
+//		this.inscription = inscription;  		
+//	}
+//
+//	public void setEtudiant(Etudiant etudiant) {
+//		etudiant.setEtudiant(this);
+//	}
+	
+	
+	//------------------------------
+
+	
+	
+	
+	
 
 	@Override
     public String toString() {
         return "Code Insee=" + this.codeInsee + "Nom Commune: " + this.nomCom + ", Departement: " 
         					 + dep +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
     }
+
 	
 	
 	

@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
@@ -18,7 +22,7 @@ import com.masterips.javaeeproject.dao.MonumentRepository;
 import com.masterips.javaeeproject.dao.CelebriteRepository;
 import com.masterips.javaeeproject.dao.DepartementRepository;
 
-import java.sql.*;
+//import java.sql.*;
 
 @SpringBootApplication
 public class MontpellierUniversityApplication implements CommandLineRunner {
@@ -42,6 +46,21 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(MontpellierUniversityApplication.class, args);
 		
+//		Session session = new Configuration().configure()
+//				.buildSessionFactory().openSession();
+//		
+//		Transaction t = session.beginTransaction();
+//
+//		
+//		Celebrite amir = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
+//		Celebrite amir2 = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
+//
+//		
+//		session.saveOrUpdate(amir);
+//		session.saveOrUpdate(amir2);
+//        t.commit();
+//        session.close();
+//		
 	}
 
 	@Override
@@ -66,32 +85,30 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		— ...
 //		L’originalité sera une plus-value à votre travail et les aspects relatifs à l'orgonomie et à la restitution visuelle seront également considérés.
 
-	 
+//		insert into departement values ('38','ISERE','38185');                                    
 		  // First added department
-		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER", null)); //l34172
-		departementRepository.save(herault);
+		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER","34172")); //l34172
 
-		Departement isere = new Departement("38","ISERE", null);  //"38185"
-		departementRepository.save(isere);
+//		Departement isere = new Departement("38","ISERE", "38185");  //"38185"
+//		departementRepository.save(isere);
 
+//		insert into  lieu values ('34172','MONTPELLIER',3.876716,43.610769,'34');
+		Lieu l34172 = lieuRepository.save(new Lieu("34172","MONTPELLIER",3.876716,43.610769,"34"));
+//		
+		Lieu l34198 = lieuRepository.save(new Lieu("34198","PEROLS",3.954211,43.563782,"34"));
 		
-		Lieu l34172 = lieuRepository.save(new Lieu("34172","MONTPELLIER",3.876716,43.610769,herault));
-		lieuRepository.save(l34172);
 		
-		Lieu l34198 = new Lieu("34198","PEROLS",3.954211,43.563782,herault);
-		lieuRepository.save(l34198);
-		
-	
-		Monument m1 = new Monument("spfb05nwqmvu","HOTEL DE GANGES","PRIVE","HOTEL_PARTICULIER",3.87639,43.611334,l34172);
-		monumentRepository.save(m1);
+//		insert into monument values ('spfb070hzm8g','HOTEL DE GRIFFY','PRIVE','HOTEL_PARTICULIER',3.87848611,43.611075,'34172');                                                            
+//		(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
+//		double latitude, Lieu localisation)
+		Monument spfb05nwqmvu = monumentRepository.save(new Monument("spfb05nwqmvu","HOTEL DE GANGES","PRIVE","HOTEL_PARTICULIER",3.87639,43.611334,"34172"));
 		
 		
 //		 (String nom, String prenom, String nationalite, String epoque)
-		Celebrite amir = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
-		celebriteRepository.save(amir);
+//		Celebrite amir = celebriteRepository.save(new Celebrite("SHIRALI POUR","Amir","Iranienne","1981"));
+//		Celebrite amir2 = celebriteRepository.save(new Celebrite("SHIRALI POUR","Amir","Iranienne","1981"));
 		
-		herault = departementRepository.updateDepartement("38","ISERE", l34172);
-		departementRepository.save(herault);
+//		departementRepository.updateDepartement(numDep, nomDep);
 		
 //		String query = "ALTER TABLE tablename MODIFY `col 1` INT(5)";
 //		Statement stmt = co.createStatement();
@@ -108,7 +125,7 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 		
 		
 		// Test
-		appService.getDepartement("isere");
+//		appService.getDepartement("isere");
 	}
 
 }

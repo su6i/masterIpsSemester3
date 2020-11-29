@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.masterips.javaeeproject.dao.DepartementRepository;
 import com.masterips.javaeeproject.entities.Departement;
 import com.masterips.javaeeproject.service.AppService;
 
@@ -37,6 +38,17 @@ public class PagesController {
 		} catch (Exception e) {
 			modelMap.addAttribute("execption", e);
 		}
+		
+		return "department";
+		
+	}
+	
+	@Autowired
+	@RequestMapping("/saveDepartment")
+	public String setDepartmnet(DepartementRepository departmentRepository) {
+		
+//		departmentRepository
+		
 		
 		return "department";
 		
