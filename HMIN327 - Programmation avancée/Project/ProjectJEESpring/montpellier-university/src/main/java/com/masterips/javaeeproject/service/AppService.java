@@ -2,8 +2,14 @@ package com.masterips.javaeeproject.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
+import com.masterips.javaeeproject.dao.CelebriteRepository;
+import com.masterips.javaeeproject.dao.DepartementRepository;
+import com.masterips.javaeeproject.dao.LieuRepository;
+import com.masterips.javaeeproject.dao.MonumentRepository;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 
@@ -28,22 +34,36 @@ public interface AppService {
 //	— ...
 //	L’originalité sera une plus-value à votre travail et les aspects relatifs à l'orgonomie et à la restitution visuelle seront également considérés.
 
+		
 	
-	public void addDepartement(Departement departement);
+	
+//	Departement methodes
+	public Departement addDepartement(Departement departement);
 	public Departement getDepartement(String numDep);
+	public List<Departement> getAllDepartements();
+
 	
-	public void addLieu(Lieu lieu);
 	
+//	Lieu methodes
+	public Lieu addLieu(Lieu lieu);
+	public Lieu getLieu(String codeIsee);
+	public List<Lieu> getAllLieux();
+	
+	
+	
+//	Monument methodes
 	public void addMonument(Monument monument);
 	public void addMonumentToLieu(Long codeM, String codeInsee);
 	public float getDistanceBetweenMonuments(String nomMonA,String nomMonB);
 	public List<Monument> getListMonumentsByDep(String nomDep);
 	public List<Monument> getListMonumentsByLieu(String nomCom);
 	
+	
+	
+//	Celebrite methodes
 	public Celebrite addCelebrite(Celebrite celebrite);
 	
 
-	//public AssocieA addAssociation(AssocieA associeA);
 
 	
 }

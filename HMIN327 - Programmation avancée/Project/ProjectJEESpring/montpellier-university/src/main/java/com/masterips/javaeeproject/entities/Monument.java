@@ -12,6 +12,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Set;
 
 @Entity
@@ -145,7 +149,7 @@ public class Monument implements Serializable {
 		this.latitude = latitude;
 	}
 
-	
+	@JsonIgnore
 	public Monument getMonument() {
 		return this;
 	}

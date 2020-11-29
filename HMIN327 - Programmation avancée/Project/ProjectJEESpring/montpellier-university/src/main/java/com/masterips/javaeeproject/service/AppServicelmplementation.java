@@ -34,30 +34,57 @@ public class AppServicelmplementation implements AppService {
 	@Autowired
 	private CelebriteRepository celebriteRepository;
 
+	@Autowired
+	private AppService appService;
+
+	
+	
+//	Department
+	
 	@Override
-	public void addDepartement(Departement departement) {
-		// TODO Auto-generated method stub
-		
+	public Departement addDepartement(Departement departement) {
+		return departementRepository.save(departement);
 	}
 
 	@Override
 	public Departement getDepartement(String numDep) {
 		
 		
-		 Departement d = departementRepository.findOne(numDep); 
-		 if(numDep==null) throw new RuntimeException("Can't find entered department");
+//		 Departement d = departementRepository.findOne(numDep); 
+//		 if(numDep==null) throw new RuntimeException("Can't find entered department");
+//		 return d;
 		 
-		 return d;
+		 return departementRepository.findOne(numDep);		 
 	}
-	
-	
 	
 	@Override
-	public void addLieu(Lieu lieu) {
-		// TODO Auto-generated method stub
-		
+	public List<Departement> getAllDepartements() {
+		 return departementRepository.findAll();	 
 	}
+	
+	
 
+//	Lieu 
+	@Override
+	public Lieu getLieu(String codeIsee) {
+		return lieuRepository.getLieu(codeIsee);
+	}
+	
+	@Override
+	public List<Lieu> getAllLieux() {
+		return lieuRepository.findAll();
+	}
+	
+	@Override
+	public Lieu addLieu(Lieu lieu) {
+		return lieuRepository.save(lieu);
+	}
+	
+	
+	
+	
+	
+//	Monument
 	@Override
 	public void addMonument(Monument monument) {
 		// TODO Auto-generated method stub
@@ -88,6 +115,8 @@ public class AppServicelmplementation implements AppService {
 		return null;
 	}
 
+	
+//	Celebrite
 	@Override
 	public Celebrite addCelebrite(Celebrite celebrite) {
 		// TODO Auto-generated method stub

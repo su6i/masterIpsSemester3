@@ -11,6 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 @Table(name = "lieu")
 public class Lieu implements Serializable {
@@ -23,6 +28,7 @@ public class Lieu implements Serializable {
 	@Column(length = 5)
 	private String codeInsee;
 	
+//	@JsonManagedReference
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="dep", insertable=false ,updatable=false)
 	private Departement departement;
@@ -133,12 +139,12 @@ public class Lieu implements Serializable {
 		this.latitude = latitude;
 	}
 	
-	
+	@JsonIgnore
 	public Lieu getLieu() {
 		return this;
 	}
 	
-	
+	@JsonSetter
 	public void setLieu(Lieu lieu) {
 		lieu.setLieu(this);
 	}

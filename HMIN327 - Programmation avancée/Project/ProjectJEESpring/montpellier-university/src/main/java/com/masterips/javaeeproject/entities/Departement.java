@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 @Entity
 @Table(name = "departement")
 public class Departement implements Serializable {
@@ -28,8 +32,6 @@ public class Departement implements Serializable {
 		
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
-	//@OneToMany(mappedBy="dep",fetch=FetchType.LAZY)
-//	@Column(name = "chefLieuDepCodeInsee", length = 5)
 	private Lieu lieu;
 
 	@Column(name = "chefLieu", length = 5)
@@ -95,10 +97,12 @@ public class Departement implements Serializable {
 		this.chefLieu = chefLieu;
 	}
 
+	@JsonIgnore
 	public Departement getDepartement() {
 		return this;
 	}
 	
+	@JsonSetter
 	public void setDepartement(Departement departement) {
 		departement.setDepartement(this);
 	}
