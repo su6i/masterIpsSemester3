@@ -2,7 +2,7 @@
 
 
 ## Dockerfile of project:
-`docker run -dit --name apache \
+- `docker run -dit --name apache \
 -v "/Users/su6i/Amir/gitProjects/myGitProjects/Master-IPS-2019/masterIpsSemester3/HMIN325M - Technologies avancées du web/Symfony/SymfonyProject":/ipsSymfony \
 -w /ipsSymfony \
 -p 8080:80 -p 9000:9000 -p 8000:8000 -p 3306:3306 \
