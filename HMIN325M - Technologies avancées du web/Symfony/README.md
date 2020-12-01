@@ -1,5 +1,13 @@
 # Symfony project
 
+
+## Dockerfile of project:
+`docker run -dit --name apache \
+-v "/Users/su6i/Amir/gitProjects/myGitProjects/Master-IPS-2019/masterIpsSemester3/HMIN325M - Technologies avancées du web/Symfony/SymfonyProject":/ipsSymfony \
+-w /ipsSymfony \
+-p 8080:80 -p 9000:9000 -p 8000:8000 -p 3306:3306 \
+emasalari/symfony-apache2 bash /run.sh`
+
 - `sudo service --status-all | less` : Verifying services on Ubuntu
 - `cat /etc/os-release` : Verifying the Linux version
 
@@ -14,7 +22,8 @@
 
 - `sudo apt install apache2` : Installing Apache2 on Ubuntu
 - `sudo service apache2 restart` or `systemctl restart apache2` : Restart Apache2 service on Ubuntu. We can also use `start` or `stop` istead of `restart`
-
+- `/etc/apache2/apache2.conf` : Apache2 config file   
+- `/etc/apache2/sites-available/000-default.conf` : 
 ---------------------------------------------
 ### MySQL:
 - `sudo apt install mysql-server mysql-client` : Installing MySQL on Ubuntu

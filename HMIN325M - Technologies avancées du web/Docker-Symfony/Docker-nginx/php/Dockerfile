@@ -8,11 +8,13 @@ RUN apt-get update && apt-get install -y zlib1g-dev \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
-RUN apt-get install -y vim zsh
+RUN apt-get install -y vim zsh nginx
 
-WORKDIR /var/www/project
+WORKDIR /ipsSymfony
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
+CMD ["nginx", "-g", "daemon off;"]
