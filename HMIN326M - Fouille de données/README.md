@@ -1,4 +1,4 @@
-# Data Mining Project
+<p style="text-align: center;"># Data Mining Project</p>
 ## Master 2 Informatique pour les sciences
 ### Professor: Konstantin TODOROV
 ### By: Cherif KHEFFACHE, Arezki KACIOUI, Amir SHIRALI POUR
