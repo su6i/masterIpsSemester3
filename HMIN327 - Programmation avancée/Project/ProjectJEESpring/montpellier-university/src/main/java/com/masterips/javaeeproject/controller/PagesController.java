@@ -41,17 +41,17 @@ public class PagesController {
 	}
 	
 	
-	@RequestMapping(value="/department", method=RequestMethod.POST)
+	@RequestMapping(value="/departement", method=RequestMethod.POST)
 	public Departement addDepartement(@RequestBody Departement departement) {
 		return appService.addDepartement(departement);
 	}
 
-	@RequestMapping(value="/department{dep}", method=RequestMethod.GET)
+	@RequestMapping(value="/departement{dep}", method=RequestMethod.GET)
 	public Departement getDepartement(String dep) {
 		return appService.getDepartement(dep);
 	}	
 	
-	@RequestMapping(value="/departments", method=RequestMethod.GET)
+	@RequestMapping(value="/departements", method=RequestMethod.GET)
 	public List<Departement> getAllDepartements() {
 		return appService.getAllDepartements();
 	}

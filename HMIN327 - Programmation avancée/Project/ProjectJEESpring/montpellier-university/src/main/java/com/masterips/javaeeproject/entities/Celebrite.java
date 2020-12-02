@@ -9,10 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.SQLInsert;
+
 
 @Entity
 @Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
-
+@SQLInsert(sql = "INSERT IGNORE INTO celebrite(epoque, nationalite,nom, prenom) " +
+"VALUES (?, ?, ?, ?)" )
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -32,7 +35,7 @@ public class Celebrite implements Serializable {
 	@Column(length = 10)
 	private String nationalite;
 	
-	@Column(length = 6)
+	@Column(length = 4)
 	private String epoque;
 	
 	
@@ -45,10 +48,10 @@ public class Celebrite implements Serializable {
 
 	public Celebrite(String nom, String prenom, String nationalite, String epoque) {
 		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.nationalite = nationalite;
-		this.epoque = epoque;
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.setNationalite(nationalite);
+		this.setEpoque(epoque);
 	}
 
 
@@ -107,8 +110,8 @@ public class Celebrite implements Serializable {
 	
 	@Override
     public String toString() {
-        return "Nom Celebrite: " + this.nom + "Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
-        	   "Epoque: " + this.epoque ;
+        return "Nom Celebrite: " + this.nom + ", Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
+        	   ", Epoque: " + this.epoque ;
     }
 	
 	

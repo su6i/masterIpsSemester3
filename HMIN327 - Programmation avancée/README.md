@@ -1,4 +1,4 @@
-# programmationAvancee
+# HMIN327 - Programmation avancée
 
 ## JavaEE:   
 ### Maven project:   
@@ -39,7 +39,6 @@ Homebrew will install *spring* to `/usr/local/bin`.
 
 
 ## Spring Boot Application Layering
----------------------------------------
 
 - Data Access (or Persistence) Layer:   
     - Repository classes 
@@ -52,8 +51,8 @@ Homebrew will install *spring* to `/usr/local/bin`.
 
 
 Spring Dependency Injection:   
-    - Via XML or 
-    - via Annotations
+- Via XML or 
+- via Annotations
 
 ### Difference between @RestController and @Controller Annotation in Spring MVC and REST
 

@@ -1,19 +1,20 @@
-GET http://localhost:8080/departments HTTP/1.1
+GET http://localhost:8080/departements HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:8080/department/?dep=38
+GET http://localhost:8080/departement/?dep=38
 
 
 ###
-POST http://localhost:8080/department HTTP/1.1
+POST http://localhost:8080/departement HTTP/1.1
 content-type: application/json
 
 {
-    "numDep": "2A",
-    "nomDep": "CORSE-DU-SUD",
-    "chefLieu": "2A004"
+    "numDep": "30",
+    "nomDep": "GARD",
+    "chefLieu": "30189"
   }
+
 ###
 GET http://localhost:8080/lieux HTTP/1.1
 content-type: application/json

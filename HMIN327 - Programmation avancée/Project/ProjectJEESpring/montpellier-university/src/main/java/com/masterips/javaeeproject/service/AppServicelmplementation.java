@@ -81,18 +81,25 @@ public class AppServicelmplementation implements AppService {
 	}
 	
 	
-	
-	
-	
 //	Monument
+	
+	
 	@Override
 	public void addMonument(Monument monument) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	public List<Monument> getMonument(String codeM) {
+	return appService.getMonument(codeM);
+	}
+
+	public List<Monument> getAllMonuments() {
+		return appService.getAllMonuments();
+	}
+
 	@Override
-	public void addMonumentToLieu(Long codeM, String codeInsee) {
+	public void addMonumentToLieu(String codeM, String codeInsee) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -156,9 +156,9 @@ public class Monument implements Serializable {
 
 	@Override
     public String toString() {
-        return "Code Monument: " + this.codeM + "Nom Monument: " + this.nomM + ", Proprietaire: " + this.proprietaire +
-        	   "Type Monument: " + this.typeMonument + "Longitude: " + this.longitude + ", Latitude: " + this.latitude	+
-        	   "Localisation: " + this.codeLieu;
+        return "Code Monument: " + this.codeM + ", Nom Monument: " + this.nomM + ", Proprietaire: " + this.proprietaire +
+        	   ", Type Monument: " + this.typeMonument + ", Longitude: " + this.longitude + ", Latitude: " + this.latitude	+
+        	   ", Localisation: " + this.codeLieu;
     }
 
 	

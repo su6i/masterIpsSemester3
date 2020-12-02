@@ -115,9 +115,12 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 
 
 		System.out.println("\n\n\n"+herault+ "\n\n\n");
+		System.out.println("\n"+l34172+ "\n");
+		System.out.println("\n"+spfb05nwqmvu+ "\n");
+//		System.out.println("\n"+amir+ "\n");
 		
 		
-		
+		// Affiche les données depuis la base de données
 		
 		
 		

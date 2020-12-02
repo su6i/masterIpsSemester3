@@ -184,7 +184,7 @@ public class Lieu implements Serializable {
 
 	@Override
     public String toString() {
-        return "Code Insee=" + this.codeInsee + "Nom Commune: " + this.nomCom + ", Departement: " 
+        return "Code Insee=" + this.codeInsee + ", Nom Commune: " + this.nomCom + ", Departement: " 
         					 + dep +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
     }
 
