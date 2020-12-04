@@ -12,8 +12,6 @@ create table population(
     constraint pk_population primary key (codeinsee, annee)
 );
     
-
-
 -- 1.2  Construction de l'ensemble des tables et chargement
 sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster control=population.ctl
 
@@ -23,8 +21,10 @@ sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster con
 
 ANALYZE TABLE Population COMPUTE STATISTICS;
 
-select NUM_ROWS from user_tables where table_name = 'POPULATION';
--- select count(*) from POPULATION; -- Deuxième façon
+-- Premère façon
+select table_name, NUM_ROWS from user_tables where table_name = 'POPULATION';
+-- Deuxième façon
+-- select count(*) from POPULATION; 
 
 select table_name , BLOCKS from user_tables where table_name = 'POPULATION';
 
@@ -34,32 +34,30 @@ select table_name , BLOCKS from user_tables where table_name = 'POPULATION';
 
 -- avec la table dual
 
-set long 40000
-
 create or replace procedure UneTable(table_name in varchar2)
 is
     v_clob clob := null;
 begin
     select DBMS_METADATA.GET_DDL('TABLE',upper(table_name)) into v_clob from dual ;
     dbms_output.put_line('ce que tu veux afficher' || v_clob);
-
 end;
 /
 
 EXEC UneTable('population');
 
 -- avec la table user_tables
-set serveroutput on
+
 create or replace procedure UneTable(nomtable in varchar2) as
 cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(nomtable), USER) as eachTable from user_tables where table_name = upper(nomtable);
 begin
-for line in c
+    for line in c
     loop
         dbms_output.put_line(line.eachTable);
     end loop;
 end;
 /
 
+set serveroutput on
 EXEC UneTable('population');
 
 
@@ -77,7 +75,6 @@ EXEC UneTable('population');
 create or replace FUNCTION ToutesTables(schema_user in varchar2) RETURN clob as
 v_clob clob := null;
 cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(table_name), OWNER) as eachTable from dba_tables where owner = upper(schema_user);
-
 BEGIN
    DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'TABLESPACE', false);
    DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'SQLTERMINATOR', true);
@@ -92,7 +89,7 @@ for line in c
 end;
 /
 
-select ToutesTables('E20190009681') FROM dba_tables where table_name = 'population';
+select ToutesTables('E20190009681') FROM dba_tables where table_name = 'POPULATION';
 
 
 
@@ -103,7 +100,6 @@ select ToutesTables('E20190009681') FROM dba_tables where table_name = 'populati
 -- paramètre d’entrée.
 
 
-set serveroutput on
 create or replace FUNCTION ToutesTablesInfos(schema_user in varchar2) RETURN clob as
 v_clob clob := null;
 cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(table_name), OWNER) as eachTable from dba_tables where owner = upper(schema_user);
@@ -116,6 +112,7 @@ for line in c
 end;
 /
 
+set serveroutput on
 select ToutesTablesInfos('E20190009681') FROM dba_tables;
 
 -- 2.1.3  Informations associéesà l’organisation physique de la table
@@ -243,11 +240,11 @@ CURSOR myCursor IS SELECT dbms_metadata.get_ddl('TABLE',
 UPPER(v_tableName)) AS ligne FROM user_tables;
 v_clob CLOB;
 BEGIN
-FOR lig IN myCursor
-LOOP
-v_clob := lig.ligne;
-END LOOP;
-return v_clob;
+    FOR lig IN myCursor
+    LOOP
+        v_clob := lig.ligne;
+    END LOOP;
+    return v_clob;
 END;
 /
 
@@ -264,17 +261,16 @@ create or replace function TableDataXML (attribut varchar, nomTable varchar,filt
 return clob
 is
 begin
-declare
-v_clob clob;
-cursor c is select dbms_xmlgen.getxml(dbms_xmlgen.newcontext('select ' || attribut || ' from ' || nomTable || ' where ' || filtre)) as requete from dual;
-begin
-
-for var in c
-loop
-v_clob := v_clob || var.requete;
-end loop;
-return v_clob;
-end;
+    declare
+        v_clob clob;
+        cursor c is select dbms_xmlgen.getxml(dbms_xmlgen.newcontext('select ' || attribut || ' from ' || nomTable || ' where ' || filtre)) as requete from dual;
+    begin
+        for var in c
+        loop
+            v_clob := v_clob || var.requete;
+        end loop;
+        return v_clob;
+    end;
 end;
 /
 
@@ -293,12 +289,12 @@ create or replace procedure factory_population
 is
 cursor c is select p.codeinsee, val_population, annee, nomcommin from population p, commune c where p.codeinsee = c.codeinsee and annee in (2000,2010);
 begin
-for line in c
-loop 
-dbms_output.put_line(line.codeinsee||chr(9)||line.val_population||chr(9)||line.annee||chr(9)||line.nomcommin||chr(13)) ;
-end loop ;
-exception
-when others then dbms_output.put_line('erreurs') ;
+    for line in c
+    loop 
+        dbms_output.put_line(line.codeinsee||chr(9)||line.val_population||chr(9)||line.annee||chr(9)||line.nomcommin||chr(13)) ;
+    end loop ;
+    exception
+    when others then dbms_output.put_line('Error') ;
 end ;
 /
 
