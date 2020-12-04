@@ -18,19 +18,19 @@ CREATE TABLE population(
 
 -- ---------------------------------------------------
 -- 1.2  Construction de l'ensemble des tables et chargement
-sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster control=population.ctl
+sqlldr userid=e20190009681/MyPassWord@oracle.etu.umontpellier.fr:1523/pmaster control=population.ctl
 
 -- 1.3 Elémentsà rendre dans le devoir
 -- 3. sortie du résultat de la requête sur la vue usertables indiquant en particulier 
 -- le nombre detuples inséré et le nombre de blocs de données alloués
 
-ANALYZE TABLE Population COMPUTE STATISTICS;
+ANALYZE TABLE population COMPUTE STATISTICS;
 
 -- Premère façon
 SELECT table_name, num_rows FROM user_tables WHERE table_name = 'POPULATION';
 
 -- Deuxième façon
--- select count(*) from POPULATION; 
+SELECT COUNT(*) FROM population; 
 
 SELECT table_name , blocks FROM user_tables WHERE table_name = 'POPULATION';
 
@@ -40,7 +40,7 @@ SELECT table_name , blocks FROM user_tables WHERE table_name = 'POPULATION';
 
 -- avec la table dual
 
-CREATE OR replace PROCEDURE UneTable(vTableName IN VARCHAR2)
+CREATE OR REPLACE PROCEDURE UneTable(vTableName IN VARCHAR2)
 IS
     v_clob CLOB := NULL;
 BEGIN
@@ -55,7 +55,7 @@ EXEC UneTable('population');
 -- ---------------------------------------------------
 -- avec la table user_tables
 
-CREATE OR replace PROCEDURE UneTable(vTableName IN VARCHAR2) AS
+CREATE OR REPLACE PROCEDURE UneTable(vTableName IN VARCHAR2) AS
 CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(vTableName), USER) AS eachTable FROM user_tables WHERE table_name = Upper(vTableName);
 BEGIN
     FOR line IN c
@@ -77,9 +77,9 @@ EXEC UneTable('population');
 
 -- TouteTable sur le shema dba_tables
 
-CREATE OR replace FUNCTION ToutesTables(schema_user IN VARCHAR2) RETURN CLOB AS
+CREATE OR REPLACE FUNCTION ToutesTables(vUserSchema IN VARCHAR2) RETURN CLOB AS
 v_clob CLOB := NULL;
-CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(schema_user);
+CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(vUserSchema);
 BEGIN
    dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'TABLESPACE', FALSE);
    dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'SQLTERMINATOR', TRUE);
@@ -103,9 +103,9 @@ SELECT ToutesTables('E20190009681') FROM dba_tables WHERE table_name = 'POPULATI
 -- au stockage physique) de toutes les tables d’un schéma utilisateur dont le nom est passé en
 -- paramètre d’entrée.
 
-CREATE OR replace FUNCTION ToutesTablesInfos(schema_user IN VARCHAR2) RETURN CLOB AS
+CREATE OR REPLACE FUNCTION ToutesTablesInfos(vUserSchema IN VARCHAR2) RETURN CLOB AS
 v_clob CLOB := NULL;
-CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(schema_user);
+CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(vUserSchema);
 BEGIN
 FOR line IN c
     LOOP
@@ -169,7 +169,7 @@ SELECT ToutesTablesInfos('E20190009681') FROM dba_tables;
 -- pop infos from dbasegments
 --- segment_name='POPULATION' and owner='E20190009681'
 
-CREATE OR replace PROCEDURE Population_information_1 AS
+CREATE OR REPLACE PROCEDURE Population_information_1 AS
 CURSOR mycursor IS SELECT owner, segment_name, segment_type, bytes, blocks, tablespace_name, partition_name, extents FROM dba_segments WHERE segment_name='POPULATION' AND owner='E20190009681';
 BEGIN
     FOR line IN mycursor
@@ -188,7 +188,7 @@ EXEC Population_information_1;
 -- Seulement sur population
 -- pop blocks in bytes from dbasegments
 
-CREATE OR replace PROCEDURE Population_information_2 AS
+CREATE OR REPLACE PROCEDURE Population_information_2 AS
 CURSOR mycursor IS SELECT SUM(bytes) octets, SUM(blocks) blocs FROM dba_segments WHERE owner='E20190009681' AND segment_name='POPULATION';
 BEGIN
     FOR line IN mycursor
@@ -207,7 +207,7 @@ EXEC Population_information_2;
 -- Infos populations sur jointure des deux tables
 -- dbasegments and dbaextends
 
-CREATE OR replace PROCEDURE Population_information_3 AS  --- resultats en une ligne et on pourra voir extents=nombre de ligne requete depuis dba_extends
+CREATE OR REPLACE PROCEDURE Population_information_3 AS  --- resultats en une ligne et on pourra voir extents=nombre de ligne requete depuis dba_extends
 CURSOR mycursor IS SELECT DISTINCT ds.owner ow, ds.segment_name sn, ds.segment_type st, ds.bytes octets, ds.blocks blocs, ds.tablespace_name tsn, ds.partition_name pn, extents FROM dba_segments ds, dba_extents de WHERE ds.segment_name=de.segment_name AND ds.segment_name='POPULATION' AND ds.owner='E20190009681';
 BEGIN
     FOR line IN mycursor
@@ -226,7 +226,7 @@ EXEC Population_information_3;
 -- pop infos from dbasegments
 --- Avec la somme de des tailles des segments et des blocks et des exetensions pour chaque utilisateur
 
-CREATE OR replace PROCEDURE Population_information_4 IS
+CREATE OR REPLACE PROCEDURE Population_information_4 IS
 CURSOR myCursor IS SELECT owner, segment_type, Count(segment_name),
 SUM(bytes) octets, SUM(blocks) blocs,
 SUM(extents) extensions FROM dba_segments GROUP BY owner, segment_type ORDER
@@ -250,7 +250,7 @@ EXEC Population_information_4;
 -- 1. Vous construirez une fonction nommée TableXML qui renvoie la description XML d’une table
 -- en particulier du schéma utilisateur (nom de la table passé en paramètre d’entrée)
 
-CREATE OR replace FUNCTION TableXML(v_tablename VARCHAR) RETURN CLOB IS
+CREATE OR REPLACE FUNCTION TableXML(v_tablename VARCHAR) RETURN CLOB IS
 CURSOR mycursor IS SELECT dbms_metadata.Get_ddl('TABLE',
 Upper(v_tablename)) AS ligne FROM user_tables;
 v_clob CLOB;
@@ -273,7 +273,7 @@ SELECT TableXML('population') FROM dual;
 -- TableDataXMLqui prend en argument le nom d’une table mais aussi une condition 
 -- de filtre(clause where).
 
-CREATE OR replace FUNCTION TableDataXML (attribut VARCHAR, vtablename VARCHAR,condition VARCHAR)
+CREATE OR REPLACE FUNCTION TableDataXML (attribut VARCHAR, vtablename VARCHAR,condition VARCHAR)
 RETURN CLOB
 IS
 BEGIN
@@ -301,7 +301,7 @@ SELECT TableDataXML('dragon', 'dragons','dragon=''Miloch'' ') FROM dual;
 -- codeinsee, nom de la commune, valeur de la population en 2000, et valeur de la population en 2010
 -- au format tabulé.
 
-CREATE OR replace PROCEDURE factory_population
+CREATE OR REPLACE PROCEDURE factory_population
 IS
 CURSOR c IS SELECT p.codeinsee, val_population, annee, nomcommin FROM population p, commune c WHERE p.codeinsee = c.codeinsee AND annee IN (2000,2010);
 BEGIN
