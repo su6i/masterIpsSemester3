@@ -72,6 +72,26 @@ EXEC UneTable('population');
 
 -- TouteTable sur le shema dba_tables
 
+create or replace FUNCTION ToutesTables(schema_user in varchar2) RETURN clob as
+v_clob clob := null;
+cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(table_name), OWNER) as eachTable from dba_tables where owner = upper(schema_user);
+
+BEGIN
+   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'TABLESPACE', false);
+   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'SQLTERMINATOR', true);
+   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'PRETTY', true);
+   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'SEGMENT_ATTRIBUTES', false);
+   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'STORAGE', false);
+for line in c
+    loop
+        v_clob := v_clob || line.eachTable;
+    end loop;
+    RETURN v_clob;
+end;
+/
+
+select ToutesTables('E20190009681') FROM dba_tables where table_name = 'population';
+
 
 
 
@@ -96,6 +116,37 @@ end;
 
 select ToutesTablesInfos('E20190009681') FROM dba_tables;
 
+-- 2.1.3  Informations associ ́ees `a l’organisation physique de la table
+
+
+  CREATE TABLE "E20190009681"."POPULATION"
+   (	"CODEINSEE" VARCHAR2(6),
+	"ANNEE" NUMBER(*,0),
+	"VAL_POPULATION" NUMBER(*,0),
+	 CONSTRAINT "PK_POPULATION" PRIMARY KEY ("CODEINSEE", "ANNEE")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL
+DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "DATA_ETUD"  ENABLE
+   ) SEGMENT CREATION IMMEDIATE
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "DATA_ETUD"
+  
+
+
+
+
+----------------------------
+
+
+
+----------------------------
 
 
 
