@@ -1,3 +1,5 @@
+-- Amir SHIRALI POUR
+
 set serveroutput on;
 set long 40000
 set head off echo off
@@ -117,6 +119,7 @@ end;
 select ToutesTablesInfos('E20190009681') FROM dba_tables;
 
 -- 2.1.3  Informations associ ́ees `a l’organisation physique de la table
+-- EXEC UneTable('population');
 
 
   CREATE TABLE "E20190009681"."POPULATION"
@@ -125,19 +128,38 @@ select ToutesTablesInfos('E20190009681') FROM dba_tables;
 	"VAL_POPULATION" NUMBER(*,0),
 	 CONSTRAINT "PK_POPULATION" PRIMARY KEY ("CODEINSEE", "ANNEE")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+  -- PCTFREE 10: block utilization parameter, est le purcentage d’espace réservé dans chaque bloc pour des mises `a jour `avenir est égal à 10%
+  -- INITRANS 2: nombre initial d’entr ́ees de transactions pr ́e-allou ́ees `a un bloc qui peut être un nombre entre 1 et 255. 
+        -- Dans ce cas est égal à 2 parce que c'est un segment d’index.
+  -- MAXTRANS 255: nombre maximum de transactions concurrentes qui peuvent modifier unbloc allou ́e `a une table que est égal à 255
+  -- COMPUTE STATISTICS: Génère des statistiques pour les colonnes ("CODEINSEE", "ANNEE").
+
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  -- INITIAL 65536: Taille en octets du premier ”extent”. Lorsque vous créez l'objet de schéma Oracle alloue un espace de 65536 octets pour cette extension
+  -- NEXT 1048576:  La taille en octets du second extentsion qui est égal à 1048576 octets ou presque 1 Mega octets.
+  -- MINEXTENTS 1:  une extent alloué `a la cr ́eation
+  -- MAXEXTENTS 2147483645: Nombre maximal d'extentsion que l'objet peut avoir. est égal à 2147483645.
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
-  BUFFER_POOL
-DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  -- PCTINCREASE 0:  pourcentage d’augmentation entre 2 extents est mis à 0 afin de réduire la fragmentation sur le tablespace.
+  -- FREELISTS 1: Chaque segment a une liste libre (dans l'en-tête de segment) qui garde la trace des blocs de données sous le high-water mark.
+  -- FREELIST GROUPS 1: On a une FREELIST GROUPS
+  BUFFER_POOL DEFAULT 
+  -- La clause BUFFER_POOL est utilisée pour définir le pool de mémoire tampon par défaut pour un objet.
+  FLASH_CACHE DEFAULT 
+  -- un argument de table et d'index qui ressemble à l'affectation d'objets à high-use au pool KEEP.
+  CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "DATA_ETUD"  ENABLE
    ) SEGMENT CREATION IMMEDIATE
+   -- Le segment de table est créé dans le cadre de cette instruction CREATE TABLE.
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255
+  -- PCTUSED = 40, Oracle n'ajoutera pas de nouvelles lignes au bloc à moins que suffisamment de lignes ne soient supprimées 
+  -- du bloc pour qu'il tombe en dessous de 40% utilisé.
  NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "DATA_ETUD"
-  
+
 
 
 
