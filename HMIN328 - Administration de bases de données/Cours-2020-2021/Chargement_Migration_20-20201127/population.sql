@@ -51,11 +51,11 @@ EXEC UneTable('population');
 -- avec la table user_tables
 set serveroutput on
 create or replace procedure UneTable(nomtable in varchar2) as
-cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(nomtable), USER) as ligne from user_tables where table_name = upper(nomtable);
+cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(nomtable), USER) as eachTable from user_tables where table_name = upper(nomtable);
 begin
 for line in c
     loop
-        dbms_output.put_line(line.ligne);
+        dbms_output.put_line(line.eachTable);
     end loop;
 end;
 /
@@ -161,11 +161,76 @@ select ToutesTablesInfos('E20190009681') FROM dba_tables;
   TABLESPACE "DATA_ETUD"
 
 
+-- 2.1.4  Informations sur les organisations logique/physique
 
+-- 1
+-- pop infos from dbasegments
+--- segment_name='POPULATION' and owner='E20190009681'
+create or replace procedure pop_infos_1 as  
+CURSOR myCursor IS select owner, segment_name, segment_type, bytes, blocks, tablespace_name, partition_name, extents from dba_segments where segment_name='POPULATION' and owner='E20190009681';
+begin
+    FOR line IN myCursor
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(chr(10) ||  'Owner: ' || line.owner || chr(10) || ' Segment_name: '|| line.segment_name || chr(10) || ' Segment type: '|| line.segment_type || chr(10) || ' Bytes: '|| line.bytes || chr(10) || ' Blocks: '|| line.blocks || chr(10) || ' Tablespace name: '|| line.tablespace_name || chr(10) || ' Partition name: '|| line.partition_name || chr(10) || ' Eextentions: '|| line.extents);
+    END LOOP;
+end;
+/
 
+set serveroutput on
+exec pop_infos_1;
 
-----------------------------
+-- 2
+-- Seulement sur population
+-- pop blocks in bytes from dbasegments
+create or replace procedure pop_infos_2 as
+CURSOR myCursor IS select sum(bytes) octets, sum(blocks) blocs from dba_segments where owner='E20190009681' and segment_name='POPULATION';
+begin
+    FOR line IN myCursor
+    LOOP
+        DBMS_OUTPUT.PUT_LINE( chr(10) ||  'Bytes: ' || line.octets || chr(10) ||  ' Blocks: ' || line.blocs);
+    END LOOP;
+end;
+ / 
 
+set serveroutput on
+exec pop_infos_2;
+
+-- 3
+-- Infos populations sur jointure des deux tables
+-- dbasegments and dbaextends
+create or replace procedure pop_infos_3 as  --- resultats en une ligne et on pourra voir extents=nombre de ligne requete depuis dba_extends
+CURSOR myCursor IS select DISTINCT ds.owner ow, ds.segment_name sn, ds.segment_type st, ds.bytes octets, ds.blocks blocs, ds.tablespace_name tsn, ds.partition_name pn, extents from dba_segments ds, dba_extents de where ds.segment_name=de.segment_name and ds.segment_name='POPULATION' and ds.owner='E20190009681';
+begin
+    FOR line IN myCursor
+    LOOP
+        DBMS_OUTPUT.PUT_LINE( chr(10) ||  'Owner: ' || line.ow || chr(10) ||  ' Segment name: '|| line.sn || chr(10) ||  ' Segment type: '|| line.st || chr(10) ||  ' Bytes: '|| line.octets || chr(10) ||  ' Blocks: '|| line.blocs || chr(10) ||  ' Tablespace name: '|| line.tsn || chr(10) ||  ' Partition name: '|| line.pn || chr(10) ||  ' Eextentions: '|| line.extents);
+    END LOOP;
+end;
+/
+
+set serveroutput on
+exec pop_infos_3;
+
+-- 4
+-- pop infos from dbasegments
+--- Avec la somme de des tailles des segments et des blocks et des exetensions pour chaque utilisateur
+
+CREATE OR REPLACE PROCEDURE info_population_4 IS
+CURSOR myCursor IS select owner, segment_type, count(segment_name),
+sum(bytes) octets, sum(blocks) blocs,
+sum(extents) extensions from dba_segments group by owner, segment_type order
+by octets asc;
+BEGIN
+    FOR line IN myCursor
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(chr(10) || 'owner: ' || line.owner || chr(10) ||  ' Segment type: ' || line.segment_type || chr(10) || ' Bytes: ' || line.octets ||
+    chr(10) || ' Blocks: ' || line.blocs);
+    END LOOP;
+END;
+/
+
+set serveroutput on
+exec info_population_4;
 
 
 ----------------------------
