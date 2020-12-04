@@ -1,17 +1,22 @@
 -- Amir SHIRALI POUR
 
-set serveroutput on;
-set long 40000
-set head off echo off
+SET serveroutput ON;
+SET long 40000
+SET head OFF echo OFF
 
+
+-- ---------------------------------------------------
 -- 1.1  Schéma partiel de la base de données Communes
-create table population(
-    codeinsee varchar(6), 
-    annee integer, 
-    val_population integer,
-    constraint pk_population primary key (codeinsee, annee)
+
+CREATE TABLE population(
+    codeinsee VARCHAR(6),
+    annee INTEGER,
+    val_population INTEGER,
+    CONSTRAINT pk_population PRIMARY KEY (codeinsee, annee)
 );
     
+
+-- ---------------------------------------------------
 -- 1.2  Construction de l'ensemble des tables et chargement
 sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster control=population.ctl
 
@@ -22,102 +27,101 @@ sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster con
 ANALYZE TABLE Population COMPUTE STATISTICS;
 
 -- Premère façon
-select table_name, NUM_ROWS from user_tables where table_name = 'POPULATION';
+SELECT table_name, num_rows FROM user_tables WHERE table_name = 'POPULATION';
+
 -- Deuxième façon
 -- select count(*) from POPULATION; 
 
-select table_name , BLOCKS from user_tables where table_name = 'POPULATION';
+SELECT table_name , blocks FROM user_tables WHERE table_name = 'POPULATION';
 
-
+-- ---------------------------------------------------
 -- 2. Migration de schémas
 -- 2.1.2Code PL/SQLà rendre
 
 -- avec la table dual
 
-create or replace procedure UneTable(table_name in varchar2)
-is
-    v_clob clob := null;
-begin
-    select DBMS_METADATA.GET_DDL('TABLE',upper(table_name)) into v_clob from dual ;
-    dbms_output.put_line('ce que tu veux afficher' || v_clob);
-end;
+CREATE OR replace PROCEDURE UneTable(vTableName IN VARCHAR2)
+IS
+    v_clob CLOB := NULL;
+BEGIN
+    SELECT dbms_metadata.Get_ddl('TABLE',Upper(vTableName)) INTO v_clob FROM dual ;
+    dbms_output.Put_line('Table details:' || v_clob);
+END;
 /
 
 EXEC UneTable('population');
 
+
+-- ---------------------------------------------------
 -- avec la table user_tables
 
-create or replace procedure UneTable(nomtable in varchar2) as
-cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(nomtable), USER) as eachTable from user_tables where table_name = upper(nomtable);
-begin
-    for line in c
-    loop
-        dbms_output.put_line(line.eachTable);
-    end loop;
-end;
+CREATE OR replace PROCEDURE UneTable(vTableName IN VARCHAR2) AS
+CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(vTableName), USER) AS eachTable FROM user_tables WHERE table_name = Upper(vTableName);
+BEGIN
+    FOR line IN c
+    LOOP
+        dbms_output.Put_line(line.eachtable);
+    END LOOP;
+END;
 /
 
-set serveroutput on
+SET serveroutput ON
 EXEC UneTable('population');
 
 
-
-
+-- ---------------------------------------------------
 -- 2. Vous construirez une fonction nommée ToutesTables qui renvoie les ordres de création de
 -- toutes les tables (sans les informations concernant le stockage) d'un schéma utilisateur dont le
 -- nom est passé en paramètres d'entrée (variable de sortiede type CLOB). Vous utiliserez, pour
 -- ce faire, une requête de la forme (ici schéma utilisateur HR) :
 
--- -- select dbms_metadata.get_ddl('TABLE',TABLE_NAME,'HR') FROM DBA_TABLES WHERE OWNER ='HR';
-
 -- TouteTable sur le shema dba_tables
 
-create or replace FUNCTION ToutesTables(schema_user in varchar2) RETURN clob as
-v_clob clob := null;
-cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(table_name), OWNER) as eachTable from dba_tables where owner = upper(schema_user);
+CREATE OR replace FUNCTION ToutesTables(schema_user IN VARCHAR2) RETURN CLOB AS
+v_clob CLOB := NULL;
+CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(schema_user);
 BEGIN
-   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'TABLESPACE', false);
-   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'SQLTERMINATOR', true);
-   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'PRETTY', true);
-   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'SEGMENT_ATTRIBUTES', false);
-   DBMS_METADATA.set_transform_param (DBMS_METADATA.session_transform, 'STORAGE', false);
-for line in c
-    loop
-        v_clob := v_clob || line.eachTable;
-    end loop;
+   dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'TABLESPACE', FALSE);
+   dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'SQLTERMINATOR', TRUE);
+   dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'PRETTY', TRUE);
+   dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'SEGMENT_ATTRIBUTES', FALSE);
+   dbms_metadata.Set_transform_param (dbms_metadata.session_transform, 'STORAGE', FALSE);
+FOR line IN c
+    LOOP
+        v_clob := v_clob || line.eachtable;
+    END LOOP;
     RETURN v_clob;
-end;
+END;
 /
 
-select ToutesTables('E20190009681') FROM dba_tables where table_name = 'POPULATION';
+SELECT ToutesTables('E20190009681') FROM dba_tables WHERE table_name = 'POPULATION';
 
 
-
-
+-- ---------------------------------------------------
 -- 3. Vous construirez une nouvelle fonction nommée ToutesTablesInfos qui renvoie les ordres
 -- de création (plus l’information concernant l’organisation logique et les paramètres associés
 -- au stockage physique) de toutes les tables d’un schéma utilisateur dont le nom est passé en
 -- paramètre d’entrée.
 
-
-create or replace FUNCTION ToutesTablesInfos(schema_user in varchar2) RETURN clob as
-v_clob clob := null;
-cursor c is select DBMS_METADATA.GET_DDL('TABLE',upper(table_name), OWNER) as eachTable from dba_tables where owner = upper(schema_user);
-begin
-for line in c
-    loop
-        v_clob := v_clob || line.eachTable;
-    end loop;
+CREATE OR replace FUNCTION ToutesTablesInfos(schema_user IN VARCHAR2) RETURN CLOB AS
+v_clob CLOB := NULL;
+CURSOR c IS SELECT dbms_metadata.Get_ddl('TABLE',Upper(table_name), owner) AS eachTable FROM dba_tables WHERE owner = Upper(schema_user);
+BEGIN
+FOR line IN c
+    LOOP
+        v_clob := v_clob || line.eachtable;
+    END LOOP;
     RETURN v_clob;
-end;
+END;
 /
 
-set serveroutput on
-select ToutesTablesInfos('E20190009681') FROM dba_tables;
+set serveroutput ON
+SELECT ToutesTablesInfos('E20190009681') FROM dba_tables;
 
+
+-- ---------------------------------------------------
 -- 2.1.3  Informations associéesà l’organisation physique de la table
 -- EXEC UneTable('population');
-
 
   CREATE TABLE "E20190009681"."POPULATION"
    (	"CODEINSEE" VARCHAR2(6),
@@ -158,151 +162,162 @@ select ToutesTablesInfos('E20190009681') FROM dba_tables;
   TABLESPACE "DATA_ETUD"
 
 
+-- ---------------------------------------------------
 -- 2.1.4  Informations sur les organisations logique/physique
 
 -- 1
 -- pop infos from dbasegments
 --- segment_name='POPULATION' and owner='E20190009681'
-create or replace procedure pop_infos_1 as  
-CURSOR myCursor IS select owner, segment_name, segment_type, bytes, blocks, tablespace_name, partition_name, extents from dba_segments where segment_name='POPULATION' and owner='E20190009681';
-begin
-    FOR line IN myCursor
-    LOOP
-        DBMS_OUTPUT.PUT_LINE(chr(10) ||  'Owner: ' || line.owner || chr(10) || ' Segment_name: '|| line.segment_name || chr(10) || ' Segment type: '|| line.segment_type || chr(10) || ' Bytes: '|| line.bytes || chr(10) || ' Blocks: '|| line.blocks || chr(10) || ' Tablespace name: '|| line.tablespace_name || chr(10) || ' Partition name: '|| line.partition_name || chr(10) || ' Eextentions: '|| line.extents);
-    END LOOP;
-end;
-/
 
-set serveroutput on
-exec pop_infos_1;
-
--- 2
--- Seulement sur population
--- pop blocks in bytes from dbasegments
-create or replace procedure pop_infos_2 as
-CURSOR myCursor IS select sum(bytes) octets, sum(blocks) blocs from dba_segments where owner='E20190009681' and segment_name='POPULATION';
-begin
-    FOR line IN myCursor
-    LOOP
-        DBMS_OUTPUT.PUT_LINE( chr(10) ||  'Bytes: ' || line.octets || chr(10) ||  ' Blocks: ' || line.blocs);
-    END LOOP;
-end;
- / 
-
-set serveroutput on
-exec pop_infos_2;
-
--- 3
--- Infos populations sur jointure des deux tables
--- dbasegments and dbaextends
-create or replace procedure pop_infos_3 as  --- resultats en une ligne et on pourra voir extents=nombre de ligne requete depuis dba_extends
-CURSOR myCursor IS select DISTINCT ds.owner ow, ds.segment_name sn, ds.segment_type st, ds.bytes octets, ds.blocks blocs, ds.tablespace_name tsn, ds.partition_name pn, extents from dba_segments ds, dba_extents de where ds.segment_name=de.segment_name and ds.segment_name='POPULATION' and ds.owner='E20190009681';
-begin
-    FOR line IN myCursor
-    LOOP
-        DBMS_OUTPUT.PUT_LINE( chr(10) ||  'Owner: ' || line.ow || chr(10) ||  ' Segment name: '|| line.sn || chr(10) ||  ' Segment type: '|| line.st || chr(10) ||  ' Bytes: '|| line.octets || chr(10) ||  ' Blocks: '|| line.blocs || chr(10) ||  ' Tablespace name: '|| line.tsn || chr(10) ||  ' Partition name: '|| line.pn || chr(10) ||  ' Eextentions: '|| line.extents);
-    END LOOP;
-end;
-/
-
-set serveroutput on
-exec pop_infos_3;
-
--- 4
--- pop infos from dbasegments
---- Avec la somme de des tailles des segments et des blocks et des exetensions pour chaque utilisateur
-
-CREATE OR REPLACE PROCEDURE info_population_4 IS
-CURSOR myCursor IS select owner, segment_type, count(segment_name),
-sum(bytes) octets, sum(blocks) blocs,
-sum(extents) extensions from dba_segments group by owner, segment_type order
-by octets asc;
+CREATE OR replace PROCEDURE Population_information_1 AS
+CURSOR mycursor IS SELECT owner, segment_name, segment_type, bytes, blocks, tablespace_name, partition_name, extents FROM dba_segments WHERE segment_name='POPULATION' AND owner='E20190009681';
 BEGIN
-    FOR line IN myCursor
+    FOR line IN mycursor
     LOOP
-        DBMS_OUTPUT.PUT_LINE(chr(10) || 'owner: ' || line.owner || chr(10) ||  ' Segment type: ' || line.segment_type || chr(10) || ' Bytes: ' || line.octets ||
-    chr(10) || ' Blocks: ' || line.blocs);
+        dbms_output.Put_line(Chr(10) ||  'Owner: ' || line.owner || Chr(10) || ' Segment_name: '|| line.segment_name || Chr(10) || ' Segment type: '|| line.segment_type || Chr(10) || ' Bytes: '|| line.bytes || Chr(10) || ' Blocks: '|| line.blocks || Chr(10) || ' Tablespace name: '|| line.tablespace_name || Chr(10) || ' Partition name: '|| line.partition_name || Chr(10) || ' Eextentions: '|| line.extents);
     END LOOP;
 END;
 /
 
-set serveroutput on
-exec info_population_4;
+set serveroutput ON
+EXEC Population_information_1;
 
+
+-- ---------------------------------------------------
+-- 2
+-- Seulement sur population
+-- pop blocks in bytes from dbasegments
+
+CREATE OR replace PROCEDURE Population_information_2 AS
+CURSOR mycursor IS SELECT SUM(bytes) octets, SUM(blocks) blocs FROM dba_segments WHERE owner='E20190009681' AND segment_name='POPULATION';
+BEGIN
+    FOR line IN mycursor
+    LOOP
+        dbms_output.Put_line( Chr(10) ||  'Bytes: ' || line.octets || Chr(10) ||  ' Blocks: ' || line.blocs);
+    END LOOP;
+END;
+/
+
+set serveroutput ON
+EXEC Population_information_2;
+
+
+-- ---------------------------------------------------
+-- 3
+-- Infos populations sur jointure des deux tables
+-- dbasegments and dbaextends
+
+CREATE OR replace PROCEDURE Population_information_3 AS  --- resultats en une ligne et on pourra voir extents=nombre de ligne requete depuis dba_extends
+CURSOR mycursor IS SELECT DISTINCT ds.owner ow, ds.segment_name sn, ds.segment_type st, ds.bytes octets, ds.blocks blocs, ds.tablespace_name tsn, ds.partition_name pn, extents FROM dba_segments ds, dba_extents de WHERE ds.segment_name=de.segment_name AND ds.segment_name='POPULATION' AND ds.owner='E20190009681';
+BEGIN
+    FOR line IN mycursor
+    LOOP
+        dbms_output.Put_line( Chr(10) ||  'Owner: ' || line.ow || Chr(10) ||  ' Segment name: '|| line.sn || Chr(10) ||  ' Segment type: '|| line.st || Chr(10) ||  ' Bytes: '|| line.octets || Chr(10) ||  ' Blocks: '|| line.blocs || Chr(10) ||  ' Tablespace name: '|| line.tsn || Chr(10) ||  ' Partition name: '|| line.pn || Chr(10) ||  ' Eextentions: '|| line.extents);
+    END LOOP;
+END;
+/
+
+set serveroutput ON
+EXEC Population_information_3;
+
+
+-- ---------------------------------------------------
+-- 4
+-- pop infos from dbasegments
+--- Avec la somme de des tailles des segments et des blocks et des exetensions pour chaque utilisateur
+
+CREATE OR replace PROCEDURE Population_information_4 IS
+CURSOR myCursor IS SELECT owner, segment_type, Count(segment_name),
+SUM(bytes) octets, SUM(blocks) blocs,
+SUM(extents) extensions FROM dba_segments GROUP BY owner, segment_type ORDER
+BY octets ASC;
+BEGIN
+    FOR line IN myCursor
+    LOOP
+        dbms_output.Put_line(Chr(10) || 'owner: ' || line.owner || Chr(10) ||  ' Segment type: ' || line.segment_type || Chr(10) || ' Bytes: ' || line.octets ||
+    Chr(10) || ' Blocks: ' || line.blocs);
+    END LOOP;
+END;
+/
+
+set serveroutput ON
+EXEC Population_information_4;
+
+
+-- ---------------------------------------------------
 -- 2.2  Export XML Schéma et données
 -- 2.2.1  Fonction GETXML du paquetage DBMSMETADATA
 -- 1. Vous construirez une fonction nommée TableXML qui renvoie la description XML d’une table
 -- en particulier du schéma utilisateur (nom de la table passé en paramètre d’entrée)
 
-
-CREATE OR REPLACE FUNCTION TableXML(v_tableName VARCHAR) RETURN CLOB IS
-CURSOR myCursor IS SELECT dbms_metadata.get_ddl('TABLE',
-UPPER(v_tableName)) AS ligne FROM user_tables;
+CREATE OR replace FUNCTION TableXML(v_tablename VARCHAR) RETURN CLOB IS
+CURSOR mycursor IS SELECT dbms_metadata.Get_ddl('TABLE',
+Upper(v_tablename)) AS ligne FROM user_tables;
 v_clob CLOB;
 BEGIN
-    FOR lig IN myCursor
+    FOR lig IN mycursor
     LOOP
         v_clob := lig.ligne;
     END LOOP;
-    return v_clob;
+    RETURN v_clob;
 END;
 /
 
-set serveroutput on
-select TableXML('population') from dual;
+set serveroutput ON
+SELECT TableXML('population') FROM dual;
 
 
+-- ---------------------------------------------------
 -- 2. Vous exploiterez le paquetage DBMSXMLGEN pour avoir également les feuilles de l’arborescence 
 -- XML (données) pour une table donnée. Construisez également une fonctionà ce sujet
 -- TableDataXMLqui prend en argument le nom d’une table mais aussi une condition 
 -- de filtre(clause where).
 
-create or replace function TableDataXML (attribut varchar, nomTable varchar,filtre varchar) 
-return clob
-is
-begin
-    declare
-        v_clob clob;
-        cursor c is select dbms_xmlgen.getxml(dbms_xmlgen.newcontext('select ' || attribut || ' from ' || nomTable || ' where ' || filtre)) as requete from dual;
-    begin
-        for var in c
-        loop
-            v_clob := v_clob || var.requete;
-        end loop;
-        return v_clob;
-    end;
-end;
+CREATE OR replace FUNCTION TableDataXML (attribut VARCHAR, vtablename VARCHAR,condition VARCHAR)
+RETURN CLOB
+IS
+BEGIN
+    DECLARE
+        v_clob CLOB;
+        CURSOR c IS SELECT dbms_xmlgen.Getxml(dbms_xmlgen.Newcontext('select ' || attribut || ' from ' || vtablename || ' where ' || condition)) AS query FROM dual;
+    BEGIN
+        FOR var IN c
+        LOOP
+            v_clob := v_clob || var.query;
+        END LOOP;
+        RETURN v_clob;
+    END;
+END;
 /
 
+set serveroutput ON
+SELECT TableDataXML('*', 'POPULATION','codeinsee=''38185'' ') FROM dual;
+SELECT TableDataXML('dragon', 'dragons','dragon=''Miloch'' ') FROM dual;
 
-set serveroutput on
-select TableDataXML('fonction', 'EMP','fonction=''directeur'' ') from dual;
 
-
-
+-- ---------------------------------------------------
 -- 3. Export des données
 -- Vous définirez une procédure qui permet de renvoyer les données correspondant au
 -- codeinsee, nom de la commune, valeur de la population en 2000, et valeur de la population en 2010
 -- au format tabulé.
 
-create or replace procedure factory_population
-is
-cursor c is select p.codeinsee, val_population, annee, nomcommin from population p, commune c where p.codeinsee = c.codeinsee and annee in (2000,2010);
-begin
-    for line in c
-    loop 
-        dbms_output.put_line(line.codeinsee||chr(9)||line.val_population||chr(9)||line.annee||chr(9)||line.nomcommin||chr(13)) ;
-    end loop ;
-    exception
-    when others then dbms_output.put_line('Error') ;
-end ;
+CREATE OR replace PROCEDURE factory_population
+IS
+CURSOR c IS SELECT p.codeinsee, val_population, annee, nomcommin FROM population p, commune c WHERE p.codeinsee = c.codeinsee AND annee IN (2000,2010);
+BEGIN
+    FOR line IN c
+    LOOP
+        dbms_output.Put_line(line.codeinsee || Chr(9) || line.val_population || Chr(9) || line.annee || Chr(9) || line.nomcommin || Chr(13)) ;
+    END LOOP;
+    EXCEPTION
+    WHEN OTHERS THEN dbms_output.Put_line('Error');
+END;
 /
 
-
-set serveroutput on
-exec factory_population;
-
+SET serveroutput ON
+EXEC factory_population;
 
 
+-- ---------------------------------------------------
 
 
