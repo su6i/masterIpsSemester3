@@ -4,7 +4,7 @@ set serveroutput on;
 set long 40000
 set head off echo off
 
--- 1.1  Schéma partiel de la base de donn ́ees Communes
+-- 1.1  Schéma partiel de la base de données Communes
 create table population(
     codeinsee varchar(6), 
     annee integer, 
@@ -17,9 +17,9 @@ create table population(
 -- 1.2  Construction de l'ensemble des tables et chargement
 sqlldr userid=e20190009681/Ema241199@oracle.etu.umontpellier.fr:1523/pmaster control=population.ctl
 
--- 1.3 El ́ements `a rendre dans le devoir
--- 3. sortie du r ́esultat de la requˆete sur la vue usertables indiquant en particulier 
--- le nombre detuples ins ́er ́e et le nombre de blocs de donn ́ees allou ́es
+-- 1.3 Elémentsà rendre dans le devoir
+-- 3. sortie du résultat de la requête sur la vue usertables indiquant en particulier 
+-- le nombre detuples inséré et le nombre de blocs de données alloués
 
 ANALYZE TABLE Population COMPUTE STATISTICS;
 
@@ -30,7 +30,7 @@ select table_name , BLOCKS from user_tables where table_name = 'POPULATION';
 
 
 -- 2. Migration de schémas
--- 2.1.2Code PL/SQL `a rendre
+-- 2.1.2Code PL/SQLà rendre
 
 -- avec la table dual
 
@@ -65,10 +65,10 @@ EXEC UneTable('population');
 
 
 
--- 2. Vous construirez une fonction nomm ́ee ToutesTables qui renvoie les ordres de cr ́eation de
--- toutes les tables (sans les informations concernant le stockage) d'un sch ́ema utilisateur dont le
--- nom est pass ́e en param`etres d'entr ́ee (variable de sortiede type CLOB). Vous utiliserez, pour
--- ce faire, une requˆete de la forme (ici sch ́ema utilisateur HR) :
+-- 2. Vous construirez une fonction nommée ToutesTables qui renvoie les ordres de création de
+-- toutes les tables (sans les informations concernant le stockage) d'un schéma utilisateur dont le
+-- nom est passé en paramètres d'entrée (variable de sortiede type CLOB). Vous utiliserez, pour
+-- ce faire, une requête de la forme (ici schéma utilisateur HR) :
 
 -- -- select dbms_metadata.get_ddl('TABLE',TABLE_NAME,'HR') FROM DBA_TABLES WHERE OWNER ='HR';
 
@@ -97,10 +97,10 @@ select ToutesTables('E20190009681') FROM dba_tables where table_name = 'populati
 
 
 
--- 3. Vous construirez une nouvelle fonction nomm ́eeToutesTablesInfosqui renvoie les ordres
--- de cr ́eation (plus l’information concernant l’organisation logique et les param`etres associ ́es
--- au stockage physique) de toutes les tables d’un sch ́ema utilisateur dont le nom est pass ́e en
--- param`etre d’entr ́ee.
+-- 3. Vous construirez une nouvelle fonction nommée ToutesTablesInfos qui renvoie les ordres
+-- de création (plus l’information concernant l’organisation logique et les paramètres associés
+-- au stockage physique) de toutes les tables d’un schéma utilisateur dont le nom est passé en
+-- paramètre d’entrée.
 
 
 set serveroutput on
@@ -118,7 +118,7 @@ end;
 
 select ToutesTablesInfos('E20190009681') FROM dba_tables;
 
--- 2.1.3  Informations associ ́ees `a l’organisation physique de la table
+-- 2.1.3  Informations associéesà l’organisation physique de la table
 -- EXEC UneTable('population');
 
 
@@ -128,16 +128,16 @@ select ToutesTablesInfos('E20190009681') FROM dba_tables;
 	"VAL_POPULATION" NUMBER(*,0),
 	 CONSTRAINT "PK_POPULATION" PRIMARY KEY ("CODEINSEE", "ANNEE")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
-  -- PCTFREE 10: block utilization parameter, est le purcentage d’espace réservé dans chaque bloc pour des mises `a jour `avenir est égal à 10%
-  -- INITRANS 2: nombre initial d’entr ́ees de transactions pr ́e-allou ́ees `a un bloc qui peut être un nombre entre 1 et 255. 
+  -- PCTFREE 10: block utilization parameter, est le purcentage d’espace réservé dans chaque bloc pour des misesà jouràvenir est égal à 10%
+  -- INITRANS 2: nombre initial d’entrées de transactions pré-allouéesà un bloc qui peut être un nombre entre 1 et 255. 
         -- Dans ce cas est égal à 2 parce que c'est un segment d’index.
-  -- MAXTRANS 255: nombre maximum de transactions concurrentes qui peuvent modifier unbloc allou ́e `a une table que est égal à 255
+  -- MAXTRANS 255: nombre maximum de transactions concurrentes qui peuvent modifier unbloc allouéà une table que est égal à 255
   -- COMPUTE STATISTICS: Génère des statistiques pour les colonnes ("CODEINSEE", "ANNEE").
 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   -- INITIAL 65536: Taille en octets du premier ”extent”. Lorsque vous créez l'objet de schéma Oracle alloue un espace de 65536 octets pour cette extension
   -- NEXT 1048576:  La taille en octets du second extentsion qui est égal à 1048576 octets ou presque 1 Mega octets.
-  -- MINEXTENTS 1:  une extent alloué `a la cr ́eation
+  -- MINEXTENTS 1:  une extent allouéà la création
   -- MAXEXTENTS 2147483645: Nombre maximal d'extentsion que l'objet peut avoir. est égal à 2147483645.
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   -- PCTINCREASE 0:  pourcentage d’augmentation entre 2 extents est mis à 0 afin de réduire la fragmentation sur le tablespace.
@@ -232,13 +232,79 @@ END;
 set serveroutput on
 exec info_population_4;
 
+-- 2.2  Export XML Schéma et données
+-- 2.2.1  Fonction GETXML du paquetage DBMSMETADATA
+-- 1. Vous construirez une fonction nommée TableXML qui renvoie la description XML d’une table
+-- en particulier du schéma utilisateur (nom de la table passé en paramètre d’entrée)
 
-----------------------------
+
+CREATE OR REPLACE FUNCTION TableXML(v_tableName VARCHAR) RETURN CLOB IS
+CURSOR myCursor IS SELECT dbms_metadata.get_ddl('TABLE',
+UPPER(v_tableName)) AS ligne FROM user_tables;
+v_clob CLOB;
+BEGIN
+FOR lig IN myCursor
+LOOP
+v_clob := lig.ligne;
+END LOOP;
+return v_clob;
+END;
+/
+
+set serveroutput on
+select TableXML('population') from dual;
+
+
+-- 2. Vous exploiterez le paquetage DBMSXMLGEN pour avoir également les feuilles de l’arborescence 
+-- XML (données) pour une table donnée. Construisez également une fonctionà ce sujet
+-- TableDataXMLqui prend en argument le nom d’une table mais aussi une condition 
+-- de filtre(clause where).
+
+create or replace function TableDataXML (attribut varchar, nomTable varchar,filtre varchar) 
+return clob
+is
+begin
+declare
+v_clob clob;
+cursor c is select dbms_xmlgen.getxml(dbms_xmlgen.newcontext('select ' || attribut || ' from ' || nomTable || ' where ' || filtre)) as requete from dual;
+begin
+
+for var in c
+loop
+v_clob := v_clob || var.requete;
+end loop;
+return v_clob;
+end;
+end;
+/
+
+
+set serveroutput on
+select TableDataXML('fonction', 'EMP','fonction=''directeur'' ') from dual;
 
 
 
+-- 3. Export des données
+-- Vous définirez une procédure qui permet de renvoyer les données correspondant au
+-- codeinsee, nom de la commune, valeur de la population en 2000, et valeur de la population en 2010
+-- au format tabulé.
+
+create or replace procedure factory_population
+is
+cursor c is select p.codeinsee, val_population, annee, nomcommin from population p, commune c where p.codeinsee = c.codeinsee and annee in (2000,2010);
+begin
+for line in c
+loop 
+dbms_output.put_line(line.codeinsee||chr(9)||line.val_population||chr(9)||line.annee||chr(9)||line.nomcommin||chr(13)) ;
+end loop ;
+exception
+when others then dbms_output.put_line('erreurs') ;
+end ;
+/
 
 
+set serveroutput on
+exec factory_population;
 
 
 
