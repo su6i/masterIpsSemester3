@@ -1,3 +1,7 @@
+-- select s.osuser, substr(a.sql_fulltext,1) from v$session s join v$sqlarea a on a.hash_value = s.prev_hash_value ;
+-- show user
+
+
 -- 1. Schema de base de donnees
 
 

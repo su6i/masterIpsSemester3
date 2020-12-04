@@ -1,3 +1,5 @@
+-- select s.osuser, substr(a.sql_fulltext,1) from v$session s join v$sqlarea a on a.hash_value = s.prev_hash_value ;
+
 -- 1.1  Consultations d’ordre g ́en ́eral `a r ́ealiser
 
 -- 1. consulter la vue portant sur l’instance (v$instance):
