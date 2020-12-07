@@ -42,6 +42,6 @@ ADD run.sh /run.sh
 RUN chmod 0755 /run.sh
 # RUN /run.sh
 WORKDIR /ipsSymfony
-EXPOSE 80
+EXPOSE 80 8000 9000 3306
 # CMD ["apache2", "-D", "FOREGROUND", "$@"]
 CMD ["bash", "/run.sh"]
