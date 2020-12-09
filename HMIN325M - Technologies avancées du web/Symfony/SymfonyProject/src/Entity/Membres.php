@@ -42,7 +42,6 @@ class Membres
      */
     private $nom;
     public function getNom() { return $this->nom; }
-
     /**
      * @var string
      *
@@ -50,6 +49,5 @@ class Membres
      */
     private $prenom;
     public function getPrenom() { return $this->prenom; }
-
 
 }

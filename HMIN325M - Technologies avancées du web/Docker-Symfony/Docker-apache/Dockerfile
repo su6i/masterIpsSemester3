@@ -43,5 +43,6 @@ RUN chmod 0755 /run.sh
 # RUN /run.sh
 WORKDIR /ipsSymfony
 EXPOSE 80 8000 9000 3306
+RUN cp -r /home /ipsSymfony
 # CMD ["apache2", "-D", "FOREGROUND", "$@"]
 CMD ["bash", "/run.sh"]
