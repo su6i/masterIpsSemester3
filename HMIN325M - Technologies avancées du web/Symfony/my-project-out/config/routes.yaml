@@ -1,0 +1,20 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+
+app_lucky_number:
+  path: /lucky/number
+  controller: App\Controller\LuckyController::number
+
+app_membres:
+  path: /membres
+  controller: App\Controller\MembresController::listeMembres
+
+app_products:
+  path: /products
+  controller: App\Controller\ProductsController::productsList
+
+app_users:
+  path: /users
+  controller: App\Controller\UsersController::usersList

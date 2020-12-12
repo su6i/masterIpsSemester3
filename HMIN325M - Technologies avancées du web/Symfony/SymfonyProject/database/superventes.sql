@@ -15,3 +15,8 @@ INSERT INTO membres ( id, mail, password, nom, prenom ) VALUES (null, 'claire.de
 
 
 php bin/console doctrine:mapping:import 'App\Entity' annotation --path=src/Entity
+
+mysqlsh amir@localhost:3306/superventes --import products.json [target] [tableColumn] [options]
+
+mysqlsh user@localhost/mydb --import /europe/regions.json
+
