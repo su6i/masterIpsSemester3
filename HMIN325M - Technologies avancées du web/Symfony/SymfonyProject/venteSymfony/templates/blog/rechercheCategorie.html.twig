@@ -1,0 +1,68 @@
+{% extends "menu.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('/assets/css/products.css') }}">
+{% endblock %}
+
+
+{% block title %}Hello
+
+{% endblock %}
+
+{% block body %}
+
+	{{ form_start(form) }}
+
+
+	{{ form_row(form.categorie) }}
+
+	<div class="form-group">
+		<button type="submit" class="btn btn-success">Search</button>
+	</div>
+
+
+	{{ form_end(form) }}
+
+	{% if produits %}
+    <div class="bg-light p-3">
+    <h1>Products:</h1>
+	</div>
+
+	<div class="row">
+		{% for produit in produits %}
+			<div class="col-4 mt-4">
+				<div class="border border-dark rounded p-2 clearfix pane">
+					<h4>
+						{{ produit.categorie.titre }}
+						{{ produit.nom }}
+
+
+					</h4>
+					    <img class="img-fluid rounded product" src="{{ produit.image }}" alt="Image de {{ produit.nom }}">
+					<h5>
+
+						{# {{ produit.type.titre }} #}
+						<br>
+						<span class="price">{{ produit.prix }}€ </span>
+
+					</h5>
+					<hr>
+                    <div class="btn-toolbar">
+                        <a class="btn btn-success btn-md" href="{{ path('panier_add', {'id': produit.id})}}" role="button">Add</a>
+                        {% if app.user %}
+                            {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                            <a class="btn btn-success btn-md" href="{{ path('blog_edit', {'id': produit.id})}}" role="button">Modify</a>
+                            <a class="btn btn-success btn-md" href="{{ path('blog_delete', {'id': produit.id})}}" role="button">Remove</a>
+                            {% endif %}
+                        {% endif %}
+                        <a class="btn btn-success btn-md" href="{{ path('blog_show', {'id': produit.id})}}" role="button">Details</a>
+                    </div>
+				</div>
+
+			</div>
+		{% endfor %}
+	</div>
+
+	{% endif %}
+
+{% endblock %}

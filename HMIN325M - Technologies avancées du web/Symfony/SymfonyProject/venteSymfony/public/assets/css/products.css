@@ -1,0 +1,111 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  margin-top: 0;
+}
+
+.group {
+  width: 80%;
+  margin:auto;
+  background: rgb(241, 238, 233);
+  padding: 15px;
+  margin-top:12px;
+}
+
+
+#content {
+  position: relative;
+}
+#content img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+div.button{
+  overflow: hidden;
+}
+p.button{
+  display: inline-block;
+  background-color: #008CBA;
+  text-align: center;
+  padding: 0 60px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 50%;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  border: 2px solid #008CBA;
+}
+
+.button:hover {
+  background-color:white;
+  color: white;
+  border: 2px solid #008CBA;
+}
+
+.btn-toolbar .btn {
+    margin-bottom: 5px; 
+}
+
+img.product {
+  border: 2px solid #4CAF50;
+  width: 332px;
+  height: 370px;
+}
+
+.logo{
+  width: 3rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100%;
+}
+
+.vl {
+  border-left: 6px solid beige;
+  /* height: 500px; */
+  /* position: absolute; */
+  left: 30vw;
+  margin-left: -3px;
+  top: 0;
+}
+
+
+
+.pane {
+  height: 600px;
+  float:none;
+  border-collapse: collapse;
+}
+
+
+.shenasname{
+  text-align: left;
+  text-decoration: dashed;
+  /* vertical-align: bottom; */
+  border: 1px solid blueviolet;
+  background-color: rgb(241, 238, 233);
+  /* width: 35%; */
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0px;
+  border-style: ridge;
+}
+
+a.btn{
+    margin: 2px;
+}
+
+.price{
+    color: darkgreen;
+    font-weight: bold;
+}

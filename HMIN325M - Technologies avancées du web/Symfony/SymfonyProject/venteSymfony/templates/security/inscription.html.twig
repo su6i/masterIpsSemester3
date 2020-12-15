@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+Merci de remplir vos Informations
+
+
+{{ form_start(form) }}
+
+{{ form_row(form.username, {'label': 'Nom d\'utilisateur','attr':{'placeholder': "Username"}}) }}
+	{{ form_row(form.email, {'label': 'Adresse e-mail','attr':{'placeholder': "e-mail"}}) }}
+	{{ form_row(form.password, {'label': 'Mot de passe','attr':{'placeholder': "Password"}}) }}
+	{{ form_row(form.confirm_password, {'label': 'Confirmation du mot de passe ','attr':{'placeholder': "Confirm password"}}) }}
+    <input type="hidden" name="_target_path" value="{{ path('security_login') }}"/>
+
+	<button type="submit" class="btn btn-success">
+
+		Submit
+
+	</button>
+
+	{{ form_end(form) }}
+
+{% endblock %}

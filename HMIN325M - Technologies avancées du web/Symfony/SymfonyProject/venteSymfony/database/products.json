@@ -1,0 +1,456 @@
+[
+    { 
+            "name"          : "Adaptateur Smart Things - HD2018GH", 
+            "price"         : 39,
+            "image"         : "/image/1.jpg",
+            "category"      : 1,
+            "type"          : 1,
+            "description"   : "Contrôle à distance"
+    },
+
+    { 
+            "name"          : "Coque en silicone pour S20 FE | FE 5G", 
+            "price"         : 40,
+            "image"         : "/image/8.jpg",
+            "category"      : 1,
+            "type"          : 1,
+            "description"   : "Protection contre les chocs et les rayures,Finition douce offrant une bonne prise en main"
+    },
+             
+    { 
+            "name"          : "Étui en aramide pour Galaxy Z Fold2 5G", 
+            "price"         : 75,
+            "image"         : "/image/9.jpg",
+            "category"      : 1,
+            "type"          : 1,
+            "description"   : "Design renforcé,2 angles de visualisation,Ultra fin et léger,Toucher agréable"
+    },
+
+    { 
+            "name"          : "Étui en cuir pour Galaxy Z Fold2 5G", 
+            "price"         : 100,
+            "image"         : "/image/10.jpg",
+            "category"      : 1,
+            "type"          : 1,
+            "description"   : "Finition cuir,Bonne prise en main,Protection contre les chocs et rayures,Doublure fine et protectrice à l'intérieur"
+    },
+    
+    {       "name"          : "Galaxy Watch3 Bluetooth (45mm)", 
+            "price"         : 659,
+            "image"         : "/image/11.jpeg",
+            "category"      : 1,
+            "type"          : 2,
+            "description"   : "Design affirmé avec lunette rotative,Personnalisation bracelet et cadran,Sport & bien-être,Étanche jusqu’à 50m"
+    },
+
+    { 
+            "name"          : "Galaxy Watch3 4G (45mm)", 
+            "price"         : 509,
+            "image"         : "/image/5.jpeg",
+            "category"      : 1,
+            "type"          : 2,
+            "description"   : "Design affirmé avec lunette rotative,Personnalisation bracelet et cadran,Sport & bien-être,Étanche jusqu’à 50m"
+    },
+    
+    { 
+            "name"         : "Galaxy Watch3 Bluetooth (41mm)", 
+            "price"        : 429,
+            "image"        : "/image/6.jpg",
+            "category"     : 1,
+            "type"         : 2,
+            "description"  : "Design affirmé avec lunette rotative,Personnalisation bracelet et cadran,Sport & bien-être,Étanche jusqu’à 50m"
+    },
+
+    { 
+            "name"          : "Galaxy Watch 46 mm eSIM 4G ", 
+            "price"         : 329,
+            "image"         : "/image/7.jpeg",
+            "category"      : 1,
+            "type"          : 2,
+            "description"   : "Design soigné avec lunette rotative,Connectivité cellulaire,Fonctionnalités sport et bien-être,Votre musique vous suit partout"
+    },
+
+
+    { 
+            "name"          : "USB 3.0 Flash Drive DUO ", 
+            "price"         : 29,
+            "image"         : "/image/1.jpg",
+            "category"      : 1,
+            "type"          : 3,
+            "description"   : "Une vitesse de transfert allant jusqu’à 130MB/s,Se connecte aux Smartphones, tablets et PC par micro USB,Protection à 5 niveaux"
+    },
+    
+    { 
+            "name"          : "USB 3.0 Flash Drive FIT ", 
+            "price"         : 15,
+            "image"         : "/image/2.jpg",
+            "category"      : 1,
+            "type"          : 3,
+            "description"   : "Une vitesse de transfert allant jusqu’à 130MB/s,Se connecte aux netbooks et PC ultra fins,Protection à 5 niveaux"
+    },
+
+    { 
+            "name"          : "USB 3.0 Flash Drive BAR ", 
+            "price"         : 20,
+            "image"         : "/image/3.jpg",
+            "category"      : 1,
+            "type"          : 3,
+            "description"   : "Une vitesse de transfert allant jusqu’à 130MB/s,Design en métal haut de gamme,Protection à 5 niveaux"
+    },
+ 
+    { 
+            "name"          : "Galaxy S20 FE", 
+            "price"         : 659,
+            "image"         : "/image/12.jpg",
+            "category"      : 1,
+            "type"          : 4,
+            "description"   : "Des photos lumineuses de jour et de nuit,Grand écran  6.5 pouce ultra fluide 120Hz,Space Zoom 30x"
+    },
+
+    { 
+            "name"          : "Galaxy A71",
+            "price"         : 469,
+            "image"         : "/image/14.jpeg",
+            "category"      : 1,
+            "type"          : 4,
+            "description"   : "Ecran Infinity 6.7 pouce Super AMOLED,Quadruple capteur photo - Mode Macro,Capteur principal 64 MP pour des photos nettes,Charge ultra rapide - Batterie longue durée - 4500"
+    },
+
+    { 
+            "name"          : "Galaxy Z Fold2 5G", 
+            "price"         : 2020,
+            "image"         : "/image/13.jpg",
+            "category"      : 1,
+            "type"          : 4,
+            "description"   : "Grand écran pliable intérieur de 7.6 pouce,Ecran extérieur de 6.2 pouce,Charnière à position libre pour plus de flexibilité"
+    },
+
+    { 
+            "name"          : "Galaxy A31", 
+            "price"         : 299,
+            "image"         : "/image/15.jpg",
+            "category"      : 1,
+            "type"          : 4,
+            "description"   : "Écran panoramique 6.4 pouce Super AMOLED,Quadruple capteur photo avec Ultra grand angle,Batterie longue durée - 5000 mAh + Charge rapide,Stockage 64 Go + lecteur d'empreinte sous l'écran"
+    },
+
+    { 
+            "name"          : "Galaxy Tab A7 4G", 
+            "price"         : 299,
+            "image"         : "/image/16.jpeg",
+            "category"      : 1,
+            "type"          : 5,
+            "description"   : "Un grand écran de 10.4 pouce,Autonameie longue durée,Samsung Kids,Caméra en mode paysage pour vos appels vidéo"
+    },
+
+    { 
+            "name"          : "Galaxy Tab S7 Wi-Fi", 
+            "price"         : 719,
+            "image"         : "/image/17.jpg",
+            "category"      : 1,
+            "type"          : 5,
+            "description"   : "Écran ultra immersif 11 pouce,S Pen connecté ultra précis,La puissance d’un ordinateur,Stockage 128/256Go + port microSD"
+    },
+
+    { 
+            "name"          : "Galaxy Tab S6 Lite", 
+            "price"         : 349,
+            "image"         : "/image/18.jpg",
+            "category"      : 1,
+            "type"          : 5,
+            "description"   : "Design fin et finition en aluminum,S Pen amélioré pour une expérience plus ergonamei,Écran panoramique 10.4 pouce,Mémoire embarquée 64Go"
+    },
+
+    { 
+            "name"          : "Galaxy Tab S6 Gris Titane 4G", 
+            "price"         : 679,
+            "image"         : "/image/19.jpg",
+            "category"      : 1,
+            "type"          : 5,
+            "description"   : "Ultrafine 5.7mm,Écran panoramique 10.5 pouce,S Pen avec contrôle par gestes,Lecteur d’empreinte sous l’écran"
+    },
+
+    { 
+            "name"          : "iPad Air", 
+            "price"         : 669,
+            "image"         : "/image/25.jpeg",
+            "category"      : 2,
+            "type"          : 5,
+            "description"   : "10.9 pouce Écran Liquid Retina,Puce A14 Bionic,Compatible avec le Magic Keyboard et le Smart Keyboard Folio,Compatible avec l’Apple Pencil (2ᵉ génération)"
+    },
+
+    { 
+            "name"          : "iPad Pro", 
+            "price"         : 899,
+            "image"         : "/image/24.jpeg",
+            "category"      : 2,
+            "type"          : 5,
+            "description"   : "12.9 pouce  et 11 pouce  Écran Liquid Retina avec ProMotion,Puce A12Z Bionic,Compatible avec le Magic Keyboard et le Smart Keyboard Folio,Compatible avec l’Apple Pencil (2ᵉ génération)"
+    },
+
+    { 
+            "name"          : "iPad", 
+            "price"         : 389,
+            "image"         : "/image/26.jpeg",
+            "category"      : 2,
+            "type"          : 5,
+            "description"   : "10.2 pouce Écran Retina,Puce A12 Bionic,Compatible avec le Smart Keyboard,Compatible avec l’Apple Pencil (1re génération)"
+    },
+
+    { 
+            "name"          : "iPad mini", 
+            "price"         : 459,
+            "image"         : "/image/27.jpeg",
+            "category"      : 2,
+            "type"          : 5,
+            "description"   : "7,9 pouce Écran Retina,Puce A12 Bionic,Compatible avec les claviers Bluetooth,Compatible avec l’Apple Pencil (1re génération)"
+    },
+
+    { 
+            "name"          : "iPhone 11 Pro", 
+            "price"         : 1159,
+            "image"         : "/image/21.png",
+            "category"      : 2,
+            "type"          : 4,
+            "description"   : "Triple appareil photo (ultra grand‑angle, grand‑angle, téléobjectif),Jusqu’à 17 heures de lecture vidéo,Résistant à l’eau jusqu’à 2 mètres de profondeur pendant 30 minutes maximum,Écran Super Retina XDR 5,8pouce ou  6.5pouce,Écran Liquid Retina HD  6.1  pouce"
+    },
+
+    { 
+            "name"          : "iPhone 11",
+            "price"         : 809,
+            "image"         : "/image/22.png",
+            "category"      : 2,
+            "type"          : 4,
+            "description"   : "Double appareil photo (ultra grand‑angle, grand‑angle),Quadruple capteur photo - Mode Macro,Capteur principal 64 MP pour des photos nettes,Charge ultra rapide - Batterie longue durée - 4500"
+    },
+
+    { 
+            "name"          : "iPhone X", 
+            "price"         : 709,
+            "image"         : "/image/23.png",
+            "category"      : 2,
+            "type"          : 4,
+            "description"   : "Appareil photo(grand‑angle),Jusqu’à 16 heures de lecture vidéo,Résistant à l’eau jusqu’à 1 mètre de profondeur pendant 30 minutes maximum,Écran Liquid Retina HD  6.1  pouce "
+    },
+
+    { 
+            "name"          : "iPhone SE", 
+            "price"         : 489,
+            "image"         : "/image/20.png",
+            "category"      : 2,
+            "type"          : 4,
+            "description"   : "Appareil photo(grand‑angle),Jusqu’à 13 heures de lecture vidéo,Résistant à l’eau jusqu’à 1 mètre de profondeur pendant 30 minutes maximum,Écran Retina HD 4.7 pouce"
+    },
+
+    { 
+            "name"          : "Apple Watch Series 6", 
+            "price"         : 429,
+            "image"         : "/image/36.jpeg",
+            "category"      : 2,
+            "type"          : 2,
+            "description"   : "Boîtier de 40 ou 44 mm,Écran Retina toujours activé,GPS + Cellular1 GPS,App Oxygène sanguin,App ECG,Notifications de fréquence cardiaque élevée ou faible Notifications d’arythmie,Configuration familiale prise en charge (modèles GPS + Cellular),Résistance à l’eau jusqu’à 50 mètres"
+    },
+
+    { 
+            "name"          : "Apple Watch SE", 
+            "price"         : 299,
+            "image"         : "/image/37.jpeg",
+            "category"      : 2,
+            "type"          : 2,
+            "description"   : "Boîtier de 40 ou 44 mm,Écran Retina ,GPS + Cellular1 GPS,Notifications de fréquence cardiaque élevée ou faible Notifications d’arythmie,Configuration familiale prise en charge (modèles GPS + Cellular),Résistance à l’eau jusqu’à 50 mètres"
+    },
+    
+    { 
+            "name"          : "Apple Watch Series 3", 
+            "price"         : 219,
+            "image"         : "/image/38.jpeg",
+            "category"      : 2,
+            "type"          : 2,
+            "description"   : "Boîtier de 38 ou 42 mm,Écran Retina,GPS,Notifications de fréquence cardiaque élevée ou faible Notifications d’arythmie,Résistance à l’eau jusqu’à 50 mètres"
+    },
+    
+    { 
+            "name"          : "HomePod", 
+            "price"         : 329,
+            "image"         : "/image/35.jpeg",
+            "category"      : 2,
+            "type"          : 1,
+            "description"   : "Sans-fil,Bluetooth 5.0,Accès invité direct,Micro interne de calibration des fréquences basses pour une correction automatique des graves,Formation de faisceaux pour le son direct et ambiant"
+    },
+                    
+    { 
+            "name"          : "HomePod mini", 
+            "price"         : 99,
+            "image"         : "/image/34.jpeg",
+            "category"      : 2,
+            "type"          : 1,
+            "description"   : "Son riche et ample,Assistant intelligent,Contrôle de votre maison connectée,Confidentialité et sécurité"
+    },
+
+    { 
+            "name"          : "AirPods Pro", 
+            "price"         : 279,
+            "image"         : "/image/33.png",
+            "category"      : 2,
+            "type"          : 1,
+            "description"   : "Réduction active du bruit,Micro intérieur,Capteur-pression,Résistance à l’eau et à la transpiration,Boîtier de charge sans fil,Gravure personnalisée : initiales, emoji, etc."
+            },
+
+    { 
+            "name"          : "MacBook Air", 
+            "price"         : 1199,
+            "image"         : "/image/31.jpeg",
+            "category"      : 2,
+            "type"          : 3,
+            "description"   : "Écran Retina 13.3 pouces,Jusqu’au processeur Intel Core i7 quadricœur,Jusqu’à 16 Go de mémoire,Jusqu’à 2 To de stockage,Jusqu’à 11 h d’autonameie,Touch ID,Magic Keyboard rétroéclairé"
+            },
+    
+    { 
+            "name"          : "MacBook Pro 13”", 
+            "price"         : 1499,
+            "image"         : "/image/32.jpeg",
+            "category"      : 2,
+            "type"          : 3,
+            "description"   : "Écran Retina 13.3 pouces,Jusqu’au processeur Intel Core i7 quadricœur,Jusqu’à 32 Go de mémoire,Jusqu’à 4 To de stockage,Jusqu’à 10 h d’autonameie,Touch Bar et Touch ID,Magic Keyboard rétroéclairé"
+    },
+
+    { 
+            "name"          : "MacBook Pro 16” ", 
+            "price"         : 2699,
+            "image"         : "/image/30.jpeg",
+            "category"      : 2,
+            "type"          : 3,
+            "description"   : "Écran Retina 16pouces,Jusqu’au processeur Intel Core i9 8 cœurs,Jusqu’à 64 Go de mémoire,Jusqu’à 8 To de stockage,Jusqu’à 11 h d’autonameie,Touch Bar et Touch ID,Magic Keyboard rétroéclairé"
+    },
+
+    { 
+            "name"          : "Huawei MatePad Pro", 
+            "price"         : 550,
+            "image"         : "/image/39.png",
+            "category"      :3,
+            "type"          : 5,
+            "description"   : "Écran Huawei FullView de 10.8 pouces,Processeur Kirin 990,Quadruple haut-parleur,Compatible Huawei Share, Mode PC, Clavier"
+            },
+
+            { 
+            "name"          : "Huawei MediaPad M5 lite", 
+            "price"         : 230,
+            "image"         : "/image/40.png",
+            "category"      :3,
+            "type"          : 5,
+            "description"   : "Ecran 10.1 pouce 1080p,Quatre haut-parleurs stéréo,Mode confort des yeux"
+            },
+
+            { 
+            "name"          : "Huawei MediaPad M6 10.8”", 
+            "price"         : 350,
+            "image"         : "/image/41.jpg",
+            "category"      :3,
+            "type"          : 5,
+            "description"   : [
+                            "Processeur Kirin 980",
+                            "Ecran 2K",
+                            "Quadruple haut-parleur Harman Kardon"
+                            ]
+            },
+            { 
+            "name"          : "Huawei MediaPad M5 lite 8", 
+            "price"         : 149,
+            "image"         : "/image/41.png",
+            "category"      :3,
+            "type"          : 5,
+            "description"   : "Ecran 8.0” 283PPI,Quadruple haut-parleur Harman Kardon,Batterie de 5100 mAh"
+            },
+    {
+            "name"          : "Huawei P40 Pro+", 
+            "price"         : 1200,
+            "image"         : "/image/42.png",
+            "category"      :3,
+            "type"          : 4,
+            "description"   : "Quintuple capteur Ultra Vision conçu avec Leica,Zoom optique 10x, zoom max 100x,Ecran incurvé Overflow, IP68"
+            },
+
+    { 
+            "name"          : "Huawei P30 Pro New Edition",
+            "price"         : 660,
+            "image"         : "/image/44.png",
+            "category"      :3,
+            "type"          : 4,
+            "description"   : "8 Go de RAM et 256 Go de stockage,Quadruple caméra SuperSensing conçue avec Leica,Zoom jusqu'à 50x"
+    },
+
+    { 
+            "name"          : "Huawei P smart S", 
+            "price"         : 230,
+            "image"         : "/image/43.png",
+            "category"      :3,
+            "type"          : 4,
+            "description"   : "Triple caméra dotée d'IA et capteur principal de 48 MP1,Stockage de 128 Go,Ecran OLED de 6.3 pouce"
+    },
+
+    { 
+            "name"          : "Huawei P30 Pro", 
+            "price"         : 600,
+            "image"         : "/image/45.png",
+            "category"      :3,
+            "type"          : 4,
+            "description"   : "Écran OLED de 6.47 pouces, IP68,Quadruple Caméra Leica, Zoom hybride 10x, Capteur SuperSpectrum,Technologie Huawei SuperCharge 40 W"
+    },
+    
+    { 
+            "name"          : "Huawei FreeBuds 3i", 
+            "price"         : 90,
+            "image"         : "/image/51.jpg",
+            "category"      :3,
+            "type"          : 1,
+            "description"   : "Payez en 3x ou 4x sans frais, disponible uniquement pour les commandes supérieures à 149,Réduction de bruit active,3 microphones pour une qualité d'appel exceptionnelle,Design intra-auriculaire avec 4 paires d'ambouts de différentes taille"
+                    
+            
+    },
+                    
+    { 
+            "name"          : "Huawei Sound X", 
+            "price"         : 270,
+            "image"         : "/image/50.png",
+            "category"      :3,
+            "type"          : 1,
+            "description"   : "Double Woofers Devialet,Architecture acoustique 'Push-Push' de D,Technologie Huawei Share"
+    },
+
+    { 
+            "name"          : "Huawei FreeBuds 3", 
+            "price"         : 130,
+            "image"         : "/image/49.png",
+            "category"      :3,
+            "type"          : 1,
+            "description"   : "Réduction active du bruit,Processeur Kirin A1, temps de latence ultr,Charge sans-fil, autonameie longue durée"
+    },
+
+    { 
+            "name"          : "Huawei MateBook D 14 2020", 
+            "price"         : 600,
+            "image"         : "/image/48.png",
+            "category"      :3,
+            "type"          : 3,
+            "description"   : "Windows 10 Home,Ecran FullView de 14 pouces,Continuité multi-écrans"
+    },
+    
+    { 
+            "name"          : "Huawei MateBook 14 2020", 
+            "price"         : 1050,
+            "image"         : "/image/47.png",
+            "category"      :3,
+            "type"          : 3,
+            "description"   : "Windows 10 Home,10ème Génération de processeurs Intel®Core™,Ecran Huawei FullView de 14 pouces"
+    },
+
+    { 
+            "name"          : "Huawei MateBook X Pro 2020", 
+            "price"         : 1300,
+            "image"         : "/image/46.png",
+            "category"      :3,
+            "type"          : 3,
+            "description"   : "Windows 10 Home,Écran FullView 3K,Huawei Share,10 ème Génération de processeurs Intel®,Jusqu’à 11 h d’autonameie"
+    }
+
+]

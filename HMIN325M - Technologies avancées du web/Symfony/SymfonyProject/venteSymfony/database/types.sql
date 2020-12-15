@@ -1,0 +1,1 @@
+insert into type VALUES(1,'Accessorie'), (2, 'Montre connectee'), (3, 'Informatique'), (4, 'Smartphone'), (5, 'Tablette');

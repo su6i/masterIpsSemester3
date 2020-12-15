@@ -1,0 +1,26 @@
+{% extends 'menu.html.twig' %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/profile.css') }}">
+{% endblock %}
+
+
+{% block body  %}
+
+<table id="t01">
+  <tr>
+    <th>Username</th>
+    <td>{{app.user.username}}</td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>{{app.user.email}}</td>
+  </tr>
+  <tr>
+    <th>Role</th> 
+    <td>{{app.user.roles[0]}}</td>
+  </tr>
+</table>
+
+{% endblock body  %}

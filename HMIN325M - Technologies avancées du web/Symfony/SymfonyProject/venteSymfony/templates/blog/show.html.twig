@@ -1,0 +1,72 @@
+{% extends "menu.html.twig" %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('/assets/css/products.css') }}">
+{% endblock %}
+
+{% block body %}
+	<section class="produits">
+
+
+		<table class="table">
+			<tr>
+				<th rowspan="4"><img class="image" src="{{produit.image}}" alt="image de produit"></th>
+				<td class="titre">{{produit.nom}}</td>
+			</tr>
+			<tr>
+                <th>Price:</th>
+				<td class="price">{{produit.prix}}€</td>
+			</tr>
+			<tr>
+                <th>Category:</th>
+				<td class="prix">{{produit.categorie.titre}}</td>
+			</tr>
+			<tr>
+                <th>Type:</th>
+				<td class="prix">{{produit.type.titre}}</td>
+			</tr>
+		</table>
+        
+        
+        <table class="table">
+            <tr>
+                <th rowspan="2">Description:</th>
+				<td>
+					<ul *ngFor="let description of produit.description">
+                        {% set descs = produit.description|split(',') %}
+                            {% for desc in descs %}
+                                <li class="desc">{{desc}}</li>
+                            {% endfor %}
+					</ul>
+				</td>
+			</tr>
+        </table>
+
+
+		{% for comment in produit.comments %}
+			<div class="comment">
+				<div class="row">
+					<div class="col-3">{{comment.author}}(<small>{{comment.createAt | date ('d/m/y a H:i')}}</small>)
+					</div>
+					<div class="col">
+						{{comment.content | raw}}
+					</div>
+				</div>
+
+			</div>
+		{% endfor %}
+                    <div class="btn-toolbar">
+                        <a class="btn btn-success btn-md" href="{{ path('panier_add', {'id': produit.id})}}" role="button">Add</a>
+                        {% if app.user %}
+                            {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                            <a class="btn btn-success btn-md" href="{{ path('blog_edit', {'id': produit.id})}}" role="button">Modify</a>
+                            <a class="btn btn-success btn-md" href="{{ path('blog_delete', {'id': produit.id})}}" role="button">Remove</a>
+                            {% endif %}
+                        {% endif %}
+                        <a class="btn btn-success btn-md" href="{{ path('blog_show', {'id': produit.id})}}" role="button">Details</a>
+                        <a class="btn btn-success btn-md" href="{{ path('blog')}}" role="button">Back</a>
+                    </div>
+
+	</section>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "menu.html.twig" %}
+
+{% form_theme formProduit 'bootstrap_4_layout.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('/assets/css/menu.css') }}">
+{% endblock %}
+
+{% block body %}
+
+	<h1>Creation d'un produit</h1>
+
+	{{ form_start(formProduit) }}
+
+	{{ form_row(formProduit.nom, {'attr':{'placeholder': "le nom"}}) }}
+	{{ form_row(formProduit.prix, {'attr':{'placeholder': "le prix"}}) }}
+	{{ form_row(formProduit.image, {'attr':{'placeholder': "URL de l'image"}}) }}
+	{{ form_row(formProduit.categorie) }}
+	{{ form_row(formProduit.type) }}
+	{{ form_row(formProduit.description, {'attr':{'placeholder': "la description du produit"}}) }}
+	{{ form_row(formProduit.description_detaille, {'attr':{'placeholder': "la description detaille du produit"}}) }}
+
+	<button type="submit" class="btn btn-success">
+		{% if editMode %}
+			Enregistrer les modifications
+		{% else %}
+			Ajouter le produit
+		{% endif %}
+	</button>
+
+	{{ form_end(formProduit) }}
+
+{% endblock %}

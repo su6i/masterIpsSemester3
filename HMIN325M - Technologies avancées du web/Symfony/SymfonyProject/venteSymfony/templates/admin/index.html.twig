@@ -1,0 +1,50 @@
+{% extends 'menu.html.twig' %}
+
+{% block title %}Liste des utilisateurs
+{% endblock %}
+
+{% block body %}
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Email</th>
+				<th>Username</th>
+				<th>Roles</th>
+				<th>Action</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id}}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.username }}</td>
+					<td>
+						{% for role in user.roles %}
+							{% if role == "ROLE_ADMIN" %}
+								Administrateur
+							{% else %}
+								utilisateur
+							{% endif %}
+
+						{% endfor %}
+					</td>
+					<td>
+						<a href="{{ path('admin_userEdit', {'id': user.id})}}" class="btn btn-secondary">Modify</a>
+						<a href="{{ path('user_delete', {'id': user.id})}}" class="btn btn-danger">Remove</a>
+					</td>
+
+				</tr>
+
+			{% endfor %}
+		</tbody>
+
+
+	</table>
+
+
+{% endblock %}
