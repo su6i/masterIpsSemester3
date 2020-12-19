@@ -1,3 +1,5 @@
+-- Amir SHIRALI POUR
+
 LOAD DATA 
 CHARACTERSET UTF8
 INFILE 'tuples.csv'
