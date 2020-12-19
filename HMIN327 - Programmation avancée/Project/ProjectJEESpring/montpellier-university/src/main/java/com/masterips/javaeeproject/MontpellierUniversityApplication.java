@@ -88,8 +88,8 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		insert into departement values ('38','ISERE','38185');                                    
 		  // First added department
 
-		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER","34172")); //l34172
-		Departement isere   = departementRepository.save(new Departement("38","ISERE", "38185"));  //"38185"
+		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER",null)); //l34172
+		Departement isere   = departementRepository.save(new Departement("38","ISERE", null));  //"38185"
 
 //		insert into  lieu values ('34172','MONTPELLIER',3.876716,43.610769,'34');
 		Lieu l34172 = lieuRepository.save(new Lieu("34172","MONTPELLIER",3.876716,43.610769,"34"));
@@ -100,7 +100,7 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		insert into monument values ('spfb070hzm8g','HOTEL DE GRIFFY','PRIVE','HOTEL_PARTICULIER',3.87848611,43.611075,'34172');                                                            
 //		(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
 //		double latitude, Lieu localisation)
-		Monument spfb05nwqmvu = monumentRepository.save(new Monument("spfb05nwqmvu","HOTEL DE GANGES","PRIVE","HOTEL_PARTICULIER",3.87639,43.611334,"34172"));
+		Monument spfb05nwqmvu = monumentRepository.save(new Monument("spfb05nwqmvu","HOTEL DE GANGES","PRIVE","HOTEL_PARTICULIER",3.87639,43.611334,l34172));
 		
 		
 //		 (String nom, String prenom, String nationalite, String epoque)

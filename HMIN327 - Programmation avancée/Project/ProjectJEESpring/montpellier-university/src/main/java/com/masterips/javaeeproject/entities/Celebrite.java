@@ -14,6 +14,7 @@ import org.hibernate.annotations.SQLInsert;
 
 @Entity
 @Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
+
 @SQLInsert(sql = "INSERT IGNORE INTO celebrite(epoque, nationalite,nom, prenom) " +
 "VALUES (?, ?, ?, ?)" )
 public class Celebrite implements Serializable {

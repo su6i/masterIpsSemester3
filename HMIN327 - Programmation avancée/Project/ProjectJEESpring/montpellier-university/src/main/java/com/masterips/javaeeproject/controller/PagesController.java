@@ -97,7 +97,7 @@ public class PagesController {
 		appService.addMonument(monument);
 	}
 
-	public void addMonumentToLieu(Long codeM, String codeInsee) {
+	public void addMonumentToLieu(String codeM, String codeInsee) {
 		appService.addMonumentToLieu(codeM, codeInsee);
 	}
 

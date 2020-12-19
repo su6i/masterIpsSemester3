@@ -49,8 +49,8 @@ public class Monument implements Serializable {
 	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
 	private Lieu lieu;
 	
-	@Column(name = "codeLieu", length = 5)
-	private String codeLieu;
+//	@Column(name = "codeLieu", length = 5)
+//	private String codeLieu;
 	
 	@ManyToMany
 	@JoinTable( 
@@ -66,7 +66,8 @@ public class Monument implements Serializable {
 	}
 	
 	public Monument(String codeM) {
-		super();
+		this();
+		
 		this.setCodeM(codeM);
 	}
 
@@ -75,17 +76,16 @@ public class Monument implements Serializable {
 	// insert into monument values ('spfb0725nhcx','HOTEL DE BEAULAC','PRIVE','HOTEL_PARTICULIER',3.87843333,43.6121444,'34172');                                                            
 
 	public Monument(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
-			double latitude, String codeLieu) {
-		super();
-		this.setCodeM(codeM);
+			double latitude, Lieu lieu) {
+		this(codeM);
+//		this.setCodeM(codeM);
 		this.setNomM(nomM);
 		this.setProprietaire(proprietaire);
 		this.setTypeMonument(typeMonument);
 		this.setLongitude(longitude);
 		this.setLatitude(latitude);
 		
-		lieu = new Lieu(codeLieu);
-		this.codeLieu = codeLieu;
+		lieu = new Lieu();
 	}
 	
 	
@@ -149,16 +149,16 @@ public class Monument implements Serializable {
 		this.latitude = latitude;
 	}
 
-	@JsonIgnore
-	public Monument getMonument() {
-		return this;
-	}
+//	@JsonIgnore
+//	public Monument getMonument() {
+//		return this;
+//	}
 
 	@Override
     public String toString() {
         return "Code Monument: " + this.codeM + ", Nom Monument: " + this.nomM + ", Proprietaire: " + this.proprietaire +
         	   ", Type Monument: " + this.typeMonument + ", Longitude: " + this.longitude + ", Latitude: " + this.latitude	+
-        	   ", Localisation: " + this.codeLieu;
+        	   ", Localisation: " + this.lieu.getCodeInsee();
     }
 
 	
