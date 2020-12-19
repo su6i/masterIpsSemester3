@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Validation Module - BaseX Documentation</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Validation_Module","wgTitle":"Validation Module","wgCurRevisionId":15128,"wgRevisionId":15128,"wgArticleId":514,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Validation_Module","wgRelevantArticleId":514,"wgRequestId":"0382c784f6cbb82f95af5e05","wgCSPNonce":!1,"wgIsProbablyEditable":!0,"wgRelevantPageIsProbablyEditable":!0,"wgRestrictionEdit":
+[],"wgRestrictionMove":[],"wgMFDisplayWikibaseDescriptions":{"search":!1,"nearby":!1,"watchlist":!1,"tagline":!1}};RLSTATE={"site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"ready","user.tokens":"loading","ext.pygments":"ready","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.toc.styles":"ready","mediawiki.skinning.interface":"ready","skins.vector.styles":"ready"};RLPAGEMODULES=["site","mediawiki.page.startup","mediawiki.page.ready","mediawiki.toc","mediawiki.searchSuggest","mediawiki.action.view.rightClickEdit","skins.vector.js"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.tokens@tffin",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+});});</script>
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=ext.pygments%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.interface%7Cmediawiki.toc.styles%7Cskins.vector.styles&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.34.0"/>
+<link rel="alternate" type="application/x-wiki" title="Edit" href="/index.php?title=Validation_Module&amp;action=edit"/>
+<link rel="edit" title="Edit" href="/index.php?title=Validation_Module&amp;action=edit"/>
+<link rel="shortcut icon" href="/favicon.png"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="BaseX Documentation (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//docs.basex.org/api.php?action=rsd"/>
+<link rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"/>
+<link rel="alternate" type="application/atom+xml" title="BaseX Documentation Atom feed" href="/index.php?title=Special:RecentChanges&amp;feed=atom"/>
+<!--[if lt IE 9]><script src="/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-Validation_Module rootpage-Validation_Module skin-vector action-view">
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	
+	<div class="mw-indicators mw-body-content">
+</div>
+
+	<h1 id="firstHeading" class="firstHeading" lang="en">Validation Module</h1>
+	
+	<div id="bodyContent" class="mw-body-content">
+		<div id="siteSub" class="noprint">From BaseX Documentation</div>
+		<div id="contentSub"></div>
+		
+		
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#p-search">Jump to search</a>
+		<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><p>This <a href="/wiki/Module_Library" title="Module Library">XQuery Module</a> contains functions to perform validations against DTDs, XML Schema and RelaxNG. The documentation further describes how to use Schematron validation with BaseX.
+</p>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Conventions"><span class="tocnumber">1</span> <span class="toctext">Conventions</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#DTD_Validation"><span class="tocnumber">2</span> <span class="toctext">DTD Validation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#validate:dtd"><span class="tocnumber">2.1</span> <span class="toctext">validate:dtd</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#validate:dtd-info"><span class="tocnumber">2.2</span> <span class="toctext">validate:dtd-info</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#validate:dtd-report"><span class="tocnumber">2.3</span> <span class="toctext">validate:dtd-report</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#XML_Schema_Validation"><span class="tocnumber">3</span> <span class="toctext">XML Schema Validation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#validate:xsd"><span class="tocnumber">3.1</span> <span class="toctext">validate:xsd</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#validate:xsd-info"><span class="tocnumber">3.2</span> <span class="toctext">validate:xsd-info</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#validate:xsd-report"><span class="tocnumber">3.3</span> <span class="toctext">validate:xsd-report</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#validate:xsd-processor"><span class="tocnumber">3.4</span> <span class="toctext">validate:xsd-processor</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#validate:xsd-version"><span class="tocnumber">3.5</span> <span class="toctext">validate:xsd-version</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#RelaxNG_Validation"><span class="tocnumber">4</span> <span class="toctext">RelaxNG Validation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#validate:rng"><span class="tocnumber">4.1</span> <span class="toctext">validate:rng</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#validate:rng-info"><span class="tocnumber">4.2</span> <span class="toctext">validate:rng-info</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#validate:rng-report"><span class="tocnumber">4.3</span> <span class="toctext">validate:rng-report</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#Schematron_Validation"><span class="tocnumber">5</span> <span class="toctext">Schematron Validation</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="#Errors"><span class="tocnumber">6</span> <span class="toctext">Errors</span></a></li>
+<li class="toclevel-1 tocsection-18"><a href="#Changelog"><span class="tocnumber">7</span> <span class="toctext">Changelog</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Conventions">Conventions</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=1" title="Edit section: Conventions">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<p>All functions and errors in this module are assigned to the <code>http://basex.org/modules/validate</code> namespace, which is statically bound to the <code>validate</code> prefix.<br />
+</p>
+<h1><span class="mw-headline" id="DTD_Validation">DTD Validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=2" title="Edit section: DTD Validation">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<p>Checks whether an XML document validates against a DTD. The input document can be specified as:
+</p>
+<ul><li><code>xs:string</code>, representing a URI (relative URIs will always be resolved against the static base URI of the query),</li>
+<li><code>xs:string</code>, representing the resource in its string representation, or</li>
+<li><code>node()</code>, representing the resource itself.</li></ul>
+<p>If no DTD is supplied in a function, the XML document is expected to contain an embedded DTD doctype declaration.
+</p>
+<h2><span class="mw-headline" id="validate:dtd">validate:dtd</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=3" title="Edit section: validate:dtd">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:dtd</b>($input as item()) as empty-sequence()</code><br /><code><b>validate:dtd</b>($input as item(), $schema as xs:string?) as empty-sequence()</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code> and returns an empty sequence or an error.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">error</a></b></code>: the validation fails.<br /><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no DTD validator is available.
+</td></tr>
+<tr>
+<td><b>Examples</b>
+</td>
+<td>
+<ul><li><code>validate:dtd('doc.xml', 'doc.dtd')</code> validates the document <code>doc.xml</code> against the specified DTD file <code>doc.dtd</code>.</li>
+<li>The following example validates an invalid document against a DTD, which is specified as string:</li></ul>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="k">try</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">$</span><span class="n">doc</span> <span class="o">:=</span> <span class="nt">&lt;invalid/&gt;</span>
+  <span class="k">let</span> <span class="nv">$</span><span class="n">schema</span> <span class="o">:=</span> <span class="s1">&#39;&lt;!ELEMENT root (#PCDATA)&gt;&#39;</span>
+  <span class="k">return</span> <span class="nf">validate:dtd</span><span class="p">(</span><span class="nv">$</span><span class="n">doc</span><span class="p">,</span> <span class="nv">$</span><span class="n">schema</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="nt">validate:error</span> <span class="p">{</span>
+  <span class="s1">&#39;DTD Validation failed.&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:dtd-info">validate:dtd-info</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=4" title="Edit section: validate:dtd-info">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:dtd-info</b>($input as item()) as xs:string*</code><br /><code><b>validate:dtd-info</b>($input as item(), $schema as xs:string?) as xs:string*</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code> and returns warnings, errors and fatal errors in a string sequence.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no DTD validator is available.
+</td></tr>
+<tr>
+<td><b>Examples</b>
+</td>
+<td>
+<ul><li><code>validate:dtd-info(&lt;invalid/&gt;, '&lt;!ELEMENT root (#PCDATA)&gt;')</code> returns:<br /><code>2:11: Element type "invalid" must be declared.</code>.</li></ul>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:dtd-report">validate:dtd-report</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=5" title="Edit section: validate:dtd-report">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+<tbody><tr>
+<td>width='100%'
+</td></tr>
+<tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:dtd-report</b>($input as item()) as element(report)</code><br /><code><b>validate:dtd-report</b>($input as item(), $schema as xs:string?) as element(report)</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code> and returns warnings, errors and fatal errors as XML.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no DTD validator is available.
+</td></tr>
+<tr>
+<td><b>Examples</b>
+</td>
+<td>
+<ul><li><code>validate:dtd-report(&lt;invalid/&gt;, '&lt;!ELEMENT root (#PCDATA)&gt;')</code> returns:</li></ul>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="nt">&lt;report&gt;</span>
+  <span class="nt">&lt;status&gt;</span>invalid<span class="nt">&lt;/status&gt;</span>
+  <span class="nt">&lt;message</span> <span class="na">level=</span><span class="s">&quot;Error&quot;</span> <span class="na">line=</span><span class="s">&quot;2&quot;</span> <span class="na">column=</span><span class="s">&quot;11&quot;</span><span class="nt">&gt;</span>Element type &quot;invalid&quot; must be declared.<span class="nt">&lt;/message&gt;</span>
+<span class="nt">&lt;/report&gt;</span>
+</pre></div>
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id="XML_Schema_Validation">XML Schema Validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=6" title="Edit section: XML Schema Validation">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<p>Checks whether an XML document validates against an XML Schema. The input document and the schema can be specified as:
+</p>
+<ul><li><code>xs:string</code>, containing the path to the resource,</li>
+<li><code>xs:string</code>, containing the resource in its string representation, or</li>
+<li><code>node()</code>, containing the resource itself.</li></ul>
+<p>If no schema is given, the input is expected to contain an <code>xsi:(noNamespace)schemaLocation</code> attribute, as defined in <a rel="nofollow" class="external text" href="https://www.w3.org/TR/xmlschema-1/#xsi_schemaLocation">W3C XML Schema</a>.
+</p><p>Different XML Schema processors are supported:
+</p>
+<ul><li>By default, the <b>Java implementation</b> of XML Schema 1.0 is used (it is based on an old version of Apache Xerces).</li>
+<li>The latest version of <b>Xerces2</b> provides implementations of XML Schema 1.0 and 1.1. The processor will be applied if you download one of the <a rel="nofollow" class="external text" href="https://xerces.apache.org/mirrors.cgi#binary">binary distributions</a> and copy the following libraries to the <code>lib/custom</code> directory of the full distribution of BaseX:
+<ul><li><code>org.eclipse.wst.xml.xpath2.processor_1.2.0.jar</code></li>
+<li><code>cupv10k-runtime.jar</code></li>
+<li><code>xercesImpl.jar</code></li>
+<li><code>xml-apis.jar</code></li></ul></li>
+<li><b>Saxon Enterprise Edition</b> will be used if you download the <a rel="nofollow" class="external text" href="https://www.saxonica.com/download/java.xml">ZIP release</a> and if you copy <code>saxon9ee.jar</code> and a valid license key to the classpath.</li></ul>
+<h2><span class="mw-headline" id="validate:xsd">validate:xsd</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=7" title="Edit section: validate:xsd">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:xsd</b>($input as item()) as empty-sequence()</code><br /><code><b>validate:xsd</b>($input as item(), $schema as item()?) as empty-sequence()</code><br /><code><b>validate:xsd</b>($input as item(), $schema as item()?, $features as map(*)) as empty-sequence()</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the processor-specific <code>$features</code>.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">error</a></b></code>: the validation fails.<br /><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no XML Schema validator is available.
+</td></tr>
+<tr>
+<td><b>Examples</b>
+</td>
+<td>
+<ul><li>Pass on document and schema as nodes:</li></ul>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="k">let</span> <span class="nv">$</span><span class="n">doc</span> <span class="o">:=</span> <span class="nt">&lt;simple:root</span> <span class="nt">xmlns:simple</span><span class="o">=</span><span class="p">&#39;</span><span class="na">http://basex.org/simple</span><span class="p">&#39;</span><span class="nt">/&gt;</span>
+<span class="k">let</span> <span class="nv">$</span><span class="n">schema</span> <span class="o">:=</span>
+  <span class="nt">&lt;xs:schema</span> <span class="nt">xmlns:xs</span><span class="o">=</span><span class="p">&#39;</span><span class="na">http://www.w3.org/2001/XMLSchema</span><span class="p">&#39;</span> <span class="nt">targetNamespace</span><span class="o">=</span><span class="p">&#39;</span><span class="na">http://basex.org/simple</span><span class="p">&#39;</span><span class="nt">&gt;</span><span class="l"></span>
+<span class="l">    </span><span class="nt">&lt;xs:element</span> <span class="nt">name</span><span class="o">=</span><span class="p">&#39;</span><span class="na">root</span><span class="p">&#39;</span><span class="nt">/&gt;</span><span class="l"></span>
+<span class="l">  </span><span class="nt">&lt;/xs:schema&gt;</span>
+<span class="k">return</span> <span class="nf">validate:xsd</span><span class="p">(</span><span class="nv">$</span><span class="n">doc</span><span class="p">,</span> <span class="nv">$</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+<ul><li>Validate all documents of a database against the specified schema, using the supplied feature:</li></ul>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="k">for</span> <span class="nv">$</span><span class="n">city</span> <span class="ow">in</span> <span class="nf">db:open</span><span class="p">(</span><span class="s1">&#39;cities&#39;</span><span class="p">)</span>
+<span class="k">return</span> <span class="nf">validate:xsd</span><span class="p">(</span><span class="nv">$</span><span class="n">city</span><span class="p">,</span> <span class="s1">&#39;city.xsd&#39;</span><span class="p">,</span>
+  <span class="k">map</span> <span class="p">{</span> <span class="s1">&#39;http://javax.xml.XMLConstants/feature/secure-processing&#39;</span><span class="p">:</span> <span class="nf">true</span><span class="p">()</span> <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:xsd-info">validate:xsd-info</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=8" title="Edit section: validate:xsd-info">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:xsd-info</b>($input as item()) as xs:string*</code><br /><code><b>validate:xsd-info</b>($input as item(), $schema as item()?) as xs:string*</code><br /><code><b>validate:xsd-info</b>($input as item(), $schema as item()?, $features as map(*)) as xs:string*</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the processor-specific <code>$features</code>, and returns warnings, errors and fatal errors in a string sequence.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no XML Schema validator is available.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:xsd-report">validate:xsd-report</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=9" title="Edit section: validate:xsd-report">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:xsd-report</b>($input as item()) as element(report)</code><br /><code><b>validate:xsd-report</b>($input as item(), $schema as xs:string?) as element(report)</code><br /><code><b>validate:xsd-report</b>($input as item(), $schema as xs:string?, $features as map(*)) as element(report)</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the processor-specific <code>$features</code>, and returns warnings, errors and fatal errors as XML.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: no XML Schema validator is available.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:xsd-processor">validate:xsd-processor</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=10" title="Edit section: validate:xsd-processor">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:xsd-processor</b>() as xs:string</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Returns the name of the applied XSD processor.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:xsd-version">validate:xsd-version</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=11" title="Edit section: validate:xsd-version">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:xsd-version</b>() as xs:string</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Returns the supported version of XSD Schema.
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id="RelaxNG_Validation">RelaxNG Validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=12" title="Edit section: RelaxNG Validation">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<p>Checks whether an XML document validates against a RelaxNG schema. The input document and the schema can be specified as:
+</p>
+<ul><li><code>xs:string</code>, containing the path to the resource,</li>
+<li><code>xs:string</code>, containing the resource in its string representation, or</li>
+<li><code>node()</code>, containing the resource itself.</li></ul>
+<p>RelaxNG validation will be available if <a rel="nofollow" class="external text" href="https://relaxng.org/jclark/jing.html">Jing</a> exists in the classpath. The latest version, <code>jing-20091111.jar</code>, is included in the full distributions of BaseX. As Jing additionally supports <a rel="nofollow" class="external text" href="http://www.nvdl.org/">NVDL</a> validation, you can also use the functions to validate the input against NVDL schemas.
+</p>
+<h2><span class="mw-headline" id="validate:rng">validate:rng</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=13" title="Edit section: validate:rng">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:rng</b>($input as item(), $schema as item()) as empty-sequence()</code><br /><code><b>validate:rng</b>($input as item(), $schema as item(), $compact as xs:boolean) as empty-sequence()</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the XML or <code>$compact</code> notation.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">error</a></b></code>: the validation fails.<br /><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: the RelaxNG validator is not available.
+</td></tr>
+<tr>
+<td><b>Examples</b>
+</td>
+<td>
+<ul><li><code>validate:rng('doc.xml', 'doc.rng')</code> validates the document <code>doc.xml</code> against the specified schema <code>doc.rng</code>.</li></ul>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:rng-info">validate:rng-info</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=14" title="Edit section: validate:rng-info">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:rng-info</b>($input as item(), $schema as item()) as xs:string*</code><br /><code><b>validate:rng-info</b>($input as item(), $schema as item(), $compact as xs:boolean) as xs:string*</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the XML or <code>$compact</code> notation, and returns warnings, errors and fatal errors in a string sequence.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: the RelaxNG validator is not available.
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="validate:rng-report">validate:rng-report</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=15" title="Edit section: validate:rng-report">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<table width="100%">
+
+<tbody><tr>
+<td width="120"><b>Signatures</b>
+</td>
+<td><code><b>validate:rng-report</b>($input as item(), $schema as xs:string) as element(report)</code><br /><code><b>validate:rng-report</b>($input as item(), $schema as xs:string, $compact as xs:boolean) as element(report)</code>
+</td></tr>
+<tr>
+<td><b>Summary</b>
+</td>
+<td>Validates the XML <code>$input</code> document against a <code>$schema</code>, using the XML or <code>$compact</code> notation, and returns warnings, errors and fatal errors as XML.
+</td></tr>
+<tr>
+<td><b>Errors</b>
+</td>
+<td><code><b><a href="#Errors">init</a></b></code>: the validation process cannot be started.<br /><code><b><a href="#Errors">not-found</a></b></code>: The RelaxNG validator is not available.
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id="Schematron_Validation">Schematron Validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=16" title="Edit section: Schematron Validation">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<p>If you want to use Schematron for validating documents, simply install Vincent Lizzi’s excellent <a rel="nofollow" class="external text" href="https://github.com/Schematron/schematron-basex">Schematron XQuery Module for BaseX</a>:
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="nf">repo:install</span><span class="p">(</span><span class="s1">&#39;https://github.com/Schematron/schematron-basex/raw/master/dist/schematron-basex-1.2.xar&#39;</span><span class="p">)</span>
+</pre></div>
+<p>The following query illustrates how documents are validated. It is directly taken from the GitHub project:
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span><span class="kp">import</span> <span class="kp">module</span> <span class="k">namespace</span> <span class="nn">schematron</span> <span class="o">=</span> <span class="s2">&quot;http://github.com/Schematron/schematron-basex&quot;</span><span class="p">;</span>
+
+<span class="k">let</span> <span class="nv">$</span><span class="n">sch</span> <span class="o">:=</span> <span class="nf">schematron:compile</span><span class="p">(</span><span class="nf">doc</span><span class="p">(</span><span class="s1">&#39;rules.sch&#39;</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">$</span><span class="n">svrl</span> <span class="o">:=</span> <span class="nf">schematron:validate</span><span class="p">(</span><span class="nf">doc</span><span class="p">(</span><span class="s1">&#39;document.xml&#39;</span><span class="p">),</span> <span class="nv">$</span><span class="n">sch</span><span class="p">)</span>
+<span class="k">return</span> <span class="p">(</span>
+  <span class="nf">schematron:is-valid</span><span class="p">(</span><span class="nv">$</span><span class="n">svrl</span><span class="p">),</span>
+  <span class="k">for</span> <span class="nv">$</span><span class="n">message</span> <span class="ow">in</span> <span class="nf">schematron:messages</span><span class="p">(</span><span class="nv">$</span><span class="n">svrl</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nf">concat</span><span class="p">(</span><span class="nf">schematron:message-level</span><span class="p">(</span><span class="nv">$</span><span class="n">message</span><span class="p">),</span> <span class="s1">&#39;: &#39;</span><span class="p">,</span> <span class="nf">schematron:message-description</span><span class="p">(</span><span class="nv">$</span><span class="n">message</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+<h1><span class="mw-headline" id="Errors">Errors</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=17" title="Edit section: Errors">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<table class="wikitable" width="100%">
+<tbody><tr>
+<th width="110">Code
+</th>
+<td>Description
+</td></tr>
+<tr>
+<td><code>error</code>
+</td>
+<td>The document cannot be validated against the specified schema.
+</td></tr>
+<tr>
+<td><code>init</code>
+</td>
+<td>The validation cannot be started.
+</td></tr>
+<tr>
+<td><code>not-found</code>
+</td>
+<td>No validator is available.
+</td></tr></tbody></table>
+<h1><span class="mw-headline" id="Changelog">Changelog</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Validation_Module&amp;action=edit&amp;section=18" title="Edit section: Changelog">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<dl><dt>Version 9.2</dt></dl>
+<ul><li>Added: <a href="#validate:xsd-processor">validate:xsd-processor</a>, <a href="#validate:xsd-version">validate:xsd-version</a></li>
+<li>Updated: <a href="#validate:xsd">validate:xsd</a>, <a href="#validate:xsd-info">validate:xsd-info</a>, <a href="#validate:xsd-report">validate:xsd-report</a>: version argument was dropped (the latest version will always be used)</li></ul>
+<dl><dt>Version 9.0</dt></dl>
+<ul><li>Updated: error codes updated; errors now use the module namespace</li></ul>
+<dl><dt>Version 8.5</dt></dl>
+<ul><li>Updated: Relative URIs will always be resolved against the static base URI of the query</li></ul>
+<dl><dt>Version 8.3</dt></dl>
+<ul><li>Added: <a href="#validate:rng">validate:rng</a>, <a href="#validate:rng-info">validate:rng-info</a></li>
+<li>Added: <a href="#validate:dtd-report">dtd-report</a>, <a href="#validate:xsd-report">xsd-report</a>, <a href="#validate:rng-report">validate:rng-report</a></li></ul>
+<dl><dt>Version 7.6</dt></dl>
+<ul><li>Added: <a href="#validate:xsd-info">validate:xsd-info</a>, <a href="#validate:dtd-info">validate:dtd-info</a></li></ul>
+<p>The module was introduced with Version 7.3.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20201219020825
+Cache expiry: 86400
+Dynamic content: false
+Complications: []
+CPU time usage: 0.088 seconds
+Real time usage: 2.689 seconds
+Preprocessor visited node count: 867/1000000
+Preprocessor generated node count: 0/1000000
+Post‐expand include size: 4462/2097152 bytes
+Template argument size: 2418/2097152 bytes
+Highest expansion depth: 4/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 6407/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00% 2634.831      1 -total
+  0.22%    5.855     51 Template:Code
+  0.20%    5.340     21 Template:Error
+  0.19%    4.942     23 Template:Func
+-->
+
+<!-- Saved in parser cache with key usr_p544629_1:pcache:idhash:514-0!canonical and timestamp 20201219020822 and revision id 15128
+ -->
+</div></div>
+		
+		<div class="printfooter">Retrieved from "<a dir="ltr" href="http://docs.basex.org/index.php?title=Validation_Module&amp;oldid=15128">http://docs.basex.org/index.php?title=Validation_Module&amp;oldid=15128</a>"</div>
+		
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+		<div class="visualClear"></div>
+		
+	</div>
+</div>
+
+
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-anonuserpage">Not logged in</li><li id="pt-anontalk"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n">Talk</a></li><li id="pt-anoncontribs"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y">Contributions</a></li><li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Validation+Module" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li><li id="pt-createaccount"><a href="/wiki/Special:RequestAccount" title="You are encouraged to create an account and log in; however, it is not mandatory">Request account</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+							<li id="ca-nstab-main" class="selected"><span><a href="/wiki/Validation_Module" title="View the content page [c]" accesskey="c">Page</a></span></li><li id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Validation_Module&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page (page does not exist) [t]" accesskey="t">Discussion</a></span></li>						</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-variants-label" />
+						<h3 id="p-variants-label">
+							<span>Variants</span>
+						</h3>
+						<ul class="menu">
+													</ul>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+							<li id="ca-view" class="collapsible selected"><span><a href="/wiki/Validation_Module">Read</a></span></li><li id="ca-edit" class="collapsible"><span><a href="/index.php?title=Validation_Module&amp;action=edit" title="Edit this page [e]" accesskey="e">Edit</a></span></li><li id="ca-history" class="collapsible"><span><a href="/index.php?title=Validation_Module&amp;action=history" title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>						</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-cactions-label" />
+						<h3 id="p-cactions-label"><span>More</span></h3>
+						<ul class="menu">
+													</ul>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+						<form action="/index.php" id="searchform">
+							<div id="simpleSearch">
+								<input type="search" name="search" placeholder="Search BaseX Documentation" title="Search BaseX Documentation [f]" accesskey="f" id="searchInput"/><input type="hidden" value="Special:Search" name="title"/><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton"/>							</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/wiki/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id="p-Navigation" aria-labelledby="p-Navigation-label">
+			<h3 id="p-Navigation-label">Navigation</h3>
+			<div class="body">
+								<ul>
+					<li id="n-Main-Page"><a href="/wiki/Main_Page">Main Page</a></li><li id="n-Table-of-Contents"><a href="/wiki/Table_of_Contents">Table of Contents</a></li><li id="n-Recent-Changes"><a href="/wiki/Special:RecentChanges">Recent Changes</a></li><li id="n-Random-Page"><a href="/wiki/Special:Random">Random Page</a></li><li id="n-PDF-Version"><a href="/wiki/Documentation">PDF Version</a></li>				</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Tools</h3>
+			<div class="body">
+								<ul>
+					<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Validation_Module" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Validation_Module" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="/index.php?title=Validation_Module&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="/index.php?title=Validation_Module&amp;oldid=15128" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="/index.php?title=Validation_Module&amp;action=info" title="More information about this page">Page information</a></li>				</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+				<div id="footer" role="contentinfo">
+						<ul id="footer-info">
+								<li id="footer-info-lastmod"> This page was last edited on 2 July 2020, at 12:19.</li>
+								<li id="footer-info-copyright">Content is available under <a class="external" rel="nofollow" href="http://creativecommons.org/licenses/by-sa/3.0/">Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)</a> unless otherwise noted.</li>
+							</ul>
+						<ul id="footer-places">
+								<li id="footer-places-privacy"><a href="/wiki/BaseX_Documentation:Privacy_policy" title="BaseX Documentation:Privacy policy">Privacy policy</a></li>
+								<li id="footer-places-about"><a href="/wiki/BaseX_Documentation:About" class="mw-redirect" title="BaseX Documentation:About">About BaseX Documentation</a></li>
+								<li id="footer-places-disclaimer"><a href="/wiki/BaseX_Documentation:General_disclaimer" title="BaseX Documentation:General disclaimer">Disclaimers</a></li>
+								<li id="footer-places-mobileview"><a href="//docs.basex.org/index.php?title=Validation_Module&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+							</ul>
+										<ul id="footer-icons" class="noprint">
+										<li id="footer-copyrightico">
+						<a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="/cc.png" alt="Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)" width="88" height="31"/></a>					</li>
+										<li id="footer-poweredbyico">
+						<a href="https://www.mediawiki.org/"><img src="/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a>					</li>
+									</ul>
+						<div style="clear: both;"></div>
+		</div>
+		
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.088","walltime":"2.689","ppvisitednodes":{"value":867,"limit":1000000},"ppgeneratednodes":{"value":0,"limit":1000000},"postexpandincludesize":{"value":4462,"limit":2097152},"templateargumentsize":{"value":2418,"limit":2097152},"expansiondepth":{"value":4,"limit":40},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":6407,"limit":5000000},"timingprofile":["100.00% 2634.831      1 -total","  0.22%    5.855     51 Template:Code","  0.20%    5.340     21 Template:Error","  0.19%    4.942     23 Template:Func"]},"cachereport":{"timestamp":"20201219020825","ttl":86400,"transientcontent":false}}});mw.config.set({"wgBackendResponseTime":159});});</script>
+</body>
+</html>

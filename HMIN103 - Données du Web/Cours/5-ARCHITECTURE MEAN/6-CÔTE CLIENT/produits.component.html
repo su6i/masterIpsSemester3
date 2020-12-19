@@ -1,0 +1,4 @@
+<ul *ngFor="let produit of produits">
+    <li> {{produit.nom}} ({{produit['type']}}) <a [routerLink]="['/panier/achat', produit.nom, produit.marque]"> achat </a> </li>
+</ul>
+
