@@ -15,14 +15,22 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "monument")
 public class Monument implements Serializable {
 	 /**
-	 * insert into monument values ('spfb05nwqmvu','HOTEL DE GANGES','PRIVE','HOTEL_PARTICULIER',3.87639,43.611334,'34172');  
+	 *  
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -49,8 +57,6 @@ public class Monument implements Serializable {
 	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
 	private Lieu lieu;
 	
-//	@Column(name = "codeLieu", length = 5)
-//	private String codeLieu;
 	
 	@ManyToMany
 	@JoinTable( 
@@ -67,25 +73,21 @@ public class Monument implements Serializable {
 	
 	public Monument(String codeM) {
 		this();
-		
 		this.setCodeM(codeM);
 	}
 
 	
 
-	// insert into monument values ('spfb0725nhcx','HOTEL DE BEAULAC','PRIVE','HOTEL_PARTICULIER',3.87843333,43.6121444,'34172');                                                            
-
 	public Monument(String codeM, String nomM, String proprietaire, String typeMonument, double longitude,
 			double latitude, Lieu lieu) {
 		this(codeM);
-//		this.setCodeM(codeM);
 		this.setNomM(nomM);
 		this.setProprietaire(proprietaire);
 		this.setTypeMonument(typeMonument);
 		this.setLongitude(longitude);
 		this.setLatitude(latitude);
 		
-		lieu = new Lieu();
+		this.setLieu(lieu);
 	}
 	
 	
@@ -149,10 +151,13 @@ public class Monument implements Serializable {
 		this.latitude = latitude;
 	}
 
-//	@JsonIgnore
-//	public Monument getMonument() {
-//		return this;
-//	}
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
 
 	@Override
     public String toString() {
@@ -160,6 +165,96 @@ public class Monument implements Serializable {
         	   ", Type Monument: " + this.typeMonument + ", Longitude: " + this.longitude + ", Latitude: " + this.latitude	+
         	   ", Localisation: " + this.lieu.getCodeInsee();
     }
+
+	
+	
+	
+	
+
+	public void forEach(Consumer<? super Celebrite> action) {
+		associea_celebrite.forEach(action);
+	}
+
+	public int size() {
+		return associea_celebrite.size();
+	}
+
+	public boolean isEmpty() {
+		return associea_celebrite.isEmpty();
+	}
+
+	public boolean contains(Object o) {
+		return associea_celebrite.contains(o);
+	}
+
+	public Iterator<Celebrite> iterator() {
+		return associea_celebrite.iterator();
+	}
+
+	public Object[] toArray() {
+		return associea_celebrite.toArray();
+	}
+
+	public <T> T[] toArray(T[] a) {
+		return associea_celebrite.toArray(a);
+	}
+
+	public boolean add(Celebrite e) {
+		return associea_celebrite.add(e);
+	}
+
+	public boolean remove(Object o) {
+		return associea_celebrite.remove(o);
+	}
+
+	public boolean containsAll(Collection<?> c) {
+		return associea_celebrite.containsAll(c);
+	}
+
+	public boolean addAll(Collection<? extends Celebrite> c) {
+		return associea_celebrite.addAll(c);
+	}
+
+	public boolean retainAll(Collection<?> c) {
+		return associea_celebrite.retainAll(c);
+	}
+
+	public boolean removeAll(Collection<?> c) {
+		return associea_celebrite.removeAll(c);
+	}
+
+	public void clear() {
+		associea_celebrite.clear();
+	}
+
+	public boolean equals(Object o) {
+		return associea_celebrite.equals(o);
+	}
+
+	public int hashCode() {
+		return associea_celebrite.hashCode();
+	}
+
+	public Spliterator<Celebrite> spliterator() {
+		return associea_celebrite.spliterator();
+	}
+
+	public <T> T[] toArray(IntFunction<T[]> generator) {
+		return associea_celebrite.toArray(generator);
+	}
+
+	public boolean removeIf(Predicate<? super Celebrite> filter) {
+		return associea_celebrite.removeIf(filter);
+	}
+
+	public Stream<Celebrite> stream() {
+		return associea_celebrite.stream();
+	}
+
+	public Stream<Celebrite> parallelStream() {
+		return associea_celebrite.parallelStream();
+	}
+
 
 	
 }

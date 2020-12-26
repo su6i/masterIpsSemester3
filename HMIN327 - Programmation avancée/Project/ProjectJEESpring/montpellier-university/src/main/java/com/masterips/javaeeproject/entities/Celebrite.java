@@ -13,10 +13,9 @@ import org.hibernate.annotations.SQLInsert;
 
 
 @Entity
-@Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
+//@Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
 
-@SQLInsert(sql = "INSERT IGNORE INTO celebrite(epoque, nationalite,nom, prenom) " +
-"VALUES (?, ?, ?, ?)" )
+@SQLInsert(sql = "INSERT IGNORE INTO Celebrite(epoque, nationalite,nom, prenom, id) VALUES (?, ?, ?, ?, ?)" )
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -24,8 +23,7 @@ public class Celebrite implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private int numCelebrite;
+	private int id;
 	
 	@Column(length = 16)
 	private String nom;
@@ -43,19 +41,37 @@ public class Celebrite implements Serializable {
 
 	public Celebrite() {
 		super();
+		this.setId("undefined", "undefined");
+	}
+	
+	public Celebrite(String nom) {
+		this();
+		this.setNom(nom);
+		this.setId("undefined", nom);
 	}
 
 
 
 	public Celebrite(String nom, String prenom, String nationalite, String epoque) {
-		super();
-		this.setNom(nom);
+		this(nom);
 		this.setPrenom(prenom);
+		this.setId(prenom, nom);
 		this.setNationalite(nationalite);
 		this.setEpoque(epoque);
 	}
 
 
+
+	public long getId() {
+		return id;
+	}
+
+	public int setId(String prenom, String nom) {
+		String key = prenom + ' ' + nom;
+		this.id = Math.abs(key.hashCode());
+		return this.id;
+
+	}
 
 	public String getNom() {
 		return nom;
@@ -104,14 +120,11 @@ public class Celebrite implements Serializable {
 	}
 
 	
-	public Celebrite getCelebrite() {
-		return this;
-	}
 	
 	
 	@Override
     public String toString() {
-        return "Nom Celebrite: " + this.nom + ", Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
+        return "ID: " + this.id +", Nom Celebrite: " + this.nom + ", Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
         	   ", Epoque: " + this.epoque ;
     }
 	

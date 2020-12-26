@@ -1,14 +1,16 @@
 package com.masterips.javaeeproject.dao;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import java.util.List;
 
-@Repository
+@Transactional(readOnly = true) 
 public interface LieuRepository extends JpaRepository<Lieu, String> {
 	
 	
@@ -21,7 +23,9 @@ public interface LieuRepository extends JpaRepository<Lieu, String> {
 	@Query("select l from Lieu l where l.codeInsee=:x")
 	public Lieu getLieu(@Param("x")String codeInsee);
 	
-	
+//	@Query("select l from Lieu l order by l.codeLieu desc")
+//	public Page<Lieu> getAllLieuxPage(Pageable pageable);
+
 	
 
 }

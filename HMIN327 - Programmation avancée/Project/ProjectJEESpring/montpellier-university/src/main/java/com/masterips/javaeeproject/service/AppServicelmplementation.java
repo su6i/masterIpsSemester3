@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,20 +44,13 @@ public class AppServicelmplementation implements AppService {
 	
 //	Department
 	
-	@Override
-	public Departement addDepartement(Departement departement) {
-		return departementRepository.save(departement);
-	}
 
 	@Override
 	public Departement getDepartement(String numDep) {
 		
-		
-//		 Departement d = departementRepository.findOne(numDep); 
-//		 if(numDep==null) throw new RuntimeException("Can't find entered department");
-//		 return d;
+		 if(numDep==null || (!departementRepository.existsById(numDep))) throw new RuntimeException("Can't find entered department");
 		 
-		 return departementRepository.findOne(numDep);		 
+		 return departementRepository.findById(numDep).get();
 	}
 	
 	@Override
@@ -62,6 +58,10 @@ public class AppServicelmplementation implements AppService {
 		 return departementRepository.findAll();	 
 	}
 	
+	@Override
+	public Departement addDepartement(Departement departement) {
+		return departementRepository.save(departement);
+	}
 	
 
 //	Lieu 
@@ -75,6 +75,18 @@ public class AppServicelmplementation implements AppService {
 		return lieuRepository.findAll();
 	}
 	
+//	public Page<Lieu> getAllLieux(int page, int size) {
+//		return lieuRepository.getAllLieuxPage(new PageRequest(page, size));
+//	}
+//
+//	@Override
+//	public Page<Lieu> getAllLieuxPage(PageRequest of) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	
+	
 	@Override
 	public Lieu addLieu(Lieu lieu) {
 		return lieuRepository.save(lieu);
@@ -84,20 +96,21 @@ public class AppServicelmplementation implements AppService {
 //	Monument
 	
 	
+	public Monument getMonument(String codeM) {
+	return monumentRepository.findById(codeM).get();
+	}
+
+	public List<Monument> getAllMonuments() {
+		return monumentRepository.findAll();
+	}
+
+
 	@Override
 	public void addMonument(Monument monument) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public List<Monument> getMonument(String codeM) {
-	return appService.getMonument(codeM);
-	}
-
-	public List<Monument> getAllMonuments() {
-		return appService.getAllMonuments();
-	}
-
+	
 	@Override
 	public void addMonumentToLieu(String codeM, String codeInsee) {
 		// TODO Auto-generated method stub
@@ -124,13 +137,28 @@ public class AppServicelmplementation implements AppService {
 
 	
 //	Celebrite
+
+	public List<Celebrite> getCelebriteByName(String prenom) {
+		return celebriteRepository.getCelebriteByName(prenom);
+	}
+
+	public List<Celebrite> getCelebriteByFamily(String nom) {
+		return celebriteRepository.getCelebriteByFamily(nom);
+	}
+
+	public List<Celebrite> getAllCelebrities() {
+		return celebriteRepository.findAll();
+	}
+
+	
 	@Override
 	public Celebrite addCelebrite(Celebrite celebrite) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
-	
+
 
 
 }

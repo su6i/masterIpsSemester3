@@ -1,8 +1,11 @@
 package com.masterips.javaeeproject.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
@@ -48,13 +51,17 @@ public interface AppService {
 	public Lieu addLieu(Lieu lieu);
 	public Lieu getLieu(String codeIsee);
 	public List<Lieu> getAllLieux();
+//	public Page<Lieu> getAllLieuxPage(int page, int size);
+//	public Page<Lieu> getAllLieuxPage(int page, int size);
+//	public Page<Lieu> getAllLieuxPage(PageRequest pageRequest);
+
 	
 	
 	
 //	Monument methodes
 	public void addMonument(Monument monument);
 	public void addMonumentToLieu(String codeM, String codeInsee);
-	public List<Monument> getMonument(String codeM);
+	public Monument getMonument(String codeM);
 	public List<Monument> getAllMonuments();
 	public float getDistanceBetweenMonuments(String nomMonA,String nomMonB);
 	public List<Monument> getListMonumentsByDep(String nomDep);
@@ -63,8 +70,12 @@ public interface AppService {
 	
 	
 //	Celebrite methodes
+	public List<Celebrite> getCelebriteByName(String prenom);
+	public List<Celebrite> getCelebriteByFamily(String nom);
+	public List<Celebrite> getAllCelebrities();
 	public Celebrite addCelebrite(Celebrite celebrite);
-	
+
+
 
 
 	

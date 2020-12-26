@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @Table(name = "departement")
 public class Departement implements Serializable {
 	 /**
-	 * insert into departement values ('12','AVEYRON','12202');  
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -34,10 +34,6 @@ public class Departement implements Serializable {
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
 	private Lieu lieu;
 
-	@Column(name = "chefLieu", length = 5)
-	private String chefLieu;
-
-
 
 	
 	public Departement() {
@@ -45,26 +41,18 @@ public class Departement implements Serializable {
 	}
 	
 	public Departement(String numDep) {
-		super();
+		this();
 		this.setNumDep(numDep);
 	}
 
 	
-	// insert into departement values ('34','HERAULT','34172');                                     
-	// Hibernate: insert into departement (chef_lieu, nom_dep, reg, num_dep) values (?, ?, ?, ?)
 
-
-	public Departement(String numDep, String nomDep, String chefLieu) {
-		super();
-		this.setNumDep(numDep);
+	public Departement(String numDep, String nomDep, Lieu lieu) {
+		this(numDep);
 		this.setNomDep(nomDep);
 		
 		
-		lieu = new Lieu(chefLieu);
-		this.chefLieu = chefLieu;
-//		this.chefLieu = this.lieu.getCodeInsee();
-		
-
+		this.setLieu(lieu);
 	}
 
 
@@ -86,33 +74,21 @@ public class Departement implements Serializable {
 	public void setNomDep(String nomDep) {
 		this.nomDep = nomDep;
 	}
-	
-	
 
-	public String getChefLieu() {
-		return chefLieu;
+
+	public Lieu getLieu() {
+		return lieu;
 	}
 
-	public void setChefLieu(String chefLieu) {
-		this.chefLieu = chefLieu;
-	}
-
-	@JsonIgnore
-	public Departement getDepartement() {
-		return this;
-	}
-	
 	@JsonSetter
-	public void setDepartement(Departement departement) {
-		departement.setDepartement(this);
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
 	}
 
-
-	
 	@Override
     public String toString() {
         return "Numéro Departement: " + this.numDep + ", Nom Departement: " + this.nomDep +
-        		", Chef Lieu: " + this.chefLieu  ;
+        		", Chef Lieu: " + this.lieu.getCodeInsee()  ;
         					 
     }
 	

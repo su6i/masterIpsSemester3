@@ -8,15 +8,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.masterips.javaeeproject.entities.Celebrite;
 
-@Repository
+@Transactional(readOnly = true) 
 public interface CelebriteRepository extends JpaRepository<Celebrite, Long> {
 	
 	
-	@Query("select c from Celebrite c where  c.nom=:x")
-	public Celebrite getCelebrite(@Param("x") String nom);
+	@Query("select c from Celebrite c where  c.prenom=:x")	
+	public List <Celebrite> getCelebriteByName(@Param("x") String prenom);
+
+	@Query("select c from Celebrite c where  c.nom=:x")	
+	public List <Celebrite> getCelebriteByFamily(@Param("x") String nom);
 	
 	@Query("select c from Celebrite c where  c.nom like :x")
 	public Page<Celebrite> findCelebritetByName(@Param("x")String mc, Pageable pageable);
@@ -26,6 +30,9 @@ public interface CelebriteRepository extends JpaRepository<Celebrite, Long> {
 	
 	//@Query("select c from Celebrite c where  c.nom like:x")
 	public List<Celebrite> findByNomContaining(String nom);
+
+	
+
 	
 	
 	

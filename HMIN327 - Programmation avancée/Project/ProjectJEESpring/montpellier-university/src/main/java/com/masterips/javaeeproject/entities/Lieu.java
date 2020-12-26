@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @Table(name = "lieu")
 public class Lieu implements Serializable {
 	 /**
-	 * insert into  lieu values ('34172','MONTPELLIER',3.876716,43.610769,'34');
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -38,11 +38,7 @@ public class Lieu implements Serializable {
 		
 	private double longitude;
 	
-	private double latitude;
-
-	@Column(name = "dep", length = 4)
-	private String dep;
-	
+	private double latitude;	
 	
 
 	public Lieu() {
@@ -50,23 +46,20 @@ public class Lieu implements Serializable {
 	}
 	
 	public Lieu(String codeInsee) {
-		super();
+		this();
 		this.setCodeInsee(codeInsee);
 	}
 	
 
-	// 		Lieu l1 = new Lieu("34172","MONTPELLIER",3.876716,43.610769,"34");
 
 
-	public Lieu(String codeInsee, String nomCom, double longitude, double latitude, String dep) {
-		super();
-		this.setCodeInsee(codeInsee);
+	public Lieu(String codeInsee, String nomCom, double longitude, double latitude, Departement departement) {
+		this(codeInsee);
 		this.setNomCom(nomCom);
 		this.setLongitude(longitude);
 		this.setLatitude(latitude);
 		
-		departement = new Departement(dep);
-		this.dep = this.departement.getNumDep();
+		this.setDepartement(departement);
 	}
 
 
@@ -82,21 +75,6 @@ public class Lieu implements Serializable {
 	public void setCodeInsee(String codeInsee) {
 		this.codeInsee = codeInsee;
 	}
-
-
-
-
-//	public Departement getDep() {
-//		return dep;
-//	}
-//
-//
-//
-//
-//	public void setDep(Departement dep) {
-//		this.dep = dep;
-//	}
-
 
 
 
@@ -138,54 +116,22 @@ public class Lieu implements Serializable {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	
+		
+
 	@JsonIgnore
-	public Lieu getLieu() {
-		return this;
+	public Departement getDepartement() {
+		return departement;
 	}
 	
 	@JsonSetter
-	public void setLieu(Lieu lieu) {
-		lieu.setLieu(this);
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
 	}
-	
-	public String getDep() {
-		return this.dep;
-	}
-
-	public void setDep(String dep) {
-		this.dep = dep;
-	}
-	
-	
-	//------------------------------
-	
-//	public Inscription getInscription() {
-//
-//		return inscription;
-//	}
-//
-//	public void setInscription(Inscription inscription) {
-//		
-//		this.inscription = inscription;  		
-//	}
-//
-//	public void setEtudiant(Etudiant etudiant) {
-//		etudiant.setEtudiant(this);
-//	}
-	
-	
-	//------------------------------
-
-	
-	
-	
-	
 
 	@Override
     public String toString() {
         return "Code Insee=" + this.codeInsee + ", Nom Commune: " + this.nomCom + ", Departement: " 
-        					 + dep +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
+        					 + this.departement.getNumDep() +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
     }
 
 	
