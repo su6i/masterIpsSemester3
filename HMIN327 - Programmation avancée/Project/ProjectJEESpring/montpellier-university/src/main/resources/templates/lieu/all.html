@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+   <head th:replace="template :: header">
+	  <!-- Custom styles for this template -->
+      <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+   </head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+         <table class="table table-hover table-bordered">
+            <thead>
+               <tr class="info">
+                  <th class="col">INSEE</th>
+                  <th class="col-md-auto">Commune</th>
+                  <th class="col">Latitude</th>
+                  <th class="col">Longitude</th>
+                  <th class="col-sm-auto">Departement</th>
+               </tr>
+            </thead>
+            <tbody>
+               <th:block th:each="lieu : ${lieux}">
+                  <tr>
+                  
+                  
+                  
+                  
+                     <td th:text="${lieu.codeInsee}">INSEE</td>
+                     <td th:text="${lieu.nomCom}">Commune</td>
+                     <td th:text="${#numbers.formatDecimal(lieu.latitude, 0, 4)}">Latitude</td>
+                     <td th:text="${#numbers.formatDecimal(lieu.longitude, 0, 4)}">Longitude</td>                     
+                     <td th:text="${lieu.departement}">Departement</td>
+                  </tr>
+               </th:block>
+            <tbody>
+         </table>
+      <th:block th:replace="template :: pagination"></th:block>
+         
+      </div>
+      <th:block th:replace="template :: footer"></th:block>
+   </body>
+</html>

@@ -114,6 +114,23 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>4.0.0-2</version>
 		</dependency>
+		<dependency>
+		    <groupId>nz.net.ultraq.thymeleaf</groupId>
+		    <artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
+		<dependency>
+		    <groupId>org.codehaus.groovy</groupId>
+		    <artifactId>groovy</artifactId>
+		    <version>3.0.7</version>
+		</dependency>
+		<dependency>
+		     <groupId>org.thymeleaf</groupId>
+		     <artifactId>thymeleaf-spring4</artifactId>
+		     <version>2.1.4.RELEASE</version>
+		</dependency>
+		
+
 		
 		
 		

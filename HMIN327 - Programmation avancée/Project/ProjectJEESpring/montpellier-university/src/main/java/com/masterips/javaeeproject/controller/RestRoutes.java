@@ -35,7 +35,7 @@ public class RestRoutes {
 		return appService.getDepartement(dep);
 	}	
 	
-	@RequestMapping(value="/departements", method=RequestMethod.GET)
+	@RequestMapping(value="/departementsJson", method=RequestMethod.GET)
 	public List<Departement> getAllDepartements() {
 		return appService.getAllDepartements();
 	}
@@ -55,7 +55,7 @@ public class RestRoutes {
 	}
 	
 	
-	@RequestMapping(value="/lieux", method=RequestMethod.GET)
+	@RequestMapping(value="/lieuxJSON", method=RequestMethod.GET)
 	public List<Lieu> getAllLieux() {
 		return appService.getAllLieux();
 	}
@@ -96,7 +96,7 @@ public class RestRoutes {
 	}
 
 
-	@RequestMapping(value="/monuments", method=RequestMethod.GET)
+	@RequestMapping(value="/monumentsJSON", method=RequestMethod.GET)
 	public List<Monument> getAllMonuments() {
 		return appService.getAllMonuments();
 	}
@@ -119,7 +119,7 @@ public class RestRoutes {
 		return appService.getCelebriteByFamily(nom);
 	}
 	
-	@RequestMapping(value="/celebrities", method=RequestMethod.GET)
+	@RequestMapping(value="/celebritiesJSON", method=RequestMethod.GET)
 	public List<Celebrite> getAllCelebrities() {
 		return appService.getAllCelebrities();
 	}

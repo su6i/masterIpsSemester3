@@ -27,9 +27,9 @@ public class Lieu implements Serializable {
 	@Id	
 	@Column(length = 5)
 	private String codeInsee;
-	
-//	@JsonManagedReference
-	@OneToOne(cascade = {CascadeType.ALL})
+    
+    @JsonBackReference	
+    @OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="dep", insertable=false ,updatable=false)
 	private Departement departement;
 	
@@ -118,12 +118,10 @@ public class Lieu implements Serializable {
 	}
 		
 
-	@JsonIgnore
 	public Departement getDepartement() {
 		return departement;
 	}
 	
-	@JsonSetter
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}

@@ -44,7 +44,6 @@ public class AppServicelmplementation implements AppService {
 	
 //	Department
 	
-
 	@Override
 	public Departement getDepartement(String numDep) {
 		
@@ -64,7 +63,12 @@ public class AppServicelmplementation implements AppService {
 	}
 	
 
+
+
+
 //	Lieu 
+
+
 	@Override
 	public Lieu getLieu(String codeIsee) {
 		return lieuRepository.getLieu(codeIsee);
@@ -92,7 +96,9 @@ public class AppServicelmplementation implements AppService {
 		return lieuRepository.save(lieu);
 	}
 	
-	
+    
+    
+
 //	Monument
 	
 	
@@ -135,7 +141,9 @@ public class AppServicelmplementation implements AppService {
 		return null;
 	}
 
-	
+    
+    
+    
 //	Celebrite
 
 	public List<Celebrite> getCelebriteByName(String prenom) {

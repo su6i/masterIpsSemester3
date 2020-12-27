@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+   <head>
+    <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+</head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+
+
+         <div class="row">
+         <!-- <div class="card-group"> -->
+            <th:block th:each="monument : ${monuments}">
+ 				<div class="col-md-4 ">	                
+ 					<div class="card border-success mb-3" style="max-width: 30rem;">
+	                    <div class="card-header bg-transparent border-success" th:text="${monument.nomM}">nom_m</div>
+	                    <img class="card-img-top" src="/image/boutonnet.png" alt="Card image cap">
+	                     <div class="card-body text-success">
+	                      <h5 class="card-title text-primary" th:text="@{'CodeInsee: ' + ${monument.lieu.codeInsee}}">codeInsee</h5>
+	                      <p><span class="card-text text-info" th:text="${#numbers.formatDecimal(monument.latitude, 0, 4)}">Latitude</span> N,
+	                      <span class="card-text text-info" th:text="${#numbers.formatDecimal(monument.longitude, 0, 4)}">Longitude</span> E</p>
+	                      <p class="card-text text-danger" th:text="@{'Proprietaire: ' + ${monument.proprietaire}}">proprietaire</p>
+	                      Type: <span class="card-text" th:text="${monument.typeMonument}">type_monument</span>
+	                     </div>
+                        <div class="card-footer bg-transparent border-success" th:text="@{'GeoHash: ' + ${monument.codeM}}">code_m</div>
+
+	                  </div>            
+                  </div>            
+            </th:block>
+         <!-- </div> -->
+         </div>
+
+
+
+
+      <div th:replace="template :: pagination"></div>
+         
+      </div>
+      <div th:replace="template :: footer"></div>
+   </body>
+</html>

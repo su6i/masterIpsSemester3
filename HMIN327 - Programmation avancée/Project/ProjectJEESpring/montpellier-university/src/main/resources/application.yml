@@ -25,7 +25,10 @@ spring:
   
     profiles:
       active:
-        - "dev"         
+        - "dev"        
+    
+    thymeleaf:
+        cache: false 
         
   
 

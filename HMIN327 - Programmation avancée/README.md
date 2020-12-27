@@ -72,3 +72,21 @@ The fundamental difference between a web application and a REST API is that the 
 - We can use CommandLineRunner for test the application
 
 - @RestController returns just contents in the format of json, but @Controller returns html file
+
+### CSS 🤔
+
+URL: [Loop row in bootstrap every 3 columns](https://stackoverflow.com/questions/40561301/loop-row-in-bootstrap-every-3-columns)
+Bootstrap works within a 12 col grid system automatically. Just make sure you loop and make col size so that that evenly divides by 12 e.g. col-md-4.
+
+This example will provide 3 per row automatically since 12 / 4 = 3.
+
+> \<div class="row">
+
+    LOOPCODE
+    {
+        \<div class="col-md-4">
+            DATA
+        \</div>
+    }
+
+\</div>

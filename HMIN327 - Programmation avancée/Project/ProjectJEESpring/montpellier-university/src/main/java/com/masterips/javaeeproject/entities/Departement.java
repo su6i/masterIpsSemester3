@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
@@ -29,7 +30,8 @@ public class Departement implements Serializable {
 				
 	@Column(name = "nomDep", length = 30)
 	private String nomDep;
-		
+        
+    @JsonManagedReference
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
 	private Lieu lieu;
@@ -80,15 +82,14 @@ public class Departement implements Serializable {
 		return lieu;
 	}
 
-	@JsonSetter
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
 	}
 
 	@Override
     public String toString() {
-        return "Numéro Departement: " + this.numDep + ", Nom Departement: " + this.nomDep +
-        		", Chef Lieu: " + this.lieu.getCodeInsee()  ;
+        return "N°: " + this.numDep + ", Nom: " + this.nomDep +
+        		", Ch.L.: " + this.lieu.getCodeInsee()  ;
         					 
     }
 	

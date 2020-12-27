@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:fragment="header">
+
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title th:text="${title}">Programmation avancée - Projet Monuments</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+ -->        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+        
+        <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+    </head>
+    <body>
+        <!-- begin template -->
+        <th:block th:fragment="navbar">
+	        <div class="navbar navbar-custom navbar-fixed-top">
+	            <div class="navbar-header">
+	                <a class="navbar-brand" th:href="@{/}"><img border="0" alt="snow" th:src="@{/image/snow.ico}" width="64" height="64" /></a>
+	                <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                    <span class="icon-bar">Departement1111</span>
+	                    <span class="icon-bar">Lieu1111</span>
+	                    <span class="icon-bar">Monument1111</span>
+	                    <span class="icon-bar">Celebrite1111</span>
+	                </a>
+	            </div>
+	            <div class="navbar-collapse collapse">
+	                <ul class="nav navbar-nav">
+	                    <li class="active"><a th:href="@{/}">Home</a></li>
+	                    <li><a th:href="@{/departements}">Departements</a></li>
+	                    <li><a th:href="@{/lieux}">Lieux</a></li>
+	                    <li><a th:href="@{/monuments}">Monuments</a></li>
+	                    <li><a th:href="@{/celebrities}">Celebrities</a></li>
+	                    <li>&nbsp;</li>
+	                </ul>
+	                <form class="navbar-form">
+	                    <div class="form-group" style="display: inline;">
+	                        <div class="input-group">
+	                            <div class="input-group-btn">
+	                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+	                                <ul class="dropdown-menu">
+	                                    <li><a href="#">Add</a></li>
+	                                    <li><a href="#">Category 2</a></li>
+	                                    <li><a href="#">Category 3</a></li>
+	                                    <li><a href="#">Category 4</a></li>
+	                                    <li><a href="#">Category 5</a></li>
+	                                </ul>
+	                            </div>
+	                            <input type="text" class="form-control" placeholder="What are searching for?" />
+	                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+	                        </div>
+	                    </div>
+	                </form>
+	            </div>
+	        </div>
+		</th:block>
+        <div id="map-canvas"></div>
+        <div class="container container-fluid" id="main">
+                <div layout:fragment="content" class="noborder"></div>
+        </div>
+        <th:block th:fragment="pagination">
+	        <nav aria-label="...">
+			  <ul class="pagination">
+			    <li class="page-item disabled">
+			      <a class="page-link" href="#" tabindex="-1">Previous</a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item active">
+			      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">Next</a>
+			    </li>
+			  </ul>
+			</nav>
+		</th:block>
+
+		<th:block th:fragment="footer">
+			<div class="footer d-flex justify-content-center fixed-bottom">
+			<div class="col-md-4"></div>
+		          <div class="col-md-4">Copyright &copy; Amir SHIRALI POUR</div>
+		          <div class="col-md-4"></div>
+		    </div>
+		</th:block>
+		<th:block th:fragment="monumentCss">
+            <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+        </th:block>
+        
+        <!-- end template -->
+        <th:block th:fragment="scripts">
+            <!-- script references -->
+            <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+            <script type="text/javascript" th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+            <script type="text/javascript" th:src="@{http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed}"></script>
+            <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+		    <script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
+            
+            
+            
+        </th:block>
+    </body>
+</html>

@@ -89,6 +89,7 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 
 //		Departement herault = departementRepository.save(new Departement("34","MONTPELLIER",new Lieu("34172"))); 	//l34172
 //		Departement isere   = departementRepository.save(new Departement("38","ISERE", new Lieu("38185")));  		//"38185"
+//		Departement ajaccio = departementRepository.save(new Departement("2A","CORSE-DU-SUD",new Lieu("2A004"))); 	//l34172
 
 //		Lieu l34172 = lieuRepository.save(new Lieu("34172","MONTPELLIER",3.876716,43.610769,new Departement("34")));
 //		Lieu l34198 = lieuRepository.save(new Lieu("34198","PEROLS",3.954211,43.563782,new Departement("34")));

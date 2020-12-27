@@ -2,6 +2,7 @@ package com.masterips.javaeeproject.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
 import com.masterips.javaeeproject.service.AppService;
 
+import java.util.Arrays;
 import java.util.List;
 
 // import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,17 +44,79 @@ public class PagesController {
 		return "navbar";
 	}
 
+//Display all departements
 
-    @RequestMapping(value="/all", method=RequestMethod.GET)
-	public String alldepartement() {
-		return "departement/allDepartement";
+    @RequestMapping(value="/departements", method=RequestMethod.GET)
+	public String allDepartements(Model model) {
+    	try {
+    		List<Departement> departements = appService.getAllDepartements();
+    		model.addAttribute("departements", departements);
+    		
+    	}catch (Exception e) {
+    		model.addAttribute("exception",e);
+    	}
+		return "departement/all";
+	}
+
+
+    //Display all lieux
+    @RequestMapping(value="/lieux", method=RequestMethod.GET)
+	public String allLieux(Model model) {
+    	try {
+    		List<Lieu> lieux = appService.getAllLieux();
+    		model.addAttribute("lieux", lieux);
+    		
+    	}catch (Exception e) {
+    		model.addAttribute("exception",e);
+    	}
+		return "lieu/all";
 	}
     
-    @RequestMapping(value="/menu", method=RequestMethod.GET)
-	public String menu() {
-		return "navbar";
+
+
+    //Display all monument
+    @RequestMapping(value="/monuments", method=RequestMethod.GET)
+	public String allMonuments(Model model) {
+    	try {
+    		List<Monument> monuments = appService.getAllMonuments();
+    		model.addAttribute("monuments", monuments);
+    		
+    	}catch (Exception e) {
+    		model.addAttribute("exception",e);
+    	}
+		return "monument/all";
 	}
-	
+    
+    
+  //Display all monument
+    @RequestMapping(value="/monumentsCard", method=RequestMethod.GET)
+	public String allMonumentsCard(Model model) {
+    	try {
+    		List<Monument> monuments = appService.getAllMonuments();
+    		model.addAttribute("monuments", monuments);
+    		
+    	}catch (Exception e) {
+    		model.addAttribute("exception",e);
+    	}
+		return "monument/card";
+	}
+    
+    
+
+
+    //Display all celebrite
+    @RequestMapping(value="/celebrities", method=RequestMethod.GET)
+	public String allCelebrities(Model model) {
+    	try {
+    		List<Celebrite> celebrities = appService.getAllCelebrities();
+    		model.addAttribute("celebrities", celebrities);
+    		
+    	}catch (Exception e) {
+    		model.addAttribute("exception",e);
+    	}
+		return "celebrite/all";
+	}
+
 
 
 
