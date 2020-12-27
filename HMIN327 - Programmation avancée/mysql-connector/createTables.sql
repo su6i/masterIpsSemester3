@@ -2,7 +2,7 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 
--- Lieu(codeInsee varchar(5), dep varchar(4), nomCom varchar(46), longitude float, latitude float)
+-- monument(codeInsee varchar(5), dep varchar(4), nomCom varchar(46), longitude float, latitude float)
 -- avec Lieu(dep)⊆Departement(dep)
 
 -- An example tuple: 
@@ -80,3 +80,6 @@ create table if not exists celebrite (
 
 -- to activate foreign keys verification in SQL
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+insert ignore into monument(code_m, latitude, longitude, nom_m, proprietaire, type_monument, code_lieu) select codeM, longitude, latitude, nomM, proprietaire, typeMonument, codeLieu from project_initial.monument; 

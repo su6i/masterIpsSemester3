@@ -367,3 +367,22 @@ a.text-success:focus,a.text-success:hover{
 
 
 
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+  
+.dropdown-menu{padding:0px !important; margin:0px !important; line-height: normal;}
+.dropdown-menu li, .dropdown-menu a{padding:0px !important; margin:0px !important; line-height: normal;}
+.dropdown-menu a{padding:10px !important;}
+
+.user-dropdown .dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 100% !important;
+  }
+  

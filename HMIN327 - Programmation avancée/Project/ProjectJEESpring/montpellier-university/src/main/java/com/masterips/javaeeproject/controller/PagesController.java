@@ -42,6 +42,11 @@ public class PagesController {
 		
 		modelMap.put("name", name);
 		return "navbar";
+    }
+    
+	@RequestMapping(value="/profile", method=RequestMethod.GET)
+	public String profile() {
+		return "user/profile";
 	}
 
 //Display all departements

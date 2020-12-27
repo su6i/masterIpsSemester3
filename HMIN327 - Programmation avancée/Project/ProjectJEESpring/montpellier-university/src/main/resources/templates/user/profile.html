@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title th:text="${title}">Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+  <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+    
+    <th:block th:replace="template :: navbar"></th:block>
+
+        <!-- all other page content -->
+        <div class="row">
+        <div class="bg-text col-md-4 alert alert-secondary">
+
+                Project: Java EE,Spring Boot, Hibernate web application <br>
+                Cours: Programmation avancées (Java EE) <br>
+                Professor: Madame Mougenot <br>
+                By: <strong>Amir</strong> SHIRALI POUR <br>
+        </div>
+    </div>
+    
+
+    <div class="bg-text column">
+        <img class="bg-image" th:src="@{/image/Amir-bussiness-card.jpg}" style="width:50%" alt="Amir-Business-Card"/>
+    </div>
+
+
+
+    <th:block th:replace="template :: scripts"></th:block>
+</body>
+</html>
