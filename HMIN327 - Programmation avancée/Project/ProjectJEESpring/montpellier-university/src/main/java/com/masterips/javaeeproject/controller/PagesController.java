@@ -27,6 +27,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 
 @Controller
@@ -80,31 +81,51 @@ public class PagesController {
 
 
     //Display all monument
-    @RequestMapping(value="/monuments", method=RequestMethod.GET)
-	public String allMonuments(Model model) {
+    @RequestMapping(value="/monuments/page/{pageNumber}", method=RequestMethod.GET)
+	public String allMonuments(Model model, @PathVariable("pageNumber") int currentPage) {
     	try {
-    		List<Monument> monuments = appService.getAllMonuments();
+            Page<Monument> page = appService.findAll(currentPage);
+            long totalItems = page.getTotalElements();
+            int totalPages = page.getTotalPages();
+
+    		List<Monument> monuments = page.getContent();
     		model.addAttribute("monuments", monuments);
-    		
+    		model.addAttribute("totalItems", totalItems);
+    		model.addAttribute("totalPages", totalPages);
+            
     	}catch (Exception e) {
     		model.addAttribute("exception",e);
     	}
 		return "monument/all";
 	}
-    
+
+//    @RequestParam(required = false, defaultValue = "someValue").
     
   //Display all monument
-    @RequestMapping(value="/monumentsCard", method=RequestMethod.GET)
-	public String allMonumentsCard(Model model) {
+    @GetMapping(value="/monuments/card/page/{pageNumber}")
+	public String allMonumentsCard(Model model, @PathVariable("pageNumber") int currentPage) {
     	try {
-    		List<Monument> monuments = appService.getAllMonuments();
+            Page<Monument> page = appService.findAll(currentPage);
+            long totalItems = page.getTotalElements();
+            int totalPages = page.getTotalPages();
+
+
+    		List<Monument> monuments = page.getContent();
+    		model.addAttribute("currentPage", currentPage);
+
     		model.addAttribute("monuments", monuments);
+    		model.addAttribute("totalItems", totalItems);
+    		model.addAttribute("totalPages", totalPages);
+
     		
     	}catch (Exception e) {
     		model.addAttribute("exception",e);
     	}
 		return "monument/card";
 	}
+    
+    
+    
     
     
 

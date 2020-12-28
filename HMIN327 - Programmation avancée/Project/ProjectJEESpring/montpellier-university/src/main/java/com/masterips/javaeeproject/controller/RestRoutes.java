@@ -3,6 +3,8 @@ package com.masterips.javaeeproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,9 +99,24 @@ public class RestRoutes {
 
 
 	@RequestMapping(value="/monumentsJSON", method=RequestMethod.GET)
-	public List<Monument> getAllMonuments() {
-		return appService.getAllMonuments();
-	}
+	public List<Monument> getAllMonuments(int currentPage) {
+		Page<Monument> monuments = appService.findAll(currentPage);
+		List<Monument> listMonuments = monuments.getContent();
+		return listMonuments;
+    }
+    
+//    //Display all monument page by page
+//	@RequestMapping(value="/monuments/{page}")
+//    Page<Monument> pageMonument(Pageable pageable){
+//        return appService.findAll(pageable);
+//    }
+
+//    //Display all monument sorted
+//	@RequestMapping(value="/monuments/sorted")
+//    Page<Monument> monumentSorted(Pageable pageable){
+//        return appService.findAllSorted();
+//    }
+    
 
 	
 //	Celebrite	

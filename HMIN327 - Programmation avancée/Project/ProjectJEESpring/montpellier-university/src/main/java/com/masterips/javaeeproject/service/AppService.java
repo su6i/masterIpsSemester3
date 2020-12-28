@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
@@ -59,14 +60,17 @@ public interface AppService {
 	
 	
 //	Monument methodes
+	public Monument getMonument(String codeM);
+//	public List<Monument> getAllMonuments();
+	public Page<Monument> findAll(int pageNumber);
+//	public Page<Monument> getAllSorted(Sort sort);
+	
 	public void addMonument(Monument monument);
 	public void addMonumentToLieu(String codeM, String codeInsee);
-	public Monument getMonument(String codeM);
-	public List<Monument> getAllMonuments();
 	public float getDistanceBetweenMonuments(String nomMonA,String nomMonB);
 	public List<Monument> getListMonumentsByDep(String nomDep);
 	public List<Monument> getListMonumentsByLieu(String nomCom);
-	
+
 	
 	
 //	Celebrite methodes

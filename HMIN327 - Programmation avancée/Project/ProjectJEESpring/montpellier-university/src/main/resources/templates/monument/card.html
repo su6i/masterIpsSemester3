@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
    layout:decorator="navbar">
-   <head>
+<head>
     <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
 </head>
    <body>
@@ -11,7 +11,7 @@
 
 
          <div class="row">
-         <!-- <div class="card-group"> -->
+         <div class="card-group">
             <th:block th:each="monument : ${monuments}">
  				<div class="col-md-4 ">	                
  					<div class="card border-success mb-3" style="max-width: 30rem;">
@@ -29,7 +29,7 @@
 	                  </div>            
                   </div>            
             </th:block>
-         <!-- </div> -->
+         </div>
          </div>
 
 

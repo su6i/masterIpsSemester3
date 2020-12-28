@@ -90,3 +90,7 @@ This example will provide 3 per row automatically since 12 / 4 = 3.
     }
 
 \</div>
+
+### Thymeleaf
+
+- th:selected="${item.codItem} eq ${defaultCodItem}"

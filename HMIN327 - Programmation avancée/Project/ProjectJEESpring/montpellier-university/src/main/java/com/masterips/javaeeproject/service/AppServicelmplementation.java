@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -106,9 +107,18 @@ public class AppServicelmplementation implements AppService {
 	return monumentRepository.findById(codeM).get();
 	}
 
-	public List<Monument> getAllMonuments() {
-		return monumentRepository.findAll();
+//	public List<Monument> getAllMonuments() {
+//		
+//		return monumentRepository.findAll();
+//	}
+	
+
+	@Override
+	public Page<Monument> findAll(int pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber - 1, 6);
+		return monumentRepository.findAll(pageable);
 	}
+
 
 
 	@Override
@@ -146,6 +156,7 @@ public class AppServicelmplementation implements AppService {
     
 //	Celebrite
 
+
 	public List<Celebrite> getCelebriteByName(String prenom) {
 		return celebriteRepository.getCelebriteByName(prenom);
 	}
@@ -164,6 +175,7 @@ public class AppServicelmplementation implements AppService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 
