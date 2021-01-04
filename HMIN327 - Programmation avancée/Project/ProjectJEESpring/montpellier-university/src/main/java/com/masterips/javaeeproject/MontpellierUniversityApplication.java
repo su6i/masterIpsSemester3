@@ -1,32 +1,20 @@
-// https://postgis.net/workshops/postgis-intro/geography.html
-// geohash in Java
-
 package com.masterips.javaeeproject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-
-import com.masterips.javaeeproject.entities.Lieu;
-import com.masterips.javaeeproject.entities.Monument;
-import com.masterips.javaeeproject.service.AppService;
-import com.masterips.javaeeproject.entities.Celebrite;
-import com.masterips.javaeeproject.entities.Departement;
-import com.masterips.javaeeproject.dao.LieuRepository;
-import com.masterips.javaeeproject.dao.MonumentRepository;
 import com.masterips.javaeeproject.dao.CelebriteRepository;
 import com.masterips.javaeeproject.dao.DepartementRepository;
-
-//import java.sql.*;
+import com.masterips.javaeeproject.dao.LieuRepository;
+import com.masterips.javaeeproject.dao.MonumentRepository;
+import com.masterips.javaeeproject.entities.Celebrite;
+import com.masterips.javaeeproject.services.AppService;
 
 @SpringBootApplication
-public class MontpellierUniversityApplication implements CommandLineRunner {
-
+public class MontpellierUniversityApplication implements CommandLineRunner{
+	
 	@Autowired
 	private DepartementRepository departementRepository;
 	
@@ -41,30 +29,18 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 	
 	@Autowired
 	private AppService appService;
+
 	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(MontpellierUniversityApplication.class, args);
-		
-//		Session session = new Configuration().configure()
-//				.buildSessionFactory().openSession();
-//		
-//		Transaction t = session.beginTransaction();
-//
-//		
-//		Celebrite amir = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
-//		Celebrite amir2 = new Celebrite("SHIRALI POUR","Amir","Iranienne","1981");
-//
-//		
-//		session.saveOrUpdate(amir);
-//		session.saveOrUpdate(amir2);
-//        t.commit();
-//        session.close();
-//		
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+		
 		
 //		— pouvoir consulter la base de données au sujet des communes, de leurs monuments ou de leurs célébrités (prévoyez un jeu d’au moins 10 requètes à cet effet)
 //		— pouvoir mettre à jour la base de données au travers d’opérations de: 
@@ -98,8 +74,11 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		Monument spfb05nwqmvu = monumentRepository.save(new Monument("spfb05nwqmvu","HOTEL DE GANGES","PRIVE","HOTEL_PARTICULIER",3.87639,43.611334,l34172));
 		
 //		 (String nom, String prenom, String nationalite, String epoque)
-//		Celebrite amir = celebriteRepository.save(new Celebrite("SHIRALI POUR","Amir","Iranienne","1981"));
-//		Celebrite obama = celebriteRepository.save(new Celebrite("OBAMA","BARAK","American","1981"));
+//		 Celebrite amir    = celebriteRepository.save(new Celebrite("SHIRALI POUR"  ,"Amir"           ,"Iranienne"           ,"1981"));
+//         Celebrite obama   = celebriteRepository.save(new Celebrite("OBAMA"         ,"BARAK"          ,"Americaine"          ,"1981"));
+//         Celebrite hassina = celebriteRepository.save(new Celebrite("BOUFATIS"      ,"Hassina"        ,"Algérienne"          ,"1881"));
+//         Celebrite madonna = celebriteRepository.save(new Celebrite("Ciccone"       ,"Madonna Louise" ,"Americaine-Italienne","1958")); 
+        
 //		Celebrite amir3 = celebriteRepository.save(new Celebrite("SHIRALI POUR","Amir","Iranienne","1981"));
 		
 //		departementRepository.updateDepartement(numDep, nomDep);
@@ -114,15 +93,12 @@ public class MontpellierUniversityApplication implements CommandLineRunner {
 //		System.out.println("\n"+spfb05nwqmvu+ "\n");
 //		System.out.println("\n"+amir+ "\n");
 		
-		
-		// Affiche les données depuis la base de données
-		
-		
-		
+		for(Celebrite celeb: this.celebriteRepository.findAll()) 
+			System.out.println(celeb.toString());
+
 		
 		
-		// Test
-//		appService.getDepartement("isere");
+		
 	}
 
 }

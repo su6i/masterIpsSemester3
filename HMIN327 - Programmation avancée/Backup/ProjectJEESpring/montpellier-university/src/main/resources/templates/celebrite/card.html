@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+<head>
+    <link rel="stylesheet" th:href="@{/css/celebrite.css}"/>	
+</head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+			<p th:text="@{'currentPage' + ${currentPage}}"></p>
+
+         <div class="row">
+         <div class="card-group">
+            <th:block th:each="celebrite : ${celebrities}">
+ 				<div class="col-md-4 ">	                
+ 					<div class="card mb-3" style="width: 240px;" th:classappend="${border} ? ${border} : 'border-success'">
+	                    <div class="font-weight-bold">
+	                    	<strong>
+	                    		<span class="card-text text-info font-weight-bold" th:text="${celebrite.prenom}">Name</span>
+                    		</strong>
+                            <span class="card-text" th:text="${celebrite.nom}" th:classappend="${text} ? ${text} : 'text-info'">Family</span>
+                        </div>
+	                    <img class="photo-celebrite card-img-top center" th:src="@{'/image/' +${celebrite.numCelebrite} + '.jpg'}" alt="Card image cap">
+	                     <div class="card-body text-success">
+	                      <h5 class="card-title" th:text="@{'Numéro: ' + ${celebrite.numCelebrite}}" th:classappend="${text} ? ${text} : 'text-primary'">Number</h5>
+	                      <p class="card-text" th:text="@{'Nationalité: ' + ${celebrite.nationalite}}" th:classappend="${text} ? ${text} : 'text-danger'">Nationality</p>
+	                      Type: <span class="card-text" th:text="${'Epoque: ' + celebrite.epoque}">Birth year</span>
+                         </div>
+
+                        <div th:replace="fragments/template :: remove-modify-details (entity='celebrities', id=${celebrite.numCelebrite})"></div>
+
+	                  </div>            
+                  </div>            
+            </th:block>
+         </div>
+         </div>
+
+
+
+
+      <div th:replace="fragments/template :: pagination"></div>
+         
+      </div>
+      <div th:replace="fragments/template :: footer"></div>
+   </body>
+</html>

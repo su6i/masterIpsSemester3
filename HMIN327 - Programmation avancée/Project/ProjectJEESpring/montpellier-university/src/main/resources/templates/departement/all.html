@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
    layout:decorator="navbar">
-   <head th:replace="template :: header">
-	  <!-- Custom styles for this template -->
+   <head th:replace="fragments/template :: header">
+	  <!-- Custom styles for this fragments/template -->
       <link rel="stylesheet" th:href="@{/css/departement.css}"/>	
    </head>
    <body>
       <div layout:fragment="content">
-         <p th:text="${template}">Should not be displayed</p>
-         <table class="table table-hover table-bordered">
+         <p th:text="${template}">Should not be displayed</p>         
+         <table class="table table-hover table-bordered" data-sort-name="nomDep" data-sort-order="desc">
             <thead>
                <tr class="info">
-                  <th class="col col-lg-2">Department no.</th>
-                  <th class="col-md-auto">Department name</th>
-                  <th class="col col-lg-2">Chef Lieu</th>
+                  <th class="col col-lg-2" data-field="no" data-sortable="true"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Department no.</a></th>
+                  <th class="col-md-auto"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Department name</a></th>
+                  <th class="col col-lg-2"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Chef Lieu</a></th>
+                  <th class="col-md-auto"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Nom Commune</a></th>                  
                </tr>
             </thead>
             <tbody>
@@ -23,14 +24,16 @@
                      <td th:text="${departement.numDep}">numDep</td>
                      <td th:text="${departement.nomDep}">nomDep</td>
                      <td th:text="${departement.lieu.codeInsee}">chefLieu</td>
-<!--                 <td th:text="${departement.lieu.nomCom}">Nom Commune</td>-->                     
-                  </tr>
-               </th:block>
+ 	                 <td th:text="${departement.lieu.nomCom}">Nom Commune</td>                                     
+                 </tr>
+              </th:block>
             <tbody>
          </table>
-      <div th:replace="template :: pagination"></div>
+      <div th:replace="fragments/template :: pagination"></div>
          
       </div>
-      <div th:replace="template :: footer"></div>
+      <div th:replace="fragments/template :: footer"></div>
+      <th:block th:replace="fragments/template :: scripts-data-table"></th:block>
+      
    </body>
 </html>

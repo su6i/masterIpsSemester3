@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 
+@Repository
 @Transactional(readOnly = true) 
 public interface DepartementRepository extends JpaRepository<Departement, String> {
 
@@ -18,13 +21,17 @@ public interface DepartementRepository extends JpaRepository<Departement, String
 	
 	@Modifying(clearAutomatically = true)
     @Query("UPDATE Departement d SET d.numDep =:x , d.nomDep =:nomDep WHERE d.numDep =:y")
-    int updateDepartement(@Param("x") String numDep, @Param("y") String nomDep);
+    int updateDepartement(@Param("x") String numDep, @Param("y") String nomDep);	
 	
-	public List<Departement> findDepartementBynomDep(String nomDep);
-	
-	public List<Departement> findByNomDepContaining(String nomDep);
+	@Query("select c from Departement c where  c.nomDep like CONCAT('%',:x,'%')")
+	public List<Departement> getByNameDepartementContaining(@Param("x") String nom);
 
-	
-	
+	@Modifying
+	@Query("delete from Departement c where  c.numDep = ?1")
+	public boolean deleteDepartementById(String numDep);
 
+
+
+    	    
+    	    
 }

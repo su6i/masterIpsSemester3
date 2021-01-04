@@ -10,10 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 @Table(name = "departement")
@@ -35,6 +32,13 @@ public class Departement implements Serializable {
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
 	private Lieu lieu;
+
+
+    @Column
+	private String url;
+    
+    @Column(length = 255)
+	private String parent_url;
 
 
 	
@@ -65,6 +69,9 @@ public class Departement implements Serializable {
 
 	public void setNumDep(String numDep) {
 		this.numDep = numDep;
+        this.url = "http://localhost:8080/json/departements/"+this.numDep;
+        this.parent_url = "http://localhost:8080/json/departements/page/1";
+
 	}
 
 
@@ -83,8 +90,26 @@ public class Departement implements Serializable {
 	}
 
 	public void setLieu(Lieu lieu) {
-		this.lieu = lieu;
+		String chefLieu = this.getLieu().getCodeInsee();
+		if(chefLieu != null) {
+			setLieu(lieu);
+		} else {
+			setLieu(new Lieu(chefLieu));
+		}
 	}
+
+	
+	
+	public String getUrl() {
+		return url;
+	}
+
+	
+
+	public String getParent_url() {
+		return parent_url;
+	}
+
 
 	@Override
     public String toString() {

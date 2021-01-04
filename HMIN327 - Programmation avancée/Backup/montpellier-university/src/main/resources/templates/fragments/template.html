@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+   <head th:fragment="header">
+       <!-- Begin of head in template -->
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+      <meta charset="utf-8" />
+      <title th:text="${title}">Programmation avancée - Projet Monuments</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      <!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+         -->        
+<!--       <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap5.css}"/>	-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+      <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.bootstrap4.css}" />
+      
+      <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+      <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+        <!-- End of head in template -->
+
+   </head>
+   <body>
+      <!-- begin template -->
+      <th:block th:fragment="navbar">
+         <nav class="navbar-custom navbar-fixed-top">
+            <a class="navbar-brand" th:href="@{/profile}"><img border="0" alt="snow" th:src="@{/image/snow.ico}" width="64" height="64" /></a>
+            <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon">Departement</span>
+                <span class="navbar-toggler-icon">Lieu</span>
+                <span class="navbar-toggler-icon">Monument</span>
+                <span class="navbar-toggler-icon">Celebrite</span>
+              </a>
+        
+            <div class="navbar-collapse collapse">
+               <ul class="nav navbar-nav mr-auto">
+                  <li class="nav-item"><a class="nav-link" th:href="@{/}            ">Home</a></li>
+
+
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Departements
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <li><a class="dropdown-item" th:href="@{/departements/page/1}">Table</a></li>
+                       <li><a class="dropdown-item" th:href="@{/departements/card/page/1}">Card</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/departements/page/1}">JSON Pagination</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/departements}">JSON findAll</a></li>
+                       <li class="divider"></li>
+                       <li><a class="dropdown-item" th:href="@{'/departements/add'}" role="button">Add</a></li>
+                       <li><a class="dropdown-item" th:href="@{'/departements/table'}" role="button">Table</a></li>
+                       <li><a class="dropdown-item" th:href="@{'/departements/data-table'}" role="button">Data-Table</a></li>
+                       
+
+                    </ul>
+                 </li>
+
+
+
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Monuments
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/monuments/page/1}">Table</a></li>
+                        <li><a class="dropdown-item" th:href="@{/monuments/card/page/1}">Card</a></li>
+                        <li><a class="dropdown-item" th:href="@{/json/monuments/page/1}">JSON</a></li>
+                        <li><a class="dropdown-item" th:href="@{/json/monuments}">JSON findAll</a></li>
+
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item" th:href="@{'/monuments/add'}" role="button">Add</a></li>
+
+                     </ul>
+                  </li>
+
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lieux
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <li><a class="dropdown-item" th:href="@{/lieux/page/1}">Table</a></li>
+                       <li><a class="dropdown-item" th:href="@{/lieux/card/page/1}">Card</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/lieux/page/1}">JSON</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/lieux}">JSON findAll</a></li>
+
+                       <li class="divider"></li>
+                       <li><a class="dropdown-item" th:href="@{'/lieux/add'}" role="button">Add</a></li>
+
+                    </ul>
+                 </li>
+
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Celebrities
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <li><a class="dropdown-item" th:href="@{/celebrities/page/1}">Table</a></li>
+                       <li><a class="dropdown-item" th:href="@{/celebrities/card/page/1}">Card</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/celebrities/page/1}">JSON</a></li>
+                       <li><a class="dropdown-item" th:href="@{/json/celebrities}">JSON findAll</a></li>
+
+                       <li class="divider"></li>
+					   <li><a class="dropdown-item" th:href="@{'/celebrities/add'}" role="button">Add</a></li>
+                    </ul>
+                 </li>
+
+
+               </ul>
+               <form class="navbar-form">
+                <div class="form-group" style="display:inline;">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Category 1</a></li>
+                        <li><a href="#">Category 2</a></li>
+                        <li><a href="#">Category 3</a></li>
+                        <li><a href="#">Category 4</a></li>
+                        <li><a href="#">Category 5</a></li> 
+                      </ul>
+                    </div>
+                    <input type="text" class="form-control" placeholder="What are searching for?"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
+                  </div>
+                </div>
+              </form>            </div>
+         </nav>
+      </th:block>
+
+
+
+
+      <div id="map-canvas"></div>
+      <div class="container container-fluid" id="main">
+         <div layout:fragment="content" class="noborder"></div>
+      </div>
+
+
+
+
+      <th:block th:fragment="pagination">
+         <nav aria-label="..." class="paginationBar">
+			<div class="text-center">
+         
+            <ul class="pagination">
+               <li class="page-item disabled">
+                  <a class="page-link" th:text="@{'Total Items: ' + ${totalItems}}">Total Items</a>
+               </li>
+               <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
+                    <a class="page-link" th:href="${currentPage == 1} ? '#' : 1">First</a>
+                </li>
+               <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
+                  <a class="page-link" th:href="${currentPage == 1} ? '#' : ${currentPage - 1}">Previous</a>
+               </li>
+               <th:block th:each="i: ${#numbers.sequence(1, totalPages)}">
+               
+                   <li class="page-item" th:classappend="${i == currentPage} ? 'active' : ''">
+                      <a class="page-link" th:href="@{${i}}">[[${i}]]</a>
+                   </li>
+               </th:block>
+               <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">
+                  <a class="page-link" th:href="${currentPage == totalPages} ? '#' : ${currentPage + 1}">Next</a>
+               </li>
+               <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">
+                    <a class="page-link" th:href="${currentPage == totalPages} ? '#' : ${totalPages}">Last</a>
+               </li>
+               <li class="page-item disabled">
+                  <a class="page-link" th:text="@{'Total Pages: ' + ${totalPages}}">Total Pages</a>
+               </li>
+            </ul>
+            </div>
+         </nav>
+      </th:block>
+
+
+
+
+      <th:block th:fragment="footer">
+          <footer class="footer bg-primary">
+		      <div class="container">
+                <span class="text-white">Copyright &copy; Amir SHIRALI POUR</span>
+   		      </div>
+	      </footer>
+      </th:block>
+
+
+
+      <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+      <th:block th:fragment="remove-modify-details-back (entity)">
+        <div class="btn-toolbar">
+            
+            <!-- {% if app.user %} -->
+                <!-- {% if app.user.roles[0] == "ROLE_ADMIN" %} -->
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/remove/' + ${id}}" role="button">Remove</a>
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/modify/' + ${id}}" role="button">Modify</a>
+                <!-- {% endif %}
+            {% endif %} -->
+            <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/${id}}" role="button">Details</a>
+            <a class="btn btn-success btn-md" th:href="@{'/' +${entity} + '/page/1}" role="button">Back</a>
+        </div>
+
+      </th:block>
+
+
+
+      
+     <th:block th:fragment="remove-modify-details (entity, id)">
+        <div class="btn-toolbar">
+            
+            <!-- {% if app.user %} -->
+                <!-- {% if app.user.roles[0] == "ROLE_ADMIN" %} -->
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/remove/' + ${id}}" role="button">Remove</a>
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/modify/' + ${id}}" role="button">Modify</a>
+                <!-- {% endif %}
+            {% endif %} -->
+            <a class="btn btn-success btn-md"     th:href="@{'/json/' + ${entity} + '/' + ${id}}" role="button">Details</a>
+        </div>
+      </th:block>
+
+
+
+
+      <th:block th:fragment="submit-reset (entity, id)">
+        <div class="btn-toolbar">
+            <button class="btn btn-success btn-md" role="button" value="Add" type="submit">Submit</button>
+            <button class="btn btn-success btn-md" role="button" value="Reset" type="reset">Reset</button>
+        </div>
+      </th:block>
+      
+
+
+
+      
+      <th:block th:fragment="monumentCss">
+         <link rel="stylesheet" th:href="@{/css/monument.css}"/>
+      </th:block>
+      <!-- end template -->
+      <th:block th:fragment="scripts">
+         <!-- Begin fragment="scripts" -->
+         <script type="text/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+         <script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js}"></script>
+         <script type="text/javascript" th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+         <script type="text/javascript" th:src="@{http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed}"></script>
+         <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+         
+         <!-- data table -->
+         <script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+         <script type="text/javascript" th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+        <!-- End fragment="scripts" -->       
+      </th:block>
+
+    <th:block th:fragment="scripts-data-table">
+
+        <!-- Begin fragment="scripts-data-table" -->
+        <script type="text/javascript" th:src="@{/js/data-table/jquery-3.5.1.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-table/jquery.dataTables.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-table/dataTables.bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-table/dataTables.fixedHeader.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-table/dataTables.responsive.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-table/responsive.bootstrap.min.js}"></script>
+        
+        <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+        <script type="text/javascript" th:inline="javascript"> 
+            $(document).ready(function() {
+                var table = $('.mydatatable').DataTable( {
+                    pagingType: 'full_numbers',
+                    createdRow: function(row, data, index){
+                        if(data[5].replace(/[\$,]/g,'') * 1 > 15000){
+                            $('td', row).eq(5).addClass('text-success');
+                        }
+                    }
+                } );
+            
+                new $.fn.dataTable.FixedHeader( table );
+            } );
+        </script>
+        <!-- End fragment="scripts-data-table" -->
+    </th:block>
+
+
+    <th:block th:fragment="head-data-table">
+
+        <!-- Begin of fragment="head-data-table" -->
+
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+            <meta charset="utf-8" />
+            <title th:text="${title}">Programmation avancée - Projet Monuments - Data table</title>
+        
+            <link rel="stylesheet" type="text/css" th:href="@{/css/data-table/bootstrap.min.css}" />
+            <link rel="stylesheet" type="text/css" th:href="@{/css/data-table/dataTables.bootstrap.min.css}" />
+            <link rel="stylesheet" type="text/css" th:href="@{/css/data-table/fixedHeader.bootstrap.min.css}" />
+            <link rel="stylesheet" type="text/css" th:href="@{/css/data-table/responsive.bootstrap.min.css}" />
+            <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+            <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+            <!-- This is in data-table.html -->
+      
+        <!-- End of fragment="head-data-table" -->
+
+              
+
+    </th:block>
+
+
+   </body>
+</html>

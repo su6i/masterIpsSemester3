@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
    layout:decorator="navbar">
-   <head th:replace="template :: header">
+   <head th:replace="fragments/template :: header">
 	  <!-- Custom styles for this template -->
-      <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+      <link rel="stylesheet" th:href="@{/css/lieux.css}"/>	
    </head>
    <body>
       <div layout:fragment="content">
@@ -12,11 +12,11 @@
          <table class="table table-hover table-bordered">
             <thead>
                <tr class="info">
-                  <th class="col">INSEE</th>
-                  <th class="col-md-auto">Commune</th>
-                  <th class="col">Latitude</th>
-                  <th class="col">Longitude</th>
-                  <th class="col-sm-auto">Departement</th>
+                  <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">INSEE</a></th>
+                  <th class="col-md-auto"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Commune</a></th>
+                  <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Latitude</a></th>
+                  <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Longitude</a></th>
+                  <th class="col-sm-auto"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Departement</a></th>
                </tr>
             </thead>
             <tbody>
@@ -35,9 +35,9 @@
                </th:block>
             <tbody>
          </table>
-      <th:block th:replace="template :: pagination"></th:block>
+      <th:block th:replace="fragments/template :: pagination"></th:block>
          
       </div>
-      <th:block th:replace="template :: footer"></th:block>
+      <th:block th:replace="fragments/template :: footer"></th:block>
    </body>
 </html>

@@ -1,0 +1,6 @@
+desc codeinsee;
+desc commune;
+select * from commune limit 5;
+select * from codeinsee limit 5;
+select * from lieu limit 5;
+update lieu set dep = SUBSTR(code_insee, 1, 2);

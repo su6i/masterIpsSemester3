@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+<head>
+    <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+     <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+
+
+
+
+
+
+
+             
+             
+     
+
+
+
+
+
+         <h1>Add celebrity:</h1>
+         <form action="#" th:action="@{/celebrities}" th:object="${newCelebrite}" method="post">
+            <ul th:if="${#fields.hasErrors('*')}">
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
+            </ul>
+         
+
+            <div class="card-group">
+                    <div class="col-md-12 ">	                
+                        <div class="card" style="max-width: 30rem;" th:classappend="${border} ? ${border} : 'border-success'">
+                           <div class="font-weight-bold" >
+                           			<img class="photo-celebrite card-img-top" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="width:100%; padding:15px;"/>
+                           			<table aria-rowspan="2">
+                                           <tr>
+                                               <th class="card-text text-info font-weight-bold">Name:</th>
+                                               <td>
+                                                <input type="text" th:field="*{prenom}" id="prenom" onkeyup="realtime()"/>
+                                                <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" th:errorclass="error"></span>
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                   <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Family: </span>
+                                                </th>
+                                               <td>
+                                                    <input type="text" th:field="*{nom}" id="nom" onkeyup="realtime()"/>
+                                               </td>
+                                           </tr>
+                                           <tr class="card-body text-success">
+                                               <th>
+                                                    <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" >Number: </h5>
+                                               </th>
+                                               <td>
+                                                <input type="text" th:field="*{numCelebrite}" id="numCelebrite" onkeyup="realtime()" disabled/>
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                    <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Nationality: </p>
+                                               </th>
+                                               <td>
+                                                    <input type="text" th:field="*{nationalite}" id="nationalite" onkeyup="realtime()"/>
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                    <span class="card-text">Year of Birth: </span>
+                                               </th>
+                                               <td>
+                                                    <input type="text" th:field="*{epoque}" id="epoque" onkeyup="realtime()"/>
+                                               </td>
+                                           </tr>
+                           			
+                           			</table>
+                                    
+                                    
+                                
+   
+                           <div th:replace="fragments/template :: submit-reset (entity='celebrities', id='numCelebrite')"></div>
+
+                         </div>            
+                     </div>            
+            </div>
+   
+        </form>
+
+
+
+
+         
+      </div>
+      <div th:replace="fragments/template :: footer"></div>
+      <script>
+        function realtime() {
+        var prenom = document.getElementById("prenom");
+        var nom = document.getElementById("nom");
+        var numCelebrite = document.getElementById("numCelebrite");
+        var nationalite = document.getElementById("nationalite");
+        var epoque = document.getElementById("epoque");
+        prenom.value = prenom.value.toUpperCase();
+        nom.value = nom.value.toUpperCase();
+        numCelebrite.value = numCelebrite.value.toUpperCase();
+        nationalite.value = nationalite.value.toUpperCase();
+        epoque.value = epoque.value.toUpperCase();
+        }
+      </script>
+   </body>
+</html>

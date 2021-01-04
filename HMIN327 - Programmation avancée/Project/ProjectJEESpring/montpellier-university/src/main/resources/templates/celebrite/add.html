@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+   
+   layout:decorator="navbar">
+<head>
+    <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
+     <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+
+
+
+
+
+
+
+             
+                  
+
+
+
+
+	<div sec:authorize="hasRole('ROLE_ADMIN">
+         <h1>&nbsp;&nbsp;New Celebrity:</h1>
+         <form action="#" th:action="@{'/celebrities'}" th:object="${newCelebrite}" method="post">
+                     <ul th:if="${#fields.hasErrors('*')}">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
+					</ul>
+         
+
+            <div class="card-group">
+                    <div class="col-md-12 ">	                
+                        <div class="card" style="max-width: 30rem;" th:classappend="${border} ? ${border} : 'border-success'">
+                           <div class="font-weight-bold" >
+                           			<img class="photo-celebrite card-img-top" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="width:100%; padding:15px;"/>
+                           			<table aria-rowspan="2">
+                                           <tr>
+                                               <th class="card-text text-info font-weight-bold">Name:</th>
+                                               <td>
+                                                <input type="text" th:field="*{prenom}" id="prenom" />
+                                                <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" th:errorclass="error"></span>
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                   <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Family: </span>
+                                                </th>
+                                               <td>
+                                                    <input type="text" th:field="*{nom}" id="nom" />
+                                               </td>
+                                           </tr>
+                                           <tr class="card-body text-success">
+                                               <th>
+                                                    <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" >Number: </h5>
+                                               </th>
+                                               <td>
+                                                <input type="text" th:field="*{numCelebrite}" id="numCelebrite"  disabled/>
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                    <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Nationality: </p>
+                                               </th>
+                                               <td>
+                                                    <input type="text" th:field="*{nationalite}" id="nationalite" />
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <th>
+                                                    <span class="card-text">Year of Birth: </span>
+                                               </th>
+                                               <td>
+                                               		<input type="number" min="1" max="2021" th:field="*{epoque}" id="epoque" />
+                                               </td>
+                                           </tr>
+                           			
+                           			</table>
+                                    
+                                    
+                                
+   
+                                
+
+            
+                           
+                           
+ 								</div>       
+                         </div>            
+                     </div>            
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
+            
+            <button class="btn btn-danger" type="reset">Reset</button>
+   
+        </form>
+	</div>
+		<div th:if="${message != null}">
+			<h3 class="bg-danger" th:text="${message}"></h3>
+		</div>
+
+
+
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+  <!-- Position it -->
+  <div style="position: absolute; top: 0; right: 0;">
+
+    <!-- Then put toasts within -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img th:src="@{/image/snow.ico}" class="rounded mr-2" alt="...">
+        <strong class="mr-auto">Bootstrap</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        See? Just like this.
+      </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img th:src="@{/image/snow.ico}" class="rounded mr-2" alt="...">
+        <strong class="mr-auto">Bootstrap</strong>
+        <small class="text-muted">2 seconds ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Heads up, toasts will stack automatically
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="toast" data-autohide="false">
+    <div class="toast-header">
+      <strong class="mr-auto text-primary">Toast Header</strong>
+      <small class="text-muted">5 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    </div>
+    <div class="toast-body">
+      Some text inside the toast body
+    </div>
+  </div>
+</div>
+
+
+ <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+        <!-- Position it -->
+        <div style="position: absolute; top: 0; right: 0;">
+
+            <!-- Then put toasts within -->
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Bootstrap</strong>
+                    <small class="text-muted">just now</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    See? Just like this.
+                </div>
+            </div>
+
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Bootstrap</strong>
+                    <small class="text-muted">2 seconds ago</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Heads up, toasts will stack automatically
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        activateLink('add');
+    });
+    
+    $(document).ready(function(){
+    	  $('.toast').toast('show');
+    	});
+
+    $('.toast').toast({
+        'autohide': false
+      });
+
+      $('.toast').toast('show');
+
+    
+</script>
+
+
+
+
+
+
+
+
+         
+      </div>
+      <div th:replace="fragments/template :: footer"></div>
+   </body>
+</html>

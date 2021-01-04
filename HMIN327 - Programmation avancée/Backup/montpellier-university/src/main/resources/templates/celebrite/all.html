@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+   <head th:replace="fragments/template :: header">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/celebrite.css}"/>	
+ </head>
+ <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>
+         
+         <table class="table table-hover table-bordered">
+            <thead>
+               <tr class="info">
+                  <th class="col col-lg-2">Numéro</th>
+                  <th class="col col-lg-2">Prenom</th>
+                  <th class="col col-lg-2">Nom</th>
+                  <th class="col col-lg-2">Nationalite</th>
+                  <th class="col col-lg-2">Epoque</th>
+               </tr>
+            </thead>
+            <tbody>
+               <th:block th:each="celebrite : ${celebrities}">
+                  <tr>
+                     <td th:text="${celebrite.numCelebrite}">numCelebrite</td>
+                     <td th:text="${celebrite.prenom}">Prenom</td>
+                     <td th:text="${celebrite.nom}">Nom</td>
+                     <td th:text="${celebrite.nationalite}">Nationalite</td>                     
+                     <td th:text="${celebrite.epoque}">Epoque</td>                     
+                  </tr>
+               </th:block>
+            <tbody>
+         </table>
+      <div th:replace="fragments/template :: pagination"></div>
+         
+      </div>
+      <div th:replace="fragments/template :: footer"></div>
+   </body>
+</html>

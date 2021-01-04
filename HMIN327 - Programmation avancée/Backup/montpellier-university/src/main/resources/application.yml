@@ -1,0 +1,44 @@
+spring:
+    application:
+        name: "javaeeproject"
+
+# Mysql
+    datasource:
+        driver-class-name: "com.mysql.cj.jdbc.Driver"
+        url: "jdbc:mysql://localhost:3306/project_generated"
+        username: amir
+        password: amir
+        platform: mysql
+        
+    jpa:
+        show-sql: true
+        hibernate:
+                  ddl-auto: update
+                  naming:
+                     #physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategy"
+                     implicit-strategy: "org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl"
+                    
+             
+        properties:
+                   hibernate:
+                             dialect: "org.hibernate.dialect.MySQL5Dialect"
+                             format_sql: true
+  
+    profiles:
+      active:
+        - "dev"        
+    
+    thymeleaf:
+        cache: false 
+        
+  
+
+
+server:
+  port: 8080
+  
+  error:
+    whitelabel:
+       enabled: false
+       
+#debug: true

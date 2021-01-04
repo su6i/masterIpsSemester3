@@ -17,8 +17,12 @@ body{
   	padding-top:50px; /*padding for navbar*/
 }
 
+li a.amir{
+    color:black;
+}
 .navbar-custom .icon-bar {
-	background-color:#fff;
+    background-color:#fff;
+    color:black;
 }
 
 .navbar-custom {
@@ -399,8 +403,54 @@ a.text-success:focus,a.text-success:hover{
    
 }
 
+.paginationBar {
+   position: fixed;
+   left: 0;
+   bottom: 60px;
+   width: 100%;
+   /* background-color: red; */
+   /* color: white; */
+   text-align: center;
+  height: 30px; /* Set the fixed height of the footer here */
+  line-height: 30px; /* Vertically center the text there */
+  /* background-color: #f5f5f5; */
+   
+}
 
 
+.photo-celebrite{
+    width: 220px;
+    height: 300px;
+	
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.shenasname{
+    text-align: left;
+   text-decoration: dashed;
+    vertical-align: bottom;
+   border: 1px solid blueviolet; 
+   background-color: rgb(241, 238, 233);
+    /* width: 35%; */
+   border-radius: 5px;
+   padding: 5px;
+   margin: 0px;
+   border-style: ridge;
+
+   /* position: absolute;
+    bottom: 100px;
+    width: 100%;
+    height: 2.5rem;            Footer height */
+ }
+
+  
 
 
 

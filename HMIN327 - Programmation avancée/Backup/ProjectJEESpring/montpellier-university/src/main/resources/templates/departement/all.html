@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorator="navbar">
+   <head th:replace="fragments/template :: header">
+	  <!-- Custom styles for this fragments/template -->
+      <link rel="stylesheet" th:href="@{/css/departement.css}"/>	
+   </head>
+   <body>
+      <div layout:fragment="content">
+         <p th:text="${template}">Should not be displayed</p>         
+         <table class="table table-hover table-bordered">
+            <thead>
+               <tr class="info">
+                  <th class="col col-lg-2">Department no.</th>
+                  <th class="col-md-auto">Department name</th>
+                  <th class="col col-lg-2">Chef Lieu</th>
+                  
+               </tr>
+            </thead>
+            <tbody>
+               <th:block th:each="departement : ${departements}">
+                  <tr>
+                     <td th:text="${departement.numDep}">numDep</td>
+                     <td th:text="${departement.nomDep}">nomDep</td>
+                     <td th:text="${departement.lieu.codeInsee}">chefLieu</td>
+<!-- 	                 <td th:text="${departement.lieu.nomCom}">Nom Commune</td>                    -->                  </tr>
+               </th:block>
+            <tbody>
+         </table>
+      <div th:replace="fragments/template :: pagination"></div>
+         
+      </div>
+      <div th:replace="fragments/template :: footer"></div>
+   </body>
+</html>

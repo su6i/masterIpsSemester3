@@ -6,3 +6,4 @@ mysql -h mysql.etu.umontpellier.fr -u e20190009681 -p e20190009681 < ./monuments
 delete from lieu; -- delete all rows in the table "lieu"
 use e20190009681;
 
+
