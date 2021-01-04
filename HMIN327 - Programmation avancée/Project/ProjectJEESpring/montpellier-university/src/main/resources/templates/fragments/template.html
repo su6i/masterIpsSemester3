@@ -260,6 +260,19 @@
 
       </th:block>
 
+      <th:block th:fragment="remove (urlAction, id)">
+        <div class="btn-toolbar">
+            <a class="btn btn-danger btn-md" th:href="@{'/'+${urlAction} + '/delete/' + ${id}}" id="remove" role="button">Remove</a>
+        </div>
+      </th:block>
+      
+      <th:block th:fragment="modify (urlAction, id)">
+        <div class="btn-toolbar">
+            <a class="btn btn-primary btn-md" th:href="@{'/'+${urlAction} + '/modify/' + ${id}}" id="modify" role="button">Modify</a>
+        </div>
+      </th:block>
+
+
 
 
 

@@ -38,5 +38,18 @@ public interface MonumentRepository extends JpaRepository<Monument, String> {
 	@Query("delete from Monument c where  c.codeM = ?1")
 	public boolean deleteMonumentById(String codeM);
 
+	
+	@Query("select m from Monument m where m.lieu.nomCom =:x")
+	public List<Monument> getListMonumentsByLieu(@Param("x")String nomCom);
+	
+	@Query("SELECT m FROM Monument m WHERE " +
+	        "EXISTS (SELECT 1 FROM Departement d WHERE m.lieu.codeInsee = d.lieu.codeInsee AND d.nomDep = :x)")
+	public List<Monument> getListMonumentsByDep(@Param("x")String nomDep);
+	
+	
+
+	
+	
+
 
 }

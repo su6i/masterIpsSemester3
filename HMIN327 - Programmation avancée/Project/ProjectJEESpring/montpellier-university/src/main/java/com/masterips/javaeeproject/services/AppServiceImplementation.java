@@ -47,8 +47,8 @@ public class AppServiceImplementation implements AppService {
 	@Override
 	public Departement getDepartement(String numDep) {
 		
-		 if(numDep==null || (!departementRepository.existsById(numDep))) throw new RuntimeException("Can't find entered department");
-		 
+		 if(numDep==null || (!departementRepository.existsById(numDep))) 
+			 throw new RuntimeException("Can't find entered department");
 		 return departementRepository.findById(numDep).get();
 	}
 	
@@ -92,9 +92,14 @@ public class AppServiceImplementation implements AppService {
 //	Lieu 
 
 
+
+	 
 	@Override
 	public Lieu getLieu(String codeIsee) {
-		return lieuRepository.getLieu(codeIsee);
+		 if(codeIsee==null || (!lieuRepository.existsById(codeIsee))) 
+			 throw new RuntimeException("Can't find entered Lieu");
+		 return lieuRepository.findById(codeIsee).get();
+
 	}
 	
 	@Override
@@ -148,7 +153,9 @@ public class AppServiceImplementation implements AppService {
 	
     @Override
 	public Monument getMonument(String codeM) {
-	return monumentRepository.findById(codeM).get();
+		 if(codeM==null || (!monumentRepository.existsById(codeM))) 
+			 throw new RuntimeException("Can't find entered Monument");
+		 return monumentRepository.findById(codeM).get();
 	}
 
 //	public List<Monument> getAllMonuments() {
@@ -180,14 +187,53 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public void addMonumentToLieu(String codeM, String codeInsee) {
-		// TODO Auto-generated method stub
+		
+
+//		Monument m = em.find(Monument.class, codeM);
+//		Lieu l = em.find(Lieu.class, codeInsee);
+//		l.getMonuments().add(m);
+
+		
 		
 	}
 
 	@Override
 	public float getDistanceBetweenMonuments(String nomMonA, String nomMonB) {
-		// TODO Auto-generated method stub
-		return 0;
+
+            // /**
+            //  * Calculate distance between two points in latitude and longitude taking
+            //  * into account height difference. If you are not interested in height
+            //  * difference pass 0.0. Uses Haversine method as its base.
+            //  * 
+            //  * lat1, lon1 Start point lat2, lon2 End point el1 Start altitude in meters
+            //  * el2 End altitude in meters
+            //  * @returns Distance in Meters
+            //  */
+            // public static double distance(double lat1, double lat2, double lon1,
+            //         double lon2, double el1, double el2) {
+
+            //     final int R = 6371; // Radius of the earth
+
+            //     double latDistance = Math.toRadians(lat2 - lat1);
+            //     double lonDistance = Math.toRadians(lon2 - lon1);
+            //     double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+            //             + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+            //             * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+            //     double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            //     double distance = R * c * 1000; // convert to meters
+
+            //     double height = el1 - el2;
+
+            //     distance = Math.pow(distance, 2) + Math.pow(height, 2);
+
+            //     return Math.sqrt(distance);
+            // }
+
+
+
+
+
+        return 0;
 	}
 
 	
@@ -205,29 +251,16 @@ public class AppServiceImplementation implements AppService {
 	}
 
 	
-//	@Override
-//	public List<Monument> getListMonumentsByDep(String nomDep) {
-//		// TODO Auto-generated method stub
-//		return monumentRepository.getListMonumentsByDep(nomDep);
-//	}
-//
-//	@Override
-//	public List<Monument> getListMonumentsByLieu(String nomCom) {
-//		// TODO Auto-generated method stub
-//		return monumentRepository.getListMonumentsByLieu(nomCom);
-//	}
-
 	
 	@Override
 	public List<Monument> getListMonumentsByDep(String nomDep) {
 		// TODO Auto-generated method stub
-		return null;
+		return monumentRepository.getListMonumentsByDep(nomDep);
 	}
 	
 	@Override
 	public List<Monument> getListMonumentsByLieu(String nomCom) {
-		// TODO Auto-generated method stub
-		return null;
+		return monumentRepository.getListMonumentsByLieu(nomCom);
 	}
 
     
@@ -260,7 +293,10 @@ public class AppServiceImplementation implements AppService {
 
     @Override
 	public Celebrite getCelebriteById(String numCelebrite) {
-		return celebriteRepository.getCelebriteById(numCelebrite);
+		 if(numCelebrite==null || (!celebriteRepository.existsById(numCelebrite))) 
+			 throw new RuntimeException("Can't find entered Celebrite");
+		 
+		 return celebriteRepository.findById(numCelebrite).get();
 	}
 
     @Override
@@ -271,7 +307,7 @@ public class AppServiceImplementation implements AppService {
 	
 
 	@Override
-	public boolean deleteCelebriteById(String numCelebrite) {
+	public int deleteCelebriteById(String numCelebrite) {
 		return celebriteRepository.deleteCelebriteById(numCelebrite);
 	}
 

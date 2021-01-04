@@ -23,12 +23,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.istack.NotNull;
 
 import com.masterips.javaeeproject.dao.MonumentRepository;
+import com.masterips.javaeeproject.dao.CelebriteRepository;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 import com.masterips.javaeeproject.entities.Lieu;
@@ -45,6 +48,10 @@ public class PagesController {
 	
 	@Autowired
 	private MonumentRepository monumentRepository;
+	
+	@Autowired
+	private CelebriteRepository celebriteRepository;
+
 
 	private HttpSession colorSession;
 	
@@ -508,13 +515,12 @@ public class PagesController {
 	  }
 
 	  
-		@CrossOrigin(origins = "http://localhost:8080")
 	    @PostMapping("celebrities")
-	    public String saveEmp(Model model, @Valid @NotNull @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result, RedirectAttributes ra){
+	    public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result, RedirectAttributes ra){
 	        try {
                     appService.addCelebrite(newCelebrite);
                     ra.addFlashAttribute("newCelebrite", newCelebrite);
-                    return "redirect:/json/celebrities/" + newCelebrite.getNumCelebrite();
+                    return "redirect:celebrities/page/1";
                 
             } catch (Exception e) {
                 model.addAttribute("message",e);
@@ -522,6 +528,41 @@ public class PagesController {
 
             }
 	    }
+		
+		  @GetMapping("celebrities/modify/{id}")
+		  public String modifyCelebrite(Model model, @RequestParam("id") String id) {
+			  try {
+				  color(model);
+				  Celebrite newCelebrite = appService.getCelebriteById(id);
+				  
+				//   model.addAttribute("newCelebrite",new Celebrite());
+				  model.addAttribute("newCelebrite",newCelebrite);
+				  
+		    	}catch (Exception e) {
+		    		model.addAttribute("message",e);
+		    	}
+
+
+		    return "celebrite/modify";
+		    
+		  }
+		  
+		  @PostMapping("celebrities/modify/{id}")
+		  public String replaceCelebrite(@Valid @NotNull @RequestBody Celebrite newCelebrite) {
+		
+			  		newCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
+		    		newCelebrite.setNom(newCelebrite.getNom());
+		    		newCelebrite.setPrenom(newCelebrite.getPrenom());
+		    		newCelebrite.setNumCelebrite(newCelebrite.getPrenom(), newCelebrite.getNom());
+		    		newCelebrite.setNationalite(newCelebrite.getNationalite());
+		    		newCelebrite.setEpoque(newCelebrite.getEpoque());
+                    celebriteRepository.save(newCelebrite);
+                    
+		        return "redirect:celebrities/page/1";
+		  }
+
+
+
 
 
     /**
@@ -530,24 +571,32 @@ public class PagesController {
      * @param numCelebrite
      */
 
-        @DeleteMapping("celebrities/{id}")
-        public ResponseEntity<String> deleteCelebriteById(@PathVariable String numCelebrite) {
+//        @DeleteMapping("celebrities/{id}")
+        @GetMapping("celebrities/delete/{id}")
+
+        public String deleteCelebriteById(Model model, @PathVariable String id, RedirectAttributes ra) {
     
-            var isRemoved = appService.deleteCelebriteById(numCelebrite);
-    
-            if (!isRemoved) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            
+            try {
+            		appService.deleteCelebriteById(id);
+            		model.addAttribute("message",id +"is successfully deleted");
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+
+				}
+            return "redirect:/celebrities/page/1";        
             }
     
-            return new ResponseEntity<>(numCelebrite, HttpStatus.OK);
-        }
+        
+        
+        
     
     // ---------------------------- End Celebrite   ----------------------------
 
-
-
-
-
-
-
 }
+
+
+
+
+
+

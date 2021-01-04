@@ -34,7 +34,7 @@ public interface CelebriteRepository extends JpaRepository<Celebrite, String> {
 
 	@Modifying
 	@Query("delete from Celebrite c where  c.numCelebrite = ?1")
-	public boolean deleteCelebriteById(String numCelebrite);
+	public int deleteCelebriteById(String numCelebrite);
 
 	
 

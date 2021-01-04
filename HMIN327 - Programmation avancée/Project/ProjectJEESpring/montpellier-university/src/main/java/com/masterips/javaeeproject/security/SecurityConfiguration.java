@@ -48,11 +48,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		http.formLogin().loginPage("/login");
 		http.authorizeRequests()
-		.antMatchers("/celebrities/add", "/modify")
+		.antMatchers("/profile")		//"/celebrities/add", "/modify"
 		.hasRole("ADMIN");
 		
 		http.authorizeRequests()
-		.antMatchers("/json", "/celebrities")
+		.antMatchers("/profile")		// "/json", "/celebrities"
 		.hasRole("USER");
 		
 		http.exceptionHandling().accessDeniedPage("/403");

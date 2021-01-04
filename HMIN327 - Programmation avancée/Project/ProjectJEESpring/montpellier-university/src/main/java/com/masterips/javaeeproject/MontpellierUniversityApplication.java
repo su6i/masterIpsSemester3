@@ -88,6 +88,7 @@ public class MontpellierUniversityApplication implements CommandLineRunner{
 //		int rslt = stmt.executeUpdate(query);
 
 
+		
 //		System.out.println("\n\n\n"+herault+ "\n\n\n");
 //		System.out.println("\n"+l34172+ "\n");
 //		System.out.println("\n"+spfb05nwqmvu+ "\n");

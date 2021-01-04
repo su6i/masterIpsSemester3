@@ -452,6 +452,9 @@ a.text-success:focus,a.text-success:hover{
 
   
 
+.error {
+    color: red;
+}
 
 
 

@@ -10,24 +10,33 @@
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
          
-         <table class="table table-hover table-bordered">
+         <table class="table table-hover table-bordered ">
             <thead>
                <tr class="info">
-                  <th class="col col-lg-2"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=numCelebrite' + '&sortDirection=' + ${reverseSortDirection}}">Numéro</a> </th>
-                  <th class="col col-lg-2"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=prenom' + '&sortDirection=' + ${reverseSortDirection}}">Prenom</a></th>
-                  <th class="col col-lg-2"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nom' + '&sortDirection=' + ${reverseSortDirection}}">Nom</a></th>
-                  <th class="col col-lg-2"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nationalite' + '&sortDirection=' + ${reverseSortDirection}}">Nationalite</a></th>
-                  <th class="col col-lg-2"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=epoque' + '&sortDirection=' + ${reverseSortDirection}}">Epoque</a></th>
+                  <th class="col-sm-2 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=numCelebrite' + '&sortDirection=' + ${reverseSortDirection}}">Numéro</a> </th>
+                  <th class="col-sm-3 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=prenom' + '&sortDirection=' + ${reverseSortDirection}}">Prenom</a></th>
+                  <th class="col-sm-4 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nom' + '&sortDirection=' + ${reverseSortDirection}}">Nom</a></th>
+                  <th class="col-sm-5 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nationalite' + '&sortDirection=' + ${reverseSortDirection}}">Nationalite</a></th>
+                  <th class="col-sm-3 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=epoque' + '&sortDirection=' + ${reverseSortDirection}}">Epoque</a></th>
+                  <th class="col-sm-2 text-center" colspan="2">Actions</th>
+                  
                </tr>
             </thead>
             <tbody>
                <th:block th:each="celebrite : ${celebrities}">
                   <tr>
-                     <td th:text="${celebrite.numCelebrite}">numCelebrite</td>
-                     <td th:text="${celebrite.prenom}">Prenom</td>
-                     <td th:text="${celebrite.nom}">Nom</td>
-                     <td th:text="${celebrite.nationalite}">Nationalite</td>                     
-                     <td th:text="${celebrite.epoque}">Epoque</td>                     
+                     <td class="text-center" th:text="${celebrite.numCelebrite}">numCelebrite</td>
+                     <td class="text-center" th:text="${celebrite.prenom}">Prenom</td>
+                     <td class="text-center" th:text="${celebrite.nom}">Nom</td>
+                     <td class="text-center" th:text="${celebrite.nationalite}">Nationalite</td>                     
+                     <td class="text-center" th:text="${celebrite.epoque}">Epoque</td>  
+                     <td class="text-center" >
+                     	<div th:replace="fragments/template :: modify(urlAction='celebrities', id=${celebrite.numCelebrite})"></div>
+                   	 </td>
+                     <td class="text-center">
+                     	<div th:replace="fragments/template :: remove(urlAction='celebrities', id=${celebrite.numCelebrite})"></div>
+                   	 </td>                   
+                                        
                   </tr>
                </th:block>
             <tbody>
@@ -36,7 +45,8 @@
          <div th:text="${#httpServletRequest.getParameter('sortDirection')}"></div>
          <div th:text="${#httpServletRequest.getParameter('sortField')}"></div>
 
-
+		<div th:if="${message}" th:text="${message}"></div>
+		
       <div th:replace="fragments/template :: pagination"></div>
          
       </div>

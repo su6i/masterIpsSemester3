@@ -78,7 +78,7 @@ public interface AppService {
 	public List<Celebrite>      getCelebriteByFamily(String nom);
 	public List<Celebrite>      getByNameCelebriteContaining(String nom);
 	public Page<Celebrite>      getAllCelebrities(int pageNumber, int items, Sort sort);
-	public boolean              deleteCelebriteById(String numCelebrite);
+	public int              	deleteCelebriteById(String numCelebrite);
 
 
 
