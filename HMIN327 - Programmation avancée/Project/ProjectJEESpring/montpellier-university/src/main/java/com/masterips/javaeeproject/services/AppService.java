@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
@@ -73,13 +74,13 @@ public interface AppService {
 	
 //	Celebrite methodes
     public Celebrite            addCelebrite(Celebrite celebrite);
-	public Celebrite            getCelebriteById(String numCelebrite);
+	public Celebrite            getCelebriteById(long numCelebrite);
 	public List<Celebrite>      getCelebriteByName(String prenom);
 	public List<Celebrite>      getCelebriteByFamily(String nom);
 	public List<Celebrite>      getByNameCelebriteContaining(String nom);
 	public Page<Celebrite>      getAllCelebrities(int pageNumber, int items, Sort sort);
-	public int              	deleteCelebriteById(String numCelebrite);
-
+	public int              	deleteCelebriteById(long numCelebrite);
+    public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque);	
 
 
 

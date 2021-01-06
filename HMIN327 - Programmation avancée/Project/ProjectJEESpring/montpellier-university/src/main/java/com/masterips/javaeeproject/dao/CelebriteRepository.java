@@ -16,7 +16,7 @@ import com.masterips.javaeeproject.entities.Celebrite;
 
 @Repository
 @Transactional(readOnly = false) 
-public interface CelebriteRepository extends JpaRepository<Celebrite, String> {
+public interface CelebriteRepository extends JpaRepository<Celebrite, Long> {
 	
 	
 	
@@ -30,11 +30,15 @@ public interface CelebriteRepository extends JpaRepository<Celebrite, String> {
 	public List<Celebrite> getByNameContaining(@Param("x") String nom);
 
 	@Query("select c from Celebrite c where  c.numCelebrite = :x")
-	public Celebrite getCelebriteById(@Param("x") String numCelebrite);
+	public Celebrite getCelebriteById(@Param("x") long numCelebrite);
 
 	@Modifying
 	@Query("delete from Celebrite c where  c.numCelebrite = ?1")
-	public int deleteCelebriteById(String numCelebrite);
+	public int deleteCelebriteById(long numCelebrite);
+
+	@Modifying(clearAutomatically = true)
+    @Query("UPDATE Celebrite c SET c.nom =:x , c.prenom =:y , c.nationalite =:z, c.epoque =:q WHERE c.numCelebrite = :r")
+    int updateCelebrite(@Param("x") String nom, @Param("y") String prenom, @Param("z") String nationalite, @Param("q") String epoque, @Param("r") long numCelebrite);	
 
 	
 

@@ -13,4 +13,9 @@ public class EntitiesNotFoundException extends RuntimeException {
 		super("Could not find id number: " + id);
   }
 
+
+	public EntitiesNotFoundException(long numCelebrite) {
+		super("Could not find Celebrity: " + numCelebrite);
+	}
+
 }

@@ -20,8 +20,8 @@ public interface DepartementRepository extends JpaRepository<Departement, String
 //	Departement findOne(@Param("x") String numDep);
 	
 	@Modifying(clearAutomatically = true)
-    @Query("UPDATE Departement d SET d.numDep =:x , d.nomDep =:nomDep WHERE d.numDep =:y")
-    int updateDepartement(@Param("x") String numDep, @Param("y") String nomDep);	
+    @Query("UPDATE Departement d SET d.numDep =:x , d.nomDep =:y WHERE d.lieu.codeInsee =:z")
+    int updateDepartement(@Param("x") String numDep, @Param("y") String nomDep, @Param("z") String codeInsee);	
 	
 	@Query("select c from Departement c where  c.nomDep like CONCAT('%',:x,'%')")
 	public List<Departement> getByNameDepartementContaining(@Param("x") String nom);

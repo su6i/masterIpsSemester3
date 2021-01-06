@@ -21,9 +21,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+////		
 //		auth.inMemoryAuthentication()
 //			.withUser("admin")
 //			.password("{noop}123")
@@ -34,14 +34,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //		.roles("USER").password("{noop}123");
 		
 		
-	    auth.jdbcAuthentication()
-	    .dataSource(dataSource)
-	    .usersByUsernameQuery("select email as principal, password as credentials, active from users where email=?")
-	    .authoritiesByUsernameQuery("select email as principal, role as role from users_roles where email=?")
-	    .rolePrefix("ROLE_")
-	    .passwordEncoder(new BCryptPasswordEncoder());
+//	    auth.jdbcAuthentication()
+//	    .dataSource(dataSource)
+//	    .usersByUsernameQuery("select email as principal, password as credentials, active from users where email=?")
+//	    .authoritiesByUsernameQuery("select email as principal, role as role from users_roles where email=?")
+//	    .rolePrefix("ROLE_")
+//	    .passwordEncoder(new BCryptPasswordEncoder());
 
-	}
+//	}
+    
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

@@ -81,7 +81,7 @@ public class CelebriteRestController {
 	  // Find a celebrity by numCelebrite, with throw exception if doesn't exists!
 	
 	  @GetMapping("{numCelebrite}")
-	  Celebrite one(@PathVariable String numCelebrite) {
+	  Celebrite one(@PathVariable long numCelebrite) {
 	
 	    return repository.findById(numCelebrite)
 	      .orElseThrow(() -> new EntitiesNotFoundException(numCelebrite));
@@ -93,7 +93,7 @@ public class CelebriteRestController {
 	  // Find a celebrity by numCelebrite, using Model
 
 		@GetMapping("2/{numCelebrite}")
-		public Celebrite getCelebriteById(Model model, @PathVariable("numCelebrite") String numCelebrite) {
+		public Celebrite getCelebriteById(Model model, @PathVariable("numCelebrite") long numCelebrite) {
 			Celebrite celebrite = appService.getCelebriteById(numCelebrite);
 			
 		  model.addAttribute("celebrite", celebrite);
@@ -136,7 +136,7 @@ public class CelebriteRestController {
 	  }
 	
 	  @DeleteMapping("{numCelebrite}")
-	  public ResponseEntity<Void> deleteCelebrite(@PathVariable String numCelebrite) {
+	  public ResponseEntity<Void> deleteCelebrite(@PathVariable long numCelebrite) {
         try {
             repository.deleteById(numCelebrite);
             return ResponseEntity.ok().build();

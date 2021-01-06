@@ -292,8 +292,8 @@ public class AppServiceImplementation implements AppService {
 	}
 
     @Override
-	public Celebrite getCelebriteById(String numCelebrite) {
-		 if(numCelebrite==null || (!celebriteRepository.existsById(numCelebrite))) 
+	public Celebrite getCelebriteById(long numCelebrite) {
+		 if(numCelebrite==0 || (!celebriteRepository.existsById(numCelebrite))) 
 			 throw new RuntimeException("Can't find entered Celebrite");
 		 
 		 return celebriteRepository.findById(numCelebrite).get();
@@ -307,8 +307,13 @@ public class AppServiceImplementation implements AppService {
 	
 
 	@Override
-	public int deleteCelebriteById(String numCelebrite) {
+	public int deleteCelebriteById(long numCelebrite) {
 		return celebriteRepository.deleteCelebriteById(numCelebrite);
+	}
+
+	@Override
+	public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque) {
+		return celebriteRepository.updateCelebrite(nom, prenom, nationalite, epoque, numCelebrite);
 	}
 
 

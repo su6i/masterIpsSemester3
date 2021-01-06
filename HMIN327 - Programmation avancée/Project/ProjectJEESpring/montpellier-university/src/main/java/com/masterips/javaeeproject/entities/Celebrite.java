@@ -3,6 +3,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.SQLInsert;
@@ -13,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 //@Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
 
-@SQLInsert(sql = "INSERT IGNORE INTO Celebrite(num_celebrite, epoque, image, nationalite, nom, prenom, url, parent_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" )
+//@SQLInsert(sql = "INSERT INTO Celebrite(num_celebrite, epoque, image, nationalite, nom, prenom, url, parent_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" )
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -21,7 +23,8 @@ public class Celebrite implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private String numCelebrite;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long numCelebrite;
 	
 	@Column(length = 16)
 	private String nom;
@@ -50,40 +53,37 @@ public class Celebrite implements Serializable {
 	
 
 	public Celebrite() {
-		super();
-		this.setNumCelebrite("undefined", "undefined");
-		
+		super();		
 	}
 	
-	public Celebrite(@JsonProperty("prenom") String prenom, @JsonProperty("nom")String nom) {
+	public Celebrite(long numCelebrite) {
 		this();
-		this.setPrenom(prenom);
-		this.setNom(nom);
-		this.setNumCelebrite(prenom, nom);
+		this.setNumCelebrite(numCelebrite);
 	}
 
 
 
-	public Celebrite(String nom, String prenom, @JsonProperty("nationalite") String nationalite, @JsonProperty("epoque") String epoque) {
-		this(prenom, nom);
+	public Celebrite(long numCelebrite, @JsonProperty("nom") String nom, @JsonProperty("prenom") String prenom, @JsonProperty("nationalite") String nationalite, @JsonProperty("epoque") String epoque) {
+		this(numCelebrite);
+		this.setNom(nom);
+		this.setPrenom(prenom);
 		this.setNationalite(nationalite);
 		this.setEpoque(epoque);
+		this.setUrl(url);
+		this.setParent_url(parent_url);
+		this.setImage(image);
 		
 
 	}
 
 
 
-	public String getNumCelebrite() {
+	public long getNumCelebrite() {
 		return this.numCelebrite;
 	}
 
-	public void setNumCelebrite(String prenom, String nom) {
-		String key = prenom + ' ' + nom;
-		this.numCelebrite = Long.toString(Math.abs(key.hashCode()));
-		this.url = "http://localhost:8080/json/celebrities/"+numCelebrite;
-		this.parent_url = "http://localhost:8080/json/celebrities/page/1";
-		this.image = "/image/" + numCelebrite + ".jpg";
+	public void setNumCelebrite(long numCelebrite) {
+		this.numCelebrite = numCelebrite;
 	}
 
 	public String getNom() {
@@ -142,8 +142,6 @@ public class Celebrite implements Serializable {
 	}
 
 	
-	
-	
 	public String getParent_url() {
 		return parent_url;
 	}
@@ -152,7 +150,23 @@ public class Celebrite implements Serializable {
 	public String getImage() {
 		return image;
 	}
+	
+	
 
+	public void setUrl(String url) {
+		if(url != "" || url != null) this.url = url;
+		this.url = "http://localhost:8080/json/celebrities/"+numCelebrite;
+	}
+
+	public void setParent_url(String parent_url) {
+		if(parent_url != "" || parent_url != null) this.parent_url = parent_url;
+		this.parent_url = "http://localhost:8080/json/celebrities/page/1";
+	}
+
+	public void setImage(String image) {
+		if(image != "" || image != null) this.image = image;
+		else this.image = "/image/" + numCelebrite + ".jpg";
+	}
 
 	@Override
     public String toString() {

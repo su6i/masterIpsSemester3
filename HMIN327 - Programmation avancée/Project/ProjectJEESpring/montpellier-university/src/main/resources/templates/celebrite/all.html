@@ -9,6 +9,12 @@
  <body>
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
+
+<!--          <h1 th:text="@{'id: ' + ${updateCelebrite.getNumCelebrite()}}"></h1>
+ -->         <h1 th:text="@{'updateCelebrite: ' + ${updateCelebrite}}"></h1>
+            <h1 th:text="@{'idf: ' + ${idf}}"></h1>
+            <h1 th:text="@{'newCelebrite_vodoudi: ' + ${newCelebrite_vodoudi}}"></h1>
+     
          
          <table class="table table-hover table-bordered ">
             <thead>

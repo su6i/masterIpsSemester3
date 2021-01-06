@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+   				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
    
    layout:decorator="navbar">
 <head>
@@ -15,9 +15,8 @@
 
 
 
-
-
-             
+             <h1 th:text="@{'id: ' + ${id}}"></h1>
+             <h1 th:text="@{'newCelebriteId: ' + ${newCelebriteId}}"></h1>
                   
 <!-- 
 
@@ -26,10 +25,10 @@
 	<div sec:authorize="hasRole('ROLE_ADMIN">
 
         -->
-
+ 
         
-         <h1>&nbsp;&nbsp;New Celebrity:</h1>
-         <form action="#" th:action="@{'/celebrities'}" th:object="${newCelebrite}" method="post">
+         <h1>&nbsp;&nbsp;Update Celebrity:</h1>
+         <form action="#" th:action="@{'/celebrities/modify'}" th:object="${newCelebrite}" method="post">
                      <ul th:if="${#fields.hasErrors('*')}">
 						<li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
 					</ul>
@@ -37,14 +36,24 @@
 
             <div class="card-group">
                     <div class="col-md-12 ">	                
-                        <div class="card" style="max-width: 30rem;" th:classappend="${border} ? ${border} : 'border-success'">
+                        <div class="card" style="max-width: 50rem;" th:classappend="${border} ? ${border} : 'border-success'">
                            <div class="font-weight-bold" >
-                           			<img class="photo-celebrite card-img-top" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="width:100%; padding:15px;"/>
+                            <div class="text-center">
+                           			<img class="photo-celebrite card-img-top" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="padding:15px;"/>
+                   			</div>
                            			<table aria-rowspan="2">
+                                           <tr class="card-body text-success">
+                                               <th class="col-sm-3">
+                                                    <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" >Number: </h5>
+                                               </th>
+                                               <td class="col-sm-10">
+                                                <input type="text" th:value="${id}" th:field="*{numCelebrite}" id="numCelebrite"  disabled class="form-control mb-4 col-4" />
+                                               </td>
+                                           </tr>
                                            <tr>
                                                <th class="card-text text-info font-weight-bold">Name:</th>
                                                <td>
-                                                <input type="text" th:value="${newCelebrite.prenom}" id="prenom" class="form-control mb-4 col-4"/>
+                                                <input type="text" th:value="${newCelebrite.prenom}" th:field="*{prenom}" id="prenom" class="form-control mb-4 col-4"/>
                                                 <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" th:errorclass="error"></span>
                                                </td>
                                            </tr>
@@ -53,15 +62,7 @@
                                                    <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Family: </span>
                                                 </th>
                                                <td>
-                                                    <input type="text" th:value="${newCelebrite.nom}" id="nom" class="form-control mb-4 col-4" />
-                                               </td>
-                                           </tr>
-                                           <tr class="card-body text-success">
-                                               <th>
-                                                    <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" >Number: </h5>
-                                               </th>
-                                               <td>
-                                                <input type="text" th:value="${newCelebrite.numCelebrite}" id="numCelebrite"  disabled class="form-control mb-4 col-4" />
+                                                    <input type="text" th:value="${newCelebrite.nom}" th:field="*{nom}" id="nom" class="form-control mb-4 col-4" />
                                                </td>
                                            </tr>
                                            <tr>
@@ -69,7 +70,7 @@
                                                     <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Nationality: </p>
                                                </th>
                                                <td>
-                                                    <input type="text" th:value="${newCelebrite.nationalite}" id="nationalite" class="form-control mb-4 col-4" />
+                                                    <input type="text" th:value="${newCelebrite.nationalite}" th:field="*{nationalite}" id="nationalite" class="form-control mb-4 col-4" />
                                                </td>
                                            </tr>
                                            <tr>
@@ -77,7 +78,7 @@
                                                     <span class="card-text">Year of Birth: </span>
                                                </th>
                                                <td>
-                                               		<input type="number" min="1" max="2021" th:value="${newCelebrite.epoque}" id="epoque" class="form-control mb-4 col-4" />
+                                               		<input type="number" min="1" max="2021" th:value="${newCelebrite.epoque}" th:field="*{epoque}" id="epoque" class="form-control mb-4 col-4" />
                                                </td>
                                            </tr>
                            			
@@ -109,10 +110,10 @@
 
 
 <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-  <!-- Position it -->
+  Position it
   <div style="position: absolute; top: 0; right: 0;">
 
-    <!-- Then put toasts within -->
+    Then put toasts within
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <img th:src="@{/image/snow.ico}" class="rounded mr-2" alt="...">
@@ -157,10 +158,10 @@
 
 
  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <!-- Position it -->
+        Position it
         <div style="position: absolute; top: 0; right: 0;">
 
-            <!-- Then put toasts within -->
+            Then put toasts within
             <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <img class="rounded mr-2" alt="...">
@@ -189,7 +190,6 @@
                 </div>
             </div>
         </div>
-    </div>
     
     
 

@@ -280,7 +280,7 @@
         <div class="btn-toolbar">
             <form action="@{'/'+${entity}+'/'+${id}"  th:method="${method}" >
                 <input type="hidden" name="_method" value="${method}" />
-                <a class="btn btn-success btn-md" th:href="@{'/'+${entity}+'/'+${id}}" id="submit" role="button">Submit</a>
+                <a class="btn btn-primary btn-md" th:href="@{'/'+${entity}+'/'+${id}}" id="submit" role="button">Submit</a>
                 <button class="btn btn-danger" type="reset">Reset</button>
             </form>
         
