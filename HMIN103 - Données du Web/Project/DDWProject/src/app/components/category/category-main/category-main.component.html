@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">Categories</mat-toolbar>
+
+<ul>
+  <li *ngFor="let category of categories" routerLinkActive="active current" >
+
+    <!-- We can either use String Interpolation: routerLink="/update/{{obj.id}}"
+         or Attribute Binding Syntax: [routerLink]="'/update/' + obj.id"
+         or Attribute Binding Syntax like this: [routerLink]="'['/update', obj.id]"
+    -->
+    <a [routerLink]="['/categories', category]"> {{ category }} </a>
+  </li>
+</ul>

@@ -1,0 +1,9 @@
+
+
+<div *ngIf="user">
+  <mat-toolbar color="primary">{{user.name}}'s profile</mat-toolbar>
+  <ul class="list-group">
+    <li class="list-group-item">User name: {{ user.username }}</li>
+    <li class="list-group-item">Email:     {{ user.email    }}</li>
+  </ul>
+</div>

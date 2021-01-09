@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-form-field>
+    Title:
+    <input matInput [(ngModel)]="enteredTitle">
+  </mat-form-field>
+  <mat-form-field>
+    Content:
+    <textarea matInput [(ngModel)]="enteredContent"></textarea>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="onAddComment()">Add Comment</button>
+</mat-card>

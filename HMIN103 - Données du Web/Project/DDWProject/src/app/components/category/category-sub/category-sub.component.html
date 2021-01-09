@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">{{category}}'s products</mat-toolbar>
+
+<ul>
+  <li *ngFor =" let type of types " routerLinkActive="active current">
+
+    <!-- We can either use String Interpolation: routerLink="/update/{{obj.id}}"
+         or Attribute Binding Syntax: [routerLink]="'/update/' + obj.id"
+         or Attribute Binding Syntax like this: [routerLink]="'['/update', obj.id]"
+    -->
+    <a [routerLink]="type"> {{ type }} </a>
+  </li>
+</ul>

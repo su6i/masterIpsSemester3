@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <a [routerLink]="['/categories', categoryFromParentURL]">
+    {{ categoryFromParentURL }} </a> >
+  {{ type }}
+</mat-toolbar>
+
+
+
+<div *ngFor="let selectedProduct of selectedProducts" class="group">
+  <div id="content">
+    <img class="image img" src="{{selectedProduct.image}}" alt="product image">
+  </div>
+  <p><b>Item :</b>{{selectedProduct._id}}</p>
+  <p><b>Name :</b> {{ selectedProduct.name }}</p>
+  <p><b>Price: </b>{{selectedProduct.price}}</p>
+  <p><b>Category: </b>{{selectedProduct.category}}</p>
+  <p><b>Type: </b>{{selectedProduct.type}}</p>
+  <p><b>Description: </b></p>
+  <ul *ngFor="let description of selectedProduct.description">
+    <li class="desc">{{description}}</li>
+  </ul>
+  <div style="overflow: hidden;">
+    <p class="button left"><button (click)="addCartItems(selectedProduct._id)" class="btn">Add</button></p>
+    <p class="button right"><button (click)="getProductItemById(selectedProduct._id)" class="btn">Details</button></p>
+  </div>
+</div>
+

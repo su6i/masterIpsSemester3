@@ -1,0 +1,11 @@
+<div *ngIf="user">
+  <mat-toolbar color="primary">{{user.name}}'s dashboard</mat-toolbar>
+  <p>Welcome to your dashboard</p>
+  <ul class="list-group">
+
+    <li class="list-group-item"><a [routerLink]="['/orders']">Orders</a></li>
+    <li class="list-group-item"><a [routerLink]="['/profile']">Profile</a></li>
+    <li class="list-group-item"><a [routerLink]="['/categories']">Visited products</a></li>
+    <li class="list-group-item"><a [routerLink]="['/']">Favorites</a></li>
+  </ul>
+</div>
