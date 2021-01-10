@@ -52,10 +52,17 @@ router.post("/register", (req, res, next) => {
       } else {
         let newUser = new User({
           _id: new mongoose.Types.ObjectId(),
-          name: req.body.name,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          phone: req.body.phone,
           email: req.body.email,
           username: req.body.username,
           password: req.body.password,
+          address: {
+            number: req.body.number,
+            street: req.body.street,
+            city: req.body.city,
+          }
         });
         User.addUser(newUser, (err, user) => {
           if (err) {

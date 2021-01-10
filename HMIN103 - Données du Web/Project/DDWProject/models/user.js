@@ -1,11 +1,30 @@
 const mongoose = require("mongoose");
+var mongooseTypePhone = require('mongoose-type-phone');
 const bcrypt = require("bcryptjs");
 const config = require("../config/database");
 
-const UserSchema = mongoose.Schema({
+
+const UserSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  name: {
+  firstName: {
     type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  phone: {
+    type: mongoose.SchemaTypes.Phone,
+    required: 'Phone number should be set correctly',
+    allowBlank: false,
+    allowedNumberTypes: [mongooseTypePhone.PhoneNumberType.MOBILE, mongooseTypePhone.PhoneNumberType.FIXED_LINE_OR_MOBILE],
+    phoneNumberFormat: mongooseTypePhone.PhoneNumberFormat.INTERNATIONAL, // can be omitted to keep raw input
+    defaultRegion: 'FR',
+    parseOnGet: false
+},
+address:{
+    number: Number,
+    street: String,
+    city: String,
   },
   email: {
     type: String,

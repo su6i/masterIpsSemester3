@@ -1,28 +1,75 @@
 <div class="fadein">
-  <h2 class="page-header">Register</h2>
   <div class="alert alert-danger" *ngIf="errSwitch" role="alert">{{ errMsg }}</div>
   <div class="alert alert-success" *ngIf="succSwitch" role="alert">{{ succMsg }}</div>
   <form #regForm="ngForm" (ngSubmit)="onRegisterSubmit2(regForm)">
 
     <div class="form-group">
-      <label for="name">Name <sup class="red">*</sup></label>
-      <input required name="name" id="name" #name="ngModel" ngModel type="text" class="form-control" >
-    </div>
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Name</legend>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="firstName">First Name <sup class="red">*</sup></label>
+          <input required name="firstName" id="name" #firstName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="lastName">Last Name</label>
+          <input required name="lastName" id="lastName" #lastName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+    </fieldset>
+
+
+</div>
 
     <div class="form-group">
-      <label for="username">Username <sup class="red">*</sup></label>
-      <input required name="username" id="username" #username="ngModel" ngModel type="text" class="form-control">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Address and Phone</legend>
+        <div class="onerow col-xl-1">
+          <label for="number">Number</label>
+          <input required name="number" id="number" #number="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-5">
+          <label for="street">Street</label>
+          <input required name="street" id="street" #street="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="city">City</label>
+          <input required name="city" id="city" #city="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="phone">Phone</label>
+          <input required name="phone" id="phone" #phone="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+      </fieldset>
+
+
     </div>
 
-    <div class="form-group">
-      <label for="email">Email <sup class="red">*</sup></label>
-      <input required name="email" id="email" #email="ngModel" ngModel type="email" class="form-control">
-    </div>
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Login</legend>
 
-    <div class="form-group">
-      <label for="password">Password <sup class="red">*</sup></label>
-      <input required name="password" id="password" #password="ngModel" ngModel type="password" class="form-control">
-    </div>
+        <div class="form-group onerow col-xl-3">
+          <label for="username">Username <sup class="red">*</sup></label>
+          <input required name="username" id="username" #username="ngModel" ngModel type="text" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="email">Email <sup class="red">*</sup></label>
+          <input required name="email" id="email" #email="ngModel" ngModel type="email" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="password">Password <sup class="red">*</sup></label>
+          <input required name="password" id="password" #password="ngModel" ngModel type="password" class="form-control">
+        </div>
+  </fieldset>
+
 
     <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!regForm.valid || submitSwitch">
   </form>
