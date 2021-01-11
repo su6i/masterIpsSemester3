@@ -1,0 +1,64 @@
+Q1:
+db.produits.find({"prix":{$gt:10,$lt:100}})
+
+Q2:
+app.get("/biens/:nom") // on a défini le route "/biens" avec la méthode get qui prend le paramètre "nom"
+
+db.collection("Biens").find({"nom":req.params.nom}).toArray((err, documents)=>{		// dans la collection "Biens" on cherche pour un nom qu'on a reçu comme un paramètre de URL (req.params.nom) et on va envoyé l'ensemble des éléments trouvé sur le nom "documents" 
+	let collectionPreteurs = [];		// on crée une collection vide qui s'appelle collectionPreteurs
+	for (let doc of documents){		// on itère chaque élément qui est dans la collection "Biens" ( qu'on l'a déjà nommé "documents")  et on le nom "doc"
+		db.collection("membres".find({"email":doc.preteur}).toArray((err, documents)=>{		//dans la collection "membres" on cherche pour un "email" avec la valeur "doc.preteur"
+			collectionPreteurs.push(documents[0]);		// on ajoute les emails trouvé dans la collection "collectionPreteurs"
+		});
+	}
+	res.setHeader("Content-type","application/json");		// on change le type de la page html dans le header à "json"
+	res.end(JSON.stringify(collectionPreteurs));		//on envoie la collection pour afficher sur navigateur
+});
+
+Q3:
+La structure de l’application web - et donc toutes les balises HTML qui la composent - est chargée avant toute navigation, ce qui implique que seules les données à exploiter ne sont ultérieurement transmises du serveur au client.
+
+Cette architecture présente deux avantages majeurs :
+- une fois la page « unique » chargée, la navigation est beaucoup plus rapide ;
+- les données (ou codes supplémentaires) peuvent être aisément acquis de
+différents serveurs ce qui permet une grande flexibilité dans l’architecture
+générale de l’application.
+
+Désinconvénient:
+Le premier chargement de l'application est lourd car elle télécharge toutes les balises
+
+Q4: 
+un module est un ensemble de composants réutilisables dans d'autres applications
+
+Q5:  
+La classe httpClient permet d’être utilisées par une injection de dépendances via leurs déclarations dans les constructeurs des classes qui créent les objets qui les utilisent. Elle constitue un service dont une seule instance peut être partagée par les différents objets en ayant besoin.
+
+Q6:
+La réponse est <app-timer [format]="numérique"> car dans angular nous avons deux possibilités d'écrire les propriétés binding soit ce format soit avec des accolades
+
+Q7 : 
+La balise <router-outlet> désigne la zone dans laquelle l’affichage de différents composants est dynamiquement effectué suite à la sélection d’une action.
+
+Q8: 
+un garde (ou guard) gère la vérification et donne l'autorisation, ou pas, au contrôleur à invoquer les composants
+
+Q9:
+On peut utiliser Json Web Token qui va hasher le nom d'utilisateur et le mot de passe et il va le garder pour un temps précis par ex. 30 minutes dans une session ou dans locale storage de navigateur. Chaque fois que l'utilisateur se connecte, l'application va générer un autre JWT. 
+
+10:
+Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any other origins (domain, scheme, or port) than its own from which a browser should permit loading of resources.
+
+Q11: 
+Composer est le gestionnaire de projet Il permet de gérer les dépendances d'un projet
+
+Q12:
+twig (le moteur de template)
+
+Q13:
+routes.yaml
+
+Q14: 
+Classes correspondant aux tables de notre BDD
+
+Q15: 
+méthode get
