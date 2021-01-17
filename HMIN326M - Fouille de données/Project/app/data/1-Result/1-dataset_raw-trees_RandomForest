@@ -1,0 +1,44 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.RandomForest -P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1
+Relation:     movieComments-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-tokenizerweka.core.tokenizers.AlphabeticTokenizer
+Instances:    10000
+Attributes:   1003
+              [list of attributes omitted]
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+Time taken to build model: 35.56 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        8609               86.09   %
+Incorrectly Classified Instances      1391               13.91   %
+Kappa statistic                          0.7218
+Mean absolute error                      0.3678
+Root mean squared error                  0.3867
+Relative absolute error                 73.5512 %
+Root relative squared error             77.3427 %
+Total Number of Instances            10000     
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.854    0.132    0.866      0.854    0.860      0.722    0.934     0.935     -1
+                 0.868    0.146    0.856      0.868    0.862      0.722    0.934     0.927     1
+Weighted Avg.    0.861    0.139    0.861      0.861    0.861      0.722    0.934     0.931     
+
+=== Confusion Matrix ===
+
+    a    b   <-- classified as
+ 4271  729 |    a = -1
+  662 4338 |    b = 1
+
