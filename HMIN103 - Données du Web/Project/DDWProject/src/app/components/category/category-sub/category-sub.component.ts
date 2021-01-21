@@ -1,8 +1,8 @@
-import { Component, OnInit         } from '@angular/core'                        ;
+import { Component, OnInit                 } from '@angular/core'                        ;
 import { ActivatedRoute, Params, Router    } from '@angular/router'                      ;
-import { Observable                } from 'rxjs'                                 ;
-import { ProductService            } from '../../../services/product.service'    ;
-import { OrderService              } from '../../../services/order.service'      ;
+import { Observable                        } from 'rxjs'                                 ;
+import { AnnonceService                    } from '../../../services/annonce.service'    ;
+import { LendService                       } from '../../../services/lend.service'      ;
 
 @Component({
   selector: 'app-category-sub',
@@ -15,28 +15,28 @@ export class CategorySubComponent implements OnInit {
   category: string;
 
   constructor(
-    private productService: ProductService,
+    private annonceService: AnnonceService,
     private activatedRoute: ActivatedRoute,
     private router        : Router,
-    private orderService  : OrderService) { }
+    private lendService   : LendService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       this.category = params.get('category');
-      this.productService.getTypes(this.category).subscribe(types =>{
+      this.annonceService.getTypes(this.category).subscribe(types =>{
         this.types = types;
       });
     });
   }
 
   addCartItems(pid) {
-    this.orderService.onAddToCard(pid).subscribe();
-    this.router.navigate(['/orders']);
+    this.lendService.onAddToCard(pid).subscribe();
+    this.router.navigate(['/lends']);
     }
 
-    getCartItemsById(pid: string){
-      return this.productService.getProductItemById(pid);
-      this.router.navigate(['/products/',pid]);
+    getCartItemsById(aid: string){
+      this.annonceService.getAnnonceItemById(aid);
+      this.router.navigate(['/annonces/',aid]);
     }
 
 }

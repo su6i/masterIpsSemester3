@@ -1,6 +1,7 @@
 import { Injectable                           } from '@angular/core'                    ;
 import { HttpClient, HttpHeaders              } from '@angular/common/http'             ;
 import { tap                                  } from 'rxjs/operators'                   ;
+import { Observable                           } from 'rxjs'                             ;
 
 
 
@@ -78,6 +79,16 @@ export class AuthService {
     return this.http.get('http://localhost:8888/users/profile', {headers: httpOptionsAuthorized.headers});
   }
 
+  getAllUsers(){
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authorization', this.authToken);
+
+    return this.http.get(this.baseURL+'/users', { headers });
+
+  }
+
+
 
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
@@ -115,4 +126,16 @@ export class AuthService {
   logout2(){
       localStorage.removeItem('id_token');
   }
+
+
+  removeUser(uid: string): Observable<any>{
+    let url = `http://localhost:8888/users/${uid}`;
+    return this.http.delete(url)
+  }
+
+
+
+
+
+
 }

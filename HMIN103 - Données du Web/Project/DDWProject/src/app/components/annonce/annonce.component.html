@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">Avaiable advertisements: {{ posts.length }}</mat-toolbar>
+
+<div style="margin:auto; width: 70%; margin-top: 30px;">
+  <app-search-bar (onSelectedOption)="onSelectedOption($event)"></app-search-bar>
+</div>
+<h2 style="text-align:center">Advertisements</h2>
+
+
+<div *ngFor="let post of posts" class="group">
+  <div id="content">
+    <img class="image img" src="{{post.image}}" alt="product image">
+  </div>
+  <p><strong>Name : </strong> {{ post.name  }} </p>
+  <p><strong>price: </strong> {{ post.price }} </p>
+  <p><strong>description: </strong></p>
+  <ul *ngFor="let description of post.description">
+    <li class="desc">{{description}}</li>
+  </ul>
+  <div style="overflow: hidden;">
+    <p class="button">            <button (click)="addCartItems(post['_id'])" class="btn">Add</button></p>
+    <p class="button">            <button (click)="getAnnonceItemById(post['_id'])" class="btn">Details</button></p>
+    <p class="button text-danger"><button (click)="removeAnnonce(post['_id'])" class="btn">Remove</button></p>
+  </div>
+</div>
+

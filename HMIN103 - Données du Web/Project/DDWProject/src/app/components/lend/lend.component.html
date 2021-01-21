@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">Lends</mat-toolbar>
+<div *ngIf='lends'>
+
+  <div class="group" *ngFor="let lend of lends">
+    <p><b>Lend ID: </b>{{lend['_id']}}</p>
+    <p id="name"><b>Name: </b>{{lend['annonce']['name']}}</p>
+    <p id="price"><b>Price: </b>{{lend['annonce']['price']}}</p>
+    <div style="overflow: hidden;">
+      <p class="button left"><button (click)="removeCartItems(lend._id)" class="btn">Remove</button></p>
+      <p class="button right"><button (click)="getCartItemById(lend._id)" class="btn">Details</button></p>
+    </div>
+  </div>
+
+</div>

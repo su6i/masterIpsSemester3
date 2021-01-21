@@ -16,36 +16,36 @@ GET http://localhost:8888/categories/Apple/Tablet
 
 
 
-# products
+# annonces
 
-GET http://localhost:8888/products HTTP/1.1
+GET http://localhost:8888/annonces HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:8888/products/5f8c0165a83c4f8434b02fca  HTTP/1.1
+GET http://localhost:8888/annonces/5f8c0165a83c4f8434b02fca  HTTP/1.1
 content-type: application/json
 
 ###
-PATCH http://localhost:8888/products/5f923332bb78d9238c5165f7 HTTP/1.1
+PATCH http://localhost:8888/annonces/5f923332bb78d9238c5165f7 HTTP/1.1
 content-type: application/json
 
 [
   { "propName" : "type", "value": "Tablet"  }
 ]
 
-# "propName" : "name", "value": "Amir"
-# "propName" : "price", "value": "1100",
+#     "propName" : "name", "value": "Amir"
+#     "propName" : "price", "value": "1100",
 #     "propName" : "image", "value": "/assets/image/2.jpg",
 #     "propName" : "category", "value": "Apple",
 #     "propName" : "type", "value": "Smartphone",
 #     "propName" : "description", "value": ["very Excelent phone", "Awsome","Smallll"]
 
 ###
-DELETE http://localhost:8888/products/5f9413e0d3527b0fae4f4701 HTTP/1.1
+DELETE http://localhost:8888/annonces/5f9413e0d3527b0fae4f4701 HTTP/1.1
 content-type: application/json
 
 ###
-POST http://localhost:8888/products HTTP/1.1
+POST http://localhost:8888/annonces HTTP/1.1
 content-type: application/json
 
 {
@@ -59,7 +59,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:8888/products
+POST http://localhost:8888/annonces
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 {
@@ -92,36 +92,36 @@ Content-Type: image/jpeg
 
 
 # Orders
-GET http://localhost:8888/orders/ HTTP/1.1
+GET http://localhost:8888/lends/ HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjVmOTYyNmY0OTNjM2U1MjhmZmI5Y2M1NyIsIm5hbWUiOiJBbWlyIFNISVJBTEkgUE9VUiIsImVtYWlsIjoiZW1hc2FsYXJpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZW1hIiwicGFzc3dvcmQiOiIkMmEkMTAkZm51L3FUdXp6Z2hONk1GOVNDWHlYLml3QUQ5YWhGdWlPaDA5cUVDS0lQYkMyZllHZ2ZDcFMiLCJfX3YiOjB9LCJpYXQiOjE2MDM2NzU5MzYsImV4cCI6MTYwNDI4MDczNn0.Z4VnOFMXBQGrq_0_SGzIjghsOEmefVxt1WTW1DWL5mQ
 
 ###
-GET http://localhost:8888/orders/5f962fc233d3212a131f6654 HTTP/1.1
+GET http://localhost:8888/lends/5f962fc233d3212a131f6654 HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjVmOTYyNmY0OTNjM2U1MjhmZmI5Y2M1NyIsIm5hbWUiOiJBbWlyIFNISVJBTEkgUE9VUiIsImVtYWlsIjoiZW1hc2FsYXJpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZW1hIiwicGFzc3dvcmQiOiIkMmEkMTAkZm51L3FUdXp6Z2hONk1GOVNDWHlYLml3QUQ5YWhGdWlPaDA5cUVDS0lQYkMyZllHZ2ZDcFMiLCJfX3YiOjB9LCJpYXQiOjE2MDM2NzU5MzYsImV4cCI6MTYwNDI4MDczNn0.Z4VnOFMXBQGrq_0_SGzIjghsOEmefVxt1WTW1DWL5mQ
 
 
 ###
-PATCH http://localhost:8888/orders/amir HTTP/1.1
+PATCH http://localhost:8888/lends/amir HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhjMGE4NjIxMzIyZDU4NzE2NzAxMzkiLCJuYW1lIjoiQW1pciBTSElSQUxJIFBPVVIiLCJlbWFpbCI6ImVtYXNhbGFyaUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImVtYSIsInBhc3N3b3JkIjoiJDJhJDEwJExSMm52UTgzSFFOZTFjQVNFbzVnUy5KSnA0d01GcTdxZ2NPdTBXSkt2QndQT09YOUdiQ1BhIiwiX192IjowLCJpYXQiOjE2MDMwNzgzODEsImV4cCI6MTYwMzY4MzE4MX0.fboKqI5-u8OkuBh56ulgDI1Z6gOahOVQOF5j7kh0umU
 
 ###
-DELETE http://localhost:8888/orders/5f926dd45bfa7f2b5cab7906 HTTP/1.1
+DELETE http://localhost:8888/lends/5f926dd45bfa7f2b5cab7906 HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhjMGE4NjIxMzIyZDU4NzE2NzAxMzkiLCJuYW1lIjoiQW1pciBTSElSQUxJIFBPVVIiLCJlbWFpbCI6ImVtYXNhbGFyaUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImVtYSIsInBhc3N3b3JkIjoiJDJhJDEwJExSMm52UTgzSFFOZTFjQVNFbzVnUy5KSnA0d01GcTdxZ2NPdTBXSkt2QndQT09YOUdiQ1BhIiwiX192IjowLCJpYXQiOjE2MDMwNzgzODEsImV4cCI6MTYwMzY4MzE4MX0.fboKqI5-u8OkuBh56ulgDI1Z6gOahOVQOF5j7kh0umU
 
 
 ###
-POST http://localhost:8888/orders HTTP/1.1
+POST http://localhost:8888/lends HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjVmOTYyNmY0OTNjM2U1MjhmZmI5Y2M1NyIsIm5hbWUiOiJBbWlyIFNISVJBTEkgUE9VUiIsImVtYWlsIjoiZW1hc2FsYXJpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiZW1hIiwicGFzc3dvcmQiOiIkMmEkMTAkZm51L3FUdXp6Z2hONk1GOVNDWHlYLml3QUQ5YWhGdWlPaDA5cUVDS0lQYkMyZllHZ2ZDcFMiLCJfX3YiOjB9LCJpYXQiOjE2MDM2NzU5MzYsImV4cCI6MTYwNDI4MDczNn0.Z4VnOFMXBQGrq_0_SGzIjghsOEmefVxt1WTW1DWL5mQ
 
 {
   "quantity": "2",
-  "product": "iPhone 12",
-  "userId": "5f8e1de97f8f3d15035eff59"
+  "annonce": "iPhone 12",
+  "uid": "5f8e1de97f8f3d15035eff59"
 }
 
 ###
@@ -161,61 +161,3 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhlMWRlO
 
 
 
-
-
-
-
-###
-GET https://example.com/comments?page=2&pageSize=10
-
-
-###
-GET https://example.com/comments
-    ?page=2
-    &pageSize=10
-
-###
-
-POST https://example.com/comments HTTP/1.1
-Content-Type: application/xml
-Authorization: token xxx
-
-<request>
-    <name>sample</name>
-    <time>Wed, 21 Oct 2015 18:27:50 GMT</time>
-</request>
-
-
-###
-POST https://api.github.com/graphql
-Content-Type: application/json
-Authorization: Bearer xxx
-X-REQUEST-TYPE: GraphQL
-
-query ($name: String!, $owner: String!) {
-  repository(name: $name, owner: $owner) {
-    name
-    fullName: nameWithOwner
-    description
-    diskUsage
-    forkCount
-    stargazers(first: 5) {
-        totalCount
-        nodes {
-            login
-            name
-        }
-    }
-    watchers {
-        totalCount
-    }
-  }
-}
-
-{
-    "name": "vscode-restclient",
-    "owner": "Huachao"
-}
-
-
-###

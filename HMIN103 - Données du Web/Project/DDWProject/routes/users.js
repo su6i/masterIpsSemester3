@@ -5,6 +5,34 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const multer = require("multer");
+
+
+const fileFilter = (req, file, callback) => {
+  // Reject a file
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    callback(null, true);
+  } else {
+    callback(null, false);
+  }
+};
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/images/users");
+  },
+  filename: function (req, file, callback) {
+    callback(null, new Date().toISOString() + "--" + file.filename);
+  },
+});
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: fileFilter,
+});
+
+
 
 // Passport middleware:
 // Middleware is computer software that provides services to software applications
@@ -19,6 +47,7 @@ router.use(cors());
 
 // Import Mongoose Model
 const User = require("../models/user");
+const { error } = require("console");
 
 // // Connect to Database
 // mongoose
@@ -40,7 +69,7 @@ router.get("/", (req, res) => {
 });
 
 // Register new user
-router.post("/register", (req, res, next) => {
+router.post("/register", upload.single("photo"), (req, res, next) => {
   User.findOne({ email: req.body.email })
     .exec()
     .then((user) => {
@@ -50,6 +79,7 @@ router.post("/register", (req, res, next) => {
           message: "Mail exists!",
         });
       } else {
+        console.log('req.files::', req.files)
         let newUser = new User({
           _id: new mongoose.Types.ObjectId(),
           firstName: req.body.firstName,
@@ -62,7 +92,13 @@ router.post("/register", (req, res, next) => {
             number: req.body.number,
             street: req.body.street,
             city: req.body.city,
-          }
+            postal: req.body.postal,
+          },
+          photo: {
+            id: new mongoose.Types.ObjectId(),
+            url: "/" + req.body.photo,
+            title: `${req.body.firstName}-${req.body.lastName}`
+          },
         });
         User.addUser(newUser, (err, user) => {
           if (err) {
@@ -70,7 +106,7 @@ router.post("/register", (req, res, next) => {
           } else {
             res.json({
               success: true,
-              message: "User registered successfully",
+              message: `${user} registered successfully`,
             });
           }
         });
@@ -89,7 +125,7 @@ router.get(
 
 // test
 router.get("/test", (req, res, next) => {
-  res.send("Hassina, elle est pareseuse!!!!!");
+  res.send("Hassina, elle est encore pareseuse!!!!!");
 });
 
 // Authenticate
@@ -128,23 +164,28 @@ router.post("/authenticate", (req, res, next) => {
 
 // Delete account
 router.delete(
-  "/:userId",
+  "/:uid",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
-    User.remove({ _id: req.params.userId })
+    User.deleteOne({ _id: req.params.uid })
       .exec()
       .then((result) => {
-        result.status(200).json({
+        res.status(200).json({
           message: "User deleted",
         });
       })
       .catch((err) => {
         console.log(err);
-        result.status(500).json({
+        res.status(500).json({
           error: err,
         });
       });
   }
 );
 
+
+
+
 module.exports = router;
+
+

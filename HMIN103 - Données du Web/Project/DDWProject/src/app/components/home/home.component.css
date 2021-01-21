@@ -114,3 +114,9 @@ border-collapse: collapse;
   margin: 0px;
   border-style: ridge;
 }
+
+.jumbotron {
+  background-image: url("/assets/image/bg1-XS.jpg");
+  background-size: cover;
+  height: 500px;
+}

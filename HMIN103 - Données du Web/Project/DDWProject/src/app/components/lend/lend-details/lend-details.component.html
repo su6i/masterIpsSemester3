@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" *ngIf="lend">{{lend['annonce']['name']}}</mat-toolbar>
+
+<div class="group" *ngIf="lend">
+  <div id="content">
+    <img class="image img" src="{{'http://localhost:8888'+lend['annonce']['image']}}" alt="annonce image">
+  </div>
+  <p class="uid"><b>User ID: </b>{{lend['uid']}}</p>
+  <p class="lid"><b>Lend ID: </b>{{lend['_id']}}</p>
+  <p class="aid"><b>Annonce ID:</b>{{lend['annonce']['_id']}}</p>
+  <p class="price"><b>Price: </b>{{lend['annonce']['price']}}</p>
+  <p><b>Category: </b>{{lend['annonce']['category']}}</p>
+  <p><b>Type: </b>{{lend['annonce']['type']}}</p>
+  <p><b>Description: </b></p>
+  <ul *ngFor="let description of lend['annonce']['description']">
+    <li class="desc">{{description}}</li>
+  </ul>
+  <div style="overflow: hidden;">
+    <p class="button left"><button (click)="removeCartItems(lend['_id'])" class="btn">Remove</button></p>
+    <p class="button right"><button (click)="backClicked()" class="btn">Back</button></p>
+  </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit   } from '@angular/core'                       ;
 import { Router              } from '@angular/router'                     ;
 import { AuthService         } from '../../services/auth.service'         ;
 import { DataService         } from '../../services/data.service'         ;
-import { Product             } from '../../../../models/DataInterface'    ;
+import { Annonce                } from '../../../../models/DataInterface'    ;
 
 
 @Component({
@@ -12,19 +12,19 @@ import { Product             } from '../../../../models/DataInterface'    ;
 })
 export class HomeComponent implements OnInit {
 
-  posts: Product[]
+  posts: Annonce[]
   count: number;
 
 
   constructor(
-    private router: Router,
+    private router      : Router,
     public  authService : AuthService,
-    private dataService: DataService
+    private dataService : DataService
   ) { }
 
   ngOnInit() {
     this.dataService.getPosts().subscribe(posts => {
-      this.posts = posts['products'];
+      this.posts = posts['annonces'];
       this.count = posts['count'];
       this.dataService.postsData = posts
     });

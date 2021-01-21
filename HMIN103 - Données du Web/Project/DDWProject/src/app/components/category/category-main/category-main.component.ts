@@ -1,7 +1,7 @@
 import { Component, OnInit         } from '@angular/core'                        ;
 import { ActivatedRoute, Params    } from '@angular/router'                      ;
 import { Observable                } from 'rxjs'                                 ;
-import { ProductService            } from '../../../services/product.service'    ;
+import { AnnonceService            } from '../../../services/annonce.service'    ;
 
 @Component({
   selector: 'app-category-main',
@@ -12,10 +12,10 @@ export class CategoryMainComponent implements OnInit {
 
   categories: Object[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private annonceService: AnnonceService) { }
 
   ngOnInit(){
-    this.productService.getCategories().subscribe(categories =>{
+    this.annonceService.getCategories().subscribe(categories =>{
       this.categories = categories;
     })
   }

@@ -25,6 +25,7 @@ address:{
     number: Number,
     street: String,
     city: String,
+    postal: Number,
   },
   email: {
     type: String,
@@ -39,6 +40,17 @@ address:{
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "user",
+    required: false,
+  },
+  photo:{
+    id: String,
+    url: String,
+    title: String,
+    uploaded: { type: Date, default: Date.now},
+  }
 });
 
 const User = (module.exports = mongoose.model("User", UserSchema));

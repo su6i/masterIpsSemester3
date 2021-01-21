@@ -1,3 +1,126 @@
 <mat-toolbar color="primary">New User</mat-toolbar>
 
-<app-register-validation-usedng-if-directive></app-register-validation-usedng-if-directive>
+<div class="fadein">
+  <div class="alert alert-danger" *ngIf="errSwitch" role="alert">{{ errMsg }}</div>
+  <div class="alert alert-success" *ngIf="succSwitch" role="alert">{{ succMsg }}</div>
+  <form #regForm="ngForm" (ngSubmit)="onRegisterSubmit2(regForm)" enctype='multipart/form-data'>
+
+    <div class="form-group">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Name</legend>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="firstName">First Name <sup class="red">*</sup></label>
+          <input required name="firstName" id="name" #firstName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="lastName">Last Name</label>
+          <input required name="lastName" id="lastName" #lastName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="photo">Upload file</label>
+          <input required name="photo" id="photo" #photo="ngModel" ngModel type="file" class="form-control" >
+        </div>
+        <br>
+
+        <!-- <mat-form-field>
+          <ngx-mat-file-input [formControl]="fileController" [multiple]="multiple" [accept]="accept" [color]="blue">
+            <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </ngx-mat-file-input>
+       </mat-form-field> -->
+
+
+    </fieldset>
+
+
+</div>
+
+    <div class="form-group">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Address and Phone</legend>
+        <div class="onerow col-xl-1">
+          <label for="number">Number</label>
+          <input required name="number" id="number" #number="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-4">
+          <label for="street">Street</label>
+          <input required name="street" id="street" #street="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-2">
+          <label for="postal">Postal code</label>
+          <input required name="postal" id="postal" #postal="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="city">City</label>
+          <input required name="city" id="city" #city="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="phone">Phone</label>
+          <input required name="phone" id="phone" #phone="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+      </fieldset>
+
+
+    </div>
+
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Login</legend>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="username">Username <sup class="red">*</sup></label>
+          <input required name="username" id="username" #username="ngModel" ngModel type="text" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="email">Email <sup class="red">*</sup></label>
+          <input required name="email" id="email" #email="ngModel" ngModel type="email" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="password">Password <sup class="red">*</sup></label>
+          <input required name="password" id="password" #password="ngModel" ngModel type="password" class="form-control">
+        </div>
+  </fieldset>
+
+
+    <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!regForm.valid || submitSwitch">
+  </form>
+</div>
+
+
+<script>
+  //inject angular file upload directives and services.
+var app = angular.module('fileUpload', ['ngFileUpload']);
+
+app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+    $scope.uploadPic = function(file) {
+    file.upload = Upload.upload({
+      url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+      data: {file: file, username: $scope.username},
+    });
+
+    file.upload.then(function (response) {
+    alert('filename: ' + $scope.picFile.name + ' size: ' + $scope.picFile.size);
+      $timeout(function () {
+        file.result = response.data;
+      });
+    }, function (response) {
+      if (response.status > 0)
+        $scope.errorMsg = response.status + ': ' + response.data;
+    }, function (evt) {
+      // Math.min is to fix IE which reports 200% sometimes
+      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+    });
+    }
+
+}]);
+</script>

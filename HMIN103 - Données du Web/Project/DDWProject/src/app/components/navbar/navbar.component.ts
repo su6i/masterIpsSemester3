@@ -8,6 +8,7 @@ import { AuthService         } from '../../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  user: Object;
 
   constructor(
     public  authService : AuthService,
@@ -15,6 +16,14 @@ export class NavbarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.authService.getProfile().subscribe((profile: any) => {
+      this.user = profile.user;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
+
   }
 
   onLogoutClick(){

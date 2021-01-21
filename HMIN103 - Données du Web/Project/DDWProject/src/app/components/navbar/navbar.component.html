@@ -1,61 +1,111 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Allo Voisins</a>
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
+  <a class="navbar-brand" href="#"><img src="assets/image/logo.svg" alt="" srcset="" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></a>
+    <!-- If not logged in shows bellow menu items -->
+    <ul class="nav ml-auto" *ngIf="!authService.loggedIn()">
+      <li id="annonces" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/annonces']" aria-disabled="true">Toutes les demandes</a><br>
       </li>
 
-      <li id="product" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/products']" aria-disabled="true">Products</a><br>
+      <li id="myannonces" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/myannonces']" aria-disabled="true">Proposer mes services</a><br>
       </li>
 
-      <li id="category" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/categories']" aria-disabled="true">Categories</a><br>
+      <li id="lends" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" *ngIf="user" [routerLink]="['/profile']" aria-disabled="true">{{ user['email']}}</a>
       </li>
+
+    <li id="signup" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <a class="nav-link" [routerLink]="['/register']" aria-disabled="true">Inscription</a>
+    </li>
+
+    <li id="signin"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <a class="nav-link" [routerLink]="['/login']" aria-disabled="true">Connexion</a>
+    </li>
+
+
 
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
-    <ul class="navbar-nav my-2">
+    <ul class="nav justify-content-center" *ngIf="authService.loggedIn()">
 
       <!-- If logged in shows bellow menu items -->
-      <li id="dashboard" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/dashboard']" aria-disabled="true">Dashboard</a>
+
+      <li id="menubar-all-searches" class="menubar__navItem menubar__navItem ">
+        <a [routerLink]="['/']" class="text-center pd text-decoration-none">
+            <span class="iconav iconav-home menubar__icon blue"></span><br>
+            <span class="menubar__navLink blue">Accueil</span>
+        </a>
       </li>
 
-      <li id="profile" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/profile']" aria-disabled="true">Profile</a>
-      </li>
+    <li id="menubar-all-searches" class="menubar__navItem menubar__navItem ">
+      <a [routerLink]="['/']" class="text-center pd text-decoration-none">
+        <span class="iconav iconav-search menubar__icon "></span><br>
+        <span class="menubar__navLink ">Voisins</span>
+      </a>
+    </li>
+    <li id="menubar-all-searches" class="menubar__navItem menubar__navItem ">
+      <a [routerLink]="['/annonces']" class="text-center pd text-decoration-none">
+        <span class="iconav iconav-plus-circle menubar__icon green"></span><br>
+        <span class="menubar__navLink green">Demander</span>
+      </a>
+    </li>
+    <li id="menubar-all-searches" class="menubar__navItem menubar__navItem ">
+      <a [routerLink]="['/lends']" class="text-center pd text-decoration-none">
+        <span class="iconav iconav-tag menubar__icon "></span><br>
+        <span class="menubar__navLink ">Sélections</span>
+      </a>
+    </li>
 
-      <li id="orders" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/orders']" aria-disabled="true">Orders</a>
-      </li>
 
-      <li id="comment" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/comment']" aria-disabled="true">Comment</a>
-      </li>
+    <li class="menubar__navItem menubar__navItem  nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-center pd text-decoration-none" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="menubar__navLink ">
+          <img class="rounded-circle" src="https://static.allovoisins.com/assets/default_avatars/48/Avatar4.png" alt="" /><br>
+          <span class="hide-mobile">Mon compte</span>
+          <span class="hide-desktop">Compte</span>
+        </span>
 
-      <li id="signout" *ngIf="authService.loggedIn()">
-        <a class="nav-link" (click)="onLogoutClick()" href="#" aria-disabled="true">Sign out</a>
-      </li>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <li id="profile">
+             <a class="dropdown-item amir nav-link" aria-disabled="true"
+                href="/profile">
+                Mon profil
+             </a>
+         </li>
+         <li id="dashboard" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="dropdown-item amir nav-link" [routerLink]="['/dashboard']" aria-disabled="true">Dashboard</a>
+         </li>
+
+         <li id="users" *ngIf="user" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a class="dropdown-item amir nav-link"  *ngIf="user['role'] == 'admin'" [routerLink]="['/users']" aria-disabled="true">Utilisateurs</a>
+         </li>
 
 
-      <!-- If not logged in shows bellow menu items -->
-      <li id="signup" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/register']" aria-disabled="true">Sign UP</a>
-      </li>
+          <li id="mesannonces" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a class="dropdown-item amir nav-link" [routerLink]="['/mesannonces']" aria-disabled="true">Mes Annonces</a>
+        </li>
 
-      <li id="signin" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" [routerLink]="['/login']" aria-disabled="true">Sign In</a>
-      </li>
+          <li id="lends" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a class="dropdown-item amir nav-link" [routerLink]="['/lends']" aria-disabled="true">Mes demandes</a>
+          </li>
 
+
+         <hr class="mt-2 mb-3"/>
+         <li id="nav-link">
+             <a class="dropdown-item amir red" (click)="onLogoutClick()" aria-disabled="true"
+                href="#">
+                 Déconnexion
+             </a>
+         </li>
+
+      </ul>
+    </li>
     </ul>
   </div>
 </nav>
+

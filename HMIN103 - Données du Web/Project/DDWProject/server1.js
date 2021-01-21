@@ -5,7 +5,7 @@ const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb://localhost:27017";
 
 MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-  let db = client.db("SUPERVENTES");
+  let db = client.db("donnees_web");
   var cors = require("cors");
 
   app.use(express.json());
@@ -39,37 +39,37 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
     next();
   });
 
-  // app.get("/products", (req, res) => {
-  //     console.log("route: /products");
-  //     db.collection("products").find().toArray((err, documents) => {
+  // app.get("/annonces", (req, res) => {
+  //     console.log("route: /annonces");
+  //     db.collection("annonces").find().toArray((err, documents) => {
   //         res.json((documents));
   //     })
   //   })
 
-  //   app.get("/products/nom/:nom", (req, res) => {
+  //   app.get("/annonces/nom/:nom", (req, res) => {
   //     console.log("This is my route: /nom");
-  //     db.collection("products").find({"Name":req.params.nom}).toArray((err, documents) => {
+  //     db.collection("annonces").find({"Name":req.params.nom}).toArray((err, documents) => {
   //         res.end(JSON.stringify(documents));
   //     })
   //   })
 
-  //   app.get("/products/price/:prix", (req, res) => {
+  //   app.get("/annonces/price/:prix", (req, res) => {
   //     console.log("This is my route: /nom");
-  //     db.collection("products").find({"price":parseInt(req.params.prix)}).toArray((err, documents) => {
+  //     db.collection("annonces").find({"price":parseInt(req.params.prix)}).toArray((err, documents) => {
   //         res.end(JSON.stringify(documents));
   //     })
   //   })
 
   app.get("/category", (req, res) => {
     console.log("This is my route: /category");
-    db.collection("products").distinct("Category", (err, documents) => {
+    db.collection("annonces").distinct("Category", (err, documents) => {
       res.json(documents);
     });
   });
 
   app.get("/category/:type", (req, res) => {
     console.log("This is my route: /category/:type");
-    db.collection("products")
+    db.collection("annonces")
       .find({ Category: req.params.type })
       .toArray((err, documents) => {
         res.end(JSON.stringify(documents));
@@ -78,14 +78,14 @@ MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
 
   app.get("/comment", (req, res) => {
     console.log("This is my route: /comment");
-    db.collection("products").distinct("comment", (err, documents) => {
+    db.collection("annonces").distinct("comment", (err, documents) => {
       res.json(documents);
     });
   });
 
-  app.post("/members/connection", (req, res) => {
-    console.log("route: /members/connection/ avec " + JSON.stringify(req.body));
-    db.collection("members")
+  app.post("/users/connection", (req, res) => {
+    console.log("route: /users/connection/ avec " + JSON.stringify(req.body));
+    db.collection("users")
       .findOne(req.body)
       .then((result) => {
         res.json(result);

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" *ngIf='item'> {{ item['name'] }} </mat-toolbar>
+<div class="group" *ngIf='item'>
+  <div id="content">
+    <img class="image img" src="{{item['image']['url']}}" alt="product image">
+  </div>
+  <p><b>Item :</b>{{item['_id']}}</p>
+  <p><b>Price: </b>{{item['price']}}</p>
+  <p><b>Category: </b>{{item['category']}}</p>
+  <p><b>Type: </b>{{item['type']}}</p>
+  <p><b>Description: </b></p>
+  <ul *ngFor="let description of item['description']">
+    <li class="desc">{{description}}</li>
+  </ul>
+  <div style="overflow: hidden;">
+    <p class="button"><button (click)="addCartItems(item['_id'])" class="btn">Add</button></p>
+    <p class="button"><button (click)="removeAnnonce(item['_id'])" class="btn">Remove</button></p>
+    <p class="button"><button (click)="backClicked()" class="btn">Back</button></p>
+  </div>
+</div>

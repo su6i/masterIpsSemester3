@@ -1,56 +1,286 @@
-<div class="container">
-  <div class="jumbotron text-center">
-    <p class="lead">Welcome to</p>
-    <h1>Electronic shop</h1>
-    <div>
-      <div *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a [routerLink]="['/register']" class="nav-link" class="btn btn-primary" aria-disabled="true">Sign UP</a>
+<div class="ily-main-container">
+  <!-- <div class="jumbotron text-center"> -->
+    <div id="header" class="home-header ">
+      <div id="home-top" class="home-top">
+         <div class="container_home_top container">
+            <div class="grid">
+               <div class="col-2-3 col_slogan_applis hide-mobile">
+                  <div class="row_slogan full-width">
+                     <p class="big_slogan slogan_text">
+                        Le coup de pouce<br />du quotidien !
+                     </p>
+                     <p class="medium_slogan slogan_text">
+                        3 600 000 Voisins échangent au<br />quotidien partout en France.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="logo_partner_solidarite__bg hide-mobile"></div>
+         <div id="sliderAlloVoisins" class="header-slider ">
+            <div class="slider_img first_slide" id="img1" style="background-image:url('https://static.allovoisins.com/images/backgrounds/bg3-XS.jpg');"></div>
+         </div>
       </div>
-      <div *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-        <a [routerLink]="['/login']" class="btn btn-default">Sign in</a>
-      </div>
-      <div id="signout" *ngIf="authService.loggedIn()" v>
-        <a class="nav-link" (click)="onLogoutClick()" href="#" aria-disabled="true" class="btn btn-default">Sign out</a>
-      </div>
-    </div>
-    <div class="shenasname">
-      Project: MEAN stack technology <br>
-      Cours: Technologies avancées du web <br>
-      Professor: Pierre POMPIDOR <br>
-      By: <b>Hassina</b> BOUFATIS and <b>Amir</b> SHIRALI POUR <br>
+   </div>
+  <!-- </div> -->
 
-    </div>
+
+
+
+
+<section class="lastSearches home-container">
+	<div class="container">
+		<h2 class="lastSearches__title home-title">Les dernières demandes</h2>
+		<div class="grid">
+						<div class="col-1-4 flex flex-center">
+                <a class="lastSearches__cardItem card shadow--xsmall" href="https://www.allovoisins.com/s/4643984/Sarcelles/service/Chauffage-climatisation">
+                    <header class="lastSearches__cardItemValues">
+                        <div class="lastSearches__cardItemDate text-s mainlight">
+                            Aujourd'hui                        </div>
+                        <div class="lastSearches__cardItemBudget badge badge--green">
+                            Sur devis                        </div>
+                    </header>
+                    <div class="lastSearches__cardItemId grid flex-vertical-center mg-top mg-bottom">
+                        <div class="img-rounded img-rounded--small col no-grow">
+                            <img src="https://static.allovoisins.com/assets/default_avatars/48/Avatar9.png" alt="avatar" />
+                        </div>
+                        <div class="lastSearches__cardItemInfos col pd-left-s">
+                            <p class="lastSearches__cardItemName">Sandra</p>
+                                                    </div>
+                    </div>
+                    <p class="lastSearches__cardItemTitle">Cherche Chauffage - Climatisation</p>
+                    <footer class="lastSearches__cardItemLocation card__footer mg-top">
+						<p class="text-s mainlight mg-top-s">
+							<span class='iconav iconav-map-pin text--mainlight'></span>
+	                        Sarcelles                    </footer>
+                </a>
+            </div>
+						<div class="col-1-4 flex flex-center">
+                <a class="lastSearches__cardItem card shadow--xsmall" href="https://www.allovoisins.com/s/4643830/Paris-16e-arrondissement/service/Depannage-electromenager">
+                    <header class="lastSearches__cardItemValues">
+                        <div class="lastSearches__cardItemDate text-s mainlight">
+                            Aujourd'hui                        </div>
+                        <div class="lastSearches__cardItemBudget badge badge--green">
+                            Sur devis                        </div>
+                    </header>
+                    <div class="lastSearches__cardItemId grid flex-vertical-center mg-top mg-bottom">
+                        <div class="img-rounded img-rounded--small col no-grow">
+                            <img src="https://static.allovoisins.com/assets/default_avatars/48/Avatar6.png" alt="avatar" />
+                        </div>
+                        <div class="lastSearches__cardItemInfos col pd-left-s">
+                            <p class="lastSearches__cardItemName">Françoise</p>
+                                                    </div>
+                    </div>
+                    <p class="lastSearches__cardItemTitle">Cherche Dépannage électroménager</p>
+                    <footer class="lastSearches__cardItemLocation card__footer mg-top">
+						<p class="text-s mainlight mg-top-s">
+							<span class='iconav iconav-map-pin text--mainlight'></span>
+	                        Paris 16e Arrondissement                    </footer>
+                </a>
+            </div>
+						<div class="col-1-4 flex flex-center">
+                <a class="lastSearches__cardItem card shadow--xsmall" href="https://www.allovoisins.com/s/4643665/Paris/service/Montage-meubles-en-kit">
+                    <header class="lastSearches__cardItemValues">
+                        <div class="lastSearches__cardItemDate text-s mainlight">
+                            Aujourd'hui                        </div>
+                        <div class="lastSearches__cardItemBudget badge badge--green">
+                            Sur devis                        </div>
+                    </header>
+                    <div class="lastSearches__cardItemId grid flex-vertical-center mg-top mg-bottom">
+                        <div class="img-rounded img-rounded--small col no-grow">
+                            <img src="https://static.allovoisins.com/uploads/u/avatars/7/1/5/7152b69668_3861653_s.jpg" alt="avatar" />
+                        </div>
+                        <div class="lastSearches__cardItemInfos col pd-left-s">
+                            <p class="lastSearches__cardItemName">Faïyza</p>
+                                                    </div>
+                    </div>
+                    <p class="lastSearches__cardItemTitle">Cherche Montage meubles en kit</p>
+                    <footer class="lastSearches__cardItemLocation card__footer mg-top">
+						<p class="text-s mainlight mg-top-s">
+							<span class='iconav iconav-map-pin text--mainlight'></span>
+	                        Paris                    </footer>
+                </a>
+            </div>
+						<div class="col-1-4 flex flex-center">
+                <a class="lastSearches__cardItem card shadow--xsmall" href="https://www.allovoisins.com/s/4643666/Paris/service/Plomberie-installation-sanitaire">
+                    <header class="lastSearches__cardItemValues">
+                        <div class="lastSearches__cardItemDate text-s mainlight">
+                            Aujourd'hui                        </div>
+                        <div class="lastSearches__cardItemBudget badge badge--green">
+                            Sur devis                        </div>
+                    </header>
+                    <div class="lastSearches__cardItemId grid flex-vertical-center mg-top mg-bottom">
+                        <div class="img-rounded img-rounded--small col no-grow">
+                            <img src="https://static.allovoisins.com/uploads/u/avatars/7/1/5/7152b69668_3861653_s.jpg" alt="avatar" />
+                        </div>
+                        <div class="lastSearches__cardItemInfos col pd-left-s">
+                            <p class="lastSearches__cardItemName">Faïyza</p>
+                                                    </div>
+                    </div>
+                    <p class="lastSearches__cardItemTitle">Cherche Plomberie - Installation sanitaire</p>
+                    <footer class="lastSearches__cardItemLocation card__footer mg-top">
+						<p class="text-s mainlight mg-top-s">
+							<span class='iconav iconav-map-pin text--mainlight'></span>
+	                        Paris                    </footer>
+                </a>
+            </div>
+					</div>
+	</div>
+	<div class="lastSearches__buttonsWrapper">
+		<div class="lastSearches__button lastSearches__button--green flex flex-center">
+			<a class="lastSearches__buttonLink btn btn--green mg-top-l" href="https://www.allovoisins.com/near_you#arrival">Voir toutes les demandes</a>
+		</div>
+	</div>
+</section>
+
+<section class="topNeighbors home-container">
+	<div class="container">
+		<h2 class="topNeighbors__title home-title">Les Voisins à la Une</h2>
+		<div class="topNeighbors__cardsWrapper grid flex-center">
+						<a class="topNeighbors__cardItem card shadow--xsmall col-1-4 link" href="https://www.allovoisins.com/profil/1915238-rudy-paris-1er-arrondissement">
+				<div class="topNeighbors__cardItemId grid mg-bottom">
+					<div class="img-rounded img-rounded--small no-grow mg-right-s">
+						<img src="https://static.allovoisins.com/uploads/u/avatars/c/4/c/c4c04afe16_1915238_m.jpg" alt="avatar" />
+					</div>
+					<div class="topNeighbors__cardItemInfos mg-right-s">
+						<div class="topNeighbors__cardItemStatus badge">
+							<span class="topNeighbors__cardItemStatusLabel">Auto-entrepreneur</span>						</div>
+						<div class="topNeighbors__cardItemName">Rudy</div>
+												<div class="topNeighbors__cardItemRating"><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg></div>
+											</div>
+									</div>
+				<div class="topNeighbors__cardItemCategory">
+					Création site internet				</div>
+				<div class="topNeighbors__cardItemDescription">
+					Très satisfait du travail de Rudy Lucas, je le recommande sans hésitation pour votre projet. Il est toujours à l’écoute, prêt à trouver la bonne solution selon vos besoins. Très expérimenté et compétent dans la création de sites, il a fait pour moi un travail très apprécié par mes contacts internationaux les plus exigeants. Rudy connait parfaitement la langue anglaise, ce qui facilite le travail avec les logiciels ou un projet bilingue. N’hésitez pas, je crois qu’il n’y est pas mieux, ni plus sympathique !				</div>
+				<div class="topNeighbors__cardItemLocation card__footer mg-top">
+					<div class="text-s mainlight mg-top-s">
+						<span class='iconav iconav-map-pin'></span>
+						Paris 1er Arrondissement					</div>
+				</div>
+			</a>
+						<a class="topNeighbors__cardItem card shadow--xsmall col-1-4 link" href="https://www.allovoisins.com/profil/366631-hocine-limeil-brevannes">
+				<div class="topNeighbors__cardItemId grid mg-bottom">
+					<div class="img-rounded img-rounded--small no-grow mg-right-s">
+						<img src="https://static.allovoisins.com/assets/default_avatars/100/Avatar1.png" alt="avatar" />
+					</div>
+					<div class="topNeighbors__cardItemInfos mg-right-s">
+						<div class="topNeighbors__cardItemStatus badge">
+							<span class="topNeighbors__cardItemStatusLabel">Particulier</span>						</div>
+						<div class="topNeighbors__cardItemName">Hocine</div>
+												<div class="topNeighbors__cardItemRating"><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><g fill="none"><path fill="#FFC44C" d="M12.003 0c-.369 0-.71.196-.897.516L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537 12.003 0z"></path><path fill="#E6E6E6" d="M12 0c.369 0 .71.196.897.516l3.169 6.447 7.08 1.034a1.01 1.01 0 0 1 .556 1.714l-5.125 5.022 1.21 7.092c.064.377-.09.758-.399.983a.995.995 0 0 1-1.053.076l-6.332-3.347L12 0z"></path></g></g></svg></div>
+											</div>
+									</div>
+				<div class="topNeighbors__cardItemCategory">
+					Déménagement				</div>
+				<div class="topNeighbors__cardItemDescription">
+					Merci Hocine sympathique très rapide et pas cher je recommande 				</div>
+				<div class="topNeighbors__cardItemLocation card__footer mg-top">
+					<div class="text-s mainlight mg-top-s">
+						<span class='iconav iconav-map-pin'></span>
+						Limeil-Brévannes					</div>
+				</div>
+			</a>
+						<a class="topNeighbors__cardItem card shadow--xsmall col-1-4 link" href="https://www.allovoisins.com/profil/256432-ben-bures-sur-yvette">
+				<div class="topNeighbors__cardItemId grid mg-bottom">
+					<div class="img-rounded img-rounded--small no-grow mg-right-s">
+						<img src="https://static.allovoisins.com/uploads/u/avatars/c/e/d/ced4ca6995_256432_m.jpg" alt="avatar" />
+					</div>
+					<div class="topNeighbors__cardItemInfos mg-right-s">
+						<div class="topNeighbors__cardItemStatus badge">
+							<span class="topNeighbors__cardItemStatusLabel">Particulier</span>						</div>
+						<div class="topNeighbors__cardItemName">Ben</div>
+												<div class="topNeighbors__cardItemRating"><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><g fill="none"><path fill="#FFC44C" d="M12.003 0c-.369 0-.71.196-.897.516L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537 12.003 0z"></path><path fill="#E6E6E6" d="M12 0c.369 0 .71.196.897.516l3.169 6.447 7.08 1.034a1.01 1.01 0 0 1 .556 1.714l-5.125 5.022 1.21 7.092c.064.377-.09.758-.399.983a.995.995 0 0 1-1.053.076l-6.332-3.347L12 0z"></path></g></g></svg></div>
+											</div>
+									</div>
+				<div class="topNeighbors__cardItemCategory">
+					Dépannage électroménager				</div>
+				<div class="topNeighbors__cardItemDescription">
+					Très professionnel, diagnostic vite établi. Dépannage sous 48h.
+				</div>
+				<div class="topNeighbors__cardItemLocation card__footer mg-top">
+					<div class="text-s mainlight mg-top-s">
+						<span class='iconav iconav-map-pin'></span>
+						Bures-Sur-Yvette					</div>
+				</div>
+			</a>
+						<a class="topNeighbors__cardItem card shadow--xsmall col-1-4 link" href="https://www.allovoisins.com/profil/1497612-patricia-paris-14e-arrondissement">
+				<div class="topNeighbors__cardItemId grid mg-bottom">
+					<div class="img-rounded img-rounded--small no-grow mg-right-s">
+						<img src="https://static.allovoisins.com/uploads/u/avatars/2/4/e/24e0d37667_1497612_m.jpg" alt="avatar" />
+					</div>
+					<div class="topNeighbors__cardItemInfos mg-right-s">
+						<div class="topNeighbors__cardItemStatus badge">
+							<span class="topNeighbors__cardItemStatusLabel">Particulier</span>						</div>
+						<div class="topNeighbors__cardItemName">Patricia</div>
+												<div class="topNeighbors__cardItemRating"><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><path fill="#FFC44C" d="M23.143 7.997l-7.08-1.034L12.9.516a1.04 1.04 0 0 0-1.794 0L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537l6.332 3.347a.995.995 0 0 0 1.053-.076c.308-.225.462-.606.398-.983l-1.209-7.092L23.7 9.712a1.01 1.01 0 0 0 .252-1.03 1.001 1.001 0 0 0-.806-.685h-.002z"></path></g></svg><svg class="" xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23"><g class="nc-icon-wrapper"><g fill="none"><path fill="#FFC44C" d="M12.003 0c-.369 0-.71.196-.897.516L7.937 6.963.857 7.997a1.01 1.01 0 0 0-.556 1.714l5.125 5.022-1.21 7.092c-.064.377.09.758.399.983a.995.995 0 0 0 1.053.076L12 19.537 12.003 0z"></path><path fill="#E6E6E6" d="M12 0c.369 0 .71.196.897.516l3.169 6.447 7.08 1.034a1.01 1.01 0 0 1 .556 1.714l-5.125 5.022 1.21 7.092c.064.377-.09.758-.399.983a.995.995 0 0 1-1.053.076l-6.332-3.347L12 0z"></path></g></g></svg></div>
+											</div>
+									</div>
+				<div class="topNeighbors__cardItemCategory">
+					Garde chat				</div>
+				<div class="topNeighbors__cardItemDescription">
+					Ras ....il s’agissait d’informations 				</div>
+				<div class="topNeighbors__cardItemLocation card__footer mg-top">
+					<div class="text-s mainlight mg-top-s">
+						<span class='iconav iconav-map-pin'></span>
+						Paris 14e Arrondissement					</div>
+				</div>
+			</a>
+					</div>
+		<div class="topNeighbors__buttonsWrapper">
+			<div class="topNeighbors__button topNeighbors__button--green flex flex-center">
+				<a class="topNeighbors__buttonLink btn btn--blue mg-top-l link" data-link="https://www.allovoisins.com/p#arrival">Voir tous les Voisins à la Une</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-md-4 leftpane">
+    <h3>Apple</h3>
+    <a [routerLink]="['/categories/Apple']">
+      <img src="/assets/image/apple.png" alt="Apple logo" class="logo">
+    </a>
+    <p>Display an annonce</p>
   </div>
-
-  <div class="row">
-    <div class="col-md-4 leftpane">
-      <h3>Apple</h3>
-      <a [routerLink]="['/categories/Apple']">
-        <img src="/assets/image/apple.png" alt="Apple logo" class="logo">
-      </a>
-      <p>Apple Inc. is an American multinational technology company headquartered in Cupertino, California, that
-        designs, develops and sells consumer electronics, computer software, and online services. It is considered one
-        of the Big Tech technology companies, alongside Amazon, Google, Microsoft, and Facebook.</p>
-    </div>
-    <div class="vl"></div>
-    <div class="col-md-4 middlepane">
-      <h3>Samsung</h3>
-      <a [routerLink]="['/categories/Samsung']">
-        <img src="/assets/image/samsung.svg" alt="Samsung logo" class="logo">
-      </a>
-      <p>The Samsung Group is a South Korean multinational conglomerate headquartered in Samsung Town, Seoul. It
-        comprises numerous affiliated businesses, most of them united under the Samsung brand, and is the largest South
-        Korean chaebol. Samsung was founded by Lee Byung-chul in 1938 as a trading company.</p>
-    </div>
-    <div class="vl"></div>
-    <div class="col-md-4 rightpane">
-      <h3>Huawei</h3>
-      <a [routerLink]="['/categories/Huawei']">
-        <img src="/assets/image/huawei.png" alt="Huawei logo" class="logo">
-      </a>
-      <p>Huawei Technologies Co., Ltd. is a Chinese multinational technology company headquartered in Shenzhen,
-        Guangdong. It designs, develops, and sells telecommunications equipment and consumer electronics. The company
-        was founded in 1987 by Ren Zhengfei, a former Deputy Regimental Chief in the People's Liberation Army.</p>
-    </div>
+  <div class="vl"></div>
+  <div class="col-md-4 middlepane">
+    <h3>Samsung</h3>
+    <a [routerLink]="['/categories/Samsung']">
+      <img src="/assets/image/samsung.svg" alt="Samsung logo" class="logo">
+    </a>
+    <p>Display an annonce</p>
+  </div>
+  <div class="vl"></div>
+  <div class="col-md-4 rightpane">
+    <h3>Huawei</h3>
+    <a [routerLink]="['/categories/Huawei']">
+      <img src="/assets/image/huawei.png" alt="Huawei logo" class="logo">
+    </a>
+    <p>Display an annonce</p>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+

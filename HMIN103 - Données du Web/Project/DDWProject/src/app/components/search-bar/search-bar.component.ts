@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output } from '
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
-import { Product             } from '../../../../models/DataInterface'    ;
+import { Annonce             } from '../../../../models/DataInterface'    ;
 
 @Component({
     selector: 'app-search-bar',
@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
 
     myControl = new FormControl();
     filteredOptions: Observable<string[]>;
-    allPosts: Product[];
+    allPosts: Annonce[];
     autoCompleteList: any[]
 
     @ViewChild('autocompleteInput') autocompleteInput: ElementRef;
@@ -27,7 +27,7 @@ export class SearchBarComponent implements OnInit {
 
         // get all the post
         this.dataService.getPosts().subscribe(posts => {
-            this.allPosts = posts['products'];
+            this.allPosts = posts['annonces'];
         });
 
         // when user types something in input, the value changes will come through this
@@ -57,7 +57,7 @@ export class SearchBarComponent implements OnInit {
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input
-    displayFn(post: Product) {
+    displayFn(post: Annonce) {
         let k = post ? post.name : post;
         return k;
     }

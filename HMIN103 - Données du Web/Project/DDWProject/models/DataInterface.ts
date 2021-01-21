@@ -7,13 +7,13 @@ export interface DataInterface{
 
 
 
-export interface Product {
+export interface Annonce {
   name: string,
   price: string,
   image: string,
   category: string,
   type: string,
-  productImage: string,
+  annonceImage: string,
   description: [string]
 }
 
