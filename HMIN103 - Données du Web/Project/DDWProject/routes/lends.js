@@ -41,13 +41,13 @@ mongoose.connection.on("Error", (err) => {
 });
 
 // AnnonceComponent
-// All annonces of all companies.
+// All annonces.
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
     Lend.find({ uid: req.user._id })
-      .select("annonce _id quantity")
+      .select("annonce _id quantity days")
       .populate("annonce", "price name")
       .exec()
       .then((docs) => {
@@ -58,6 +58,7 @@ router.get(
               _id: doc._id,
               annonce: doc.annonce,
               quantity: doc.quantity,
+              days: doc.days,
               request: {
                 type: "GET",
                 url: "http://localhost:8888/lends/" + doc._id,
@@ -87,6 +88,7 @@ router.get(
         }
         res.status(200).json({
           lend: lend,
+          // days: days,
           request: {
             type: "GET",
             url: "http://localhost:8888/lends",
@@ -109,6 +111,51 @@ router.patch(
     });
   }
 );
+
+
+
+
+// my-ads.
+router.get(
+  "/myads",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    Lend.find({ owner: req.user._id })
+      .select("annonce _id quantity days")
+      .populate("annonce", "price name")
+      .exec()
+      .then((docs) => {
+        res.status(200).json({
+          // lends: docs.length,
+          lends: docs.map((doc) => {
+            return {
+              _id: doc._id,
+              annonce: doc.annonce,
+              quantity: doc.quantity,
+              days: doc.days,
+              request: {
+                type: "GET",
+                url: "http://localhost:8888/lends/" + doc._id,
+              },
+            };
+          }),
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err });
+      });
+  }
+);
+
+
+
+
+
+
+
+
+
+
 
 router.delete(
   "/:lid",
@@ -148,6 +195,7 @@ router.post(
           quantity: req.body.quantity,
           annonce: req.body.aid,
           uid: req.user._id,
+          days: req.body.days,
         });
         return lend.save();
       })
@@ -157,6 +205,7 @@ router.post(
           createdlend: {
             annonce: result.annonce,
             quantity: result.quantity,
+            days: result.days,
           },
           request: {
             type: "GET",

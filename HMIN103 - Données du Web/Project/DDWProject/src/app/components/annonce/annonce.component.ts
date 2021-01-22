@@ -1,10 +1,12 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core'              ;
 import { HttpClient                     } from '@angular/common/http'                ;
 import { ActivatedRoute, Params, Router } from '@angular/router'                     ;
 import { Annonce                        } from '../../../../models/DataInterface'    ;
 import { AnnonceService                 } from '../../services/annonce.service'      ;
-import { LendService                    } from '../../services/lend.service'        ;
+import { LendService                    } from '../../services/lend.service'         ;
 import { DataService                    } from '../../services/data.service'         ;
+import { BsDatepickerConfig             } from 'ngx-bootstrap/datepicker'            ;
+import { AuthService         } from '../../services/auth.service';
 
 @Component({
   selector: 'app-annonce',
@@ -16,19 +18,44 @@ export class AnnonceComponent implements OnInit {
   annonces: Annonce[];
   item: object;
   id:string;
-  posts: Annonce[]
+  posts: Annonce[];
   count: number;
+  start : Date = new Date(2021,1,23);
+  end : Date = new Date(2021,1,31);
+  dateRange: Date[];
+  days: number;
+  user: Object;
+
+
 
   // @Output()
   // removeDetailsAnnonce:EventEmitter<Annonce> = new EventEmitter<Annonce>();
 
+  datePickerConfig: Partial<BsDatepickerConfig>;
 
 constructor(
   private http: HttpClient,
   private annonceService: AnnonceService,
   private lendService: LendService,
   private dataService: DataService,
-  private router: Router) { }
+  public  authService : AuthService,
+
+  private router: Router) {
+
+    this.datePickerConfig =Object.assign({},{
+      containerClass: 'theme-dark-blue',
+      minDate: new Date(2021,1,23),
+      maxDate: new Date(2021,2,31),
+      dateInputFormat: 'DD/MM/YYYY',
+      showTodayButton: true,
+      maxDateRange: 10,
+      isAnimated: true,
+
+    });
+
+    this.dateRange = [this.start, this.end];
+    this.days = this.getDays();
+   }
 
 ngOnInit(){
 
@@ -36,6 +63,16 @@ ngOnInit(){
     this.posts = posts['annonces'];
     this.dataService.postsData = posts
   });
+
+  this.authService.getProfile().subscribe((profile: any) => {
+    this.user = profile.user;
+  },
+  err => {
+    console.log(err);
+    return false;
+  });
+
+
 }
 
 onSelectedOption(e) {
@@ -55,6 +92,7 @@ getFilteredExpenseList() {
 addCartItems(aid) {
   this.lendService.onAddToCard(aid).subscribe();
   this.router.navigate(['/lends/']);
+  return this.days;
   }
 
 getAnnonceItemById(aid){
@@ -75,5 +113,15 @@ removeAnnonce(aid) {
 }
 
 
+lendDays(date1:any, date2:any) {
+	return new Date(date2 - date1).getDate() - 1
+}
+
+getDays(){
+  return  this.lendDays(this.dateRange[0],this.dateRange[1]);
+}
+
 
 }
+
+

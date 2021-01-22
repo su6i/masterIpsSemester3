@@ -1,6 +1,5 @@
 <div *ngIf="user">
   <mat-toolbar color="primary">{{user.firstName}}'s dashboard</mat-toolbar>
-  <p>Welcome to your dashboard</p>
   <ul class="list-group">
 
     <li class="list-group-item"><a [routerLink]="['/lends']">Lends</a></li>
@@ -9,3 +8,6 @@
     <li class="list-group-item"><a [routerLink]="['/']">Favorites</a></li>
   </ul>
 </div>
+
+
+<app-footer></app-footer>

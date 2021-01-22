@@ -10,7 +10,7 @@ export class LendService {
 
   aid: string;
   quantity: number;
-
+  days: number;
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,8 @@ export class LendService {
     return this.http.post(
       url, {
       "aid": aid,
-      "quantity" : 1
+      "quantity" : 1,
+      // "days": req.body.days,
     })
   }
   getCartItems(){

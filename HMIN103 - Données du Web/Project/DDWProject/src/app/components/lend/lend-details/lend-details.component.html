@@ -1,3 +1,6 @@
+<pre>
+  {{lend | json}}
+</pre>
 <mat-toolbar color="primary" *ngIf="lend">{{lend['annonce']['name']}}</mat-toolbar>
 
 <div class="group" *ngIf="lend">
@@ -14,6 +17,10 @@
   <ul *ngFor="let description of lend['annonce']['description']">
     <li class="desc">{{description}}</li>
   </ul>
+
+
+  <p><b>Days: </b>{{lend['days']}}</p>
+
   <div style="overflow: hidden;">
     <p class="button left"><button (click)="removeCartItems(lend['_id'])" class="btn">Remove</button></p>
     <p class="button right"><button (click)="backClicked()" class="btn">Back</button></p>

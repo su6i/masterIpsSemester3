@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router            } from '@angular/router'                 ;
 import { AuthService       } from '../../services/auth.service'     ;
+import { first } from 'rxjs/operators';
+import { User } from '../../../../models/user';
+
 
 @Component({
   selector: 'app-users',
@@ -8,7 +11,8 @@ import { AuthService       } from '../../services/auth.service'     ;
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  users: Object[];
+  // users: Object[];
+  users!: User[];
   items = [];
   pageOfItems: Array<any>;
 
@@ -29,6 +33,15 @@ export class UsersComponent implements OnInit {
       return false;
     }
     );
+
+
+    this.authService.getAll()
+    .pipe(first())
+    .subscribe(users => this.users = users);
+
+
+
+
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -44,6 +57,25 @@ removeUser(uid) {
     })
   });
 }
+
+
+
+
+
+
+
+deleteUser(id: string) {
+  const user = this.users.find(x => x['_id'] === id);
+  if (!user) return;
+  // user.isDeleting = true;
+  this.authService.delete(id)
+      .pipe(first())
+      .subscribe(() => this.users = this.users.filter(x => x['_id'] !== id));
+}
+
+
+
+
 
 
 

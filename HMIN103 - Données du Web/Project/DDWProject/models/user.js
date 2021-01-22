@@ -87,3 +87,5 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
     callback(null, isMatch);
   });
 };
+
+

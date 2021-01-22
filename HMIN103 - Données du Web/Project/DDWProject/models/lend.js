@@ -10,9 +10,7 @@ const LendSchema = mongoose.Schema({
   },
   quantity: { type: Number, default: 1 },
   uid: mongoose.Schema.Types.ObjectId,
-  dateReturn  : {
-    type: mongoose.Schema.Types.Date,
-  },
+  days  : Number, default: 0,
 });
 
 const Lend = (module.exports = mongoose.model("Lend", LendSchema));

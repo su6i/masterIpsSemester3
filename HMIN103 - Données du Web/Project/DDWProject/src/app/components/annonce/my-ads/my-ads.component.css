@@ -1,0 +1,44 @@
+.group {
+  width: 70%;
+  margin:auto;
+  background: rgb(241, 238, 233);
+  padding: 15px;
+  margin-top:12px;
+}
+
+
+#content {
+  position: relative;
+}
+#content img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+div.button{
+  overflow: hidden;
+}
+p.button{
+  display: inline-block;
+  background-color: #008CBA;
+  text-align: center;
+  padding: 0 60px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 25%;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+  border: 2px solid #008CBA;
+}
+
+.button:hover {
+  background-color:white;
+  color: white;
+  border: 2px solid #008CBA;
+}
+
+img {
+  border: 2px solid #4CAF50;
+}
+

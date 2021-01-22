@@ -1,1 +1,185 @@
-<p>add-edit-annonce works!</p>
+ <mat-toolbar color="primary">New User</mat-toolbar>
+<!--
+<div class="fadein">
+  <div class="alert alert-danger" *ngIf="errSwitch" role="alert">{{ errMsg }}</div>
+  <div class="alert alert-success" *ngIf="succSwitch" role="alert">{{ succMsg }}</div>
+  <form #regForm="ngForm" (ngSubmit)="onRegisterSubmit2(regForm)" enctype='multipart/form-data'>
+
+    <div class="form-group">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Name</legend>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="firstName">First Name <sup class="red">*</sup></label>
+          <input required name="firstName" id="name" #firstName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="price">Last Name</label>
+          <input required name="price" id="price" #lastName="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-group onerow col-xl-4">
+          <label for="photo">Upload file</label>
+          <input required name="photo" id="photo" #photo="ngModel" ngModel type="file" class="form-control" >
+        </div>
+        <br> -->
+
+        <!-- <mat-form-field>
+          <ngx-mat-file-input [formControl]="fileController" [multiple]="multiple" [accept]="accept" [color]="blue">
+            <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </ngx-mat-file-input>
+       </mat-form-field> -->
+
+<!--
+    </fieldset>
+
+
+</div>
+
+    <div class="form-group">
+      <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Address and Phone</legend>
+        <div class="onerow col-xl-1">
+          <label for="number">Number</label>
+          <input required name="number" id="number" #number="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-4">
+          <label for="street">Street</label>
+          <input required name="street" id="street" #street="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-2">
+          <label for="postal">Postal code</label>
+          <input required name="postal" id="postal" #postal="ngModel" ngModel type="text" class="form-control" >
+        </div>
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="city">City</label>
+          <input required name="city" id="city" #city="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        -
+        <div class="onerow col-xl-2 ">
+          <label for="phone">Phone</label>
+          <input required name="phone" id="phone" #phone="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+      </fieldset>
+
+
+    </div>
+
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Login</legend>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="username">Username <sup class="red">*</sup></label>
+          <input required name="username" id="username" #username="ngModel" ngModel type="text" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="description">Email <sup class="red">*</sup></label>
+          <input required name="description" id="description" #description="ngModel" ngModel type="description" class="form-control">
+        </div>
+
+        <div class="form-group onerow col-xl-3">
+          <label for="password">Password <sup class="red">*</sup></label>
+          <input required name="password" id="password" #password="ngModel" ngModel type="password" class="form-control">
+        </div>
+  </fieldset>
+
+
+    <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!regForm.valid || submitSwitch">
+  </form>
+</div>
+
+
+
+
+ -->
+
+
+<!-- ---------------- -->
+
+<p style="margin-top: 100px;"></p>
+
+{{ annonce | json}}
+
+
+<h1 *ngIf="isAddMode">Add Ads</h1>
+<h1 *ngIf="!isAddMode">Edit Ads</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="panel-body" formGroupName="annonce">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Type</label>
+            <select formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                <option value=""></option>
+                <option value="Watch">Watch</option>
+                <option value="PC">PC</option>
+                <option value="Mobile">Mobile</option>
+                <option value="Laptop">Laptop</option>
+            </select>
+            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                <div *ngIf="f.type.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Category</label>
+            <select formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                <option value=""></option>
+                <option value="Watch">Apple</option>
+                <option value="PC">Sumsung</option>
+                <option value="Mobile">Huawei</option>
+                <option value="Laptop">LG</option>
+            </select>
+            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                <div *ngIf="f.category.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Name</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Keywords</label>
+            <input type="text" formControlName="keywords" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.keywords.errors }" />
+            <div *ngIf="submitted && f.keywords.errors" class="invalid-feedback">
+                <div *ngIf="f.keywords.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Price</label>
+            <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required">Last Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Description</label>
+            <input type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">Email is required</div>
+                <div *ngIf="f.description.errors.required">Email must be a valid description address</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/users" class="btn btn-link">Cancel</a>
+    </div>
+  </div>
+</form>

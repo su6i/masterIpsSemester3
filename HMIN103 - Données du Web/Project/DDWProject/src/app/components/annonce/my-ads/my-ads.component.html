@@ -1,9 +1,9 @@
-<mat-toolbar color="primary" *ngIf="posts">Avaiable advertisements: {{ posts.length }}</mat-toolbar>
+<mat-toolbar color="primary" *ngIf="posts">My advertisements: {{ posts.length }}</mat-toolbar>
 
 <div style="margin:auto; width: 70%; margin-top: 30px;">
   <app-search-bar (onSelectedOption)="onSelectedOption($event)"></app-search-bar>
 </div>
-<h2 style="text-align:center">Advertisements</h2>
+<h2 style="text-align:center">My Advertisements</h2>
 
 
 <div *ngFor="let post of posts" class="group">
@@ -25,7 +25,7 @@
 
   <pre *ngIf="dateRange"
     class="code-preview">You'll lend this article for {{lendDays(dateRange[0],dateRange[1])}} days!
-    <input type="text" name="days" value="{{lendDays(dateRange[0],dateRange[1])}}" >
+    <input type="text" name="days" id="" value="{{lendDays(dateRange[0],dateRange[1])}}" >
 
   </pre>
 
@@ -33,9 +33,10 @@
 
 
   <div style="overflow: hidden;">
-    <p class="button" *ngIf="authService.loggedIn()">            <button (click)="addCartItems(post['_id'])" class="btn">Add</button></p>
+    <p class="button">            <button routerLink="/addAds" class="btn">Add</button></p>
+    <p class="button">            <button routerLink="/editAds/{{post['_id']}}" class="btn">Update</button></p>
     <p class="button">            <button (click)="getAnnonceItemById(post['_id'])" class="btn">Details</button></p>
-    <p class="button text-danger" *ngIf="authService.loggedIn()"><button (click)="removeAnnonce(post['_id'])" class="btn">Remove</button></p>
+    <p class="button text-danger"><button (click)="removeAnnonce(post['_id'])" class="btn">Remove</button></p>
   </div>
 </div>
 

@@ -1,13 +1,16 @@
-<mat-toolbar color="primary">Lends</mat-toolbar>
-<div *ngIf='lends'>
 
+<div *ngIf='lends' style="margin-top: 50px;">
+  <mat-toolbar color="primary">
+    Avaiable Lends: {{ lends.length }} <span style="margin-left:150px">Total price of Lends: {{ sum | number }}</span>
+  </mat-toolbar>
   <div class="group" *ngFor="let lend of lends">
+    days {{lend['annonce']['days']}}
     <p><b>Lend ID: </b>{{lend['_id']}}</p>
     <p id="name"><b>Name: </b>{{lend['annonce']['name']}}</p>
     <p id="price"><b>Price: </b>{{lend['annonce']['price']}}</p>
     <div style="overflow: hidden;">
-      <p class="button left"><button (click)="removeCartItems(lend._id)" class="btn">Remove</button></p>
-      <p class="button right"><button (click)="getCartItemById(lend._id)" class="btn">Details</button></p>
+      <p class="button left"><button (click)="removeCartItems(lend['_id'])" class="btn">Remove</button></p>
+      <p class="button right"><button (click)="getCartItemById(lend['_id'])" class="btn">Details</button></p>
     </div>
   </div>
 

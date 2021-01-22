@@ -2,6 +2,7 @@ import { Injectable                           } from '@angular/core'            
 import { HttpClient, HttpHeaders              } from '@angular/common/http'             ;
 import { tap                                  } from 'rxjs/operators'                   ;
 import { Observable                           } from 'rxjs'                             ;
+import { User } from '../../../models/user';
 
 
 
@@ -9,8 +10,8 @@ import { Observable                           } from 'rxjs'                     
   providedIn: 'root'
 })
 export class AuthService {
-
   private baseURL: string = "http://localhost:8888";
+
 
   authToken: any;
   user: any;
@@ -133,6 +134,27 @@ export class AuthService {
     return this.http.delete(url)
   }
 
+
+create(params: any) {
+  return this.http.post(`${this.baseURL}/users`, params);
+}
+
+update(id: string, params: any) {
+    return this.http.put(`${this.baseURL}/users/${id}`, params);
+}
+
+delete(id: string) {
+    return this.http.delete(`${this.baseURL}/${id}`);
+}
+
+
+getById(id: string) {
+  return this.http.get<any>(`${this.baseURL}/users/${id}`);
+}
+
+getAll() {
+  return this.http.get<User[]>(this.baseURL);
+}
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit                 } from '@angular/core';
+import { Component, OnInit                 } from '@angular/core'                     ;
 import { ActivatedRoute, Params, Router    } from '@angular/router'                   ;
 import { Observable                        } from 'rxjs'                              ;
 import { AnnonceService                    } from 'src/app/services/annonce.service'  ;
@@ -51,6 +51,14 @@ export class LendComponent implements OnInit {
       })
     });
   }
+
+
+  get sum() {
+
+    return this.lends.map(l => l['annonce']['price']).reduce((a, b) => Number(a) +Number(b), 0);
+  }
+
+
 
 
 }
