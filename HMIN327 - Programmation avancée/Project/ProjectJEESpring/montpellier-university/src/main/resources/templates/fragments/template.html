@@ -150,12 +150,44 @@
                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
                   <a class="page-link" th:href="${currentPage == 1} ? '#' : ${currentPage - 1}">Previous</a>
                </li>
-               <th:block th:each="i: ${#numbers.sequence(1, totalPages)}">
                
-                   <li class="page-item" th:classappend="${i == currentPage} ? 'active' : ''">
-                      <a class="page-link" th:href="@{${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
-                   </li>
-               </th:block>
+               
+               
+               
+               	<th:block th:if="${totalPages <= 10}">
+	                   <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}" th:classappend="${i == currentPage} ? 'active' : ''">
+	                      <a class="page-link" th:href="@{${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+	                   </li>
+                </th:block>
+                
+                <th:block class="page-item" th:if="${totalPages > 10}">
+               				 <th:block th:if="${currentPage <= 5 || currentPage > totalPages - 4}">
+				                   <li class="page-item" th:each="i: ${#numbers.sequence(1, 5)}" th:classappend="${i == currentPage} ? 'active' : ''">
+				                      <a class="page-link" th:href="@{${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+				                   </li>
+				                   <li class="page-item">
+ 				 				  		<a class="page-link" th:href="@{6 + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">...</a>
+ 				 				   </li>
+ 				 				   <li class="page-item" th:each="i: ${#numbers.sequence(totalPages -4, totalPages)}" th:classappend="${i == currentPage} ? 'active' : ''">
+				                      <a class="page-link" th:href="@{${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+				                   </li>
+ 				 				  
+               				 </th:block>
+               				 
+               				 <th:block th:if="${currentPage > 5 && currentPage <= totalPages - 4}">
+               				 		<li>
+ 				 				  		<a class="page-link" th:href="@{${currentPage -5} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">...</a>
+ 				 				   </li>
+ 				 				   <li class="page-item" th:each="i: ${#numbers.sequence(currentPage -4, currentPage + 4)}" th:classappend="${i == currentPage} ? 'active' : ''">
+				                      <a class="page-link" th:href="@{${i} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">[[${i}]]</a>
+				                   </li>
+ 				 				   <li>
+ 				 				  		<a class="page-link" th:href="@{${currentPage +5} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">...</a>
+ 				 				   </li>
+               				 </th:block>
+                 </th:block>
+               
+               
                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">
                   <a class="page-link" th:href="${currentPage == totalPages} ? '#' : @{${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDirection=' + ${sortDirection}}">Next</a>
                </li>
@@ -169,6 +201,11 @@
             </div>
          </nav>
       </th:block>
+
+
+
+
+
 
 
       <th:block th:fragment="pagination-card">
@@ -185,12 +222,22 @@
                <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled' : ''">
                   <a class="page-link" th:href="${currentPage == 1} ? '#' : ${currentPage - 1}">Previous</a>
                </li>
-               <th:block th:each="i: ${#numbers.sequence(1, totalPages)}">
+	               <!-- <th:block th:each="i : ${#numbers.sequence(beginIndex, endIndex)} "> -->
                
-                   <li class="page-item" th:classappend="${i == currentPage} ? 'active' : ''">
-                      <a class="page-link" th:href="@{${i}}">[[${i}]]</a>
-                   </li>
+               
+               <th:block th:if="${totalPages <= 10}">
+	                <th:block th:each="i: ${#numbers.sequence(1, totalPages)}">
+	               
+	                   <li class="page-item" th:classappend="${i == currentPage} ? 'active' : ''">
+	                      <a class="page-link" th:href="@{${i}}">[[${i}]]</a>
+	                   </li>
+	               </th:block>
                </th:block>
+               <th:block th:unless="${totalPages <= 10}">
+               				Oh my God
+               </th:block>
+               
+               
                <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled' : ''">
                   <a class="page-link" th:href="${currentPage == totalPages} ? '#' : ${currentPage + 1}">Next</a>
                </li>

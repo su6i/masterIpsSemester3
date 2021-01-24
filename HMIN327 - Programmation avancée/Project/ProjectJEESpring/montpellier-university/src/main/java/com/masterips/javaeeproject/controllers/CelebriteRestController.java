@@ -96,7 +96,7 @@ public class CelebriteRestController {
 		public Celebrite getCelebriteById(Model model, @PathVariable("numCelebrite") long numCelebrite) {
 			Celebrite celebrite = appService.getCelebriteById(numCelebrite);
 			
-		  model.addAttribute("celebrite", celebrite);
+			model.addAttribute("celebrite", celebrite);
 		
 			return celebrite;
 		}

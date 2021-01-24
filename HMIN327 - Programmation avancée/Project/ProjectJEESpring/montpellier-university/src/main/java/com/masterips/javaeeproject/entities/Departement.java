@@ -9,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 @Table(name = "departement")
@@ -28,6 +30,7 @@ public class Departement implements Serializable {
 	@Column(name = "nomDep", length = 30)
 	private String nomDep;
         
+//	@NotBlank(message = "Chef Lieu is mandatory")
     @JsonManagedReference
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
@@ -89,13 +92,15 @@ public class Departement implements Serializable {
 		return lieu;
 	}
 
+	@JsonSetter
 	public void setLieu(Lieu lieu) {
-		String chefLieu = this.getLieu().getCodeInsee();
-		if(chefLieu != null) {
-			setLieu(lieu);
-		} else {
-			setLieu(new Lieu(chefLieu));
-		}
+//		String chefLieu = this.getLieu().getCodeInsee();
+//		if(chefLieu != null) {
+//			setLieu(lieu);
+//		} else {
+//			setLieu(new Lieu(chefLieu));
+//		}
+		this.lieu = lieu;
 	}
 
 	
@@ -114,7 +119,7 @@ public class Departement implements Serializable {
 	@Override
     public String toString() {
         return "N°: " + this.numDep + ", Nom: " + this.nomDep +
-        		", Ch.L.: " + this.lieu.getCodeInsee()  ;
+        		", Ch.L.: " + this.lieu;
         					 
     }
 	

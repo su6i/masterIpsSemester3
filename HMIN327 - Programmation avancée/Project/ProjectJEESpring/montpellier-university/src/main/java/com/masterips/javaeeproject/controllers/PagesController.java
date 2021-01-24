@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.istack.NotNull;
@@ -52,6 +54,9 @@ public class PagesController {
 	
 	@Autowired
 	private CelebriteRepository celebriteRepository;
+	
+	@Autowired
+    private ModelMapper modelMapper;
 
 
 	private HttpSession colorSession;
@@ -170,7 +175,7 @@ public class PagesController {
 
       
 
-      	  // Form for add a new departement
+      	  //departement add form
 
 	  @GetMapping("departements/add")
 	  String add(Model model, @ModelAttribute("newDepartement") Departement newDepartement) {
@@ -182,16 +187,27 @@ public class PagesController {
 	    
 	  }
 
-	  
+	  	// new departement
+	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("departements")
-	    public String saveEmp(@Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
-	        appService.addDepartement(newDepartement);
-	        if(result.hasErrors()){
-	            return "departement/add";
-	        }
-	        ra.addFlashAttribute("newDepartement", newDepartement);
-	        return "redirect:/departements/card/page/1";
+	    public String saveDep(Model model, @Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
+	    	try {
+	    		
+	    		System.out.println("\n\n\n newDepartement: "+ newDepartement + "\n\n\nlieu: " + newDepartement.getLieu().getCodeInsee());
+	    		appService.addDepartement(newDepartement);
+//	    		ra.addFlashAttribute("newDepartement", newDepartement);
+//	    		return "redirect:/departements/page/1";
+	    		return "departement/add";
+				
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+					return "departement/add";
+			
 	    }
+	    }
+	    
+	    
+	    
 
         @DeleteMapping("departements/{id}")
         public ResponseEntity<String> deleteDepartementById(@PathVariable String numDep) {
@@ -287,9 +303,9 @@ public class PagesController {
 	    
 	  }
 
-	  
+	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("lieux")
-	    public String saveEmp(@Valid @NotNull @ModelAttribute("newLieu") Lieu newLieu, BindingResult result, RedirectAttributes ra){
+	    public String saveLieu(@Valid @NotNull @ModelAttribute("newLieu") Lieu newLieu, BindingResult result, RedirectAttributes ra){
 	        appService.addLieu(newLieu);
 	        if(result.hasErrors()){
 	            return "lieu/add";
@@ -391,9 +407,9 @@ public class PagesController {
 	    
 	  }
 
-	  
+	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("monuments")
-	    public String saveEmp(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
+	    public String saveMonument(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
 	        appService.addMonument(newMonument);
 	        if(result.hasErrors()){
 	            return "monument/add";
@@ -502,15 +518,13 @@ public class PagesController {
   	}
 
       
-	  // Form for add a new celebrity
-
+	  // celebrity add form
 	  @GetMapping("celebrities/add")
 	  String add(Model model, Celebrite newCelebrite) {
 		  try {
 			  color(model);
 			  celebriteRepository.save(newCelebrite);
               model.addAttribute("newCelebrite",newCelebrite);
-              model.addAttribute("id", newCelebrite.getNumCelebrite());
 			  
 	    	}catch (Exception e) {
 	    		model.addAttribute("message",e);
@@ -522,6 +536,8 @@ public class PagesController {
 	  }
 
 	  
+	  	// add a new celebrity
+	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("celebrities")
 	    public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){
 	        try {
@@ -535,6 +551,7 @@ public class PagesController {
             }
 	    }
 		
+	      @ResponseStatus(HttpStatus.OK)
 		  @GetMapping("celebrities/modify/{id}")
 		  public String modifyCelebrite(Model model, @PathVariable(value="id") long id) {
 			  try {
@@ -557,21 +574,23 @@ public class PagesController {
 		  public String replaceCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
 			  
 			  try {
-				  Celebrite updateCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
-				  updateCelebrite.setNom(newCelebrite.getNom());
-				  updateCelebrite.setPrenom(newCelebrite.getPrenom());
-				  updateCelebrite.setNumCelebrite(newCelebrite.getNumCelebrite());
-				  updateCelebrite.setNationalite(newCelebrite.getNationalite());
-				  updateCelebrite.setImage(newCelebrite.getImage());
-				  updateCelebrite.setUrl(newCelebrite.getUrl());
-				  updateCelebrite.setParent_url(newCelebrite.getParent_url());
+//				  Celebrite updateCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
+//				  updateCelebrite.setNom(newCelebrite.getNom());
+//				  updateCelebrite.setPrenom(newCelebrite.getPrenom());
+//				  updateCelebrite.setNumCelebrite(newCelebrite.getNumCelebrite());
+//				  updateCelebrite.setNationalite(newCelebrite.getNationalite());
+//				  updateCelebrite.setImage(newCelebrite.getImage());
+//				  updateCelebrite.setUrl(newCelebrite.getUrl());
+//				  updateCelebrite.setParent_url(newCelebrite.getParent_url());
 				  
 //				  celebriteRepository.updateCelebrite(newCelebrite.getNom(), newCelebrite.getPrenom(), newCelebrite.getNationalite(), 
 //						  newCelebrite.getEpoque(), newCelebrite.getNumCelebrite());
-				  celebriteRepository.save(updateCelebrite);
-				  model.addAttribute("updateCelebrite", updateCelebrite);
-				  model.addAttribute("idf", id);
-				  model.addAttribute("newCelebrite_vodoudi", newCelebrite);
+//				  celebriteRepository.save(updateCelebrite);
+//				  model.addAttribute("updateCelebrite", updateCelebrite);
+//				  model.addAttribute("idf", id);
+//				  model.addAttribute("newCelebrite_vodoudi", newCelebrite);
+				  
+//				  appService.updateCelebriteObject(newCelebrite);
 //				  celebriteRepository.saveAndFlush(updateCelebrite);
 			} catch (Exception e) {
 				
@@ -581,6 +600,15 @@ public class PagesController {
 		        return "redirect:/celebrities/page/1";
 		  }
 
+		  
+		  
+		    
+		    
+		    
+		    
+		    
+		    
+		    
 		  		  
 		  
 

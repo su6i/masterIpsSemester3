@@ -124,7 +124,7 @@ create table if not exists users_roles (
     constraint pk_users_roles primary key (email, role)
 );
 
-  insert into users values ("amir@gmail.com",md5("123"),1),("voy@gmail.com",md5("123"),1), ("tour@gmail.com",md5("123"),1);
+ insert into users values ("amir@gmail.com",md5("123"),1),("voy@gmail.com",md5("123"),1), ("tour@gmail.com",md5("123"),1);
  insert into roles values ("ADMIN"),("VOYAGISTE"),("TOURISTE");
  insert into users_roles values ("tour@gmail.com","TOURISTE"),("amir@gmail.com","ADMIN"),("voy@gmail.com","VOYAGISTE");
 

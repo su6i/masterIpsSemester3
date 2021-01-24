@@ -1,5 +1,6 @@
 package com.masterips.javaeeproject.dao;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import com.masterips.javaeeproject.entities.Celebrite;
 
 
 
-@Repository
+@Repository("jpa")
 @Transactional(readOnly = false) 
 public interface CelebriteRepository extends JpaRepository<Celebrite, Long> {
 	
@@ -37,8 +38,9 @@ public interface CelebriteRepository extends JpaRepository<Celebrite, Long> {
 	public int deleteCelebriteById(long numCelebrite);
 
 	@Modifying(clearAutomatically = true)
-    @Query("UPDATE Celebrite c SET c.nom =:x , c.prenom =:y , c.nationalite =:z, c.epoque =:q WHERE c.numCelebrite = :r")
-    int updateCelebrite(@Param("x") String nom, @Param("y") String prenom, @Param("z") String nationalite, @Param("q") String epoque, @Param("r") long numCelebrite);	
+    @Query("UPDATE Celebrite c SET c.nom =:nom , c.prenom =:prenom , c.nationalite =:nationalite, c.epoque =:epoque WHERE c.numCelebrite = :numCelebrite")
+    int updateCelebrite(@Param("nom") String nom, @Param("prenom") String prenom, @Param("nationalite") String nationalite, @Param("epoque") String epoque, @Param("numCelebrite") long numCelebrite);
+
 
 	
 

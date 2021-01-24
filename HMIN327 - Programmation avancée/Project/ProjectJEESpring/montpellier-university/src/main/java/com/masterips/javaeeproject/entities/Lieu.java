@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
 @Table(name = "lieu")
@@ -128,6 +129,7 @@ public class Lieu implements Serializable {
 		return departement;
 	}
 	
+	@JsonSetter
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}

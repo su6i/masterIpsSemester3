@@ -2,7 +2,9 @@ package com.masterips.javaeeproject.services;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -10,12 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import com.masterips.javaeeproject.dao.LieuRepository;
 import com.masterips.javaeeproject.dao.MonumentRepository;
 import com.masterips.javaeeproject.dao.CelebriteRepository;
+import com.masterips.javaeeproject.dao.CrudCelebriteRepo;
 import com.masterips.javaeeproject.dao.DepartementRepository;
 
 import com.masterips.javaeeproject.entities.Lieu;
@@ -23,7 +27,7 @@ import com.masterips.javaeeproject.entities.Monument;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 
-
+@Transactional
 @Service
 public class AppServiceImplementation implements AppService {
 	
@@ -39,7 +43,14 @@ public class AppServiceImplementation implements AppService {
 	private CelebriteRepository celebriteRepository;
 	
 	@Autowired
+	private CrudCelebriteRepo crudCelebriteRepo;
+	
+	@Autowired
 	private DepartementRepository departementRepository;
+	
+	@Autowired
+    private ModelMapper modelMapper;
+
 	
 	
 //	Department
@@ -61,7 +72,18 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public Departement addDepartement(Departement departement) {
-		return departementRepository.save(departement);
+		System.out.println("This is departement in addDepartement method: " +departement);
+		System.out.println("This is lieu in addDepartement method: " +departement.getLieu());
+		System.out.println("This is codeInsee in addDepartement method: " +departement.getLieu().getCodeInsee());
+		Departement result =  departementRepository.save(departement);
+		Departement d1 = this.getDepartement(result.getNumDep());
+		
+		System.out.println("This is departement in addDepartement method after save: " +result);
+		System.out.println("This is lieu in addDepartement method after save:  " +result.getLieu());
+		System.out.println("This is codeInsee in addDepartement method after save:  " +result.getLieu().getCodeInsee());
+		
+
+		return departement;
 	}
     
     @Override
@@ -315,6 +337,13 @@ public class AppServiceImplementation implements AppService {
 	public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque) {
 		return celebriteRepository.updateCelebrite(nom, prenom, nationalite, epoque, numCelebrite);
 	}
+
+	
+//	public void updateCelebriteObject(Celebrite celebrite) {
+//		Celebrite newCelebrite = crudCelebriteRepo.findById(celebrite.getNumCelebrite());
+////	    modelMapper.map(celebrite, newCelebrite);
+//	    celebriteRepository.save(newCelebrite);
+//	}
 
 
 

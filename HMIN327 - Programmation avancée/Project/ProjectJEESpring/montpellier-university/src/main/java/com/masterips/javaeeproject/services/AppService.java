@@ -81,7 +81,7 @@ public interface AppService {
 	public Page<Celebrite>      getAllCelebrities(int pageNumber, int items, Sort sort);
 	public int              	deleteCelebriteById(long numCelebrite);
     public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque);	
-
+//    public void updateCelebriteObject(Celebrite celebrite);
 
 
 
