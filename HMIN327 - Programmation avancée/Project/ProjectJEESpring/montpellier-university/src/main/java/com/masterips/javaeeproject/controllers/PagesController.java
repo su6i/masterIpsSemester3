@@ -150,7 +150,7 @@ public class PagesController {
   
               
           }catch (Exception e) {
-              model.addAttribute("exception",e);
+              model.addAttribute("message",e);
           }
           return "departement/table";
       }
@@ -188,22 +188,22 @@ public class PagesController {
 	  }
 
 	  	// new departement
-	    @ResponseStatus(HttpStatus.CREATED)
+//	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("departements")
 	    public String saveDep(Model model, @Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
 	    	try {
 	    		
 	    		System.out.println("\n\n\n newDepartement: "+ newDepartement + "\n\n\nlieu: " + newDepartement.getLieu().getCodeInsee());
 	    		appService.addDepartement(newDepartement);
-//	    		ra.addFlashAttribute("newDepartement", newDepartement);
-//	    		return "redirect:/departements/page/1";
-	    		return "departement/add";
+	    		model.addAttribute("newDepartement", newDepartement);
+	    		model.addAttribute("message","Departement" +newDepartement.getNumDep() +" added successfully");
 				
 			} catch (Exception e) {
 				model.addAttribute("message",e);
 					return "departement/add";
 			
 	    }
+	    	return "redirect:/departements/page/1";       
 	    }
 	    
 	    
@@ -236,7 +236,7 @@ public class PagesController {
     	try {
         	Sort sort = Sort.by(sortField);
         	sort=  sortDirection.equals("asc") ? sort.ascending() : sort.descending();
-    		Page<Lieu> page = appService.getAllLieux(currentPage, 27, sort);
+    		Page<Lieu> page = appService.getAllLieux(currentPage, 12, sort);
             List<Lieu> lieux = page.getContent();
             long totalItems = page.getTotalElements();
             int totalPages = page.getTotalPages();
@@ -256,7 +256,7 @@ public class PagesController {
     		
     		
     	}catch (Exception e) {
-    		model.addAttribute("exception",e);
+    		model.addAttribute("message",e);
     	}
 		return "lieu/all";
 	}
@@ -284,7 +284,7 @@ public class PagesController {
 
             
         }catch (Exception e) {
-            model.addAttribute("exception",e);
+            model.addAttribute("message",e);
         }
         return "lieu/card";
     }
@@ -294,42 +294,68 @@ public class PagesController {
           	  // Form for add a new Lieu
 
 	  @GetMapping("lieux/add")
-	  String add(Model model, @ModelAttribute("newLieu") Lieu newLieu) {
+	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity) {
 	
           color(model);
-          model.addAttribute("newLieu",new Lieu());
+          model.addAttribute("sampleEntity",new Lieu());
 
 	    return "lieu/add";
 	    
 	  }
 
-	    @ResponseStatus(HttpStatus.CREATED)
+//	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("lieux")
-	    public String saveLieu(@Valid @NotNull @ModelAttribute("newLieu") Lieu newLieu, BindingResult result, RedirectAttributes ra){
-	        appService.addLieu(newLieu);
+	    public String saveLieu(@Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
+	        appService.addLieu(sampleEntity);
 	        if(result.hasErrors()){
 	            return "lieu/add";
 	        }
-	        ra.addFlashAttribute("newLieu", newLieu);
+	        ra.addFlashAttribute("sampleEntity", sampleEntity);
 	        return "redirect:/lieux/card/page/1";
         }
         
-        
+	    
+	    
+//	      Lieux update form
+		  @GetMapping("lieux/update/{id}")
+		  public String lieuxUpdateForm(Model model, @PathVariable(value="id") String id) {
+			  try {
+				  color(model);
+				  Lieu sampleEntity = appService.getLieu(id);
+				  model.addAttribute("sampleEntity",sampleEntity);
+		    	}catch (Exception e) {
+		    		model.addAttribute("message",e);
+		    	}
+		    return "lieu/update";		    
+		  }
+		  
+//		  Lieux update
+		  @PostMapping("lieux/update")
+		  public String lieuxUpdate(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @ModelAttribute("id") String id) {
+			  try {				  
+				  model.addAttribute("message", sampleEntity.getCodeInsee() + " updated successfully");
+				  appService.addLieu(sampleEntity);
+			} catch (Exception e) {
+				model.addAttribute("message", e);
+			}
+		        return "redirect:/lieux/page/1";
+		  }
 
-        @DeleteMapping("lieux/{id}")
-        public ResponseEntity<String> deleteLieuById(@PathVariable String codeInsee) {
-    
-            var isRemoved = appService.deleteLieuById(codeInsee);
-    
-            if (!isRemoved) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+//		Lieux delete
+        @GetMapping("lieux/delete/{id}")
+        public String deleteLieuById(Model model, @PathVariable String id, RedirectAttributes ra) {
+            try {
+        		appService.deleteLieuById(id);
+        		model.addAttribute("message",id +" is successfully deleted");
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+				}
+            return "redirect:/lieux/page/1";        
             }
-    
-            return new ResponseEntity<>(codeInsee, HttpStatus.OK);
-        }
 
 
-        // End of Lieu
+
 
 // ---------------------------- End Lieux   ----------------------------
 
@@ -395,8 +421,8 @@ public class PagesController {
 	}
     
 
-    	  // Form for add a new monument
-
+    	  
+//    Form for add a new monument
 	  @GetMapping("monuments/add")
 	  String add(Model model, @ModelAttribute("newMonument") Monument newMonument) {
 	
@@ -407,7 +433,7 @@ public class PagesController {
 	    
 	  }
 
-	    @ResponseStatus(HttpStatus.CREATED)
+//	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("monuments")
 	    public String saveMonument(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
 	        appService.addMonument(newMonument);
@@ -435,9 +461,6 @@ public class PagesController {
         }
 
 
-
-        // End of Monument
-
     // ---------------------------- End Monument   ----------------------------
 
     
@@ -453,13 +476,11 @@ public class PagesController {
         	Sort sort = Sort.by(sortField);
         	sort=  sortDirection.equals("asc") ? sort.ascending() : sort.descending();
 
-    		Page<Celebrite> page = appService.getAllCelebrities(currentPage, 30, sort);
+    		Page<Celebrite> page = appService.getAllCelebrities(currentPage, 15, sort);
             List<Celebrite> celebrities = page.getContent();
             long totalItems = page.getTotalElements();
             int totalPages = page.getTotalPages();
-            
             color(model);
-
             model.addAttribute("celebrities", celebrities);
             model.addAttribute("totalItems", totalItems);
     		model.addAttribute("currentPage", currentPage);
@@ -489,22 +510,32 @@ public class PagesController {
               List<Celebrite> celebrities = page.getContent();
               long totalItems = page.getTotalElements();
               int totalPages = page.getTotalPages();
-  
               color(model);
-              
               model.addAttribute("currentPage", currentPage);
               model.addAttribute("celebrities", celebrities);
               model.addAttribute("totalItems", totalItems);
               model.addAttribute("totalPages", totalPages);
-  
-              
           }catch (Exception e) {
               model.addAttribute("message",e);
           }
           return "celebrite/card";
       }
   
+      
+      // Celebrities card details
+      @GetMapping("celebrities/details/{numCelebrite}")
+      public String celebritiesCardDetails(Model model, @PathVariable long numCelebrite) {
+          try {
+        	  Celebrite celebrite = appService.getCelebriteById(numCelebrite);
+              model.addAttribute("celebrite", celebrite);
+              color(model);
+          }catch (Exception e) {
+              model.addAttribute("message",e);
+          }
+          return "celebrite/details";
+      }
 
+      
       
       // A method for changing the color of cards 
   	  public void color(Model model) {
@@ -523,58 +554,54 @@ public class PagesController {
 	  String add(Model model, Celebrite newCelebrite) {
 		  try {
 			  color(model);
-			  celebriteRepository.save(newCelebrite);
+//			  Celebrite celebrite = celebriteRepository.save(newCelebrite);
               model.addAttribute("newCelebrite",newCelebrite);
-			  
+//              System.out.println("\n\n\n\nnum is ........" +celebrite.getNumCelebrite() + "\\n\\n\\n\\n");
 	    	}catch (Exception e) {
 	    		model.addAttribute("message",e);
 	    	}
-
-
 	    return "celebrite/add";
 	    
 	  }
 
 	  
-	  	// add a new celebrity
-	    @ResponseStatus(HttpStatus.CREATED)
+	  	// celebrity add
+//	    @ResponseStatus(HttpStatus.CREATED)
 	    @PostMapping("celebrities")
-	    public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){
+	    public String saveCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){		// , @Valid @NotNull 
 	        try {
                     appService.addCelebrite(newCelebrite);
-                    return "redirect:celebrities/page/1";
+//                    return "redirect:celebrities/page/1";
                 
             } catch (Exception e) {
                 model.addAttribute("message",e);
-                    return "celebrite/add";
+                    return "celebrite/update";
 
             }
+	        return "redirect:/celebrities/page/1";
 	    }
 		
-	      @ResponseStatus(HttpStatus.OK)
-		  @GetMapping("celebrities/modify/{id}")
+	      
+		  @GetMapping("celebrities/update/{id}")
 		  public String modifyCelebrite(Model model, @PathVariable(value="id") long id) {
 			  try {
 				  color(model);
 				  Celebrite newCelebrite = appService.getCelebriteById(id);
 				  model.addAttribute("newCelebrite",newCelebrite);
-				  model.addAttribute("id",id);
-				  model.addAttribute("newCelebriteId",newCelebrite.getNumCelebrite());
-				  
-				  
 		    	}catch (Exception e) {
 		    		model.addAttribute("message",e);
 		    	}
 
-		    return "celebrite/modify";
+		    return "celebrite/update";
 		    
 		  }
 		  
-		  @PostMapping("celebrities/modify")
+		  @PostMapping("celebrities/update")
 		  public String replaceCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
 			  
 			  try {
 //				  Celebrite updateCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
+				  
 //				  updateCelebrite.setNom(newCelebrite.getNom());
 //				  updateCelebrite.setPrenom(newCelebrite.getPrenom());
 //				  updateCelebrite.setNumCelebrite(newCelebrite.getNumCelebrite());
@@ -592,6 +619,10 @@ public class PagesController {
 				  
 //				  appService.updateCelebriteObject(newCelebrite);
 //				  celebriteRepository.saveAndFlush(updateCelebrite);
+				  
+				  model.addAttribute("message", newCelebrite.getNumCelebrite() + " updated successfully");
+				  appService.addCelebrite(newCelebrite);
+
 			} catch (Exception e) {
 				
 				model.addAttribute("message", e);
@@ -600,20 +631,6 @@ public class PagesController {
 		        return "redirect:/celebrities/page/1";
 		  }
 
-		  
-		  
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		  		  
-		  
-
-
-
 
     /**
      * Delete a celebrity based on Id
@@ -621,18 +638,14 @@ public class PagesController {
      * @param numCelebrite
      */
 
-//        @DeleteMapping("celebrities/{id}")
+//      @DeleteMapping("celebrities/{id}")
         @GetMapping("celebrities/delete/{id}")
-
         public String deleteCelebriteById(Model model, @PathVariable long id, RedirectAttributes ra) {
-    
-            
             try {
-            		appService.deleteCelebriteById(id);
-            		model.addAttribute("message",id +"is successfully deleted");
+        		appService.deleteCelebriteById(id);
+        		model.addAttribute("message",id +"is successfully deleted");
 			} catch (Exception e) {
 				model.addAttribute("message",e);
-
 				}
             return "redirect:/celebrities/page/1";        
             }

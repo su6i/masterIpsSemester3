@@ -155,7 +155,7 @@ public class AppServiceImplementation implements AppService {
 	}
 
 	@Override
-	public boolean deleteLieuById(String codeIsee) {
+	public int deleteLieuById(String codeIsee) {
 		// TODO Auto-generated method stub
 		return lieuRepository.deleteLieuById(codeIsee);
 	}
@@ -310,7 +310,7 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public Celebrite addCelebrite(Celebrite celebrite) {
-		return celebriteRepository.save(celebrite);
+		return crudCelebriteRepo.save(celebrite);
 	}
 
     @Override

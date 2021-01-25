@@ -8,6 +8,7 @@
    <body>
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
+         
 
          <div class="row">
          <div class="card-group">
@@ -27,7 +28,7 @@
 	                      Type: <span class="card-text" id="birth" th:text="${'Epoque: ' + celebrite.epoque}">Birth year</span>
                          </div>
 
-                         <div th:replace="fragments/template :: remove-modify-details (entity='celebrities', id=${celebrite.numCelebrite}, method='delete')"></div> 
+                         <div th:replace="fragments/template :: remove-modify-details (entity='celebrities', id=${celebrite.numCelebrite})"></div> 
 
 
 

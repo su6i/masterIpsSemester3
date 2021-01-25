@@ -1,11 +1,18 @@
 package com.masterips.javaeeproject.entities;
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.SQLInsert;
@@ -29,11 +36,11 @@ public class Celebrite implements Serializable {
 	
 	@NotBlank(message = "Family is mandatory")
 	@Column(length = 16)
-	private String nom;
+	private String nom = "undefined";
 	
 	@NotBlank(message = "Name is mandatory")
 	@Column(length = 16)
-	private String prenom;
+	private String prenom = "undefined";
 	
 	@Column(length = 30)
 	private String nationalite;
@@ -50,6 +57,14 @@ public class Celebrite implements Serializable {
     
     @Column(length = 255)
 	private String image;
+    
+    
+    @ElementCollection(fetch = FetchType.EAGER)
+	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name= "associeA",
+	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
+	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
+	private  Set<Monument> monuments;
 	
 	
 
@@ -72,9 +87,9 @@ public class Celebrite implements Serializable {
 		this.setPrenom(prenom);
 		this.setNationalite(nationalite);
 		this.setEpoque(epoque);
-		this.setUrl(url);
-		this.setParent_url(parent_url);
-		this.setImage(image);
+		this.setUrl(numCelebrite);
+		this.setParent_url(numCelebrite);
+		this.setImage(numCelebrite);
 		
 
 	}
@@ -87,6 +102,10 @@ public class Celebrite implements Serializable {
 
 	public void setNumCelebrite(long numCelebrite) {
 		this.numCelebrite = numCelebrite;
+		this.setUrl(numCelebrite);
+		this.setParent_url(numCelebrite);
+		this.setImage(numCelebrite);
+
 	}
 
 	public String getNom() {
@@ -156,19 +175,19 @@ public class Celebrite implements Serializable {
 	
 	
 
-	public void setUrl(String url) {
-		if(url != "" || url != null) this.url = url;
+	public void setUrl(long numCelebrite) {
+//		if(url != "" || url != null) this.url = url;
 		this.url = "http://localhost:8080/json/celebrities/"+numCelebrite;
 	}
 
-	public void setParent_url(String parent_url) {
-		if(parent_url != "" || parent_url != null) this.parent_url = parent_url;
+	public void setParent_url(long numCelebrite) {
+//		if(parent_url != "" || parent_url != null) this.parent_url = parent_url;
 		this.parent_url = "http://localhost:8080/json/celebrities/page/1";
 	}
 
-	public void setImage(String image) {
-		if(image != "" || image != null) this.image = image;
-		else this.image = "/image/" + numCelebrite + ".jpg";
+	public void setImage(long numCelebrite) {
+//		if(image != "" || image != null) this.image = image;
+		this.image = "/image/" + numCelebrite + ".jpg";
 	}
 
 	@Override

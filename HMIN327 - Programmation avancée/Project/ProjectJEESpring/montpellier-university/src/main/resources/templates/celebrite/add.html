@@ -11,22 +11,7 @@
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
 
-
-
-
-             <h1 th:text="@{'id: ' + ${id}}"></h1>
-             <h1 th:text="@{'newCelebrite ' + ${newCelebrite}}"></h1>
-                  
-
-
-
-             
-                  
-
-
-
-
-	<div sec:authorize="hasRole('ROLE_ADMIN">
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
          <h1>&nbsp;&nbsp;New Celebrity:</h1>
          <form action="#" th:action="@{'/celebrities'}" th:object="${newCelebrite}" method="post">
                      <ul th:if="${#fields.hasErrors('*')}">
@@ -39,7 +24,7 @@
                         <div class="card" style="max-width: 55rem;" th:classappend="${border} ? ${border} : 'border-success'">
                            <div class="font-weight-bold" >
                             <div class="text-center">
-                                       <img class="photo-celebrite card-img-top img-fluid" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="scale padding:15px; "/>
+                                       <img class="photo-celebrite card-img-top img-fluid" th:src="@{'/image/baby.jpg'}" alt="Card image cap" style="padding:15px;"/>
                             </div>
                            			<table aria-rowspan="2">
                                            <tr class="card-body text-success">
@@ -47,7 +32,7 @@
                                                     <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" >Number: </h5>
                                                </th>
                                                <td class="col-sm-9">
-                                                <input type="text" th:value="${newCelebrite.numCelebrite}" id="numCelebrite"  disabled class="form-control mb-4 col-4" />
+                                                <input type="text" th:value="${numCelebrite}" id="numCelebrite"  disabled class="form-control mb-4 col-4" />
                                                </td>
                                            </tr>
                                            <tr>
@@ -135,10 +120,10 @@
 
 
 <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-  <!-- Position it -->
+  Position it
   <div style="position: absolute; top: 0; right: 0;">
 
-    <!-- Then put toasts within -->
+    Then put toasts within
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <img th:src="@{/image/snow.ico}" class="rounded mr-2" alt="...">
@@ -183,10 +168,10 @@
 
 
  <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
-        <!-- Position it -->
+        Position it
         <div style="position: absolute; top: 0; right: 0;">
 
-            <!-- Then put toasts within -->
+            Then put toasts within
             <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <img class="rounded mr-2" alt="...">
@@ -215,14 +200,14 @@
                 </div>
             </div>
         </div>
+    
+    
+
+ 
+
+
+ 
     </div>
-    
-    
-
-
-
-
-
 
 <script>
     $(document).ready(function () {
@@ -250,7 +235,6 @@
 
 
          
-      </div>
       <div th:replace="fragments/template :: footer"></div>
    </body>
 </html>

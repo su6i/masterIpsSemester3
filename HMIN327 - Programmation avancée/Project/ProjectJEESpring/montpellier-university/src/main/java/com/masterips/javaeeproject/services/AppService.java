@@ -52,7 +52,7 @@ public interface AppService {
 	public Lieu                 getLieu(String codeIsee);
 	public List<Lieu>           getByNameLieuContaining(String nom);
 	public Page<Lieu>           getAllLieux(int pageNumber, int items, Sort sort);
-	public boolean              deleteLieuById(String codeIsee);
+	public int                  deleteLieuById(String id);
 
 	
 	

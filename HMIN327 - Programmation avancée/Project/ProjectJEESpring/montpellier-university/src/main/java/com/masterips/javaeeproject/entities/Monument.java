@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -54,12 +55,15 @@ public class Monument implements Serializable {
 	private Lieu lieu;
 	
 	
+	
+//	@ManyToMany(mappedBy = "monuments", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@ManyToMany
 	@JoinTable( 
-	    joinColumns = @JoinColumn( name = "code_m" ),
-	    inverseJoinColumns = @JoinColumn( name = "num_celebrite" ) 
-    )
-	private Set<Celebrite> associea_celebrite;
+	    joinColumns = @JoinColumn( name = "codeM" ),
+	    inverseJoinColumns = @JoinColumn( name = "numCelebrite" ))
+	private Set<Celebrite> celebrites;
+		
+	
 
     @Column(length = 255)
 	private String url;
@@ -185,95 +189,17 @@ public class Monument implements Serializable {
         	   ", Localisation: " + this.lieu.getCodeInsee();
     }
 
+	public Set<Celebrite> getCelebrites() {
+		return celebrites;
+	}
+
+	public void setCelebrites(Set<Celebrite> celebrites) {
+		this.celebrites = celebrites;
+	}
 	
 	
 	
-	
 
-	public void forEach(Consumer<? super Celebrite> action) {
-		associea_celebrite.forEach(action);
-	}
-
-	public int size() {
-		return associea_celebrite.size();
-	}
-
-	public boolean isEmpty() {
-		return associea_celebrite.isEmpty();
-	}
-
-	public boolean contains(Object o) {
-		return associea_celebrite.contains(o);
-	}
-
-	public Iterator<Celebrite> iterator() {
-		return associea_celebrite.iterator();
-	}
-
-	public Object[] toArray() {
-		return associea_celebrite.toArray();
-	}
-
-	public <T> T[] toArray(T[] a) {
-		return associea_celebrite.toArray(a);
-	}
-
-	public boolean add(Celebrite e) {
-		return associea_celebrite.add(e);
-	}
-
-	public boolean remove(Object o) {
-		return associea_celebrite.remove(o);
-	}
-
-	public boolean containsAll(Collection<?> c) {
-		return associea_celebrite.containsAll(c);
-	}
-
-	public boolean addAll(Collection<? extends Celebrite> c) {
-		return associea_celebrite.addAll(c);
-	}
-
-	public boolean retainAll(Collection<?> c) {
-		return associea_celebrite.retainAll(c);
-	}
-
-	public boolean removeAll(Collection<?> c) {
-		return associea_celebrite.removeAll(c);
-	}
-
-	public void clear() {
-		associea_celebrite.clear();
-	}
-
-	public boolean equals(Object o) {
-		return associea_celebrite.equals(o);
-	}
-
-	public int hashCode() {
-		return associea_celebrite.hashCode();
-	}
-
-	public Spliterator<Celebrite> spliterator() {
-		return associea_celebrite.spliterator();
-	}
-
-	public <T> T[] toArray(IntFunction<T[]> generator) {
-		return associea_celebrite.toArray(generator);
-	}
-
-	public boolean removeIf(Predicate<? super Celebrite> filter) {
-		return associea_celebrite.removeIf(filter);
-	}
-
-	public Stream<Celebrite> stream() {
-		return associea_celebrite.stream();
-	}
-
-	public Stream<Celebrite> parallelStream() {
-		return associea_celebrite.parallelStream();
-	}
-
-
-	
 }
+	
+	

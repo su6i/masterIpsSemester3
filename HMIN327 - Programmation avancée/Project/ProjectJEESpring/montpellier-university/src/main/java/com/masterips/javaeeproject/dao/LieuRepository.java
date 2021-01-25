@@ -30,7 +30,8 @@ public interface LieuRepository extends JpaRepository<Lieu, String> {
 	
 	@Modifying
 	@Query("delete from Lieu c where  c.codeInsee = ?1")
-	public boolean deleteLieuById(String codeInsee);
+	public int deleteLieuById(String codeIsee);
+
 
 	
 

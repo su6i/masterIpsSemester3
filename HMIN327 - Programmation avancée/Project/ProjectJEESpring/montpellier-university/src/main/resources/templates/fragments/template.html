@@ -267,13 +267,13 @@
 
       <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-      <th:block th:fragment="remove-modify-details-back (entity)">
+      <th:block th:fragment="remove-update-details-back (entity)">
         <div class="btn-toolbar">
             
             <!-- {% if app.user %} -->
                 <!-- {% if app.user.roles[0] == "ROLE_ADMIN" %} -->
                 <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/remove/' + ${id}}" role="button">Remove</a>
-                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/modify/' + ${id}}" role="button">Modify</a>
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/update/' + ${id}}" role="button">Update</a>
                 <!-- {% endif %}
             {% endif %} -->
             <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/' +${id}}" role="button">Details</a>
@@ -284,28 +284,31 @@
 
 
 
-      
-     <th:block th:fragment="remove-modify-details (entity, id)">
-        <div class="btn-toolbar">
-            
-          <form action="@{'/'+${entity}+'/'+${id}"  th:method="delete" >
-            <input type="hidden" name="_method" value="delete" />
-            <!-- <a class="btn btn-success btn-md" th:href="@{'/'+${entity}+'/'+${id}}" id="remove" role="button">Remove</a> -->
-        </form>
-                <a class="btn btn-danger" th:attr="data-id=${id}" id="remove" role="button">Remove</a>
-                <!-- <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/modify/' + ${id}}" role="button">Modify</a> -->
-                <a class="btn btn-success" th:attr="data-id=${id}" id="update" role="button">Modify</a>
-                <!-- {% endif %}
-            {% endif %} -->
-            <a class="btn btn-success btn-md"     th:href="@{'/json/' + ${entity} + '/' + ${id}}" role="button">Details</a>            
+     <th:block th:fragment="remove-update-details (entity, id)">
+        <div class="btn-toolbar">            
+            <a class="btn btn-danger  btn-md" th:href="@{'/' + ${entity} + '/delete/'       + ${id}}" id="remove"  role="button">Remove</a>
+	        <a class="btn btn-primary btn-md" th:href="@{'/' + ${entity} + '/update/' 	    + ${id}}" id="update"  role="button">Update</a>
+            <a class="btn btn-success btn-md" th:href="@{'/' + ${entity} + '/details/' + ${id}}" id="details" role="button">Details</a>            
         </div>
 
-
-
-          
-
-
       </th:block>
+
+
+      <th:block th:fragment="remove-update (entity, id)">
+        <div class="btn-toolbar">
+	        <td>
+	            <a class="btn btn-danger btn-md" th:href="@{'/'+${entity} + '/delete/' + ${id}}" id="remove" role="button">Remove</a>
+	        </td>
+	        <td>
+	            <a class="btn btn-primary btn-md" th:href="@{'/'+${entity} + '/update/' + ${id}}" id="update" role="button">Update</a>
+	        </td>
+        </div>
+      </th:block>
+      
+
+
+
+
 
       <th:block th:fragment="remove (urlAction, id)">
         <div class="btn-toolbar">
@@ -313,9 +316,9 @@
         </div>
       </th:block>
       
-      <th:block th:fragment="modify (urlAction, id)">
+      <th:block th:fragment="update (urlAction, id)">
         <div class="btn-toolbar">
-            <a class="btn btn-primary btn-md" th:href="@{'/'+${urlAction} + '/modify/' + ${id}}" id="modify" role="button">Modify</a>
+            <a class="btn btn-primary btn-md" th:href="@{'/'+${urlAction} + '/update/' + ${id}}" id="update" role="button">Update</a>
         </div>
       </th:block>
 

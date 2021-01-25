@@ -10,13 +10,7 @@
    <body>
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
-
-
-
-
-
-             <h1 th:text="@{'id: ' + ${id}}"></h1>
-             <h1 th:text="@{'newCelebriteId: ' + ${newCelebriteId}}"></h1>
+             
                   
 <!-- 
 
@@ -28,7 +22,7 @@
  
         
          <h1>&nbsp;&nbsp;Update Celebrity:</h1>
-         <form action="#" th:action="@{'/celebrities/modify'}" th:object="${newCelebrite}" method="post">
+         <form action="#" th:action="@{'/celebrities/update'}" th:object="${newCelebrite}" method="post">
                      <ul th:if="${#fields.hasErrors('*')}">
 						<li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
 					</ul>
@@ -83,14 +77,6 @@
                                            </tr>
                            			
                            			</table>
-                                    
-                                    
-                                
-   
-                                
-
-            
-                           
                            
  								</div>       
 					        <div class="btn-toolbar">

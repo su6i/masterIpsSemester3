@@ -21,10 +21,21 @@
             <tbody>
                <th:block th:each="departement : ${departements}">
                   <tr>
-                     <td th:text="${departement.numDep}">numDep</td>
-                     <td th:text="${departement.nomDep}">nomDep</td>
-                     <td th:text="${departement.lieu.codeInsee}">chefLieu</td>
- 	                 <td th:text="${departement.lieu.nomCom}">Nom Commune</td>                                     
+                  
+                  	<!-- Three different ways to handle null value -->
+                  	 <!-- 1- ? operand:  If departement object exists, it will display numDep -->
+                     <td th:text="${departement?.numDep}">numDep</td>
+                     
+                     <td th:text="${departement?.nomDep}">nomDep</td>
+                     
+                     
+                     <!--2-  ? : operand that is a short way to if else condition -->
+                     <td th:text="${departement.lieu != null} ? ${departement.lieu.codeInsee} : 'lieu.codeInsee not found'">chefLieu</td>
+                     
+                     
+                     <!-- ${#objects.nullSafe(obj, default)} -->
+ 	                 <!-- <td th:text="${departement?.lieu?.nomCom}">Nom Commune</td>  -->
+ 	                 <td th:text="${#objects.nullSafe(departement?.lieu?.nomCom, 'lieu.nomCom not found')}">Nom Commune</td>                                    
                  </tr>
               </th:block>
             <tbody>

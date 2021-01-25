@@ -17,20 +17,18 @@
                   <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Latitude</a></th>
                   <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Longitude</a></th>
                   <th class="col-sm-auto"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Departement</a></th>
+                  <th class="col-sm-2 text-center" colspan="2">Actions</th>
                </tr>
             </thead>
             <tbody>
                <th:block th:each="lieu : ${lieux}">
                   <tr>
-                  
-                  
-                  
-                  
                      <td th:text="${lieu.codeInsee}">INSEE</td>
                      <td th:text="${lieu.nomCom}">Commune</td>
                      <td th:text="${#numbers.formatDecimal(lieu.latitude, 0, 4)}">Latitude</td>
                      <td th:text="${#numbers.formatDecimal(lieu.longitude, 0, 4)}">Longitude</td>                     
                      <td th:text="${lieu.departement}">Departement</td>
+                     <td th:replace="fragments/template :: remove-update(entity='lieux', id=${lieu.codeInsee})"></td>
                   </tr>
                </th:block>
             <tbody>

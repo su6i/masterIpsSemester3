@@ -69,7 +69,8 @@ public class CelebriteRestController {
 	
 
 	  
-		
+//    @ResponseStatus(HttpStatus.CREATED)
+
 	  // Create a new celebrity
 	
 	  @PostMapping
@@ -120,7 +121,7 @@ public class CelebriteRestController {
 		}
 
 		
-	
+//	      @ResponseStatus(HttpStatus.OK)
 	  @PutMapping
 	  Celebrite replaceCelebrite(@Valid @NotNull @RequestBody Celebrite newCelebrite) {
 	

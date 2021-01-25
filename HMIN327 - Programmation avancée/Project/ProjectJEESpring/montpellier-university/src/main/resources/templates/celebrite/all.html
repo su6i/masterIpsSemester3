@@ -10,10 +10,6 @@
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
 
-<!--          <h1 th:text="@{'id: ' + ${updateCelebrite.getNumCelebrite()}}"></h1>
- -->         <h1 th:text="@{'updateCelebrite: ' + ${updateCelebrite}}"></h1>
-            <h1 th:text="@{'idf: ' + ${idf}}"></h1>
-            <h1 th:text="@{'newCelebrite_vodoudi: ' + ${newCelebrite_vodoudi}}"></h1>
      
          
          <table class="table table-hover table-bordered ">
@@ -36,13 +32,7 @@
                      <td class="text-center" th:text="${celebrite.nom}">Nom</td>
                      <td class="text-center" th:text="${celebrite.nationalite}">Nationalite</td>                     
                      <td class="text-center" th:text="${celebrite.epoque}">Epoque</td>  
-                     <td class="text-center" >
-                     	<div th:replace="fragments/template :: modify(urlAction='celebrities', id=${celebrite.numCelebrite})"></div>
-                   	 </td>
-                     <td class="text-center">
-                     	<div th:replace="fragments/template :: remove(urlAction='celebrities', id=${celebrite.numCelebrite})"></div>
-                   	 </td>                   
-                                        
+                   	 <td th:replace="fragments/template :: remove-update(entity='celebrities', id=${celebrite.numCelebrite})"></td>
                   </tr>
                </th:block>
             <tbody>

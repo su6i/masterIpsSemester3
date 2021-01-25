@@ -12,7 +12,7 @@
 
 
 
- <div th:text="${newDepartement.lieu}"></div>
+ <div th:text="@{'CodeInsee: ' + ${newDepartement?.lieu?.codeInsee}}"></div>
  <p th:if="${lieu instanceof T(com.masterips.javaeeproject.entities.Lieu)}" th:text="'lieu recognized'"> </p>
  <p th:unless="${lieu instanceof T(com.masterips.javaeeproject.entities.Lieu)}" th:text="'lieu NOT recognized'"> </p>
 
@@ -62,7 +62,7 @@
                                            <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'" disabled>URL: </p>
                                       </th>
                                       <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/' + ${newDepartement.numDep}}" id="url" disabled style="width:400px;"/>
+                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/' + ${newDepartement?.numDep}}" id="url" disabled style="width:400px;"/>
                                       </td> 
                                   </tr>
                                   <tr>
