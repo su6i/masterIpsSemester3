@@ -18,7 +18,7 @@
 	                    <div class="card-header bg-transparent" th:text="${monument.nomM}" th:classappend="${border} ? ${border} : 'border-primary'">nom_m</div>
 	                    <img class="card-img-top" src="/image/boutonnet.png" alt="Card image cap">
 	                     <div class="card-body" th:classappend="${text} ? ${text} : 'text-success'">
-	                      <h5 class="card-title" th:text="@{'CodeInsee: ' + ${monument.lieu.codeInsee}}" th:classappend="${text} ? ${text} : 'text-primary'">codeInsee</h5>
+	                      <h5 class="card-title" th:text="@{'CodeInsee: ' + ${monument.lieu?.codeInsee}}" th:classappend="${text} ? ${text} : 'text-primary'">codeInsee</h5>
 	                      <p><span class="card-text" th:text="${#numbers.formatDecimal(monument.latitude, 0, 4)}" th:classappend="${text} ? ${text} : 'text-info'">Latitude</span> N,
 	                      <span class="card-text" th:text="${#numbers.formatDecimal(monument.longitude, 0, 4)}" th:classappend="${text} ? ${text} : 'text-info'">Longitude</span> E</p>
 	                      <p class="card-text" th:text="@{'Proprietaire: ' + ${monument.proprietaire}}" th:classappend="${text} ? ${text} : 'text-danger'">proprietaire</p>

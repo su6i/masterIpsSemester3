@@ -27,7 +27,7 @@
                      <td th:text="${lieu.nomCom}">Commune</td>
                      <td th:text="${#numbers.formatDecimal(lieu.latitude, 0, 4)}">Latitude</td>
                      <td th:text="${#numbers.formatDecimal(lieu.longitude, 0, 4)}">Longitude</td>                     
-                     <td th:text="${lieu.departement?}">Departement</td>
+                     <td th:text="${lieu.departement?.numDep}">Departement</td>
                      <td th:replace="fragments/template :: remove-update(entity='lieux', id=${lieu.codeInsee})"></td>
                   </tr>
                </th:block>

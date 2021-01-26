@@ -130,17 +130,6 @@ public class AppServiceImplementation implements AppService {
 		return lieuRepository.findAll(pageable);
 	}
 	
-//	public Page<Lieu> getAllLieux(int page, int size) {
-//		return lieuRepository.getAllLieuxPage(new PageRequest(page, size));
-//	}
-//
-//	@Override
-//	public Page<Lieu> getAllLieuxPage(PageRequest of) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-	
 	
 	@Override
 	public Lieu addLieu(Lieu lieu) {
@@ -150,13 +139,11 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public List<Lieu> getByNameLieuContaining(String nom) {
-		// TODO Auto-generated method stub
 		return lieuRepository.getByNameLieuContaining(nom);
 	}
 
 	@Override
 	public int deleteLieuById(String codeIsee) {
-		// TODO Auto-generated method stub
 		return lieuRepository.deleteLieuById(codeIsee);
 	}
 
@@ -261,14 +248,12 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public List<Monument> getByNameMonumentContaining(String nom) {
-		// TODO Auto-generated method stub
 		return monumentRepository.getByNameMonumentContaining(nom);
 	}
 
 	
 	@Override
 	public boolean deleteMonumentById(String codeM) {
-		// TODO Auto-generated method stub
 		return monumentRepository.deleteMonumentById(codeM);
 	}
 
@@ -276,7 +261,6 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public List<Monument> getListMonumentsByDep(String nomDep) {
-		// TODO Auto-generated method stub
 		return monumentRepository.getListMonumentsByDep(nomDep);
 	}
 	

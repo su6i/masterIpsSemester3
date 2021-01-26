@@ -33,6 +33,7 @@ public class Celebrite implements Serializable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("Celebrity Number")
 	private long numCelebrite;
 	
 	@NotBlank(message = "Family is mandatory")
@@ -56,16 +57,17 @@ public class Celebrite implements Serializable {
 	private String parent_url;
     
     
+    
     @Column(length = 255)
 	private String image;
     
     
-//  @ElementCollection(fetch = FetchType.EAGER)
-//	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name= "associeA",
-//	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
-//	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
-//	private  Set<Monument> monuments = new HashSet<Monument>();
+ @ElementCollection(fetch = FetchType.EAGER)
+	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name= "associeA",
+	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
+	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
+	private  Set<Monument> monuments = new HashSet<Monument>();
 	
 	
 
@@ -73,12 +75,14 @@ public class Celebrite implements Serializable {
 
 	public Celebrite() {
 		super();		
+
 	}
 	
 	public Celebrite(long numCelebrite) {
 		this();
 		this.setNumCelebrite(numCelebrite);
 	}
+	
 
 
 
@@ -88,11 +92,9 @@ public class Celebrite implements Serializable {
 		this.setPrenom(prenom);
 		this.setNationalite(nationalite);
 		this.setEpoque(epoque);
-		this.setUrl(numCelebrite);
-		this.setParent_url(numCelebrite);
-		this.setImage(numCelebrite);
-		
-
+		this.setUrl(url);
+		this.setParent_url(parent_url);
+		this.setImage(image);
 	}
 
 
@@ -103,10 +105,9 @@ public class Celebrite implements Serializable {
 
 	public void setNumCelebrite(long numCelebrite) {
 		this.numCelebrite = numCelebrite;
-		this.setUrl(numCelebrite);
-		this.setParent_url(numCelebrite);
-		this.setImage(numCelebrite);
-
+		this.setUrl(url);
+		this.setParent_url(parent_url);
+		this.setImage(image);
 	}
 
 	public String getNom() {
@@ -176,19 +177,16 @@ public class Celebrite implements Serializable {
 	
 	
 
-	public void setUrl(long numCelebrite) {
-//		if(url != "" || url != null) this.url = url;
-		this.url = "http://localhost:8080/json/celebrities/"+numCelebrite;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
-	public void setParent_url(long numCelebrite) {
-//		if(parent_url != "" || parent_url != null) this.parent_url = parent_url;
-		this.parent_url = "http://localhost:8080/json/celebrities/page/1";
+	public void setParent_url(String parent_url) {
+		this.parent_url = parent_url;
 	}
 
-	public void setImage(long numCelebrite) {
-//		if(image != "" || image != null) this.image = image;
-		this.image = "/image/" + numCelebrite + ".jpg";
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override

@@ -77,8 +77,8 @@ public class MontpellierUniversityApplication implements CommandLineRunner{
 //		 Celebrite amir    = celebriteRepository.save(new Celebrite("SHIRALI POUR"  ,"Amir"           ,"Iranienne"           ,"1981"));
 //         Celebrite obama   = celebriteRepository.save(new Celebrite("OBAMA"         ,"BARAK"          ,"Americaine"          ,"1981"));
 //         Celebrite hassina = celebriteRepository.save(new Celebrite("BOUFATIS"      ,"Hassina"        ,"Algérienne"          ,"1881"));
-//         Celebrite madonna = celebriteRepository.save(new Celebrite("Ciccone"       ,"Madonna Louise" ,"Americaine-Italienne","1958")); 
-        
+//         Celebrite madonna = celebriteRepository.save(new Celebrite("Ciccone", "Madonna Louise" ,"Americaine-Italienne","1958")); 
+//        
 //		Celebrite amir3 = celebriteRepository.save(new Celebrite("SHIRALI POUR","Amir","Iranienne","1981"));
 		
 //		departementRepository.updateDepartement(numDep, nomDep);

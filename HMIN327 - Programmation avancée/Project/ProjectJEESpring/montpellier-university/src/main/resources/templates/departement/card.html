@@ -22,7 +22,7 @@
 				  <div class="card-body" th:classappend="${text} ? ${text} : 'text-primary'">
 				    <h5 class="card-title" th:text="@{'Nom:' + ${departement.nomDep}}">Nom Departement</h5>
 				    <p class="card-text" th:text="@{'Chef Lieu: ' + ${departement.lieu.codeInsee}}">Chef Lieu</p>
-                    <div th:replace="fragments/template :: remove-modify-details (entity='departements', id=${departement.nomDep})"></div>
+                    <div th:replace="fragments/template :: remove-update-details (entity='departements', id=${departement.nomDep})"></div>
 				    
 				  </div>
                 </div>

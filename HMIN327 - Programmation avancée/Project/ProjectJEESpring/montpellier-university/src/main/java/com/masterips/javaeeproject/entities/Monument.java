@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -32,27 +33,34 @@ public class Monument implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	@Column(name="code_m", length = 12)
+    @Column(name="code_m", length = 12)
+    @JsonProperty("Monument Code")
 	private String codeM;
 	
-	@Column(name="nom_m", length = 47)
+    @Column(name="nom_m", length = 47)
+    @JsonProperty("Monument Name")
 	private String nomM;
 	
-	@Column(length = 10)
+    @Column(length = 10)
+    @JsonProperty("Owner")
 	private String proprietaire;
 	
-	@Column(name="typeMonument", length = 17)
+    @Column(name="typeMonument", length = 17)
+    @JsonProperty("Type of Monument")
 	private String typeMonument;
 	
-	@Column(name = "longitude")
+    @Column(name = "longitude")
+    @JsonProperty("Longitude")
 	private double longitude;
 	
-	@Column(name = "latitude")
+    @Column(name = "latitude")
+    @JsonProperty("Latitude")
 	private double latitude;
 		
-    @ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
-	private Lieu lieu = new Lieu();
+	@ManyToOne(targetEntity = Lieu.class)
+    @JoinColumn(name="codeLieu", insertable=false ,updatable=false)
+    @JsonProperty("Lieu")
+	private Lieu lieu;
 	
     
 	
@@ -65,16 +73,18 @@ public class Monument implements Serializable {
 	
 	
     @ManyToMany(cascade=CascadeType.ALL)  
-    @JoinTable(joinColumns=@JoinColumn(name="code_m"), inverseJoinColumns=@JoinColumn(name="num_celebrite"))  
-
+    @JoinTable(joinColumns=@JoinColumn(name="code_m"), inverseJoinColumns=@JoinColumn(name="numCelebrite"))
+    @JsonProperty("Celebrities")
 	private Set<Celebrite> celebrities;
 		
 	
 
     @Column(length = 255)
+    @JsonProperty("URL")
 	private String url;
     
     @Column(length = 255)
+    @JsonProperty("Parent URL")
 	private String parent_url;
 
 
@@ -98,7 +108,6 @@ public class Monument implements Serializable {
 		this.setTypeMonument(typeMonument);
 		this.setLongitude(longitude);
 		this.setLatitude(latitude);
-		
 		this.setLieu(lieu);
 	}
 	
@@ -171,7 +180,9 @@ public class Monument implements Serializable {
 	}
 
 	public void setLieu(Lieu lieu) {
-		this.lieu = lieu;
+		if(lieu != null) this.lieu = lieu;
+		else this.lieu = new Lieu();
+		
 	}
 
 	

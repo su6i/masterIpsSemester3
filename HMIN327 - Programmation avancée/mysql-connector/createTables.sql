@@ -84,11 +84,12 @@ create table if not exists celebrite (
 SET FOREIGN_KEY_CHECKS = 1;
 
 
-insert ignore into monument(code_m, latitude, longitude, nom_m, proprietaire, type_monument, code_lieu) select codeM, longitude, latitude, nomM, proprietaire, typeMonument, codeLieu from pro_v1.monument; 
-insert ignore into celebrite(code_m, latitude, longitude, nom_m, proprietaire, type_monument, code_lieu) select codeM, longitude, latitude, nomM, proprietaire, typeMonument, codeLieu from pro_v1.monument; 
-insert ignore into departement(num_dep, nom_dep, chef_lieu) select num_dep, nom_dep, chef_lieu from pro_v1.departement; 
-insert ignore into monument(code_m, latitude, longitude, nom_m, proprietaire, type_monument, code_lieu) select code_m, longitude, latitude, nom_m, proprietaire, type_monument, code_lieu from pro_v1.monument; 
+insert ignore into monument(code_m, latitude, longitude, nom_m, proprietaire, type_monument, code_lieu) select code_m, longitude, latitude, nom_m, proprietaire, type_monument, code_lieu from backup_programmation_java.monument; 
+insert ignore into celebrite(num_celebrite, epoque, nationalite, nom, prenom) select num_celebrite, epoque, nationalite, nom, prenom from backup_programmation_java.celebrite; 
+insert ignore into departement(num_dep, nom_dep, chef_lieu) select num_dep, nom_dep, chef_lieu from backup_programmation_java.departement; 
+insert ignore into lieu(code_insee, latitude, longitude, nom_com, parent_url, url, dep) select code_insee, longitude, latitude, nom_com, parent_url, url, dep from backup_programmation_java.lieu; 
 
+insert into celebrite(epoque, nationalite, nom, prenom) select epoque, nationalite, nom, prenom from backup_programmation_java.celebrite; 
 
 drop table departement;
 drop table monument;

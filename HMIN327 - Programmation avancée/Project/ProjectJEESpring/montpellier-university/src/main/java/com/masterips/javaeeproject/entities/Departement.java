@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
@@ -25,23 +27,34 @@ public class Departement implements Serializable {
 	
 
 	@Id	
-	@Column(name = "numDep", length = 4)
+    @Column(name = "numDep", length = 4)
+    @JsonProperty("Department Number")
 	private String numDep;
 				
-	@Column(name = "nomDep", length = 30)
+    @Column(name = "nomDep", length = 30)
+    @JsonProperty("Department Name")
 	private String nomDep;
         
+    //    @OneToOne(fetch = FetchType.LAZY)
+    
+    //	@OneToOne(mappedBy = "departement", cascade = {CascadeType.ALL}, targetEntity = Lieu.class)	//, orphanRemoval = true
+    //	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
+    
+    
 //	@NotBlank(message = "Chef Lieu is mandatory")
     @JsonManagedReference
-	@OneToOne(mappedBy = "departement", cascade = {CascadeType.ALL})
-	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
-	private Lieu lieu = new Lieu();
+	@OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="chefLieu", insertable=false ,updatable=false)
+    @JsonProperty("Chef Lieu")
+    private Lieu lieu;
 
 
     @Column
+    @JsonProperty("URL")
 	private String url;
     
     @Column(length = 255)
+    @JsonProperty("Department URL")
 	private String parent_url;
 
 
@@ -60,8 +73,6 @@ public class Departement implements Serializable {
 	public Departement(String numDep, String nomDep, Lieu lieu) {
 		this(numDep);
 		this.setNomDep(nomDep);
-		
-		
 		this.setLieu(lieu);
 	}
 
@@ -73,8 +84,8 @@ public class Departement implements Serializable {
 
 	public void setNumDep(String numDep) {
 		this.numDep = numDep;
-        this.url = "http://localhost:8080/json/departements/"+this.numDep;
-        this.parent_url = "http://localhost:8080/json/departements/page/1";
+        // this.url = "http://localhost:8080/json/departements/"+this.numDep;
+        // this.parent_url = "http://localhost:8080/json/departements/page/1";
 
 	}
 
@@ -89,21 +100,29 @@ public class Departement implements Serializable {
 	}
 
 
-	@JsonGetter
+	// @JsonGetter
 	public Lieu getLieu() {
 		return lieu;
 	}
 
-	@JsonSetter
-	public void setLieu(Lieu lieu) {
+	
+//	public void setLieu(Lieu lieu) {
 //		String chefLieu = this.getLieu().getCodeInsee();
 //		if(chefLieu != null) {
 //			setLieu(lieu);
 //		} else {
 //			setLieu(new Lieu(chefLieu));
 //		}
-		this.lieu = lieu;
+//		this.lieu = lieu;
+//	}
+	
+//	@JsonSetter
+	public void setLieu(Lieu lieu) {
+		if (lieu != null) this.lieu = lieu;
+		else this.lieu = new Lieu();
 	}
+
+
 
 	
 	

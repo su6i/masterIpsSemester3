@@ -29,7 +29,7 @@
                      <td th:text="${#numbers.formatDecimal(monument.longitude, 0, 4)}">Longitude</td>                     
                      <td th:text="${monument.proprietaire}">proprietaire</td>
                      <td th:text="${monument.typeMonument}">type_monument</td>
-                     <td th:text="${monument.lieu.codeInsee}">code_lieu</td>
+                     <td th:text="${monument.lieu?.codeInsee}">code_lieu</td>
                   </tr>
                </th:block>
             <tbody>
