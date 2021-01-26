@@ -45,3 +45,8 @@
 - `composer require symfony/web-server-bundle --dev ^4.4.2` or `composer require symfony/web-server-bundle 4.4` or `php-cli` : Installing PHP development server in the project folder
 - `php bin/console server:run` : Running PHP development server in the project folder
 - Address of composer: `/usr/local/bin/`
+
+---
+### Other git resources
+
+- [aramtiraturyan/symfonyproject](https://github.com/aramtiraturyan/symfonyproject)

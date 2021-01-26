@@ -80,3 +80,7 @@ Arthur Lee Samuel (December 5, 1901 – July 29, 1990) was an American pioneer i
   Beautiful Soup is a Python package for parsing HTML and XML documents. It creates a parse tree for parsed pages that can be used to extract data from HTML, which is useful for web scraping.
 - [lxml](https://lxml.de)
   lxml is the most feature-rich and easy-to-use library for processing XML and HTML in the Python language.
+  
+### Other git resources:
+- [ThomasDigio/MovieCommentsAnalyser](https://github.com/ThomasDigio/MovieCommentsAnalyser)
+- [aramtiraturyan/ProjetFouilleDeDonnees](https://github.com/aramtiraturyan/ProjetFouilleDeDonnees)
