@@ -1,5 +1,6 @@
 package com.masterips.javaeeproject.entities;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -59,12 +60,12 @@ public class Celebrite implements Serializable {
 	private String image;
     
     
-    @ElementCollection(fetch = FetchType.EAGER)
-	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name= "associeA",
-	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
-	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
-	private  Set<Monument> monuments;
+//  @ElementCollection(fetch = FetchType.EAGER)
+//	@ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinTable(name= "associeA",
+//	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
+//	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
+//	private  Set<Monument> monuments = new HashSet<Monument>();
 	
 	
 
@@ -81,7 +82,7 @@ public class Celebrite implements Serializable {
 
 
 
-	public Celebrite(long numCelebrite, @JsonProperty("nom") String nom, @JsonProperty("prenom") String prenom, @JsonProperty("nationalite") String nationalite, @JsonProperty("epoque") String epoque) {
+	public Celebrite(long numCelebrite, @JsonProperty("Family") String nom, @JsonProperty("Name") String prenom, @JsonProperty("Nationality") String nationalite, @JsonProperty("Year of Birth") String epoque) {
 		this(numCelebrite);
 		this.setNom(nom);
 		this.setPrenom(prenom);

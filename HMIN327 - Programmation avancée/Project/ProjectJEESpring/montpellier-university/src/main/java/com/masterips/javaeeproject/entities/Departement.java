@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -32,9 +33,9 @@ public class Departement implements Serializable {
         
 //	@NotBlank(message = "Chef Lieu is mandatory")
     @JsonManagedReference
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne(mappedBy = "departement", cascade = {CascadeType.ALL})
 	@JoinColumn(name="chefLieu", insertable=false ,updatable=false)
-	private Lieu lieu;
+	private Lieu lieu = new Lieu();
 
 
     @Column
@@ -88,6 +89,7 @@ public class Departement implements Serializable {
 	}
 
 
+	@JsonGetter
 	public Lieu getLieu() {
 		return lieu;
 	}

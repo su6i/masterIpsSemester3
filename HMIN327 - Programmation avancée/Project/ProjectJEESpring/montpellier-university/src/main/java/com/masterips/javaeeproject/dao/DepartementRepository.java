@@ -23,11 +23,11 @@ public interface DepartementRepository extends JpaRepository<Departement, String
     @Query("UPDATE Departement d SET d.numDep =:x , d.nomDep =:y WHERE d.lieu.codeInsee =:z")
     int updateDepartement(@Param("x") String numDep, @Param("y") String nomDep, @Param("z") String codeInsee);	
 	
-	@Query("select c from Departement c where  c.nomDep like CONCAT('%',:x,'%')")
+	@Query("select d from Departement d where  d.nomDep like CONCAT('%',:x,'%')")
 	public List<Departement> getByNameDepartementContaining(@Param("x") String nom);
 
 	@Modifying
-	@Query("delete from Departement c where  c.numDep = ?1")
+	@Query("delete from Departement d where  d.numDep = ?1")
 	public boolean deleteDepartementById(String numDep);
 
 

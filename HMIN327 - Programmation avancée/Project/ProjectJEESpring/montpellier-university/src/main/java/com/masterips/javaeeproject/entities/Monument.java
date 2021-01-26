@@ -50,18 +50,24 @@ public class Monument implements Serializable {
 	@Column(name = "latitude")
 	private double latitude;
 		
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
-	private Lieu lieu;
+    @ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="codeLieu", insertable=false ,updatable=false)
+	private Lieu lieu = new Lieu();
+	
+    
 	
 	
-	
+//	@ManyToMany
 //	@ManyToMany(mappedBy = "monuments", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@ManyToMany
-	@JoinTable( 
-	    joinColumns = @JoinColumn( name = "codeM" ),
-	    inverseJoinColumns = @JoinColumn( name = "numCelebrite" ))
-	private Set<Celebrite> celebrites;
+//	@JoinTable( 
+//	    joinColumns = @JoinColumn( name = "codeM" ),
+//	    inverseJoinColumns = @JoinColumn( name = "numCelebrite" ))
+	
+	
+    @ManyToMany(cascade=CascadeType.ALL)  
+    @JoinTable(joinColumns=@JoinColumn(name="code_m"), inverseJoinColumns=@JoinColumn(name="num_celebrite"))  
+
+	private Set<Celebrite> celebrities;
 		
 	
 
@@ -189,13 +195,15 @@ public class Monument implements Serializable {
         	   ", Localisation: " + this.lieu.getCodeInsee();
     }
 
-	public Set<Celebrite> getCelebrites() {
-		return celebrites;
+	public Set<Celebrite> getCelebrities() {
+		return celebrities;
 	}
 
-	public void setCelebrites(Set<Celebrite> celebrites) {
-		this.celebrites = celebrites;
+	public void setCelebrities(Set<Celebrite> celebrities) {
+		this.celebrities = celebrities;
 	}
+
+	
 	
 	
 	
