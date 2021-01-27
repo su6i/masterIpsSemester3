@@ -28,7 +28,7 @@ public interface DepartementRepository extends JpaRepository<Departement, String
 
 	@Modifying
 	@Query("delete from Departement d where  d.numDep = ?1")
-	public boolean deleteDepartementById(String numDep);
+	public int deleteDepartementById(String numDep);
 
 
 

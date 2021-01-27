@@ -53,7 +53,9 @@ public class AppServiceImplementation implements AppService {
 
 	
 	
-//	Department
+	
+//	---------------------------------- Department ----------------------------------
+
 	
 	@Override
 	public Departement getDepartement(String numDep) {
@@ -94,24 +96,66 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public List<Departement> getByNameDepartementContaining(String nom) {
-		// TODO Auto-generated method stub
 		return departementRepository.getByNameDepartementContaining(nom);
 	}
 
 	@Override
-	public boolean deleteDepartementById(String numDep) {
-		// TODO Auto-generated method stub
+	public int deleteDepartementById(String numDep) {
 		return departementRepository.deleteDepartementById(numDep);
 	}
 
 	
 	
 	
+//  ---------------------------------- Temp ----------------------------------
+	
+	
+	
+	
+//  example
+//  @RequestMapping(value = {"/article", "/article/{id}"}")
+//  public Article getArticle(@PathVariable Optional<Integer> optionalArticleId) {
+//      if (optionalArticleId.isPresent()) {
+//          Integer articleId = optionalArticleId.get();
+//          //...
+//      } else {
+//          //...
+//      }
+//  }
+  
+  
+//  Optional<String> opt = Optional.of("baeldung");
+//  opt.ifPresent(name -> System.out.println(name.length()));
+//  String name = Optional.ofNullable(nullName).orElse("john");
+//  String name = Optional.ofNullable(nullName).orElseGet(() -> "john");
+//  String name = Optional.ofNullable(nullName).orElseThrow(
+//  	      IllegalArgumentException::new);
+//  	}
+
+//  Integer year = 2016;
+//  Optional<Integer> yearOptional = Optional.of(year);
+//  boolean is2016 = yearOptional.filter(y -> y == 2016).isPresent();
+//  assertTrue(is2016);
+//  boolean is2017 = yearOptional.filter(y -> y == 2017).isPresent();
+//  assertFalse(is2017);
+
+	
+	
+	
+	
+	
+//	----------------------------------  End Temp ----------------------------------
 
 
 
-
-//	Lieu 
+	
+	
+	
+	
+	
+	
+	
+//	---------------------------------- Lieu ----------------------------------
 
 
 
@@ -121,8 +165,20 @@ public class AppServiceImplementation implements AppService {
 		 if(codeIsee==null || (!lieuRepository.existsById(codeIsee))) 
 			 throw new RuntimeException("Can't find entered Lieu");
 		 return lieuRepository.findById(codeIsee).get();
+	}
+	
+	@Override
+	public Optional<Lieu> getLieu(Optional<String> codeIsee) {
+		if(codeIsee.isEmpty()) throw new RuntimeException("Can't find entered Lieu");
+		else {
+			return lieuRepository.findById(codeIsee.get());
+			
+		}
+			
+			
 
 	}
+
 	
 	@Override
 	public Page<Lieu> getAllLieux(int pageNumber, int items, Sort sort) {
@@ -157,8 +213,8 @@ public class AppServiceImplementation implements AppService {
 	
     
     
+//	---------------------------------- Monument ----------------------------------
 
-//	Monument
 	
     @Override
 	public Monument getMonument(String codeM) {
@@ -189,8 +245,9 @@ public class AppServiceImplementation implements AppService {
 
 
 	@Override
-	public void addMonument(Monument monument) {
-		// TODO Auto-generated method stub
+	public Monument addMonument(Monument monument) {
+
+		return monumentRepository.save(monument);
 		
 	}
 	
@@ -253,7 +310,7 @@ public class AppServiceImplementation implements AppService {
 
 	
 	@Override
-	public boolean deleteMonumentById(String codeM) {
+	public int deleteMonumentById(String codeM) {
 		return monumentRepository.deleteMonumentById(codeM);
 	}
 
@@ -272,7 +329,7 @@ public class AppServiceImplementation implements AppService {
     
     
     
-//	Celebrite
+//	---------------------------------- Celebrite ----------------------------------
 
 
     @Override
@@ -321,6 +378,7 @@ public class AppServiceImplementation implements AppService {
 	public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque) {
 		return celebriteRepository.updateCelebrite(nom, prenom, nationalite, epoque, numCelebrite);
 	}
+
 
 	
 //	public void updateCelebriteObject(Celebrite celebrite) {

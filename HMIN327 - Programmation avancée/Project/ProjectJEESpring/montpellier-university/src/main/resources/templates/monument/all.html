@@ -18,6 +18,7 @@
                   <th class="col col-lg-2"><a th:href="@{'/monuments/page/' + ${currentPage} + '?sortField=codeM' + '&sortDirection=' + ${reverseSortDirection}}">Proprietaire</a></th>
                   <th class="col col-lg-2"><a th:href="@{'/monuments/page/' + ${currentPage} + '?sortField=codeM' + '&sortDirection=' + ${reverseSortDirection}}">Type</a></th>
                   <th class="col col-lg-2"><a th:href="@{'/monuments/page/' + ${currentPage} + '?sortField=codeM' + '&sortDirection=' + ${reverseSortDirection}}">Lieu</a></th>
+                  <th class="col-sm-2 text-center" colspan="2">Actions</th>
                </tr>
             </thead>
             <tbody>
@@ -30,6 +31,7 @@
                      <td th:text="${monument.proprietaire}">proprietaire</td>
                      <td th:text="${monument.typeMonument}">type_monument</td>
                      <td th:text="${monument.lieu?.codeInsee}">code_lieu</td>
+                   	 <td th:replace="fragments/template :: remove-update(entity='monuments', id=${monument.codeM})"></td>
                   </tr>
                </th:block>
             <tbody>

@@ -1,6 +1,7 @@
 package com.masterips.javaeeproject.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -43,22 +44,22 @@ public interface AppService {
 	public List<Departement>    getByNameDepartementContaining(String nom);
 	public List<Departement>    findAll();
 	public Page<Departement>    getAllDepartements(int pageNumber, int items, Sort sort);
-	public boolean              deleteDepartementById(String numDep);
+	public int	                deleteDepartementById(String numDep);
 
 	
 	
 //	Lieu methodes
 	public Lieu                 addLieu(Lieu lieu);
 	public Lieu                 getLieu(String codeIsee);
+	public Optional<Lieu> 		getLieu(Optional<String> codeIsee);
 	public List<Lieu>           getByNameLieuContaining(String nom);
 	public Page<Lieu>           getAllLieux(int pageNumber, int items, Sort sort);
 	public int                  deleteLieuById(String id);
-
 	
 	
 	
 //	Monument methodes
-    public void                 addMonument(Monument monument);
+    public Monument             addMonument(Monument monument);
     public void                 addMonumentToLieu(String codeM, String codeInsee);
 	public Monument             getMonument(String codeM);
 	public List<Monument>       getListMonumentsByDep(String nomDep);
@@ -66,7 +67,7 @@ public interface AppService {
 	public List<Monument>       getByNameMonumentContaining(String nom);
 	public float                getDistanceBetweenMonuments(String nomMonA,String nomMonB);
 	public Page<Monument>       getAllMonuments(int pageNumber, int items, Sort sort);
-	public boolean              deleteMonumentById(String codeM);
+	public int                  deleteMonumentById(String codeM);
 	
 
 
@@ -82,6 +83,7 @@ public interface AppService {
 	public int              	deleteCelebriteById(long numCelebrite);
     public int updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque);	
 //    public void updateCelebriteObject(Celebrite celebrite);
+	
 
 
 

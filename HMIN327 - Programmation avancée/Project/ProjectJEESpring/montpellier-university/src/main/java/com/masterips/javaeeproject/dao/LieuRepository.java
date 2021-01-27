@@ -25,11 +25,11 @@ public interface LieuRepository extends JpaRepository<Lieu, String> {
 	@Query("select l from Lieu l where l.codeInsee=:x")
 	public Lieu getLieu(@Param("x")String codeInsee);
 
-	@Query("select c from Lieu c where  c.nomCom like CONCAT('%',:x,'%')")
+	@Query("select l from Lieu l where  l.nomCom like CONCAT('%',:x,'%')")
 	public List<Lieu> getByNameLieuContaining(@Param("x") String nom);
 	
 	@Modifying
-	@Query("delete from Lieu c where  c.codeInsee = ?1")
+	@Query("delete from Lieu l where  l.codeInsee = ?1")
 	public int deleteLieuById(String codeIsee);
 
 

@@ -21,22 +21,21 @@ import com.masterips.javaeeproject.entities.Monument;
 @Transactional(readOnly = true) 
 public interface MonumentRepository extends JpaRepository<Monument, String> {
 	
-	
-	public List<Monument>findByNomM(String nomM, Pageable pageable);
-//	public Page<Monument>findByNomMPage(String nomM, Pageable pageable);
-	
+		
 	@Query("select m from Monument m order by m.nomM desc")
 	public Page<Monument> getAllMonuments(Pageable pageable);
 
     @Query("select m from Monument m order by m.nomM desc")
 	public Slice<Monument> getAllMonumentsSlice(Pageable pageable);
 
-	@Query("select c from Monument c where  c.nomM like CONCAT('%',:x,'%')")
+	@Query("select m from Monument m where  m.nomM like CONCAT('%',:x,'%')")
 	public List<Monument> getByNameMonumentContaining(@Param("x") String nom);
 	
+	
+	
 	@Modifying
-	@Query("delete from Monument c where  c.codeM = ?1")
-	public boolean deleteMonumentById(String codeM);
+	@Query("delete from Monument m where  m.codeM = ?1")
+	public int deleteMonumentById(String codeM);
 
 	
 	@Query("select m from Monument m where m.lieu.nomCom =:x")

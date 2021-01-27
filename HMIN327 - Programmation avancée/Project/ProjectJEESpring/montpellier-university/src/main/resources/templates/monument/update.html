@@ -8,57 +8,11 @@
    <body>
       <div layout:fragment="content">
          <p th:text="${template}">Should not be displayed</p>
-
-
-
-
-
-<!-- 
-
-<div class="row">
-    <div class="card-group">
-			<div class="col-md-4">	                
-				<div class="card mb-3" th:classappend="${border} ? ${border} : 'border-primary'" style="max-width: 18rem;">
-				  <div class="card-header" th:text="@{'Numéro: ' + ${departement.codeInsee}}">Numéro Departement</div>
-				  <div class="card-body" th:classappend="${text} ? ${text} : 'text-primary'">
-				    <h5 class="card-title" th:text="@{'Nom:' + ${departement.nomDep}}">Nom Departement</h5>
-				    <p class="card-text" th:text="@{'Chef Lieu: ' + ${departement.lieu.codeInsee}}">Chef Lieu</p>
-				  </div>
-                </div>
-            </div>
-	</div>
-</div>
-
-
-
-
-      <div th:replace="fragments/template :: pagination"></div>
-         
-      </div>
-      <div th:replace="fragments/template :: footer"></div>
-
-   
-   
-    -->
-   
-<!--  <p th:if="${departement instanceof T(com.masterips.javaeeproject.entities.Departement)}" th:text="'Departement recognized'"> </p>
- <p th:unless="${departement instanceof T(com.masterips.javaeeproject.entities.Departement)}" th:text="'Departement NOT recognized'"> </p>
- -->   
-   
-   
-   
-   
-   
-   
-   
-   
       
       
       
-      
-      
-<h1> New Lieu</h1>
-<form action="#" th:action="@{'/lieux'}" th:object="${sampleEntity}" method="post">
+<h1> New Monument</h1>
+<form action="#" th:action="@{'/monuments'}" th:object="${sampleEntity}" method="post">
     <ul th:if="${#fields.hasErrors('*')}">
         <li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
     </ul>
@@ -68,30 +22,30 @@
            <div class="col-md-12 ">	                
                <div class="card" style="max-width: 60rem;" th:classappend="${border} ? ${border} : 'border-success'">
                   <div class="font-weight-bold" >
-                              <img class="photo-lieu card-img-top" th:src="@{'/image/lieu.jpg'}" alt="Card image cap" style="width:100%; padding:15px;"/>
+                              <img class="photo-monument card-img-top" th:src="@{'/image/monument.jpg'}" alt="Card image cap" style="width:100%; padding:15px;"/>
                               <table aria-rowspan="2">
                                   <tr>
                                       <th class="card-text text-info font-weight-bold">Name:</th>
                                       <td>
-                                       <input type="text" th:field="*{nomCom}" id="nomCom" style="width:400px;"/>
-                                       <span th:if="${#fields.hasErrors('nomCom')}" th:errors="*{nomCom}" th:errorclass="error"></span>
+                                       <input type="text" th:field="*{nomM}" id="nomM" style="width:400px;"/>
+                                       <span th:if="${#fields.hasErrors('nomM')}" th:errors="*{nomM}" th:errorclass="error"></span>
                                       </td>
                                   </tr>
                                   <tr>
                                       <th>
-                                          <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">CodeInse: </span>
+                                          <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Code Monument: </span>
                                        </th>
                                       <td>
-                                           <input type="text" th:field="*{codeInsee}" id="codeInsee" onchange="url(this.value)" style="width:400px;"/>
+                                           <input type="text" th:field="*{codeM}" id="codeM" onchange="url(this.value)" style="width:400px;" disabled/>
 
                                       </td>
                                   </tr>
                                   <tr class="card-body text-success">
                                       <th>
-                                           <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" style="width:90px;">Departement:</h5>
+                                           <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" style="width:90px;">Lieu:</h5>
                                       </th>
                                       <td>
-                                         <input type="text" th:field="*{departement}" th:value="${departement}" id="chefLieu" style="width:400px;"/>
+                                         <input type="text" th:field="*{lieu}" id="lieu" style="width:400px;"/>
                                       </td>
                                   </tr>
                                   <tr class="card-body text-success">
@@ -99,7 +53,7 @@
                                            <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" style="width:90px;">Latitude:</h5>
                                       </th>
                                       <td>
-                                         <input type="text" th:field="*{latitude}" th:value="${latitude}" id="chefLieu" style="width:400px;"/>
+                                         <input type="text" th:field="*{latitude}" id="latitude" style="width:400px;"/>
                                       </td>
                                   </tr>
                                   <tr class="card-body text-success">
@@ -107,7 +61,7 @@
                                            <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" style="width:90px;">Longitude:</h5>
                                       </th>
                                       <td>
-                                         <input type="text" th:field="*{longitude}" th:value="${longitude}" id="chefLieu" style="width:400px;"/>
+                                         <input type="text" th:field="*{longitude}" id="longitude" style="width:400px;"/>
                                       </td>
                                   </tr>
                                   <tr>
@@ -115,8 +69,8 @@
                                            <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'" disabled>URL: </p>
                                       </th>
                                       <td>
-                                           <!-- <input type="text" th:value="@{'http://localhost:8080/json/lieux/' + ${sampleEntity.codeInsee}}" id="url" disabled style="width:400px;"/> -->
-                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/' + ${codeInsee}}" id="url" disabled style="width:400px;"/>
+                                           <!-- <input type="text" th:value="@{'http://localhost:8080/json/monuments/' + ${sampleEntity.codeM}}" id="url" disabled style="width:400px;"/> -->
+                                           <input type="text" th:field="*{url}" id="url" disabled style="width:400px;"/>
                                            
                                       </td> 
                                   </tr>
@@ -125,7 +79,7 @@
                                            <span class="card-text">Parent URL: </span>
                                       </th>
                                    <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/page/1'}"  id="parent_url" disabled  style="width:400px;" />
+                                           <input type="text" th:field="*{parent_url}" th:value="@{'http://localhost:8080/json/monuments/page/1'}"  id="parent_url" disabled  style="width:400px;" />
                                       </td> 
                                   </tr>
                               
@@ -136,7 +90,7 @@
 
 							<div class="btn-toolbar">
 					            <button class="btn btn-primary" type="submit">Submit</button>
-					            <button class="btn btn-danger" type="reset">Reset</button>
+					            <button class="btn btn-danger"  type="reset">Reset</button>
 					   		</div>                  
                   
                   

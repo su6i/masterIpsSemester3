@@ -15,7 +15,9 @@
                   <th class="col col-lg-2" data-field="no" data-sortable="true"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Department no.</a></th>
                   <th class="col-md-auto"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Department name</a></th>
                   <th class="col col-lg-2"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Chef Lieu</a></th>
-                  <th class="col-md-auto"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Nom Commune</a></th>                  
+                  <th class="col-md-auto"><a th:href="@{'/departements/page/' + ${currentPage} + '?sortField=numDep' + '&sortDirection=' + ${reverseSortDirection}}">Nom Commune</a></th>
+                  <th class="col-sm-2 text-center" colspan="2">Actions</th>
+                                    
                </tr>
             </thead>
             <tbody>
@@ -35,7 +37,8 @@
                      
                      <!-- ${#objects.nullSafe(obj, default)} -->
  	                 <!-- <td th:text="${departement?.lieu?.nomCom}">Nom Commune</td>  -->
- 	                 <td th:text="${#objects.nullSafe(departement?.lieu?.nomCom, 'lieu.nomCom not found')}">Nom Commune</td>                                    
+ 	                 <td th:text="${#objects.nullSafe(departement?.lieu?.nomCom, 'lieu.nomCom not found')}">Nom Commune</td>
+					 <td th:replace="fragments/template :: remove-update(entity='departements', id=${departement.numDep})"></td> 	                                                     
                  </tr>
               </th:block>
             <tbody>

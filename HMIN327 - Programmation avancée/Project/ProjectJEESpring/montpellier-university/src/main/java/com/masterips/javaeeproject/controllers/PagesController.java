@@ -3,6 +3,7 @@ package com.masterips.javaeeproject.controllers;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -107,7 +108,7 @@ public class PagesController {
       public String allDepartementsCard(Model model, @PathVariable("pageNumber") int currentPage) {
           try {
         	  Sort sort = Sort.by("nomDep").descending();
-              Page<Departement> page = appService.getAllDepartements(currentPage, 18, sort);
+              Page<Departement> page = appService.getAllDepartements(currentPage, 6, sort);
               List<Departement> departements = page.getContent();
               long totalItems = page.getTotalElements();
               int totalPages = page.getTotalPages();
@@ -208,18 +209,19 @@ public class PagesController {
 	    
 	    
 	    
-
-        @DeleteMapping("departements/{id}")
-        public ResponseEntity<String> deleteDepartementById(@PathVariable String numDep) {
-    
-            var isRemoved = appService.deleteDepartementById(numDep);
-    
-            if (!isRemoved) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        
+//		Departement delete
+        @GetMapping("departements/delete/{id}")
+        public String deleteDepartementById(Model model, @PathVariable String id) {
+            try {
+        		appService.deleteDepartementById(id);
+        		model.addAttribute("message",id +" is successfully deleted");
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+				}
+            return "redirect:/departements/page/1";        
             }
-    
-            return new ResponseEntity<>(numDep, HttpStatus.OK);
-        }
+
 
 
 // ---------------------------- End Departements   ----------------------------
@@ -229,8 +231,7 @@ public class PagesController {
 
 // ---------------------------- Begin Lieux   ----------------------------
 
-    //Lieux
-      
+//  Lieux all table pagination
     @GetMapping("lieux/page/{pageNumber}")
 	public String allLieux(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam(defaultValue="codeInsee") String sortField, @RequestParam(defaultValue="asc") String sortDirection)   {
     	try {
@@ -262,13 +263,12 @@ public class PagesController {
 	}
     
     
-  // Lieux card
-    
+//  Lieux card pagination
     @GetMapping("lieux/card/page/{pageNumber}")
     public String allLieuxCard(Model model, @PathVariable("pageNumber") int currentPage)   {
     	try {
         	Sort sort = Sort.by("codeInsee").ascending();
-            Page<Lieu> page = appService.getAllLieux(currentPage, 6, sort);
+            Page<Lieu> page = appService.getAllLieux(currentPage, 9, sort);
             List<Lieu> lieux = page.getContent();
             long totalItems = page.getTotalElements();
             int totalPages = page.getTotalPages();
@@ -290,56 +290,108 @@ public class PagesController {
     }
     
     
+    
+    
+    
+    
+//    example
+//    @RequestMapping(value = {"/article", "/article/{id}"}")
+//    public Article getArticle(@PathVariable Optional<Integer> optionalArticleId) {
+//        if (optionalArticleId.isPresent()) {
+//            Integer articleId = optionalArticleId.get();
+//            //...
+//        } else {
+//            //...
+//        }
+//    }
+    
+    
+//    Optional<String> opt = Optional.of("baeldung");
+//    opt.ifPresent(name -> System.out.println(name.length()));
+//    String name = Optional.ofNullable(nullName).orElse("john");
+//    String name = Optional.ofNullable(nullName).orElseGet(() -> "john");
+//    String name = Optional.ofNullable(nullName).orElseThrow(
+//    	      IllegalArgumentException::new);
+//    	}
 
-          	  // Form for add a new Lieu
+//    Integer year = 2016;
+//    Optional<Integer> yearOptional = Optional.of(year);
+//    boolean is2016 = yearOptional.filter(y -> y == 2016).isPresent();
+//    assertTrue(is2016);
+//    boolean is2017 = yearOptional.filter(y -> y == 2017).isPresent();
+//    assertFalse(is2017);
 
-	  @GetMapping("lieux/add")
-	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity) {
+
+    
+    
+
+//    Lieu New Form
+//    Lieux update form
+	  @GetMapping(value = {"lieux/update", "lieux/update/{id}"})
+	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @PathVariable(value="id") Optional<String> id) {
+		  color(model);
 	
-          color(model);
-          model.addAttribute("sampleEntity",new Lieu());
+		  
+		  System.out.println("I found id:::::::::::::::::"+id);
+		  
+		  
+		  if(id.isPresent()) {
+	            try {
+	                Lieu existedSampleEntity = appService.getLieu(id.get());
+	                System.out.println("I found object:::::::::::::::::"+existedSampleEntity);
+	                model.addAttribute("sampleEntity",existedSampleEntity);
+	            }catch (Exception e) {
+	                model.addAttribute("message",e);
+	            }
 
-	    return "lieu/add";
+		  } else {
+			  model.addAttribute("sampleEntity",new Lieu());
+			  
+		  }
+
+	    return "lieu/update";
 	    
 	  }
 
-//	    @ResponseStatus(HttpStatus.CREATED)
-	    @PostMapping("lieux")
-	    public String saveLieu(@Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
-	        appService.addLieu(sampleEntity);
-	        if(result.hasErrors()){
-	            return "lieu/add";
-	        }
-	        ra.addFlashAttribute("sampleEntity", sampleEntity);
-	        return "redirect:/lieux/card/page/1";
+
+//	  Lieux New
+      @PostMapping("lieux")
+      public String saveLieu(@Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
+        appService.addLieu(sampleEntity);
+        if(result.hasErrors()){
+            return "lieu/update";
         }
+        ra.addFlashAttribute("sampleEntity", sampleEntity);
+        return "redirect:/lieux/card/page/1";
+    }
+        
+        
         
 	    
-	    
-//	      Lieux update form
-		  @GetMapping("lieux/update/{id}")
-		  public String lieuxUpdateForm(Model model, @PathVariable(value="id") String id) {
-			  try {
-				  color(model);
-				  Lieu sampleEntity = appService.getLieu(id);
-				  model.addAttribute("sampleEntity",sampleEntity);
-		    	}catch (Exception e) {
-		    		model.addAttribute("message",e);
-		    	}
-		    return "lieu/update";		    
-		  }
+//	    Lieux update form
+//        @GetMapping("lieux/update/{id}")
+//        public String lieuxUpdateForm(Model model, @PathVariable(value="id") String id) {
+//            try {
+//                color(model);
+//                Lieu sampleEntity = appService.getLieu(id);
+//                model.addAttribute("sampleEntity",sampleEntity);
+//            }catch (Exception e) {
+//                model.addAttribute("message",e);
+//            }
+//        return "lieu/update";		    
+//        }
 		  
-//		  Lieux update
-		  @PostMapping("lieux/update")
-		  public String lieuxUpdate(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @ModelAttribute("id") String id) {
-			  try {				  
-				  model.addAttribute("message", sampleEntity.getCodeInsee() + " updated successfully");
-				  appService.addLieu(sampleEntity);
-			} catch (Exception e) {
-				model.addAttribute("message", e);
-			}
-		        return "redirect:/lieux/page/1";
-		  }
+//		Lieux update
+        @PostMapping("lieux/update")
+        public String lieuxUpdate(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @ModelAttribute("id") String id) {
+            try {				  
+                model.addAttribute("message", sampleEntity.getCodeInsee() + " updated successfully");
+                appService.addLieu(sampleEntity);
+        } catch (Exception e) {
+            model.addAttribute("message", e);
+        }
+            return "redirect:/lieux/page/1";
+        }
 
 
 //		Lieux delete
@@ -357,21 +409,20 @@ public class PagesController {
 
 
 
-// ---------------------------- End Lieux   ----------------------------
+// ---------------------------- End Lieux ---------------------------------
 
 
 
-// ---------------------------- Begin Monument   ----------------------------
+// ---------------------------- Begin Monument ----------------------------
 
 
-    //Monument
-    
+//  Monument all pagiation
     @GetMapping("monuments/page/{pageNumber}")
 	public String allMonuments(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam(defaultValue="codeM") String sortField, @RequestParam(defaultValue="asc") String sortDirection)   {
     	try {
         	Sort sort = Sort.by(sortField);
         	sort=  sortDirection.equals("asc") ? sort.ascending() : sort.descending();
-            Page<Monument> page = appService.getAllMonuments(currentPage, 17, sort);
+            Page<Monument> page = appService.getAllMonuments(currentPage, 15, sort);
             List<Monument> monuments = page.getContent();
             long totalItems = page.getTotalElements();
             int totalPages = page.getTotalPages();
@@ -396,7 +447,7 @@ public class PagesController {
 
 //    @RequestParam(required = false, defaultValue = "someValue").
     
-  // Monuments card
+//  Monuments card pagination
     @GetMapping("monuments/card/page/{pageNumber}")
 	public String allMonumentsCard(Model model, @PathVariable("pageNumber") int currentPage) {
     	try {
@@ -422,7 +473,7 @@ public class PagesController {
     
 
     	  
-//    Form for add a new monument
+//    Monument New form
 	  @GetMapping("monuments/add")
 	  String add(Model model, @ModelAttribute("newMonument") Monument newMonument) {
 	
@@ -433,7 +484,7 @@ public class PagesController {
 	    
 	  }
 
-//	    @ResponseStatus(HttpStatus.CREATED)
+//	    Monument New
 	    @PostMapping("monuments")
 	    public String saveMonument(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
 	        appService.addMonument(newMonument);
@@ -444,32 +495,57 @@ public class PagesController {
 	        return "redirect:/monuments/card/page/1";
 	    }
 
-        @DeleteMapping("monuments/{id}")
-        public ResponseEntity<String> deleteMonumentById(Model model, @PathVariable String codeM) {
-        	try {
-        		 appService.deleteMonumentById(codeM);
-        		 return new ResponseEntity<>(codeM, HttpStatus.OK);
-        	} catch (Exception e) {
-        			model.addAttribute("message", e);
-        			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				
-			}
-           
-    
-    
-            
+
+//	    Monument update form
+        @GetMapping("monuments/update/{id}")
+        public String monumentUpdateForm(Model model, @PathVariable(value="id") String id) {
+            try {
+                color(model);
+                Monument sampleEntity = appService.getMonument(id);
+                model.addAttribute("sampleEntity",sampleEntity);
+            }catch (Exception e) {
+                model.addAttribute("message",e);
+            }
+        return "monument/update";		    
         }
 
 
-    // ---------------------------- End Monument   ----------------------------
+//	Monument update
+    @PostMapping("monuments/update")
+    public String monumentsUpdate(Model model, @ModelAttribute("sampleEntity") Monument sampleEntity, @ModelAttribute("id") String id) {
+        try {				  
+            model.addAttribute("message", sampleEntity.getCodeM() + " updated successfully");
+            appService.addMonument(sampleEntity);
+	    } catch (Exception e) {
+	        model.addAttribute("message", e);
+	    	}
+	        return "redirect:/monuments/page/1";
+    	}
+
+
+
+//		Monument delete
+        @GetMapping("monuments/delete/{id}")
+        public String deleteMonumentById(Model model, @PathVariable String id) {
+            try {
+        		appService.deleteMonumentById(id);
+        		model.addAttribute("message",id +" is successfully deleted");
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+				}
+            return "redirect:/monuments/page/1";        
+            }
+
+
+// ---------------------------- End Monument   ----------------------------
 
     
     
     
 
-    // ---------------------------- Begin Celebrite   ----------------------------
+// ---------------------------- Begin Celebrite   ----------------------------
 
-    // Celebrities
+//  Celebrities pagination
     @GetMapping("celebrities/page/{pageNumber}")
 	public String allCelebrities(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam(defaultValue="numCelebrite") String sortField, @RequestParam(defaultValue="asc") String sortDirection)   {
     	try {
@@ -489,10 +565,6 @@ public class PagesController {
     		model.addAttribute("sortDirection", "asc");	
     		String reverseSortDirection = sortDirection.equals("asc") ? "desc" : "asc";
     		model.addAttribute("reverseSortDirection", reverseSortDirection);		
-
-    		
-    		
-    		
     	}catch (Exception e) {
     		model.addAttribute("message",e);
     	}
@@ -500,7 +572,7 @@ public class PagesController {
 	}
 
 
-      // Celebrities card
+//    Celebrities card
       @GetMapping("celebrities/card/page/{pageNumber}")
       public String allCelebritiesCard(Model model, @PathVariable("pageNumber") int currentPage) {
           try {
@@ -522,7 +594,7 @@ public class PagesController {
       }
   
       
-      // Celebrities card details
+//    Celebrities card details
       @GetMapping("celebrities/details/{numCelebrite}")
       public String celebritiesCardDetails(Model model, @PathVariable long numCelebrite) {
           try {
@@ -537,7 +609,7 @@ public class PagesController {
 
       
       
-      // A method for changing the color of cards 
+//    A method for changing the color of cards 
   	  public void color(Model model) {
   	    int n = (int) (Math.random() * 7 + 1);
   	    List<String> border = Arrays.asList("border-primary","border-secondary","border-success","border-danger","border-warning","border-info","border-light","border-dark");
@@ -549,7 +621,7 @@ public class PagesController {
   	}
 
       
-	  // celebrity add form
+//    Celebrity New form
 	  @GetMapping("celebrities/add")
 	  String add(Model model, Celebrite newCelebrite) {
 		  try {
@@ -565,43 +637,44 @@ public class PagesController {
 	  }
 
 	  
-	  	// celebrity add
-//	    @ResponseStatus(HttpStatus.CREATED)
+//      Celebrity New
 	    @PostMapping("celebrities")
 	    public String saveCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){		// , @Valid @NotNull 
 	        try {
-                    appService.addCelebrite(newCelebrite);
-//                    return "redirect:celebrities/page/1";
-                
+                appService.addCelebrite(newCelebrite);                
             } catch (Exception e) {
                 model.addAttribute("message",e);
-                    return "celebrite/update";
+                return "celebrite/update";
 
             }
 	        return "redirect:/celebrities/page/1";
 	    }
 		
-	      
-		  @GetMapping("celebrities/update/{id}")
-		  public String modifyCelebrite(Model model, @PathVariable(value="id") long id) {
-			  try {
-				  color(model);
-				  Celebrite newCelebrite = appService.getCelebriteById(id);
-				  model.addAttribute("newCelebrite",newCelebrite);
-		    	}catch (Exception e) {
-		    		model.addAttribute("message",e);
-		    	}
+	    
+	    
+//  Celebrity update form
+    @GetMapping("celebrities/update/{id}")
+    public String modifyCelebrite(Model model, @PathVariable(value="id") long id) {
+        try {
+            color(model);
+            Celebrite newCelebrite = appService.getCelebriteById(id);
+            model.addAttribute("newCelebrite",newCelebrite);
+        }catch (Exception e) {
+            model.addAttribute("message",e);
+        }
 
-		    return "celebrite/update";
-		    
-		  }
-		  
-		  @PostMapping("celebrities/update")
-		  public String replaceCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
-			  
-			  try {
+    return "celebrite/update";
+    
+    }
+          
+          
+//  Celebrity update
+    @PostMapping("celebrities/update")
+    public String replaceCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
+        
+        try {
 //				  Celebrite updateCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
-				  
+            
 //				  updateCelebrite.setNom(newCelebrite.getNom());
 //				  updateCelebrite.setPrenom(newCelebrite.getPrenom());
 //				  updateCelebrite.setNumCelebrite(newCelebrite.getNumCelebrite());
@@ -609,36 +682,30 @@ public class PagesController {
 //				  updateCelebrite.setImage(newCelebrite.getImage());
 //				  updateCelebrite.setUrl(newCelebrite.getUrl());
 //				  updateCelebrite.setParent_url(newCelebrite.getParent_url());
-				  
+            
 //				  celebriteRepository.updateCelebrite(newCelebrite.getNom(), newCelebrite.getPrenom(), newCelebrite.getNationalite(), 
 //						  newCelebrite.getEpoque(), newCelebrite.getNumCelebrite());
 //				  celebriteRepository.save(updateCelebrite);
 //				  model.addAttribute("updateCelebrite", updateCelebrite);
 //				  model.addAttribute("idf", id);
 //				  model.addAttribute("newCelebrite_vodoudi", newCelebrite);
-				  
+            
 //				  appService.updateCelebriteObject(newCelebrite);
 //				  celebriteRepository.saveAndFlush(updateCelebrite);
-				  
-				  model.addAttribute("message", newCelebrite.getNumCelebrite() + " updated successfully");
-				  appService.addCelebrite(newCelebrite);
+            
+            model.addAttribute("message", newCelebrite.getNumCelebrite() + " updated successfully");
+            appService.addCelebrite(newCelebrite);
 
-			} catch (Exception e) {
-				
-				model.addAttribute("message", e);
-			}
-                    
-		        return "redirect:/celebrities/page/1";
-		  }
+    } catch (Exception e) {
+        
+        model.addAttribute("message", e);
+    }
+            
+        return "redirect:/celebrities/page/1";
+    }
 
 
-    /**
-     * Delete a celebrity based on Id
-     * Throw 404 exception if not found
-     * @param numCelebrite
-     */
-
-//      @DeleteMapping("celebrities/{id}")
+//    Celebrity delete
         @GetMapping("celebrities/delete/{id}")
         public String deleteCelebriteById(Model model, @PathVariable long id, RedirectAttributes ra) {
             try {

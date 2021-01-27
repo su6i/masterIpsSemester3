@@ -19,11 +19,12 @@
 			<div class="col-md-4">	                
 				<div class="card mb-3" th:classappend="${border} ? ${border} : 'border-primary'" style="width: 280px;">
 				  <div class="card-header" th:text="@{'Numéro: ' + ${departement.numDep}}">Numéro Departement</div>
+				  <img class="card-img-top" src="/image/departement.png" alt="Card image cap">
+				  
 				  <div class="card-body" th:classappend="${text} ? ${text} : 'text-primary'">
 				    <h5 class="card-title" th:text="@{'Nom:' + ${departement.nomDep}}">Nom Departement</h5>
 				    <p class="card-text" th:text="@{'Chef Lieu: ' + ${departement.lieu.codeInsee}}">Chef Lieu</p>
-                    <div th:replace="fragments/template :: remove-update-details (entity='departements', id=${departement.nomDep})"></div>
-				    
+                    <div th:replace="fragments/template :: remove-update-details (entity='departements', id=${departement.numDep})"></div>
 				  </div>
                 </div>
             </div>

@@ -55,12 +55,27 @@
                        <li class="divider"></li>
                        <li><a class="dropdown-item amir" th:href="@{'/departements/table'}" role="button">Table</a></li>
                        <li><a class="dropdown-item amir" th:href="@{'/departements/data-table'}" role="button">Data-Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{'/departements/add'}" role="button">Add</a></li>
+                       <li><a class="dropdown-item amir" th:href="@{'/departements/update'}" role="button">Add</a></li>
                        
 
                     </ul>
                  </li>
 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lieux
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <li><a class="dropdown-item amir" th:href="@{/lieux/page/1}">Table</a></li>
+                       <li><a class="dropdown-item amir" th:href="@{/lieux/card/page/1}">Card</a></li>
+                       <li><a class="dropdown-item amir" th:href="@{/json/lieux/page/1}">JSON</a></li>
+                       <li><a class="dropdown-item amir" th:href="@{/json/lieux}">JSON findAll</a></li>
+
+                       <li class="divider"></li>
+                       <li><a class="dropdown-item amir" th:href="@{'/lieux/update'}" role="button">Add</a></li>
+
+                    </ul>
+                 </li>
 
 
                   <li class="nav-item dropdown">
@@ -74,27 +89,12 @@
                         <li><a class="dropdown-item amir" th:href="@{/json/monuments}">JSON findAll</a></li>
 
                         <li class="divider"></li>
-                        <li><a class="dropdown-item amir" th:href="@{'/monuments/add'}" role="button">Add</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/monuments/update'}" role="button">Add</a></li>
 
                      </ul>
                   </li>
 
 
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Lieux
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item amir" th:href="@{/lieux/page/1}">Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/lieux/card/page/1}">Card</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/lieux/page/1}">JSON</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/lieux}">JSON findAll</a></li>
-
-                       <li class="divider"></li>
-                       <li><a class="dropdown-item amir" th:href="@{'/lieux/add'}" role="button">Add</a></li>
-
-                    </ul>
-                 </li>
 
 
                   <li class="nav-item dropdown">
