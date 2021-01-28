@@ -14,7 +14,7 @@
          <div class="card-group">
             <th:block th:each="lieu : ${lieux}">
  				<div class="col-md-4 ">	                
- 					<div class="card mb-3" style="max-width: 30rem;" th:classappend="${border} ? ${border} : 'border-success'">
+ 					<div class="card mb-3" style="width: 240px;" th:classappend="${border} ? ${border} : 'border-success'">
 	                    <div class="card-header bg-transparent" th:text="${lieu.nomCom}" th:classappend="${border} ? ${border} : 'border-success'">Commune</div>
 	                    <img class="card-img-top" src="/image/lieu.png" alt="Card image cap">
 	                     <div class="card-body" th:classappend="${text} ? ${text} : 'text-success'">
@@ -24,7 +24,8 @@
 	                     </div>
                         <div class="card-footer bg-transparent" th:text="@{'INSEE: ' + ${lieu.codeInsee}}" th:classappend="${border} ? ${border} : 'border-success'">INSEE</div>
 
-	                  </div>            
+	                  <div th:replace="fragments/template :: remove-update-details (entity='lieux', id=${lieu.codeInsee})"></div>  
+	                  </div>           
                   </div>            
             </th:block>
          </div>

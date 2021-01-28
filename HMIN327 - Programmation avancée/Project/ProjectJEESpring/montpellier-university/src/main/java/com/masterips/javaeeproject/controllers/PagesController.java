@@ -8,29 +8,21 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.istack.NotNull;
 
@@ -56,8 +48,8 @@ public class PagesController {
 	@Autowired
 	private CelebriteRepository celebriteRepository;
 	
-	@Autowired
-    private ModelMapper modelMapper;
+//	@Autowired
+//    private ModelMapper modelMapper;
 
 
 	private HttpSession colorSession;
@@ -76,7 +68,7 @@ public class PagesController {
     	try {
         	Sort sort = Sort.by(sortField);
         	sort=  sortDirection.equals("asc") ? sort.ascending() : sort.descending();
-    		Page<Departement> page = appService.getAllDepartements(currentPage, 28, sort);
+    		Page<Departement> page = appService.getAllDepartements(currentPage, 15, sort);
     		List<Departement> departements = page.getContent();
     		model.addAttribute("departements", departements);
             long totalItems = page.getTotalElements();
@@ -176,39 +168,131 @@ public class PagesController {
 
       
 
-      	  //departement add form
 
-	  @GetMapping("departements/add")
-	  String add(Model model, @ModelAttribute("newDepartement") Departement newDepartement) {
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//
+//      	  //departement add form
+//
+//	  @GetMapping("departements/add")
+//	  String add(Model model, @ModelAttribute("newDepartement") Departement newDepartement) {
+//	
+//          color(model);
+//          model.addAttribute("newDepartement",new Departement());
+//
+//	    return "departement/add";
+//	    
+//	  }
+//
+//	  	// new departement
+////	    @ResponseStatus(HttpStatus.CREATED)
+//	    @PostMapping("departements")
+//	    public String saveDep(Model model, @Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
+//	    	try {
+//	    		
+//	    		System.out.println("\n\n\n newDepartement: "+ newDepartement + "\n\n\nlieu: " + newDepartement.getLieu().getCodeInsee());
+//	    		appService.addDepartement(newDepartement);
+//	    		model.addAttribute("newDepartement", newDepartement);
+//	    		model.addAttribute("message","Departement" +newDepartement.getNumDep() +" added successfully");
+//				
+//			} catch (Exception e) {
+//				model.addAttribute("message",e);
+//					return "departement/add";
+//			
+//	    }
+//	    	return "redirect:/departements/page/1";       
+//	    }
+//	    
+//        
+//        
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+//  Departement New Form
+//  Departement update form
+//  Departement Details Form
+	  @GetMapping(value = {"departements/{mode}", "departements/{mode}/{id}"})
+	  public String monumentForm(Model model, @ModelAttribute("sampleEntity") Departement sampleEntity, @PathVariable(value="id") Optional<String> id, @PathVariable(value="mode") Optional<String> mode) {
+		  color(model);
 	
-          color(model);
-          model.addAttribute("newDepartement",new Departement());
+		  if(id.isPresent() && mode.isPresent()) {
+			  Departement existedSampleEntity = appService.getDepartement(id.get());
+			  model.addAttribute("sampleEntity",existedSampleEntity);
+		  }
+		  
+		  if(id.isEmpty()) {
+			  model.addAttribute("sampleEntity",new Departement());
+			  model.addAttribute("mode","add");
+		  }
 
-	    return "departement/add";
+	    return "departement/update";
 	    
 	  }
 
-	  	// new departement
-//	    @ResponseStatus(HttpStatus.CREATED)
-	    @PostMapping("departements")
-	    public String saveDep(Model model, @Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
-	    	try {
-	    		
-	    		System.out.println("\n\n\n newDepartement: "+ newDepartement + "\n\n\nlieu: " + newDepartement.getLieu().getCodeInsee());
-	    		appService.addDepartement(newDepartement);
-	    		model.addAttribute("newDepartement", newDepartement);
-	    		model.addAttribute("message","Departement" +newDepartement.getNumDep() +" added successfully");
-				
-			} catch (Exception e) {
-				model.addAttribute("message",e);
-					return "departement/add";
-			
-	    }
-	    	return "redirect:/departements/page/1";       
-	    }
-	    
-	    
-	    
+
+//	Departement New
+    @PostMapping("departements")
+    public String saveDepartement(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Departement sampleEntity, BindingResult result, RedirectAttributes ra){
+        
+      Lieu lieu = sampleEntity.setLieu(appService.getLieu(sampleEntity.getLieu().getCodeInsee()));
+
+  	  if(lieu != null) sampleEntity.setLieu(lieu);
+  	  else sampleEntity.setLieu(new Lieu(sampleEntity.getLieu().getCodeInsee()));
+		  appService.addDepartement(sampleEntity);
+		  if(result.hasErrors()){
+			  ra.addAttribute("message", result.getAllErrors());
+		      return "departement/update";
+		  }
+		  ra.addFlashAttribute("sampleEntity", sampleEntity);
+          ra.addAttribute("message", sampleEntity.getNumDep() + " updated successfully");
+
+		  return "redirect:/departements/page/1";
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 //		Departement delete
         @GetMapping("departements/delete/{id}")
@@ -219,7 +303,8 @@ public class PagesController {
 			} catch (Exception e) {
 				model.addAttribute("message",e);
 				}
-            return "redirect:/departements/page/1";        
+//            return "redirect:/departements/page/1";
+            return "history.go(-2)";
             }
 
 
@@ -327,26 +412,30 @@ public class PagesController {
 
 //    Lieu New Form
 //    Lieux update form
-	  @GetMapping(value = {"lieux/update", "lieux/update/{id}"})
-	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @PathVariable(value="id") Optional<String> id) {
+//    Lieu Details Form
+	  @GetMapping(value = {"lieux/{mode}", "lieux/{mode}/{id}"})
+	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @PathVariable(value="id") Optional<String> id, @PathVariable(value="mode") Optional<String> mode) {
 		  color(model);
 	
+		  if(id.isPresent() && mode.isPresent()) {
+			  Lieu existedSampleEntity = appService.getLieu(id.get());
+			  model.addAttribute("sampleEntity",existedSampleEntity);
+//			  if(mode.get() == "details") {
+//				  model.addAttribute("mode","details");
+//			  }
+//			  if(mode.get() == "update") {
+//	            try {
+//	                model.addAttribute("mode","update");
+//	            }catch (Exception e) {
+//	                model.addAttribute("message",e);
+//	            }
+//
+//			  } 
+		  }
 		  
-		  System.out.println("I found id:::::::::::::::::"+id);
-		  
-		  
-		  if(id.isPresent()) {
-	            try {
-	                Lieu existedSampleEntity = appService.getLieu(id.get());
-	                System.out.println("I found object:::::::::::::::::"+existedSampleEntity);
-	                model.addAttribute("sampleEntity",existedSampleEntity);
-	            }catch (Exception e) {
-	                model.addAttribute("message",e);
-	            }
-
-		  } else {
+		  if(id.isEmpty()) {
 			  model.addAttribute("sampleEntity",new Lieu());
-			  
+			  model.addAttribute("mode","add");
 		  }
 
 	    return "lieu/update";
@@ -356,43 +445,24 @@ public class PagesController {
 
 //	  Lieux New
       @PostMapping("lieux")
-      public String saveLieu(@Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
-        appService.addLieu(sampleEntity);
-        if(result.hasErrors()){
-            return "lieu/update";
-        }
-        ra.addFlashAttribute("sampleEntity", sampleEntity);
-        return "redirect:/lieux/card/page/1";
-    }
-        
-        
-        
-	    
-//	    Lieux update form
-//        @GetMapping("lieux/update/{id}")
-//        public String lieuxUpdateForm(Model model, @PathVariable(value="id") String id) {
-//            try {
-//                color(model);
-//                Lieu sampleEntity = appService.getLieu(id);
-//                model.addAttribute("sampleEntity",sampleEntity);
-//            }catch (Exception e) {
-//                model.addAttribute("message",e);
-//            }
-//        return "lieu/update";		    
-//        }
-		  
-//		Lieux update
-        @PostMapping("lieux/update")
-        public String lieuxUpdate(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @ModelAttribute("id") String id) {
-            try {				  
-                model.addAttribute("message", sampleEntity.getCodeInsee() + " updated successfully");
-                appService.addLieu(sampleEntity);
-        } catch (Exception e) {
-            model.addAttribute("message", e);
-        }
-            return "redirect:/lieux/page/1";
-        }
+      public String saveLieu(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
+          
+          Departement dep = sampleEntity.setDepartement(appService.getDepartement(sampleEntity.getDepartement().getNumDep()));;
 
+    	  if(dep != null) sampleEntity.setDepartement(dep);
+    	  else sampleEntity.setDepartement(new Departement(sampleEntity.getDepartement().getNumDep()));
+		  appService.addLieu(sampleEntity);
+		  if(result.hasErrors()){
+			  ra.addAttribute("message", result.getAllErrors());
+		      return "lieu/update";
+		  }
+		  ra.addFlashAttribute("sampleEntity", sampleEntity);
+          ra.addAttribute("message", sampleEntity.getCodeInsee() + " updated successfully");
+
+		  return "redirect:/lieux/page/1";
+		}
+        
+        
 
 //		Lieux delete
         @GetMapping("lieux/delete/{id}")
@@ -473,54 +543,121 @@ public class PagesController {
     
 
     	  
-//    Monument New form
-	  @GetMapping("monuments/add")
-	  String add(Model model, @ModelAttribute("newMonument") Monument newMonument) {
+// //    Monument New form
+// 	  @GetMapping("monuments/add")
+// 	  public String add(Model model, @ModelAttribute("newMonument") Monument newMonument) {
 	
-          color(model);
-          model.addAttribute("newMonument",new Monument());
+//           color(model);
+//           model.addAttribute("newMonument",new Monument());
 
-	    return "monument/add";
+// 	    return "monument/add";
+	    
+// 	  }
+
+// //	    Monument New
+// 	    @PostMapping("monuments")
+// 	    public String saveMonument(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
+// 	        appService.addMonument(newMonument);
+// 	        if(result.hasErrors()){
+// 	            return "monument/add";
+// 	        }
+// 	        ra.addFlashAttribute("newMonument", newMonument);
+// 	        return "redirect:/monuments/card/page/1";
+// 	    }
+
+
+// //	    Monument update form
+//         @GetMapping("monuments/update/{id}")
+//         public String monumentUpdateForm(Model model, @PathVariable(value="id") String id) {
+//             try {
+//                 color(model);
+//                 Monument sampleEntity = appService.getMonument(id);
+//                 model.addAttribute("sampleEntity",sampleEntity);
+//             }catch (Exception e) {
+//                 model.addAttribute("message",e);
+//             }
+//         return "monument/update";		    
+//         }
+
+
+// //	Monument update
+//     @PostMapping("monuments/update")
+//     public String monumentsUpdate(Model model, @ModelAttribute("sampleEntity") Monument sampleEntity, @ModelAttribute("id") String id) {
+//         try {				  
+//             model.addAttribute("message", sampleEntity.getCodeM() + " updated successfully");
+//             appService.addMonument(sampleEntity);
+// 	    } catch (Exception e) {
+// 	        model.addAttribute("message", e);
+// 	    	}
+// 	        return "redirect:/monuments/page/1";
+//     	}
+    
+    
+    
+    
+
+
+
+
+
+
+
+    
+//  Monument New Form
+//  Monument update form
+//  Monument Details Form
+	  @GetMapping(value = {"monuments/{mode}", "monuments/{mode}/{id}"})
+	  public String monumentForm(Model model, @ModelAttribute("sampleEntity") Monument sampleEntity, @PathVariable(value="id") Optional<String> id, @PathVariable(value="mode") Optional<String> mode) {
+		  color(model);
+	
+		  if(id.isPresent() && mode.isPresent()) {
+			  Monument existedSampleEntity = appService.getMonument(id.get());
+			  model.addAttribute("sampleEntity",existedSampleEntity);
+		  }
+		  
+		  if(id.isEmpty()) {
+			  model.addAttribute("sampleEntity",new Monument());
+			  model.addAttribute("mode","add");
+		  }
+
+	    return "monument/update";
 	    
 	  }
 
-//	    Monument New
-	    @PostMapping("monuments")
-	    public String saveMonument(@Valid @NotNull @ModelAttribute("newMonument") Monument newMonument, BindingResult result, RedirectAttributes ra){
-	        appService.addMonument(newMonument);
-	        if(result.hasErrors()){
-	            return "monument/add";
-	        }
-	        ra.addFlashAttribute("newMonument", newMonument);
-	        return "redirect:/monuments/card/page/1";
-	    }
 
+//	Monument New
+    @PostMapping("monuments")
+    public String saveMonument(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Monument sampleEntity, BindingResult result, RedirectAttributes ra){
+        
+      Lieu lieu = sampleEntity.setLieu(appService.getLieu(sampleEntity.getLieu().getCodeInsee()));
 
-//	    Monument update form
-        @GetMapping("monuments/update/{id}")
-        public String monumentUpdateForm(Model model, @PathVariable(value="id") String id) {
-            try {
-                color(model);
-                Monument sampleEntity = appService.getMonument(id);
-                model.addAttribute("sampleEntity",sampleEntity);
-            }catch (Exception e) {
-                model.addAttribute("message",e);
-            }
-        return "monument/update";		    
-        }
+  	  if(lieu != null) sampleEntity.setLieu(lieu);
+  	  else sampleEntity.setLieu(new Lieu(sampleEntity.getLieu().getCodeInsee()));
+		  appService.addMonument(sampleEntity);
+		  if(result.hasErrors()){
+			  ra.addAttribute("message", result.getAllErrors());
+		      return "monument/update";
+		  }
+		  ra.addFlashAttribute("sampleEntity", sampleEntity);
+          ra.addAttribute("message", sampleEntity.getCodeM() + " updated successfully");
 
+		  return "redirect:/monuments/page/1";
+		}
 
-//	Monument update
-    @PostMapping("monuments/update")
-    public String monumentsUpdate(Model model, @ModelAttribute("sampleEntity") Monument sampleEntity, @ModelAttribute("id") String id) {
-        try {				  
-            model.addAttribute("message", sampleEntity.getCodeM() + " updated successfully");
-            appService.addMonument(sampleEntity);
-	    } catch (Exception e) {
-	        model.addAttribute("message", e);
-	    	}
-	        return "redirect:/monuments/page/1";
-    	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
@@ -717,6 +854,15 @@ public class PagesController {
             return "redirect:/celebrities/page/1";        
             }
     
+        
+        @RequestMapping(
+        		  value = "/employee", 
+        		  produces = { "application/json", "application/xml" }, 
+        		  method = RequestMethod.GET)
+        		public @ResponseBody List<Celebrite> getEmployeeById() {
+        		    return celebriteRepository.findAll();
+        		}
+
         
         
         

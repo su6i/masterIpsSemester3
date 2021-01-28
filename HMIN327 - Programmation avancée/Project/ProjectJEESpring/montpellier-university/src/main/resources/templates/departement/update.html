@@ -12,14 +12,12 @@
 
 
 
- <div th:text="@{'CodeInsee: ' + ${newDepartement?.lieu?.codeInsee}}"></div>
- <p th:if="${lieu instanceof T(com.masterips.javaeeproject.entities.Lieu)}" th:text="'lieu recognized'"> </p>
- <p th:unless="${lieu instanceof T(com.masterips.javaeeproject.entities.Lieu)}" th:text="'lieu NOT recognized'"> </p>
+<h1 th:if="${id.isEmpty()}"> New Departement</h1>
+<h1 th:if="${id.isPresent() and mode.get() == 'details'}" th:text="@{'Details Departement with ID: ' + ${id.get()}}"> Details Departement</h1>
+<h1 th:if="${id.isPresent() and mode.get() == 'update'}" th:text="@{'Update Departement with ID: ' + ${id.get()}}"> Update Departement</h1>
 
 
-
-<h1> New Departement</h1>
-<form action="#" th:action="@{'/departements'}" th:object="${newDepartement}" method="post">
+<form action="#" th:action="@{'/departements'}" th:object="${sampleEntity}" method="post">
     <ul th:if="${#fields.hasErrors('*')}">
         <li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
     </ul>
@@ -34,7 +32,7 @@
                                   <tr>
                                       <th class="card-text text-info font-weight-bold">Name:</th>
                                       <td>
-                                       <input type="text" th:field="*{nomDep}" id="nomDep" style="width:400px;"/>
+                                       <input type="text" th:field="*{nomDep}" id="nomDep" style="width:400px;" th:disabled="${mode.get() == 'details'}"/>
                                        <span th:if="${#fields.hasErrors('nomDep')}" th:errors="*{nomDep}" th:errorclass="error"></span>
                                       </td>
                                   </tr>
@@ -43,7 +41,7 @@
                                           <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Number: </span>
                                        </th>
                                       <td>
-                                           <input type="text" th:field="*{numDep}" id="numDep" onchange="url(this.value)" style="width:400px;"/>
+                                           <input type="text" th:field="*{numDep}" id="numDep" onchange="url(this.value)" style="width:400px;" th:disabled="${mode.get() == 'details'}"/>
 
                                       </td>
                                   </tr>
@@ -52,17 +50,16 @@
                                            <h5 class="card-title" th:classappend="${text} ? ${text} : 'text-primary'" style="width:90px;">Chef Lieu:</h5>
                                       </th>
                                       <td>
-                                       <input type="text" th:field="*{lieu}" th:value="${lieu}" id="chefLieu" style="width:400px;"/>
-
-                                       
+                                       <input type="text" th:value="${sampleEntity.lieu}" id="LieuObject" style="width:400px;" disabled/>
+                                       <input type="text" th:field="${sampleEntity.lieu.codeInsee}" id="chefLieu" style="width:400px;" th:disabled="${mode.get() == 'details'}"/>
                                       </td>
                                   </tr>
                                   <tr>
                                       <th>
-                                           <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'" disabled>URL: </p>
+                                           <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">URL: </p>
                                       </th>
                                       <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/' + ${newDepartement?.numDep}}" id="url" disabled style="width:400px;"/>
+                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/' + ${numDep}}" th:field="*{url}" id="url" disabled style="width:400px;"/>
                                       </td> 
                                   </tr>
                                   <tr>
@@ -70,7 +67,7 @@
                                            <span class="card-text">Parent URL: </span>
                                       </th>
                                    <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/page/1'}"  id="parent_url" disabled  style="width:400px;" />
+                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/page/1'}" th:field="*{parent_url}" id="parent_url" disabled  style="width:400px;" />
                                       </td> 
                                   </tr>
                               
@@ -80,8 +77,8 @@
                        
 
 							<div class="btn-toolbar">
-					            <button class="btn btn-primary" type="submit">Submit</button>
-					            <button class="btn btn-danger" type="reset">Reset</button>
+					            <button class="btn btn-primary" type="submit" th:if="${mode.get() == 'update' or id.isEmpty()}">Submit</button>
+					            <button class="btn btn-danger"  type="reset"  th:if="${mode.get() == 'update' or id.isEmpty()}">Reset </button>
 					   		</div>                  
                   
                   

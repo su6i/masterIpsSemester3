@@ -58,7 +58,7 @@ public class Monument implements Serializable {
 	private double latitude;
 		
 	@ManyToOne(targetEntity = Lieu.class)
-    @JoinColumn(name="codeLieu", insertable=false ,updatable=false)
+    @JoinColumn(name="codeLieu")
     @JsonProperty("Lieu")
 	private Lieu lieu;
 	
@@ -120,8 +120,6 @@ public class Monument implements Serializable {
 
 	public void setCodeM(String codeM) {
 		this.codeM = codeM;
-        this.url = "http://localhost:8080/json/monuments/"+this.codeM;
-        this.parent_url = "http://localhost:8080/json/monuments/page/1";
 
 	}
 
@@ -179,9 +177,10 @@ public class Monument implements Serializable {
 		return lieu;
 	}
 
-	public void setLieu(Lieu lieu) {
+	public Lieu setLieu(Lieu lieu) {
 		if(lieu != null) this.lieu = lieu;
 		else this.lieu = new Lieu();
+		return lieu;
 		
 	}
 
@@ -191,13 +190,26 @@ public class Monument implements Serializable {
 		return url;
 	}
 	
-	
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 
 	public String getParent_url() {
 		return parent_url;
 	}
 
+
+
+	/**
+	 * @param parent_url the parent_url to set
+	 */
+	public void setParent_url(String parent_url) {
+		this.parent_url = parent_url;
+	}
 
 	@Override
     public String toString() {
@@ -213,6 +225,7 @@ public class Monument implements Serializable {
 	public void setCelebrities(Set<Celebrite> celebrities) {
 		this.celebrities = celebrities;
 	}
+
 
 	
 	

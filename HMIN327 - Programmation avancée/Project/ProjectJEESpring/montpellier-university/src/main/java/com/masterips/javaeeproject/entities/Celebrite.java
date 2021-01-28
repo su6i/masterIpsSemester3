@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.SQLInsert;
 
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //@Table(name="celebrite",uniqueConstraints=@UniqueConstraint(columnNames={"nom","prenom","nationalite","epoque"}))
 
 //@SQLInsert(sql = "INSERT INTO Celebrite(num_celebrite, epoque, image, nationalite, nom, prenom, url, parent_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" )
+//@XmlRootElement
 public class Celebrite implements Serializable {
 	 /**
 	 * 
@@ -38,27 +40,34 @@ public class Celebrite implements Serializable {
 	
 	@NotBlank(message = "Family is mandatory")
 	@Column(length = 16)
+	@JsonProperty("Family")
 	private String nom = "undefined";
 	
 	@NotBlank(message = "Name is mandatory")
 	@Column(length = 16)
+	@JsonProperty("Name")
 	private String prenom = "undefined";
 	
 	@Column(length = 30)
+	@JsonProperty("Nationality") 
 	private String nationalite;
 	
 	@Column(length = 4)
+	@JsonProperty("Year of Birth") 
 	private String epoque;
 
     @Column(length = 255)
+    @JsonProperty("URL") 
 	private String url;
     
     @Column(length = 255)
+    @JsonProperty("Parent URL") 
 	private String parent_url;
     
     
     
     @Column(length = 255)
+    @JsonProperty("Image") 
 	private String image;
     
     
@@ -67,6 +76,7 @@ public class Celebrite implements Serializable {
 	@JoinTable(name= "associeA",
 	joinColumns= @JoinColumn(name="numCelebrite", referencedColumnName="numCelebrite"),
 	inverseJoinColumns= @JoinColumn(name="codeM", referencedColumnName="code_m"))	
+ 	@JsonProperty("List of Monuments") 
 	private  Set<Monument> monuments = new HashSet<Monument>();
 	
 	
@@ -86,7 +96,7 @@ public class Celebrite implements Serializable {
 
 
 
-	public Celebrite(long numCelebrite, @JsonProperty("Family") String nom, @JsonProperty("Name") String prenom, @JsonProperty("Nationality") String nationalite, @JsonProperty("Year of Birth") String epoque) {
+	public Celebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque) {
 		this(numCelebrite);
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -194,6 +204,20 @@ public class Celebrite implements Serializable {
         return "ID: " + this.numCelebrite +", Nom Celebrite: " + this.nom + ", Prénom Celebrite: " + this.prenom + ", Nationalite: " + this.nationalite +
         	   ", Epoque: " + this.epoque ;
     }
+
+	/**
+	 * @return the monuments
+	 */
+	public Set<Monument> getMonuments() {
+		return monuments;
+	}
+
+	/**
+	 * @param monuments the monuments to set
+	 */
+	public void setMonuments(Set<Monument> monuments) {
+		this.monuments = monuments;
+	}
 	
 	
 }

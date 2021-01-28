@@ -46,7 +46,7 @@ public class Lieu implements Serializable {
 
     @JsonBackReference	
     @OneToOne(cascade = {CascadeType.ALL}, targetEntity = Departement.class)
-	@JoinColumn(name="dep", insertable=false ,updatable=false)
+	@JoinColumn(name="dep")		//, insertable=false ,updatable=false)
     @JsonProperty("Departement")
 	private Departement departement;
 	
@@ -112,8 +112,6 @@ public class Lieu implements Serializable {
 
 	public void setCodeInsee(String codeInsee) {
 		this.codeInsee = codeInsee;
-        this.url = "http://localhost:8080/json/lieux/"+this.codeInsee;
-        this.parent_url = "http://localhost:8080/json/lieux/page/1";
 
 	}
 
@@ -165,9 +163,10 @@ public class Lieu implements Serializable {
 	}
 	
 //	@JsonSetter
-	public void setDepartement(Departement departement) {
+	public Departement setDepartement(Departement departement) {
 		if(departement != null) this.departement = departement;
 		else this.departement = new Departement();
+		return departement;
 	}
 		
 	
@@ -189,6 +188,34 @@ public class Lieu implements Serializable {
         return "Code Insee=" + this.codeInsee + ", Nom Commune: " + this.nomCom + ", Departement: " 
         					 + this.departement.getNumDep() +  ", Longitude: " + this.longitude + ", Latitude: " + this.latitude ;
     }
+
+	/**
+	 * @return the departement_url
+	 */
+	public String getDepartement_url() {
+		return departement_url;
+	}
+
+	/**
+	 * @param departement_url the departement_url to set
+	 */
+	public void setDepartement_url(String departement_url) {
+		this.departement_url = departement_url;
+	}
+
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	/**
+	 * @param parent_url the parent_url to set
+	 */
+	public void setParent_url(String parent_url) {
+		this.parent_url = parent_url;
+	}
 	
 	
 	

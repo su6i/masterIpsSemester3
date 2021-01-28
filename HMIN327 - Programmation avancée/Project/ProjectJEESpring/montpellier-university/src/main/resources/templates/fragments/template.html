@@ -267,17 +267,17 @@
 
       <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
-      <th:block th:fragment="remove-update-details-back (entity)">
+      <th:block th:fragment="remove-update-details-back (entity, id)">
         <div class="btn-toolbar">
             
             <!-- {% if app.user %} -->
                 <!-- {% if app.user.roles[0] == "ROLE_ADMIN" %} -->
-                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/remove/' + ${id}}" role="button">Remove</a>
-                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/update/' + ${id}}" role="button">Update</a>
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/remove/' + ${id}}" id="remove" role="button">Remove</a>
+                <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/update/' + ${id}}" id="update" role="button">Update</a>
                 <!-- {% endif %}
             {% endif %} -->
-            <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/' +${id}}" role="button">Details</a>
-            <a class="btn btn-success btn-md" th:href="@{'/' +${entity} + '/page/1}" role="button">Back</a>
+	            <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/update/' + ${id}}" id="details" role="button">Details</a>
+	            <a class="btn btn-success btn-md" th:href="@{'/' 	  +${entity}  + '/page/1}          " 			  role="button">Back   </a>
         </div>
 
       </th:block>
@@ -286,8 +286,8 @@
 
      <th:block th:fragment="remove-update-details (entity, id)">
         <div class="btn-toolbar">            
-            <a class="btn btn-danger  btn-md" th:href="@{'/' + ${entity} + '/delete/'       + ${id}}" id="remove"  role="button">Remove</a>
-	        <a class="btn btn-primary btn-md" th:href="@{'/' + ${entity} + '/update/' 	    + ${id}}" id="update"  role="button">Update</a>
+            <a class="btn btn-danger  btn-md" th:href="@{'/' + ${entity} + '/delete/' + ${id}}" id="remove"  role="button">Remove</a>
+	        <a class="btn btn-primary btn-md" th:href="@{'/' + ${entity} + '/update/' + ${id}}" id="update"  role="button">Update</a>
             <a class="btn btn-success btn-md" th:href="@{'/' + ${entity} + '/details/' + ${id}}" id="details" role="button">Details</a>            
         </div>
 

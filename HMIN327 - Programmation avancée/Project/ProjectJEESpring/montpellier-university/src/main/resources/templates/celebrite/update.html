@@ -47,7 +47,7 @@
                                            <tr>
                                                <th class="card-text text-info font-weight-bold">Name:</th>
                                                <td>
-                                                <input type="text" th:value="${newCelebrite.prenom}" th:field="*{prenom}" id="prenom" class="form-control mb-4 col-4"/>
+                                                <input type="text" th:value="${newCelebrite.prenom}" th:field="*{prenom}" id="prenom" class="form-control mb-4 col-4" th:disabled="${mode.get() == 'details'}"/>
                                                 <span th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" th:errorclass="error"></span>
                                                </td>
                                            </tr>
@@ -56,7 +56,7 @@
                                                    <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Family: </span>
                                                 </th>
                                                <td>
-                                                    <input type="text" th:value="${newCelebrite.nom}" th:field="*{nom}" id="nom" class="form-control mb-4 col-4" />
+                                                    <input type="text" th:value="${newCelebrite.nom}" th:field="*{nom}" id="nom" class="form-control mb-4 col-4" th:disabled="${mode.get() == 'details'}" />
                                                </td>
                                            </tr>
                                            <tr>
@@ -64,7 +64,7 @@
                                                     <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Nationality: </p>
                                                </th>
                                                <td>
-                                                    <input type="text" th:value="${newCelebrite.nationalite}" th:field="*{nationalite}" id="nationalite" class="form-control mb-4 col-4" />
+                                                    <input type="text" th:value="${newCelebrite.nationalite}" th:field="*{nationalite}" id="nationalite" class="form-control mb-4 col-4" th:disabled="${mode.get() == 'details'}" />
                                                </td>
                                            </tr>
                                            <tr>
@@ -72,7 +72,7 @@
                                                     <span class="card-text">Year of Birth: </span>
                                                </th>
                                                <td>
-                                               		<input type="number" min="1" max="2021" th:value="${newCelebrite.epoque}" th:field="*{epoque}" id="epoque" class="form-control mb-4 col-4" />
+                                               		<input type="number" min="1" max="2021" th:value="${newCelebrite.epoque}" th:field="*{epoque}" id="epoque" class="form-control mb-4 col-4" th:disabled="${mode.get() == 'details'}" />
                                                </td>
                                            </tr>
                            			
@@ -80,8 +80,8 @@
                            
  								</div>       
 					        <div class="btn-toolbar">
-					            <button class="btn btn-success" type="submit">Submit</button>
-					            <button class="btn btn-danger" type="reset">Reset</button>
+					            <button class="btn btn-primary" type="submit" th:if="${mode.get() == 'update' or id.isEmpty()}">Submit</button>
+					            <button class="btn btn-danger"  type="reset"  th:if="${mode.get() == 'update' or id.isEmpty()}">Reset </button>
 					   		</div>
                          </div>            
                      </div>      

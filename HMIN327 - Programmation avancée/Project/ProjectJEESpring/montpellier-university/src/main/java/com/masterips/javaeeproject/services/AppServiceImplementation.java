@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
-import org.modelmapper.ModelMapper;
+//import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -48,8 +48,8 @@ public class AppServiceImplementation implements AppService {
 	@Autowired
 	private DepartementRepository departementRepository;
 	
-	@Autowired
-    private ModelMapper modelMapper;
+//	@Autowired
+//    private ModelMapper modelMapper;
 
 	
 	
@@ -72,22 +72,16 @@ public class AppServiceImplementation implements AppService {
 		return departementRepository.findAll(pageable);
 	}
 	
-	@Override
-	public Departement addDepartement(Departement departement) {
-		System.out.println("This is departement in addDepartement method: " +departement);
-		System.out.println("This is lieu in addDepartement method: " +departement.getLieu());
-		System.out.println("This is codeInsee in addDepartement method: " +departement.getLieu().getCodeInsee());
-		Departement result =  departementRepository.save(departement);
-		Departement d1 = this.getDepartement(result.getNumDep());
-		
-		System.out.println("This is departement in addDepartement method after save: " +result);
-		System.out.println("This is lieu in addDepartement method after save:  " +result.getLieu());
-		System.out.println("This is codeInsee in addDepartement method after save:  " +result.getLieu().getCodeInsee());
-		
-
-		return departement;
-	}
     
+
+    @Override
+	public Departement addDepartement(Departement departement) {
+		return departementRepository.save(departement);
+	}
+
+
+
+
     @Override
 	public List<Departement> findAll(){
 		return departementRepository.findAll();

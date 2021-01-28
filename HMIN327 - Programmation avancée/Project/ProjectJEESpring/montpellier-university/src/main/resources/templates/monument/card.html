@@ -14,7 +14,7 @@
          <div class="card-group">
             <th:block th:each="monument : ${monuments}">
  				<div class="col-md-4 ">	                
- 					<div class="card mb-3" style="max-width: 30rem;" th:classappend="${border} ? ${border} : 'border-primary'">
+ 					<div class="card mb-3" style="width: 240px;" th:classappend="${border} ? ${border} : 'border-primary'">
 	                    <div class="card-header bg-transparent" th:text="${monument.nomM}" th:classappend="${border} ? ${border} : 'border-primary'">nom_m</div>
 	                    <img class="card-img-top" src="/image/monument.jpg" alt="Card image cap">
 	                     <div class="card-body" th:classappend="${text} ? ${text} : 'text-success'">
@@ -25,6 +25,7 @@
 	                      Type: <span class="card-text" th:text="${monument.typeMonument}">type_monument</span>
 	                     </div>
                         <div class="card-footer bg-transparent" th:text="@{'GeoHash: ' + ${monument.codeM}}" th:classappend="${border} ? ${border} : 'border-primary'">code_m</div>
+			            <div th:replace="fragments/template :: remove-update-details (entity='monuments', id=${monument.codeM})"></div>
 
 	                  </div>            
                   </div>            

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +31,7 @@ import com.masterips.javaeeproject.dao.CelebriteRepository;
 import com.masterips.javaeeproject.entities.Celebrite;
 
 @RestController
-@RequestMapping("json/celebrities")
+@RequestMapping(path = "json/celebrities")
 public class CelebriteRestController {
 	
 	@Autowired
@@ -81,7 +82,9 @@ public class CelebriteRestController {
 	  // First way to do:
 	  // Find a celebrity by numCelebrite, with throw exception if doesn't exists!
 	
-	  @GetMapping("{numCelebrite}")
+//	  @GetMapping(path = "{numCelebrite}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+
+	  @GetMapping(path = "{numCelebrite}")
 	  Celebrite one(@PathVariable long numCelebrite) {
 	
 	    return repository.findById(numCelebrite)

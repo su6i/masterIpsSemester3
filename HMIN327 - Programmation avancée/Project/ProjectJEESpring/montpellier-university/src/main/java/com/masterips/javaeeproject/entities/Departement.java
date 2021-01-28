@@ -44,7 +44,7 @@ public class Departement implements Serializable {
 //	@NotBlank(message = "Chef Lieu is mandatory")
     @JsonManagedReference
 	@OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="chefLieu", insertable=false ,updatable=false)
+    @JoinColumn(name="chefLieu")	// , insertable=false ,updatable=false
     @JsonProperty("Chef Lieu")
     private Lieu lieu;
 
@@ -117,15 +117,30 @@ public class Departement implements Serializable {
 //	}
 	
 //	@JsonSetter
-	public void setLieu(Lieu lieu) {
+	public Lieu setLieu(Lieu lieu) {
 		if (lieu != null) this.lieu = lieu;
 		else this.lieu = new Lieu();
+		return lieu;
 	}
 
 
 
 	
 	
+	/**
+	 * @param url the url to set
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	/**
+	 * @param parent_url the parent_url to set
+	 */
+	public void setParent_url(String parent_url) {
+		this.parent_url = parent_url;
+	}
+
 	public String getUrl() {
 		return url;
 	}
