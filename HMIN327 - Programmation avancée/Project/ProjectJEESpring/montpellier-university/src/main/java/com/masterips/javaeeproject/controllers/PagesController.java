@@ -775,8 +775,8 @@ public class PagesController {
 
 	  
 //      Celebrity New
-	    @PostMapping("celebrities")
-	    public String saveCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){		// , @Valid @NotNull 
+	    @PostMapping("celebrities/add")
+	    public String saveCelebriteOld(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, BindingResult result){		// , @Valid @NotNull 
 	        try {
                 appService.addCelebrite(newCelebrite);                
             } catch (Exception e) {
@@ -791,7 +791,7 @@ public class PagesController {
 	    
 //  Celebrity update form
     @GetMapping("celebrities/update/{id}")
-    public String modifyCelebrite(Model model, @PathVariable(value="id") long id) {
+    public String modifyCelebriteOld(Model model, @PathVariable(value="id") long id) {
         try {
             color(model);
             Celebrite newCelebrite = appService.getCelebriteById(id);
@@ -807,7 +807,7 @@ public class PagesController {
           
 //  Celebrity update
     @PostMapping("celebrities/update")
-    public String replaceCelebrite(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
+    public String replaceCelebriteOld(Model model, @ModelAttribute("newCelebrite") Celebrite newCelebrite, @ModelAttribute("id") String id) {		// @RequestBody Celebrite newCelebrite
         
         try {
 //				  Celebrite updateCelebrite = appService.getCelebriteById(newCelebrite.getNumCelebrite());
@@ -840,6 +840,88 @@ public class PagesController {
             
         return "redirect:/celebrities/page/1";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  Celebrite New Form
+//  Celebrite update form
+//  Celebrite Details Form
+	  @GetMapping(value = {"celebrities/{mode}", "celebrities/{mode}/{id}"})
+	  public String celebriteForm(Model model, @ModelAttribute("sampleEntity") Celebrite sampleEntity, @PathVariable(value="id") Optional<Long> id, @PathVariable(value="mode") Optional<String> mode) {
+		  color(model);
+	
+		  if(id.isPresent() && mode.isPresent()) {
+			  Celebrite existedSampleEntity = appService.getCelebriteById(id.get());
+			  model.addAttribute("sampleEntity",existedSampleEntity);
+		  }
+		  
+		  
+		  
+		  
+		  if(id.get() == 0) {
+			  model.addAttribute("sampleEntity",new Celebrite());
+			  model.addAttribute("mode","add");
+		  }
+
+	    return "celebrite/update";
+	    
+	  }
+
+
+//	Celebrite New
+    @PostMapping("celebrities")
+    public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Celebrite sampleEntity, BindingResult result, RedirectAttributes ra){
+        
+//      Monument monument = sampleEntity.setMonument(appService.getMonument(sampleEntity.getMonuments().codeM()));
+//
+//  	  if(monument != null) sampleEntity.setMonuments(monument);
+//  	  else sampleEntity.setMonuments(new Monument(sampleEntity.getMonuments().codeM()));
+
+    	
+    	appService.addCelebrite(sampleEntity);
+		  if(result.hasErrors()){
+			  ra.addAttribute("message", result.getAllErrors());
+		      return "celebrite/update";
+		  }
+		  ra.addFlashAttribute("sampleEntity", sampleEntity);
+          ra.addAttribute("message", sampleEntity.getNumCelebrite() + " updated successfully");
+
+		  return "redirect:/celebrities/page/1";
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    Celebrity delete

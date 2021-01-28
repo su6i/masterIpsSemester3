@@ -217,7 +217,11 @@ public class Celebrite implements Serializable {
 	 */
 	public void setMonuments(Set<Monument> monuments) {
 		this.monuments = monuments;
-	}
-	
+    }
+        
+
+
+    
+        
 	
 }
