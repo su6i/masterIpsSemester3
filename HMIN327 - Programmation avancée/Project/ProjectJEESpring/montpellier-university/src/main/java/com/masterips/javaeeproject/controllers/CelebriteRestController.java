@@ -88,7 +88,7 @@ public class CelebriteRestController {
 	  Celebrite one(@PathVariable long numCelebrite) {
 	
 	    return repository.findById(numCelebrite)
-	      .orElseThrow(() -> new EntitiesNotFoundException(numCelebrite));
+	    		.orElseThrow(() -> new EntitiesNotFoundException(numCelebrite, "Can't find entered Celebrity with Celebrity Number: "));
 	    
 	  }
 	  

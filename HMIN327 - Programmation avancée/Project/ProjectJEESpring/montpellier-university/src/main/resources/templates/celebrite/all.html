@@ -1,51 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   layout:decorator="navbar">
-   <head th:replace="fragments/template :: header">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" th:href="@{/css/celebrite.css}"/>	
- </head>
- <body>
-      <div layout:fragment="content">
-         <p th:text="${template}">Should not be displayed</p>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="navbar">
+<head th:replace="fragments/template :: header">
+<!-- Custom styles for this template -->
+<link rel="stylesheet" th:href="@{/css/celebrite.css}" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<p th:text="${template}">Should not be displayed</p>
 
-     
-         
-         <table class="table table-hover table-bordered ">
-            <thead>
-               <tr class="info">
-                  <th class="col-sm-2 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=numCelebrite' + '&sortDirection=' + ${reverseSortDirection}}">Numéro</a> </th>
-                  <th class="col-sm-3 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=prenom' + '&sortDirection=' + ${reverseSortDirection}}">Prenom</a></th>
-                  <th class="col-sm-4 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nom' + '&sortDirection=' + ${reverseSortDirection}}">Nom</a></th>
-                  <th class="col-sm-5 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nationalite' + '&sortDirection=' + ${reverseSortDirection}}">Nationalite</a></th>
-                  <th class="col-sm-3 text-center"><a th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=epoque' + '&sortDirection=' + ${reverseSortDirection}}">Epoque</a></th>
-                  <th class="col-sm-2 text-center" colspan="2">Actions</th>
-                  
-               </tr>
-            </thead>
-            <tbody>
-               <th:block th:each="celebrite : ${celebrities}">
-                  <tr>
-                     <td class="text-center" th:text="${celebrite.numCelebrite}">numCelebrite</td>
-                     <td class="text-center" th:text="${celebrite.prenom}">Prenom</td>
-                     <td class="text-center" th:text="${celebrite.nom}">Nom</td>
-                     <td class="text-center" th:text="${celebrite.nationalite}">Nationalite</td>                     
-                     <td class="text-center" th:text="${celebrite.epoque}">Epoque</td>  
-                   	 <td th:replace="fragments/template :: remove-update(entity='celebrities', id=${celebrite.numCelebrite})"></td>
-                  </tr>
-               </th:block>
-            <tbody>
-         </table>
-         
-         <div th:text="${#httpServletRequest.getParameter('sortDirection')}"></div>
-         <div th:text="${#httpServletRequest.getParameter('sortField')}"></div>
+
+
+		<table class="table table-hover table-bordered ">
+			<thead>
+				<tr class="info">
+					<th class="col-sm-2 text-center"><a
+						th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=numCelebrite' + '&sortDirection=' + ${reverseSortDirection}}">Numéro</a>
+					</th>
+					<th class="col-sm-3 text-center"><a
+						th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=prenom' + '&sortDirection=' + ${reverseSortDirection}}">Prenom</a></th>
+					<th class="col-sm-4 text-center"><a
+						th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nom' + '&sortDirection=' + ${reverseSortDirection}}">Nom</a></th>
+					<th class="col-sm-5 text-center"><a
+						th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=nationalite' + '&sortDirection=' + ${reverseSortDirection}}">Nationalite</a></th>
+					<th class="col-sm-3 text-center"><a
+						th:href="@{'/celebrities/page/' + ${currentPage} + '?sortField=epoque' + '&sortDirection=' + ${reverseSortDirection}}">Epoque</a></th>
+					<th class="col-sm-2 text-center" colspan="2">Actions</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="celebrite : ${celebrities}">
+					<tr>
+						<td class="text-center" th:text="${celebrite.numCelebrite}">numCelebrite</td>
+						<td class="text-center" th:text="${celebrite.prenom}">Prenom</td>
+						<td class="text-center" th:text="${celebrite.nom}">Nom</td>
+						<td class="text-center" th:text="${celebrite.nationalite}">Nationalite</td>
+						<td class="text-center" th:text="${celebrite.epoque}">Epoque</td>
+						<td
+							th:replace="fragments/template :: remove-update(entity='celebrities', id=${celebrite.numCelebrite})"></td>
+					</tr>
+				</th:block>
+			<tbody>
+		</table>
+
+		<div th:text="${#httpServletRequest.getParameter('sortDirection')}"></div>
+		<div th:text="${#httpServletRequest.getParameter('sortField')}"></div>
 
 		<div th:if="${message}" th:text="${message}"></div>
-		
-      <div th:replace="fragments/template :: pagination"></div>
-         
-      </div>
-      <div th:replace="fragments/template :: footer"></div>
-   </body>
+
+
+
+
+
+
+
+
+
+	<div th:replace="fragments/template :: pagination"></div>
+
+	<div th:replace="fragments/template :: footer"></div>
+
+
+
+
+
+
+
+</div>
+
+</body>
 </html>

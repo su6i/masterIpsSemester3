@@ -7,6 +7,8 @@
       <title th:text="${title}">Programmation avancée - Projet Monuments</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       
+      
+      
       <!-- <link rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.css}" /> -->
       <!-- <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap5.css}"/>	 -->
       <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
@@ -17,6 +19,7 @@
       <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
+      <link rel="stylesheet" type="text/css" th:href="@{/css/toastr.css}" />
       <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
         <!-- End of head in template -->
 
@@ -265,7 +268,6 @@
 
 
 
-      <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
       <th:block th:fragment="remove-update-details-back (entity, id)">
         <div class="btn-toolbar">
@@ -341,7 +343,7 @@
 
 
       
-      <th:block th:fragment="monumentCss">
+      <th:block th:fragment="monumentCss">      
          <link rel="stylesheet" th:href="@{/css/monument.css}"/>
       </th:block>
       <!-- end template -->
@@ -352,10 +354,16 @@
          <script type="text/javascript" th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
          <script type="text/javascript" th:src="@{http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed}"></script>
          <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+         <script type="text/javascript" th:src="@{/js/myJs.js}"></script>
          
          <!-- data table -->
          <script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
          <script type="text/javascript" th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+        
+         
+        <!-- iziToast -->       
+         <script type="text/javascript" th:src="@{/js/toastr.js}"></script>
+         
         <!-- End fragment="scripts" -->       
       </th:block>
 

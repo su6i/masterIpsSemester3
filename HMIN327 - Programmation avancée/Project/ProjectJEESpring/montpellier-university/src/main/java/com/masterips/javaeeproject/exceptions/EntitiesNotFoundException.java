@@ -9,13 +9,13 @@ public class EntitiesNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 
-	public EntitiesNotFoundException(String id) {
-		super("Could not find id number: " + id);
+	public EntitiesNotFoundException(String id, String message) {
+		super(message + id);
   }
 
 
-	public EntitiesNotFoundException(long numCelebrite) {
-		super("Could not find Celebrity: " + numCelebrite);
+	public EntitiesNotFoundException(long numCelebrite, String message) {
+		super(message + numCelebrite);
 	}
 
 }

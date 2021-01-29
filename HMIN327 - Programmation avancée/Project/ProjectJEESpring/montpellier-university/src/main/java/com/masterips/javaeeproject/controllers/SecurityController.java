@@ -24,7 +24,7 @@ public class SecurityController {
 	@GetMapping("/403")
 	public String login() {
 		
-		return "login/403";
+		return "error/403";
 	}
 
 }

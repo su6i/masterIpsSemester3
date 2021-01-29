@@ -91,7 +91,7 @@ public class MonumentRestController {
 	  Monument one(@PathVariable String codeM) {
 	
 	    return repository.findById(codeM)
-	      .orElseThrow(() -> new EntitiesNotFoundException(codeM));
+	      .orElseThrow(() -> new EntitiesNotFoundException("Can't find entered Monument with Code Monument:",codeM));
 	    
 	  }
 	          

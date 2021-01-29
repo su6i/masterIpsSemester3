@@ -414,29 +414,43 @@ public class PagesController {
 //    Lieux update form
 //    Lieu Details Form
 	  @GetMapping(value = {"lieux/{mode}", "lieux/{mode}/{id}"})
-	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @PathVariable(value="id") Optional<String> id, @PathVariable(value="mode") Optional<String> mode) {
+	  String add(Model model, @ModelAttribute("sampleEntity") Lieu sampleEntity, @PathVariable(value="id") Optional<String> id, @PathVariable(value="mode") String mode) {
 		  color(model);
 	
-		  if(id.isPresent() && mode.isPresent()) {
-			  Lieu existedSampleEntity = appService.getLieu(id.get());
-			  model.addAttribute("sampleEntity",existedSampleEntity);
-//			  if(mode.get() == "details") {
-//				  model.addAttribute("mode","details");
+		  try {
+			  if(id.isPresent()) {
+				  model.addAttribute("id", id.get());
+				  Lieu existedSampleEntity = appService.getLieu(id.get());
+				  model.addAttribute("sampleEntity",existedSampleEntity);
+			  }
+			  else {
+				  model.addAttribute("id","none");
+				  model.addAttribute("state","add");
+				  model.addAttribute("sampleEntity",new Lieu());
+				  
+			  }
+			
+			} catch (Exception e) {
+				model.addAttribute("message",e);
+			}
+			  model.addAttribute("mode", mode);
+//		  
+//		  if(id.isPresent()) {
+//			  Lieu existedSampleEntity = appService.getLieu(id.get());
+//			  model.addAttribute("sampleEntity",existedSampleEntity);
+//			  if(mode == "details") {
+//				  model.addAttribute("state","details");
 //			  }
-//			  if(mode.get() == "update") {
+//			  if(mode == "update") {
 //	            try {
-//	                model.addAttribute("mode","update");
+//	                model.addAttribute("state","update");
 //	            }catch (Exception e) {
 //	                model.addAttribute("message",e);
 //	            }
 //
 //			  } 
-		  }
-		  
-		  if(id.isEmpty()) {
-			  model.addAttribute("sampleEntity",new Lieu());
-			  model.addAttribute("mode","add");
-		  }
+//		  }
+//		  
 
 	    return "lieu/update";
 	    
@@ -950,6 +964,15 @@ public class PagesController {
         
     
     // ---------------------------- End Celebrite   ----------------------------
+        
+        @GetMapping("toast")
+        public String test(Model model) {
+            model.addAttribute("name", "Amir SHIRALIPOUR");
+
+			return "toast";
+        }
+        
+        
 
 }
 

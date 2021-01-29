@@ -83,7 +83,7 @@ public class DepartementRestController {
 	@GetMapping("{numDep}")
 	Departement one(@PathVariable String numDep) {
 
-		return repository.findById(numDep).orElseThrow(() -> new EntitiesNotFoundException(numDep));
+		return repository.findById(numDep).orElseThrow(() -> new EntitiesNotFoundException("Can't find entered department with numDep:",numDep));
 
 	}
 

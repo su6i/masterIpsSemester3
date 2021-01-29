@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,7 @@ import com.masterips.javaeeproject.dao.DepartementRepository;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
+import com.masterips.javaeeproject.exceptions.EntitiesNotFoundException;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 
@@ -60,10 +63,12 @@ public class AppServiceImplementation implements AppService {
 	@Override
 	public Departement getDepartement(String numDep) {
 		
-		 if(numDep==null || (!departementRepository.existsById(numDep))) 
-			 throw new RuntimeException("Can't find entered department");
-		 return departementRepository.findById(numDep).get();
+		 return departementRepository.findById(numDep).orElseThrow(() -> new EntitiesNotFoundException(numDep, "Can't find entered Departement with Department Number: "));
 	}
+	
+    
+    
+    
 	
 	@Override
 	public Page<Departement> getAllDepartements(int pageNumber, int items, Sort sort) {
@@ -90,7 +95,7 @@ public class AppServiceImplementation implements AppService {
 	
 	@Override
 	public List<Departement> getByNameDepartementContaining(String nom) {
-		return departementRepository.getByNameDepartementContaining(nom);
+		return departementRepository.getByNameDepartementContaining(nom);	// .orElseThrow(() -> new EntitiesNotFoundException(nom, "Can't find entered Departement with Department Number: "));
 	}
 
 	@Override
@@ -155,10 +160,8 @@ public class AppServiceImplementation implements AppService {
 
 	 
 	@Override
-	public Lieu getLieu(String codeIsee) {
-		 if(codeIsee==null || (!lieuRepository.existsById(codeIsee))) 
-			 throw new RuntimeException("Can't find entered Lieu");
-		 return lieuRepository.findById(codeIsee).get();
+	public Lieu getLieu(String codeInsee) {
+		 return lieuRepository.findById(codeInsee).orElseThrow(() -> new EntitiesNotFoundException(codeInsee, "Can't find entered Lieu with Code Insee: "));
 	}
 	
 	@Override
@@ -212,9 +215,7 @@ public class AppServiceImplementation implements AppService {
 	
     @Override
 	public Monument getMonument(String codeM) {
-		 if(codeM==null || (!monumentRepository.existsById(codeM))) 
-			 throw new RuntimeException("Can't find entered Monument");
-		 return monumentRepository.findById(codeM).get();
+		 return monumentRepository.findById(codeM).orElseThrow(() -> new EntitiesNotFoundException(codeM, "Can't find entered Monument with Code Monument: "));
 	}
 
 //	public List<Monument> getAllMonuments() {
@@ -350,10 +351,8 @@ public class AppServiceImplementation implements AppService {
 
     @Override
 	public Celebrite getCelebriteById(long numCelebrite) {
-		 if(numCelebrite==0 || (!celebriteRepository.existsById(numCelebrite))) 
-			 throw new RuntimeException("Can't find entered Celebrite");
 		 
-		 return celebriteRepository.findById(numCelebrite).get();
+		 return celebriteRepository.findById(numCelebrite).orElseThrow(() -> new EntitiesNotFoundException(numCelebrite, "Can't find entered Celebrity with Celebrity Number: "));
 	}
 
     @Override

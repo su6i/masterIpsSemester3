@@ -93,7 +93,7 @@ public class LieuRestController {
 	  Lieu one(@PathVariable String codeInsee) {
 	
 	    return repository.findById(codeInsee)
-	      .orElseThrow(() -> new EntitiesNotFoundException(codeInsee));
+	      .orElseThrow(() -> new EntitiesNotFoundException("Can't find entered Lieu with Code Insee:",codeInsee));
 	    
 	  }
 	          
