@@ -32,18 +32,20 @@ const upload = multer({
   fileFilter: fileFilter,
 });
 
+
 router.use(bodyParser.json()); // to support JSON-encoded bodies
-router.use(bodyParser.urlencoded()); // to support URL-encoded bodies
+router.use(bodyParser.urlencoded({
+  extended: true
+})); // to support URL-encoded bodies
 
 // Resolving Cross-origin resource sharing errors
 router.use(cors());
 
 // Connect to Database
 mongoose
-  .connect(config.database)
+  .connect(config.database, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connected to database " + config.database))
   .catch((err) => {
-    console.log(err);
     console.log("Database error " + err);
   });
 
@@ -53,7 +55,7 @@ router.get("/", (req, res, next) => {
   Annonce.find()
     .collation({ locale: "fr" })
     .sort({ name: 1 })
-    .select("_id name price image category type description nameLowerCase")
+    .select("_id owner name price image category type description nameLowerCase")
     .exec()
     .then((docs) => {
       const response = {
@@ -61,6 +63,7 @@ router.get("/", (req, res, next) => {
         annonces: docs.map((doc) => {
           return {
             _id: doc._id,
+            owner: doc.owner,
             name: doc.name,
             nameLowerCase: doc.nameLowerCase,
             price: doc.price,
@@ -90,12 +93,13 @@ router.get("/", (req, res, next) => {
 router.get("/:aid", (req, res, next) => {
   const id = req.params.aid;
   Annonce.findById(id)
-    .select("_id name price image category type description")
+    .select("_id owner name price image category type description")
     .exec()
     .then((doc) => {
       if (doc) {
         res.status(200).json({
           _id: doc._id,
+          owner: doc.owner,
           name: doc.name,
           price: doc.price,
           image: {
@@ -165,6 +169,7 @@ router.delete("/:aid", (req, res, next) => {
 router.post("/", upload.single("image"), (req, res, next) => {
   const annonce = new Annonce({
     _id: new mongoose.Types.ObjectId(),
+    owner: req.body.owner,
     name: req.body.name,
     price: req.body.price,
     image: "/" + req.file.path,
@@ -178,6 +183,7 @@ router.post("/", upload.single("image"), (req, res, next) => {
       res.status(201).json({
         message: "Created annonce successfully",
         createdAnnonce: {
+          owner: result.owner,
           name: result.name,
           price: result.price,
           _id: result._id,

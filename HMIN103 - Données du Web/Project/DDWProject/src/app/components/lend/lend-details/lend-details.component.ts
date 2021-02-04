@@ -30,6 +30,7 @@ export class LendDetailsComponent implements OnInit {
     this.annonceService.getCartItemById(lid).subscribe(item=>{
       this.lend = item['lend'];
     });
+    console.log(localStorage.getItem('dataSource'));
 
   }
 

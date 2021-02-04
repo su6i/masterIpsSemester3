@@ -2,10 +2,8 @@ const mongoose = require("mongoose");
 const config = require("../config/database");
 
 const AnnonceSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  owner: {
-    uid: mongoose.Schema.Types.ObjectId,
-  },
+  _id   : mongoose.Schema.Types.ObjectId,
+  owner : mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
@@ -27,9 +25,6 @@ const AnnonceSchema = mongoose.Schema({
     required: true,
   },
   description: [String],
-  AnnonceImage: {
-    type: String,
-  },
 });
 
 const Annonce = (module.exports = mongoose.model("Annonce", AnnonceSchema));

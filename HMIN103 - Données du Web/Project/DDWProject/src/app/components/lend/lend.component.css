@@ -45,3 +45,10 @@ img {
   width: 40%;
   display: inline-block;
 }
+
+h1.empty{
+  padding: 15px;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

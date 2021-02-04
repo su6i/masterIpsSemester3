@@ -1,6 +1,7 @@
 import { Injectable              } from '@angular/core'       ;
 import { Observable              } from 'rxjs'                ;
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AnnoncesComponent } from '@app/components';
 const baseUrl = 'http://localhost:8888/';
 
 @Injectable({
@@ -12,7 +13,8 @@ const baseUrl = 'http://localhost:8888/';
 export class AnnonceService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              public annoncesComponent: AnnoncesComponent) { }
   getAnnonceItems(): Observable<any> {
     return this.http.get(`${baseUrl}annonces/`);
   }
@@ -48,6 +50,10 @@ export class AnnonceService {
 
   updateAds(id: string, params: any) {
       return this.http.patch(`${baseUrl}/annonces/${id}`, params);
+  }
+
+  detailsAds(id: string) {
+      return this.http.get(`${baseUrl}/annonces/${id}`);
   }
 
 

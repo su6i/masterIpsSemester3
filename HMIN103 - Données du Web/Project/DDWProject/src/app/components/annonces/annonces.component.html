@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" *ngIf="posts">Avaiable advertisements: {{ posts.length }}</mat-toolbar>
+
+<div style="margin:auto; width: 70%; margin-top: 30px;">
+  <app-search-bar (onSelectedOption)="onSelectedOption($event)"></app-search-bar>
+</div>
+<h2 style="text-align:center">Advertisements</h2>
+
+<mat-list  class="group">
+  <div *ngFor="let post of posts"
+    (click)="selectPost(post)">
+    <app-annonce [post]="post">
+    </app-annonce>
+  </div>
+  <div *ngIf="!posts || posts.length==0">
+    <h1 class="text-danger">No annonce found</h1>
+  </div>
+</mat-list>
+
+
+
+

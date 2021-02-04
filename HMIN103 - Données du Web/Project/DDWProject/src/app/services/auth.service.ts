@@ -2,7 +2,7 @@ import { Injectable                           } from '@angular/core'            
 import { HttpClient, HttpHeaders              } from '@angular/common/http'             ;
 import { tap                                  } from 'rxjs/operators'                   ;
 import { Observable                           } from 'rxjs'                             ;
-import { User } from '../../../models/user';
+import { User                                 } from '../../../models/user'             ;
 
 
 
@@ -90,6 +90,16 @@ export class AuthService {
   }
 
 
+  getUser(id: string){
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append('Authorization', this.authToken);
+
+    return this.http.get(this.baseURL+'/users/details/:id', { headers });
+
+  }
+
+
 
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
@@ -129,8 +139,8 @@ export class AuthService {
   }
 
 
-  removeUser(uid: string): Observable<any>{
-    let url = `http://localhost:8888/users/${uid}`;
+  removeUser(id: string): Observable<any>{
+    let url = `http://localhost:8888/users/${id}`;
     return this.http.delete(url)
   }
 
@@ -142,6 +152,9 @@ create(params: any) {
 update(id: string, params: any) {
     return this.http.put(`${this.baseURL}/users/${id}`, params);
 }
+// update(id: string, params: any) {
+//     return this.http.put(`${this.baseURL}/users/${id}`, params);
+// }
 
 delete(id: string) {
     return this.http.delete(`${this.baseURL}/${id}`);
@@ -152,9 +165,9 @@ getById(id: string) {
   return this.http.get<any>(`${this.baseURL}/users/${id}`);
 }
 
-getAll() {
-  return this.http.get<User[]>(this.baseURL);
-}
+// getAll() {
+//   return this.http.get<User[]>(this.baseURL);
+// }
 
 
 

@@ -8,20 +8,20 @@
 
 <div *ngFor="let selectedAnnonce of selectedAnnonces" class="group">
   <div id="content">
-    <img class="image img" src="{{selectedAnnonce.image}}" alt="Annonce image">
+    <img class="image img" src="{{selectedAnnonce['image']}}" alt="Annonce image">
   </div>
-  <p><b>Item :</b>{{selectedAnnonce._id}}</p>
-  <p><b>Name :</b> {{ selectedAnnonce.name }}</p>
-  <p><b>Price: </b>{{selectedAnnonce.price}}</p>
-  <p><b>Category: </b>{{selectedAnnonce.category}}</p>
-  <p><b>Type: </b>{{selectedAnnonce.type}}</p>
+  <p><b>Item :</b>{{selectedAnnonce['_id']}}</p>
+  <p><b>Name :</b> {{ selectedAnnonce['name'] }}</p>
+  <p><b>Price: </b>{{selectedAnnonce['price']}}</p>
+  <p><b>Category: </b>{{selectedAnnonce['category']}}</p>
+  <p><b>Type: </b>{{selectedAnnonce['type']}}</p>
   <p><b>Description: </b></p>
-  <ul *ngFor="let description of selectedAnnonce.description">
+  <ul *ngFor="let description of selectedAnnonce['description']">
     <li class="desc">{{description}}</li>
   </ul>
   <div style="overflow: hidden;">
-    <p class="button left"><button (click)="addCartItems(selectedAnnonce._id)" class="btn">Add</button></p>
-    <p class="button right"><button (click)="getAnnonceItemById(selectedAnnonce._id)" class="btn">Details</button></p>
+    <p class="button left"><button (click)="addCartItems(selectedAnnonce['_id'])" class="btn">Add</button></p>
+    <p class="button right"><button (click)="getAnnonceItemById(selectedAnnonce['_id'])" class="btn">Details</button></p>
   </div>
 </div>
 

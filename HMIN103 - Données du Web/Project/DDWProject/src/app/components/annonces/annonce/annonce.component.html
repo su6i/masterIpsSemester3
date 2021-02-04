@@ -1,0 +1,34 @@
+<div id="content">
+  <img class="image img" src="{{post.image}}" alt="product image">
+</div>
+<p><strong>Name : </strong> {{ post.name  }} </p>
+<p><strong>price: </strong> {{ post.price }} </p>
+<!-- <div *ngIf='showDetails'> -->
+<p><strong>description: </strong></p>
+  <ul *ngFor="let description of post.description">
+    <li class="desc">{{ description }}</li>
+  </ul>
+<!-- </div> -->
+
+<div class="form-group">
+  <strong>Date range: </strong>
+  <label for="dateRange"></label>
+  <input type='text' name="dateRange" bsDaterangepicker [bsConfig]="datePickerConfig" placement ="right" [(ngModel)]="dateRange" class="form-control col-md-6" />
+</div>
+
+
+<pre *ngIf="dateRange"
+  class="code-preview">You'll lend this article for {{ lendDays(dateRange[0],dateRange[1]) }} days!
+  <input type="text" name="days" value='{{ lendDays(dateRange[0],dateRange[1]) }}' >
+
+</pre>
+
+
+
+
+<div style="overflow: hidden;">
+  <p class="button" *ngIf="authService.loggedIn()">            <button (click)="annoncesComponent.addCartItems(post['_id'])"       class="btn">Add    </button></p>
+  <p class="button">                                           <button (click)="annoncesComponent.getAnnonceItemById(post['_id'])" class="btn">Details</button></p>
+  <p class="button text-danger" *ngIf="authService.loggedIn()"><button (click)="annoncesComponent.removeAnnonce(post['_id'])"      class="btn">Remove </button></p>
+  <!-- <p class="button text-danger"><button (click)="toggleDetails(post['_id'])"      class="btn">{{ showDetails ? 'Hide ' : 'Show '}}Details </button></p> -->
+</div>

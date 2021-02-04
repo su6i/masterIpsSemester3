@@ -28,6 +28,7 @@ export class LendComponent implements OnInit {
       this.lends = lends['lends'];
       this.count = lends.count;
     });
+    console.log("localStorage.getItem('user'): ",localStorage.getItem('user'));
 
 
   }

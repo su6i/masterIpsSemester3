@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
 
     myControl = new FormControl();
     filteredOptions: Observable<string[]>;
-    allPosts: Annonce[];
+    allPosts: any[];
     autoCompleteList: any[]
 
     @ViewChild('autocompleteInput') autocompleteInput: ElementRef;
@@ -57,7 +57,7 @@ export class SearchBarComponent implements OnInit {
     }
 
     // after you clicked an autosuggest option, this function will show the field you want to show in input
-    displayFn(post: Annonce) {
+    displayFn(post: any) {
         let k = post ? post.name : post;
         return k;
     }

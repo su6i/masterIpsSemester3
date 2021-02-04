@@ -1,0 +1,77 @@
+<div class="panel panel-primary mt-3">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">{{  user['firstName'] }} {{user['lastName']}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-10">
+
+      <div class="row vertical-align">
+
+        <div class="col-xs-4 mx-5">
+          <img class="imageClass" [src]="user['photo']['url']" alt="Photo"/>
+        </div>
+        <div class="col-xs-7 mx-1">
+
+          <div class="row">
+            <div class="col-xs-6">
+              Role
+            </div>
+            <div class="col-xs-6">
+              : {{user['role'] }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              Username
+            </div>
+            <div class="col-xs-6">
+              : {{user['username'] || "not defined"}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              Phone
+            </div>
+            <div class="col-xs-6">
+              : {{user['phone'] || "not defined"}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              Email
+            </div>
+            <div class="col-xs-6">
+              : {{user.email || "not defined"}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              Address
+            </div>
+            <div class="col-xs-6" >
+              :   {{ user['address']['number'] }} - {{ user['address']['street'] }} - {{ user['address']['postal'] }} - {{ user['address']['city'] }}
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-xs-1 mx-5">
+            <div class="row vertical-align">
+              <a (click)="usersComponent.getUser(user['_id'])" class="view" title="View" data-toggle="tooltip" role="button"><i class="material-icons">&#xE417;</i></a>
+            </div>
+            <div class="row vertical-align">
+              <a (click)="usersComponent.updateUser(user['_id'])" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" role="button">&#xE254;</i></a>
+
+            </div>
+            <div class="row vertical-align">
+              <a (click)="usersComponent.removeUser(user['_id'])" class="delete" title="Delete" data-toggle="tooltip" role="button"><i class="material-icons" style="color:red">delete</i></a>
+            </div>
+          </div>
+        </div>
+        </div>
+  </div>
+</div>
+
+
+

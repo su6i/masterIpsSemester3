@@ -1,0 +1,85 @@
+ <mat-toolbar color="primary">
+
+  <h1 *ngIf="mode == 'add'">New Ads</h1>
+  <h1 *ngIf="mode == 'update'">Update Ads</h1>
+  <h1>Hassina, Elle est paresseuse:: {{ mode }}</h1>
+
+</mat-toolbar>
+
+<!-- <p style="margin-top: 100px;"></p> -->
+
+{{ annonce | json}}
+
+<!--
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="panel-body" formGroupName="annonce">
+    <div class="form-row">
+        <div class="form-group col">
+            <label>Type</label>
+            <select formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f?.type.errors }">
+                <option value=""></option>
+                <option value="Watch">Watch</option>
+                <option value="PC">PC</option>
+                <option value="Mobile">Mobile</option>
+                <option value="Laptop">Laptop</option>
+            </select>
+            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                <div *ngIf="f.type.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label>Category</label>
+            <select formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                <option value=""></option>
+                <option value="Watch">Apple</option>
+                <option value="PC">Sumsung</option>
+                <option value="Mobile">Huawei</option>
+                <option value="Laptop">LG</option>
+            </select>
+            <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                <div *ngIf="f.category.errors.required">Title is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Name</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Keywords</label>
+            <input type="text" formControlName="keywords" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.keywords.errors }" />
+            <div *ngIf="submitted && f.keywords.errors" class="invalid-feedback">
+                <div *ngIf="f.keywords.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col-5">
+            <label>Price</label>
+            <input type="text" formControlName="price" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+            <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required">Last Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Description</label>
+            <input type="text" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.description.errors }" />
+            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                <div *ngIf="f.description.errors.required">Email is required</div>
+                <div *ngIf="f.description.errors.required">Email must be a valid description address</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/myads" class="btn btn-link">Cancel</a>
+    </div>
+  </div>
+</form> -->

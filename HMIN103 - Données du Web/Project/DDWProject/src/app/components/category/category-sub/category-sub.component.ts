@@ -11,7 +11,7 @@ import { LendService                       } from '../../../services/lend.servic
 })
 export class CategorySubComponent implements OnInit {
 
-  types: Object[];
+  types: any[];
   category: string;
 
   constructor(

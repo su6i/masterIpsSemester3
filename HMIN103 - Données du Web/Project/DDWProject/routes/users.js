@@ -68,6 +68,55 @@ router.get("/", (req, res) => {
     });
 });
 
+
+
+router.get("/details/:aid", (req, res, next) => {
+  User.findById(req.params.aid)
+    .exec()
+    .then((doc) => {
+      if (doc) {
+        res.status(200).json({
+          _id: doc._id,
+          firstName: doc.firstName,
+          lastName: doc.lastName,
+          phone: doc.phone,
+          photo: {
+            title: doc.title,
+            url: "http://localhost:8888/assets/image/man.png", //+ doc.photoUrl,
+            uploaded: doc.uploaded,
+          },
+          email: doc.email,
+          username: doc.username,
+          password: doc.password,
+          role: doc.role,
+          address: {
+            numner: doc.numner,
+            street: doc.street,
+            city: doc.city,
+            postal: doc.postal,
+          },
+          request: {
+            type: "GET",
+            url: "http://localhost:8888/users/",
+          },
+        });
+      } else {
+        res.status(404).json({
+          message: "No valid entry found for provided ID",
+          url: "http://localhost:8888/users",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+
+
+
+
 // Register new user
 router.post("/register", upload.single("photo"), (req, res, next) => {
   User.findOne({ email: req.body.email })
@@ -164,10 +213,10 @@ router.post("/authenticate", (req, res, next) => {
 
 // Delete account
 router.delete(
-  "/:uid",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
-    User.deleteOne({ _id: req.params.uid })
+    User.deleteOne({ _id: req.params.id })
       .exec()
       .then((result) => {
         res.status(200).json({
@@ -182,6 +231,53 @@ router.delete(
       });
   }
 );
+
+
+
+
+// Update account
+
+router.put('/:id', (req, res, next) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id))
+        return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+    const user = new User({
+    _id: req.params.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    phone: req.body.phone,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+    address: {
+        number: req.body.number,
+        street: req.body.street,
+        city: req.body.city,
+        postal: req.body.postal,
+    },
+    photo: {
+        id: new mongoose.Types.ObjectId(),
+        url: "/" + req.body.photo,
+        title: `${req.body.firstName}-${req.body.lastName}`
+    },
+    });
+    User.updateOne({_id: req.params.id}, user).then(
+        () => {
+        res.status(201).json({
+            message: 'User updated successfully!'
+        });
+        }
+    ).catch(
+        (error) => {
+        res.status(400).json({
+            error: error
+        });
+        }
+    );
+    });
+
+
+
 
 
 

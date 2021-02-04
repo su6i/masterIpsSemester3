@@ -4,13 +4,14 @@
 
 
 <div *ngIf="user">
-  <mat-toolbar color="primary">{{user.firstName}}'s profile</mat-toolbar>
+  <mat-toolbar color="primary">{{user['firstName']}}'s profile</mat-toolbar>
   <ul class="list-group">
-    <li class="list-group-item">Username:  {{ user.username       }}</li>
-    <li class="list-group-item">Email:     {{ user.email          }}</li>
-    <li class="list-group-item">Phone:     {{ user.phone          }}</li>
-    <li class="list-group-item">Address:   {{ user.address.number }} - {{ user.address.street }} - {{ user.address.postal }} - {{ user.address.city }}</li>
-    <li class="list-group-item">Role:      {{ user.role           }}</li>
+    <li class="list-group-item">ID:        {{ user['_id']           }}</li>
+    <li class="list-group-item">Username:  {{ user['username']       }}</li>
+    <li class="list-group-item">Email:     {{ user['email']          }}</li>
+    <li class="list-group-item">Phone:     {{ user['phone']          }}</li>
+    <li class="list-group-item">Address:   {{ user['address']['number'] }} - {{ user['address']['street'] }} - {{ user['address']['postal'] }} - {{ user['address']['city'] }}</li>
+    <li class="list-group-item">Role:      {{ user['role']           }}</li>
   </ul>
 </div>
 

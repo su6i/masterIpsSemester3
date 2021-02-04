@@ -1,7 +1,13 @@
 
-<div *ngIf='lends' style="margin-top: 50px;">
-  <mat-toolbar color="primary">
-    Avaiable Lends: {{ lends.length }} <span style="margin-left:150px">Total price of Lends: {{ sum | number }}</span>
+  <mat-toolbar color="p rimary">
+
+    <table class="table text-white">
+      <tr>
+        <td>Already Lended: {{ lends.length || "Your list is empty" }}  </td>
+        <td>Total price of Lends: {{ sum | number }}</td>
+      </tr>
+    </table>
+
   </mat-toolbar>
   <div class="group" *ngFor="let lend of lends">
     days {{lend['annonce']['days']}}
@@ -13,5 +19,9 @@
       <p class="button right"><button (click)="getCartItemById(lend['_id'])" class="btn">Details</button></p>
     </div>
   </div>
+  <div *ngIf="!lends || lends.length==0">
+    <h1 class="empty">No lend found</h1>
+  </div>
 
-</div>
+
+

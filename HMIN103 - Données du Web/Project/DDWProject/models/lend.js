@@ -3,13 +3,13 @@ const config   = require("../config/database");
 
 const LendSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
+  lender: mongoose.Schema.Types.ObjectId,
   annonce: {
     type: mongoose.Schema.Types.ObjectId,
     ref : "Annonce",
     required: true,
   },
   quantity: { type: Number, default: 1 },
-  uid: mongoose.Schema.Types.ObjectId,
   days  : Number, default: 0,
 });
 

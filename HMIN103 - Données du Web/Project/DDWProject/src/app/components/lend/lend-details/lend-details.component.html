@@ -1,13 +1,13 @@
-<pre>
+<!-- <pre>
   {{lend | json}}
-</pre>
+</pre> -->
 <mat-toolbar color="primary" *ngIf="lend">{{lend['annonce']['name']}}</mat-toolbar>
 
 <div class="group" *ngIf="lend">
   <div id="content">
     <img class="image img" src="{{'http://localhost:8888'+lend['annonce']['image']}}" alt="annonce image">
   </div>
-  <p class="uid"><b>User ID: </b>{{lend['uid']}}</p>
+  <p class="lender"><b>User ID: </b>{{lend['lender']}}</p>
   <p class="lid"><b>Lend ID: </b>{{lend['_id']}}</p>
   <p class="aid"><b>Annonce ID:</b>{{lend['annonce']['_id']}}</p>
   <p class="price"><b>Price: </b>{{lend['annonce']['price']}}</p>

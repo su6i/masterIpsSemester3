@@ -1,5 +1,5 @@
 <div *ngIf="user">
-  <mat-toolbar color="primary">{{user.firstName}}'s dashboard</mat-toolbar>
+  <mat-toolbar color="primary">{{user['firstName']}}'s dashboard</mat-toolbar>
   <ul class="list-group">
 
     <li class="list-group-item"><a [routerLink]="['/lends']">Lends</a></li>
