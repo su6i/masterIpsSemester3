@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   layout:decorator="navbar">
+   layout:decorator="lieu/all">
 <head>
     <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
 </head>
    <body>
-      <div layout:fragment="content">
+      <div layout:fragment="displayContent">
          <p th:text="${template}">Should not be displayed</p>
 
 

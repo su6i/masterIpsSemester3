@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   layout:decorator="navbar">
+   layout:decorator="lieu/all">
 <head>
     <link rel="stylesheet" th:href="@{/css/monument.css}"/>	
 </head>
    <body>
-      <div layout:fragment="content">
+      <div layout:fragment="displayContent">
          <p th:text="${template}">Should not be displayed</p>
 
 
@@ -94,7 +94,7 @@
                                            <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">URL: </p>
                                       </th>
                                       <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/'+${codeInsee}}" th:field="*{url}" id="url" disabled style="width:400px;"/>                                           
+                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/'+${codeInsee}}" th:field="*{url}" id="url" style="width:400px;" th:disabled="${mode == 'details'}"/>                                           
                                       </td> 
                                   </tr>
                                   <tr>
@@ -102,7 +102,7 @@
                                            <span class="card-text">Parent URL: </span>
                                       </th>
                                    <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/page/1'}" th:field="*{parent_url}"  id="parent_url" disabled  style="width:400px;" />
+                                           <input type="text" th:value="@{'http://localhost:8080/json/lieux/page/1'}" th:field="*{parent_url}"  id="parent_url" style="width:400px;" th:disabled="${mode == 'details'}" />
                                       </td> 
                                   </tr>
                               
@@ -113,7 +113,11 @@
 
 							<div class="btn-toolbar">
 					            <button class="btn btn-primary" type="submit" th:if="${mode != 'details'}">Submit</button>
-					            <button class="btn btn-danger"  type="reset"  th:if="${mode != 'details'}">Reset </button>
+                                <a      class="btn btn-success btn-md" role="button" th:if="${mode != 'details'}" onclick="history.back(-1)" >Back</a>
+                                <div th:if="${mode == 'details'}" >
+                                    <div th:replace="fragments/template :: remove-update (entity='lieux', id=${sampleEntity.codeInsee})"></div> 
+                                </div>
+
 					   		</div>                  
                   
                   

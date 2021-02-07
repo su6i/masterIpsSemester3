@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" 
                 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-                layout:decorator="navbar">
-    <head th:replace="fragments/template :: head-data-table"></head>
+                layout:decorator="departement/all">
+<!-- <head th:replace="fragments/template :: head-data-table"></head> -->
+<head th:replace="fragments/template :: header">
+
 <body>
-    <div layout:fragment="content">
+    <div layout:fragment="displayContent">
         <p th:text="${template}">Should not be displayed</p>
     
 
@@ -61,12 +63,12 @@
         </tfoot>
     </table>    
 
-    <div th:replace="fragments/template :: footer"></div>
+</div>
+<div th:replace="fragments/template :: footer"></div>
 
     <script th:replace="fragments/template :: scripts-data-table"></script>
 
 
     
-    </div>
 </body>
 </html>

@@ -17,6 +17,13 @@ body{
   	padding-top:50px; /*padding for navbar*/
 }
 
+
+.container {
+  	margin-left: 50px;
+  	width: 90%;
+}
+
+
 li a.amir{
     color:black;
 }

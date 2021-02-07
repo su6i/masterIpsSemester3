@@ -13,14 +13,18 @@
       <!-- <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap5.css}"/>	 -->
       <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 
+
+
       
       <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.bootstrap4.css}" />
       
       <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
+  	  <!-- Search side bar menu -->
       <link rel="stylesheet" type="text/css" th:href="@{/css/toastr.css}" />
       <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+      <link rel="stylesheet" type="text/css" th:href="@{/css/simple-sidebar.css}" />
         <!-- End of head in template -->
 
    </head>
@@ -51,13 +55,10 @@
                     Departements
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item amir" th:href="@{/departements/page/1}">Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/departements/card/page/1}">Card</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/departements/page/1}">JSON Pagination</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/departements}">JSON findAll</a></li>
-                       <li class="divider"></li>
-                       <li><a class="dropdown-item amir" th:href="@{'/departements/table'}" role="button">Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{'/departements/data-table'}" role="button">Data-Table</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/departements/page/1'}" role="button">Display</a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/departements/search'}" role="button">Search</a></li>
+                        <li class="divider"></li> 
                        <li><a class="dropdown-item amir" th:href="@{'/departements/update'}" role="button">Add</a></li>
                        
 
@@ -69,10 +70,9 @@
                         Lieux
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item amir" th:href="@{/lieux/page/1}">Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/lieux/card/page/1}">Card</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/lieux/page/1}">JSON</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/lieux}">JSON findAll</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/lieux/page/1'}" role="button">Display</a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/lieux/search'}" role="button">Search</a></li>
 
                        <li class="divider"></li>
                        <li><a class="dropdown-item amir" th:href="@{'/lieux/update'}" role="button">Add</a></li>
@@ -86,10 +86,9 @@
                      Monuments
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item amir" th:href="@{/monuments/page/1}">Table</a></li>
-                        <li><a class="dropdown-item amir" th:href="@{/monuments/card/page/1}">Card</a></li>
-                        <li><a class="dropdown-item amir" th:href="@{/json/monuments/page/1}">JSON</a></li>
-                        <li><a class="dropdown-item amir" th:href="@{/json/monuments}">JSON findAll</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/monuments/page/1'}" role="button">Display</a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/monuments/search'}" role="button">Search</a></li>
 
                         <li class="divider"></li>
                         <li><a class="dropdown-item amir" th:href="@{'/monuments/update'}" role="button">Add</a></li>
@@ -105,10 +104,9 @@
                         Celebrities
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                       <li><a class="dropdown-item amir" th:href="@{/celebrities/page/1}">Table</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/celebrities/card/page/1}">Card</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/celebrities/page/1}">JSON</a></li>
-                       <li><a class="dropdown-item amir" th:href="@{/json/celebrities}">JSON findAll</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/celebrities/page/1'}" role="button">Display</a></li>
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/celebrities/search'}" role="button">Search</a></li>
 
                        <li class="divider"></li>
 					   <li><a class="dropdown-item amir" th:href="@{'/celebrities/add'}" role="button">Add</a></li>
@@ -279,7 +277,7 @@
                 <!-- {% endif %}
             {% endif %} -->
 	            <a class="btn btn-success btn-md" th:href="@{'/json/' + ${entity} + '/update/' + ${id}}" id="details" role="button">Details</a>
-	            <a class="btn btn-success btn-md" th:href="@{'/' 	  +${entity}  + '/page/1}          " 			  role="button">Back   </a>
+	            <a class="btn btn-success btn-md" onclick="history.back(-1)"                                          role="button">Back   </a>
         </div>
 
       </th:block>
@@ -303,6 +301,20 @@
 	        </td>
 	        <td>
 	            <a class="btn btn-primary btn-md" th:href="@{'/'+${entity} + '/update/' + ${id}}" id="update" role="button">Update</a>
+	        </td>
+        </div>
+      </th:block>
+
+      <th:block th:fragment="remove-update-details-td (entity, id)">
+        <div class="btn-toolbar">
+	        <td>
+	            <a class="btn btn-danger btn-md" th:href="@{'/'+${entity} + '/delete/' + ${id}}" id="remove" role="button">Remove</a>
+	        </td>
+	        <td>
+	            <a class="btn btn-primary btn-md" th:href="@{'/'+${entity} + '/update/' + ${id}}" id="update" role="button">Update</a>
+	        </td>
+	        <td>
+                <a class="btn btn-success btn-md" th:href="@{'/' + ${entity} + '/details/' + ${id}}" id="details" role="button">Details</a>            
 	        </td>
         </div>
       </th:block>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   layout:decorator="navbar">
+   layout:decorator="celebrite/all">
 <head>
     <link rel="stylesheet" th:href="@{/css/celebrite.css}"/>	
 </head>
    <body>
-      <div layout:fragment="content">
+      <div layout:fragment="displayContent">
          <p th:text="${template}">Should not be displayed</p>
          
 
@@ -21,7 +21,7 @@
                     		</strong>
                             <span class="card-text" th:text="${celebrite.nom}" id="family" th:classappend="${text} ? ${text} : 'text-info'">Family</span>
                         </div>
-	                    <img class="photo-celebrite card-img-top center" id="image" th:src="@{'/image/' +${celebrite.numCelebrite} + '.jpg'}" alt="Card image cap">
+	                    <img class="photo-celebrite card-img-top center" id="image" th:src="@{${celebrite.image}}" alt="Card image cap">
 	                     <div class="card-body text-success">
 	                      <h5 class="card-title" id="number" th:text="@{'Numéro: ' + ${celebrite.numCelebrite}}" th:classappend="${text} ? ${text} : 'text-primary'">Number</h5>
 	                      <p class="card-text" id="nationality" th:text="@{'Nationalité: ' + ${celebrite.nationalite}}" th:classappend="${text} ? ${text} : 'text-danger'">Nationality</p>

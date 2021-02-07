@@ -74,7 +74,7 @@ public class Monument implements Serializable {
 	
     @ManyToMany(cascade=CascadeType.ALL)  
     @JoinTable(joinColumns=@JoinColumn(name="code_m"), inverseJoinColumns=@JoinColumn(name="numCelebrite"))
-    @JsonProperty("Celebrities")
+    @JsonProperty("List of Celebrities")
 	private Set<Celebrite> celebrities;
 		
 	

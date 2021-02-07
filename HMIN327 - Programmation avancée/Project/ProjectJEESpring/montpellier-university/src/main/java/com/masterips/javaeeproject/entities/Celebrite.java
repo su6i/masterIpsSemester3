@@ -171,33 +171,32 @@ public class Celebrite implements Serializable {
 	
 
 	public String getUrl() {
-
 		return url;
 	}
 
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 	public String getParent_url() {
 		return parent_url;
-	}
-
-
-	public String getImage() {
-		return image;
-	}
-	
-	
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public void setParent_url(String parent_url) {
 		this.parent_url = parent_url;
 	}
 
+	public String getImage() {
+		return image;
+	}
+	
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+
+
+
 
 	@Override
     public String toString() {

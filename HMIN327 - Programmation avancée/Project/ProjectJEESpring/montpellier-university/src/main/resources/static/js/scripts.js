@@ -170,5 +170,19 @@ function initialize() {
   });
   
   
-  /* Ed Data table -----------------------------------------------------*/
+  /* End Data table -----------------------------------------------------*/
+
+
+  /* Starrt Search side bar -----------------------------------------------------*/
+
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+
+  /* End Search side bar -----------------------------------------------------*/
+
+
+
   
