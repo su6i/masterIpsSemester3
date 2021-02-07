@@ -43,7 +43,7 @@
                                           <span class="card-text" th:classappend="${text} ? ${text} : 'text-info'">Code Monument: </span>
                                        </th>
                                       <td>
-                                           <input type="text" th:field="*{codeM}" id="codeM" onchange="url(this.value)" style="width:400px;" disabled/>
+                                           <input type="text" th:field="*{codeM}" id="codeM" onchange="url(this.value)" style="width:400px;" th:disabled="${mode == 'details'}" />
 
                                       </td>
                                   </tr>
@@ -54,7 +54,6 @@
                                       <td>
                                          <input type="text" th:value="${sampleEntity.lieu}" id="LieuObject" style="width:400px;" disabled/>
                                          <input type="text" th:field="${sampleEntity.lieu.codeInsee}" id="codeLieu" style="width:400px;" th:disabled="${mode == 'details'}"/>
-
                                       </td>
                                   </tr>
                                   <tr class="card-body text-success">
@@ -72,6 +71,22 @@
                                       <td>
                                          <input type="text" th:field="*{longitude}" id="longitude" style="width:400px;" th:disabled="${mode == 'details'}"/>
                                       </td>
+                                  </tr>
+                                  <tr>
+                                      <th>
+                                           <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Proprietaire: </p>
+                                      </th>
+                                      <td>
+                                           <input type="text" th:field="*{proprietaire}" id="proprietaire" style="width:400px;" th:disabled="${mode == 'details'}"/>
+                                      </td> 
+                                  </tr>
+                                  <tr>
+                                      <th>
+                                           <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">Type: </p>
+                                      </th>
+                                      <td>
+                                           <input type="text" th:field="*{typeMonument}" id="typeMonument" style="width:400px;" th:disabled="${mode == 'details'}"/>
+                                      </td> 
                                   </tr>
                                   <tr>
                                       <th>
