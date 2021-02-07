@@ -5,12 +5,42 @@ function greet() {
     return false;
 }
 
-document.getElementById('go').addEventListener('click', greet);
+// document.getElementById('go').addEventListener('click', greet);
 
 
-function showAlert(nameJs) {
+function showId(id) {
+		console.log("id::::" + id)
+
     toastr.success(
-    "Hello " + nameJs, "Welcome to la France", {
+    "ID: " + id, "Detected", {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-left",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "2000",
+    "hideDuration": "2000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+    });
+        
+    
+}
+
+
+
+
+
+
+function showMessage(message) {
+    toastr.error(
+    "Message",message, {
     "closeButton": true,
     "debug": false,
     "newestOnTop": true,

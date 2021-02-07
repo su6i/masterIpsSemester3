@@ -18,8 +18,8 @@
          
          
          
-            <button type="button" th:onclick="showAlert(nameJs)">Show my Toast
-                onclick</button>    
+            <button type="button" th:onclick="showAlert(/*[[${name}]]*/)">Show my Toastonclick</button>    
+                
     
     
             <button id="go">ID Go without function</button>
@@ -169,9 +169,10 @@
 
 
 
- <script th:inline="javascript">
+<!-- <script th:inline="javascript">
     var nameJs = /*[[${name}]]*/;
 </script>
+ -->
 
 
 

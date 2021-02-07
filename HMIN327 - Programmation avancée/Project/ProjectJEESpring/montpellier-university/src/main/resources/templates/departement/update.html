@@ -15,7 +15,6 @@
 <h1 th:if="${mode == 'update' and id !='none'}" th:text="@{'Update Departement with ID: ' + ${id}}"> Update Departement</h1>
 
 
-
 <form action="#" th:action="@{'/departements'}" th:object="${sampleEntity}" method="post">
     <ul th:if="${#fields.hasErrors('*')}">
         <li th:each="err : ${#fields.errors('*')}" th:text="${err}" th:class="error">Input is incorrect</li>
@@ -58,7 +57,7 @@
                                            <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">URL: </p>
                                       </th>
                                       <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/' + ${numDep}}" th:field="*{url}" id="url" style="width:400px;" th:disabled="${mode == 'details'}"/>
+                                           <input type="text" th:field="*{url}" id="url" style="width:400px;" th:disabled="${mode == 'details'}"/>
                                       </td> 
                                   </tr>
                                   <tr>
@@ -66,7 +65,7 @@
                                            <span class="card-text">Parent URL: </span>
                                       </th>
                                    <td>
-                                           <input type="text" th:value="@{'http://localhost:8080/json/departements/page/1'}" th:field="*{parent_url}" id="parent_url" style="width:400px;" th:disabled="${mode == 'details'}" />
+                                           <input type="text" th:field="*{parent_url}" id="parent_url" style="width:400px;" th:disabled="${mode == 'details'}" />
                                       </td> 
                                   </tr>
                               

@@ -209,10 +209,6 @@ public String allMonumentsCard(Model model, @PathVariable("pageNumber") int curr
           model.addAttribute("message",e);
       }
         model.addAttribute("mode", mode);
-
-
-
-
       
     return "monument/update";
     
@@ -220,10 +216,11 @@ public String allMonumentsCard(Model model, @PathVariable("pageNumber") int curr
 
 
 //	Monument New
+//	Monument Update
 @PostMapping
 public String saveMonument(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Monument sampleEntity, BindingResult result, RedirectAttributes ra){
     
-  Lieu lieu = sampleEntity.setLieu(appService.getLieu(sampleEntity.getLieu().getCodeInsee()));
+    Lieu lieu = sampleEntity.setLieu(appService.getLieu(sampleEntity.getLieu().getCodeInsee()));
 
     if(lieu != null) sampleEntity.setLieu(lieu);
     else sampleEntity.setLieu(new Lieu(sampleEntity.getLieu().getCodeInsee()));

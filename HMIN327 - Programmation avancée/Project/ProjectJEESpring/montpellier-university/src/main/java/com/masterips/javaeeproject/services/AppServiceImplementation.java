@@ -1,6 +1,5 @@
 package com.masterips.javaeeproject.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,9 +7,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
@@ -66,9 +62,6 @@ public class AppServiceImplementation implements AppService {
 		 return departementRepository.findById(numDep).orElseThrow(() -> new EntitiesNotFoundException(numDep, "Can't find entered Departement with Department Number: "));
 	}
 	
-    
-    
-    
 	
 	@Override
 	public Page<Departement> getAllDepartements(int pageNumber, int items, Sort sort) {
@@ -77,14 +70,11 @@ public class AppServiceImplementation implements AppService {
 		return departementRepository.findAll(pageable);
 	}
 	
-    
 
     @Override
 	public Departement addDepartement(Departement departement) {
 		return departementRepository.save(departement);
 	}
-
-
 
 
     @Override
@@ -106,45 +96,6 @@ public class AppServiceImplementation implements AppService {
 	
 	
 	
-//  ---------------------------------- Temp ----------------------------------
-	
-	
-	
-	
-//  example
-//  @RequestMapping(value = {"/article", "/article/{id}"}")
-//  public Article getArticle(@PathVariable Optional<Integer> optionalArticleId) {
-//      if (optionalArticleId.isPresent()) {
-//          Integer articleId = optionalArticleId.get();
-//          //...
-//      } else {
-//          //...
-//      }
-//  }
-  
-  
-//  Optional<String> opt = Optional.of("baeldung");
-//  opt.ifPresent(name -> System.out.println(name.length()));
-//  String name = Optional.ofNullable(nullName).orElse("john");
-//  String name = Optional.ofNullable(nullName).orElseGet(() -> "john");
-//  String name = Optional.ofNullable(nullName).orElseThrow(
-//  	      IllegalArgumentException::new);
-//  	}
-
-//  Integer year = 2016;
-//  Optional<Integer> yearOptional = Optional.of(year);
-//  boolean is2016 = yearOptional.filter(y -> y == 2016).isPresent();
-//  assertTrue(is2016);
-//  boolean is2017 = yearOptional.filter(y -> y == 2017).isPresent();
-//  assertFalse(is2017);
-
-	
-	
-	
-	
-	
-//	----------------------------------  End Temp ----------------------------------
-
 
 
 	
@@ -167,13 +118,7 @@ public class AppServiceImplementation implements AppService {
 	@Override
 	public Optional<Lieu> getLieu(Optional<String> codeIsee) {
 		if(codeIsee.isEmpty()) throw new RuntimeException("Can't find entered Lieu");
-		else {
-			return lieuRepository.findById(codeIsee.get());
-			
-		}
-			
-			
-
+		else return lieuRepository.findById(codeIsee.get());
 	}
 
 	
@@ -241,9 +186,7 @@ public class AppServiceImplementation implements AppService {
 
 	@Override
 	public Monument addMonument(Monument monument) {
-
 		return monumentRepository.save(monument);
-		
 	}
 	
 	@Override
@@ -396,3 +339,46 @@ public class AppServiceImplementation implements AppService {
 
 
 }
+
+
+
+//---------------------------------- Temp ----------------------------------
+
+
+
+
+//example
+//@RequestMapping(value = {"/article", "/article/{id}"}")
+//public Article getArticle(@PathVariable Optional<Integer> optionalArticleId) {
+//  if (optionalArticleId.isPresent()) {
+//      Integer articleId = optionalArticleId.get();
+//      //...
+//  } else {
+//      //...
+//  }
+//}
+
+
+//Optional<String> opt = Optional.of("baeldung");
+//opt.ifPresent(name -> System.out.println(name.length()));
+//String name = Optional.ofNullable(nullName).orElse("john");
+//String name = Optional.ofNullable(nullName).orElseGet(() -> "john");
+//String name = Optional.ofNullable(nullName).orElseThrow(
+//	      IllegalArgumentException::new);
+//	}
+
+//Integer year = 2016;
+//Optional<Integer> yearOptional = Optional.of(year);
+//boolean is2016 = yearOptional.filter(y -> y == 2016).isPresent();
+//assertTrue(is2016);
+//boolean is2017 = yearOptional.filter(y -> y == 2017).isPresent();
+//assertFalse(is2017);
+
+
+
+
+
+
+//----------------------------------  End Temp ----------------------------------
+
+

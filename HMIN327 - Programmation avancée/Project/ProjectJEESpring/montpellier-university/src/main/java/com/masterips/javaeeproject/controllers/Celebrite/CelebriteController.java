@@ -167,6 +167,7 @@ public String allCelebrities(Model model, @PathVariable("pageNumber") int curren
 
 
 //	Celebrite New
+//	Celebrite Update
 @PostMapping
 public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Celebrite sampleEntity, BindingResult result, RedirectAttributes ra){
     

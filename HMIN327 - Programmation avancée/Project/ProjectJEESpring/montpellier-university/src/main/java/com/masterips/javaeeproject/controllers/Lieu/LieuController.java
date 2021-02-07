@@ -213,6 +213,7 @@ public String allLieuxCard(Model model, @PathVariable("pageNumber") int currentP
 
 
 //	  Lieux New
+//	  Lieux Update
   @PostMapping
   public String saveLieu(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Lieu sampleEntity, BindingResult result, RedirectAttributes ra){
       

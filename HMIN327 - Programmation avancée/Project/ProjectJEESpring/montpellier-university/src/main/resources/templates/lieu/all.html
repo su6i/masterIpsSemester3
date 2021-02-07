@@ -57,6 +57,7 @@
                   <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Latitude</a></th>
                   <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Longitude</a></th>
                   <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Departement</a></th>
+                  <th class="col"><a th:href="@{'/lieux/page/' + ${currentPage} + '?sortField=codeInsee' + '&sortDirection=' + ${reverseSortDirection}}">Departement Name</a></th>
                   <th class="col-sm-2 text-center" colspan="3">Actions</th>
                </tr>
             </thead>
@@ -68,6 +69,7 @@
                      <td th:text="${#numbers.formatDecimal(lieu.latitude, 0, 4)}">Latitude</td>
                      <td th:text="${#numbers.formatDecimal(lieu.longitude, 0, 4)}">Longitude</td>                     
                      <td th:text="${lieu.departement?.numDep}">Departement</td>
+                     <td th:text="${lieu.departement?.nomDep}">Departement Name</td>
                      <td th:replace="fragments/template :: remove-update-details-td(entity='lieux', id=${lieu.codeInsee})"></td>
                   </tr>
                </th:block>

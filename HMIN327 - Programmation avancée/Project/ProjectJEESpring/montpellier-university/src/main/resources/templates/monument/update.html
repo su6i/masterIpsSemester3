@@ -9,8 +9,6 @@
       <div layout:fragment="displayContent">
          <p th:text="${template}">Should not be displayed</p>
       
-      
-      
          <h1 th:if="${id == 'none'}"> New Monument</h1>
          <h1 th:if="${mode == 'details'}" th:text="@{'Details Monument with ID: ' + ${id}}"> Details Monument</h1>
          <h1 th:if="${mode == 'update' and id !='none'}" th:text="@{'Update Monument with ID: ' + ${id}}"> Update Monument</h1>
@@ -80,17 +78,15 @@
                                            <p class="card-text" th:classappend="${text} ? ${text} : 'text-danger'">URL: </p>
                                       </th>
                                       <td>
-                                           <!-- <input type="text" th:value="@{'http://localhost:8080/json/monuments/' + ${sampleEntity.codeM}}" id="url" disabled style="width:400px;"/> -->
-                                           <input type="text" th:field="*{url}" id="url" disabled style="width:400px;" th:disabled="${mode == 'details'}"/>
-                                           
+                                           <input type="text" th:field="*{url}" id="url" style="width:400px;" th:disabled="${mode == 'details'}"/>
                                       </td> 
                                   </tr>
                                   <tr>
                                       <th>
                                            <span class="card-text">Parent URL: </span>
                                       </th>
-                                   <td>
-                                           <input type="text" th:field="*{parent_url}" th:value="@{'http://localhost:8080/json/monuments/page/1'}"  id="parent_url" style="width:400px;" th:disabled="${mode == 'details'}" />
+                                      <td>
+                                           <input type="text" th:field="*{parent_url}" id="parent_url" style="width:400px;" th:disabled="${mode == 'details'}" />
                                       </td> 
                                   </tr>
                               
@@ -137,8 +133,14 @@
    </div>
    
    
+<!-- <script>
+    var id = "[[${id}]]";
+</script>
+
+
+<script th:inline="javascript">
+    var message = "[[${message}]]";
+</script>
+ -->
 </body>
-   
-   
-   
 </html>

@@ -176,67 +176,6 @@ public String allDepartements(Model model, @PathVariable("pageNumber") int curre
       return "departement/data-table";
   }
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-//      	  //departement add form
-//
-//	  @GetMapping("departements/add")
-//	  String add(Model model, @ModelAttribute("newDepartement") Departement newDepartement) {
-//	
-//          color(model);
-//          model.addAttribute("newDepartement",new Departement());
-//
-//	    return "departement/add";
-//	    
-//	  }
-//
-//	  	// new departement
-////	    @ResponseStatus(HttpStatus.CREATED)
-//	    @PostMapping("departements")
-//	    public String saveDep(Model model, @Valid @NotNull @ModelAttribute("newDepartement") Departement newDepartement, BindingResult result, RedirectAttributes ra){
-//	    	try {
-//	    		
-//	    		System.out.println("\n\n\n newDepartement: "+ newDepartement + "\n\n\nlieu: " + newDepartement.getLieu().getCodeInsee());
-//	    		appService.addDepartement(newDepartement);
-//	    		model.addAttribute("newDepartement", newDepartement);
-//	    		model.addAttribute("message","Departement" +newDepartement.getNumDep() +" added successfully");
-//				
-//			} catch (Exception e) {
-//				model.addAttribute("message",e);
-//					return "departement/add";
-//			
-//	    }
-//	    	return "redirect:page/1";       
-//	    }
-//	    
-//        
-//        
-//
-//
-
-
-
-
-
-
-
-
-
 
 
 
@@ -265,16 +204,13 @@ public String allDepartements(Model model, @PathVariable("pageNumber") int curre
       }
         model.addAttribute("mode", mode);
 
-
-
-        
-
     return "departement/update";
     
   }
 
 
 //	Departement New
+//	Departement Update
 @PostMapping
 public String saveDepartement(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Departement sampleEntity, BindingResult result, RedirectAttributes ra){
     
@@ -292,27 +228,6 @@ public String saveDepartement(Model model, @Valid @NotNull @ModelAttribute("samp
 
       return "redirect:/departements/page/1";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     
