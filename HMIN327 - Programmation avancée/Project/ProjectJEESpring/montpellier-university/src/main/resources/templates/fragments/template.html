@@ -41,6 +41,7 @@
                 <span class="icon-bar">Lieu</span>
                 <span class="icon-bar">Monument</span>
                 <span class="icon-bar">Celebrite</span>
+                <span class="icon-bar">Users</span>
               </a>
         
             <div class="navbar-collapse collapse">
@@ -55,9 +56,7 @@
                     Departements
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item amir" th:href="@{'/departements/page/1'}" role="button">Display</a></li>
-                        <li class="divider"></li>
-                        <li><a class="dropdown-item amir" th:href="@{'/departements/search'}" role="button">Search</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/departements/page/1'}" role="button">Display / Search</a></li>
                         <li class="divider"></li> 
                        <li><a class="dropdown-item amir" th:href="@{'/departements/update'}" role="button">Add</a></li>
                        
@@ -70,9 +69,7 @@
                         Lieux
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item amir" th:href="@{'/lieux/page/1'}" role="button">Display</a></li>
-                        <li class="divider"></li>
-                        <li><a class="dropdown-item amir" th:href="@{'/lieux/search'}" role="button">Search</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/lieux/page/1'}" role="button">Display / Search</a></li>
 
                        <li class="divider"></li>
                        <li><a class="dropdown-item amir" th:href="@{'/lieux/update'}" role="button">Add</a></li>
@@ -86,9 +83,7 @@
                      Monuments
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item amir" th:href="@{'/monuments/page/1'}" role="button">Display</a></li>
-                        <li class="divider"></li>
-                        <li><a class="dropdown-item amir" th:href="@{'/monuments/search'}" role="button">Search</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/monuments/page/1'}" role="button">Display / Search</a></li>
 
                         <li class="divider"></li>
                         <li><a class="dropdown-item amir" th:href="@{'/monuments/update'}" role="button">Add</a></li>
@@ -104,23 +99,36 @@
                         Celebrities
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item amir" th:href="@{'/celebrities/page/1'}" role="button">Display</a></li>
-                        <li class="divider"></li>
-                        <li><a class="dropdown-item amir" th:href="@{'/celebrities/search'}" role="button">Search</a></li>
+                        <li><a class="dropdown-item amir" th:href="@{'/celebrities/page/1'}" role="button">Display / Search</a></li>
 
                        <li class="divider"></li>
 					   <li><a class="dropdown-item amir" th:href="@{'/celebrities/add'}" role="button">Add</a></li>
                     </ul>
                  </li>
-                 <li class="nav-item"><a class="nav-link" href="#">Username</a></li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Users
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                       <li class="nav-item"><a class="nav-link" th:href="@{'/users'}">Display</a></li>
+
+                       <li class="divider"></li>
+                       <li><a class="dropdown-item amir" th:href="@{'/users/update'}" role="button">Add</a></li>
+
+                    </ul>
+                 </li>
+
+                 <li class="nav-item"><a class="nav-link" href="#" th:if="${user}" th:text="${user.email}" th:href="@{'/profile'}">Username</a></li>
 
 
                </ul>
               	<ul class="nav navbar-nav navbar-right">
 
                       </li>
-            		<li class="nav-item"><a class="nav-link" th:href="@{/login?logout}">Login</a></li>
-            		<li class="nav-item"><a class="nav-link" th:href="@{/signin}">Signin</a></li>
+            		<li class="nav-item"><a class="nav-link" th:if="${user}" th:href="@{/login?logout}">Logout</a></li>
+            		<li class="nav-item"><a class="nav-link" th:unless="${user}" th:href="@{/login?logout}">Login</a></li>
+            		
+            		<li class="nav-item"><a class="nav-link" th:if="${user == null}" th:href="@{/registration}">Signup</a></li>
            	  </ul>          
             </div>
          </nav>

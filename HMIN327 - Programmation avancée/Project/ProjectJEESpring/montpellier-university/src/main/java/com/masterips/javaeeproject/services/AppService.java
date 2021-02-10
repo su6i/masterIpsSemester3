@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
+import com.masterips.javaeeproject.entities.User;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
 
@@ -83,6 +84,13 @@ public interface AppService {
 	public int              	deleteCelebriteById(long numCelebrite);
     public int 					updateCelebrite(long numCelebrite, String nom, String prenom, String nationalite, String epoque);	
 //  public void 				updateCelebriteObject(Celebrite celebrite);
+    
+    
+//	User methodes
+    public User 				getUser(String user);
+	public List<User>    		getAllUsers();
+	public User 				addUser(User user);
+	public int 					deleteUser(String email);
 	
 
 

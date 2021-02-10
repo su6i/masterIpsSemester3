@@ -17,25 +17,38 @@
 
 
 		<div id="wrapper">
-			<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle
-				Display</a>
+			<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Display</a>
+			<div class="col-md-6 ml-lg-0">
+			<form th:action="@{/departements/search}" th:object="${sampleEntity}" method="POST"> 
+			  <div class="row">
+			    <div class="col-xs-6 col-md-12">
+			      <div class="input-group">
+			        <input type="text" class="form-control" placeholder="Search" id="id" th:value="${numDep}"/>
+			        <div class="input-group-btn">
+			          <button class="btn btn-primary" type="submit" value="Search">Search
+			          </button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</form>
 
+			</div>
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper" class="bg-primary">
 				<ul class="sidebar-nav">
-					<li class="sidebar-brand"><a href="#"> Display Departments
-					</a></li>
-					<li><a class="dropdown-item amir"
-						th:href="@{/departements/page/1}">Table format</a></li>
-					<li><a class="dropdown-item amir"
-						th:href="@{'/departements/data-table'}" role="button">Data
-							Table (AJAX)</a></li>
-					<li><a class="dropdown-item amir"
-						th:href="@{/departements/card/page/1}">Card format</a></li>
-					<li><a class="dropdown-item amir"
-						th:href="@{/json/departements/page/1}">JSON Pagination</a></li>
-					<li><a class="dropdown-item amir"
-						th:href="@{/json/departements}">JSON whiout Pagination</a></li>
+					<li class="sidebar-brand"><a href="#"> Departments</a></li>
+					
+					<li><a class="dropdown-item amir" th:href="@{/departements/page/1}"       >Table format</a></li>
+					<li><a class="dropdown-item amir" th:href="@{'/departements/data-table'}" >Data Table (AJAX)</a></li>
+					<li><a class="dropdown-item amir" th:href="@{/departements/card/page/1}"  >Card format</a></li>
+					<li><a class="dropdown-item amir" th:href="@{/json/departements/page/1}"  >JSON Pagination</a></li>
+					<li><a class="dropdown-item amir" th:href="@{/json/departements}"         >JSON whiout Pagination</a></li>
+                    <li class="divider"></li>
+					<li><a class="dropdown-item amir" th:href="@{/departements/search}"       >Search by Department Number</a></li>
+					<li><a class="dropdown-item amir" th:href="@{/departements/search}"       >Search by Department Name</a></li>
+					<li><a class="dropdown-item amir" th:href="@{/departements/search}"       >Search by part of Department Name</a></li>
+					
 				</ul>
 			</div>
 			<!-- /#sidebar-wrapper -->

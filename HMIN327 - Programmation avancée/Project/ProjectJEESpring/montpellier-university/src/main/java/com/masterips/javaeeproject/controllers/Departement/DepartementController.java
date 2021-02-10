@@ -60,18 +60,25 @@ public class DepartementController {
 
 // ---------------------------- Begin Departements   ----------------------------
 
-
-//	Departement Display
-@GetMapping("display")
-public String display() {
-    return "departement/display";
-}
-
 //	Departement Search
-@GetMapping("search")
-public String search() {
-    return "departement/search";
-}
+    @PostMapping("search")
+    public String searchById(Model model, @ModelAttribute("sampleEntity") Departement sampleEntity) {
+        try {
+            Departement dep = appService.getDepartement(sampleEntity.getNumDep());
+            
+            System.out.println("dep:::::" + dep);
+            
+            if(dep != null) model.addAttribute("sampleEntity",dep);
+            model.addAttribute("mode","details");
+            
+            
+        }catch (Exception e) {
+            model.addAttribute("message",e);
+        }
+        return "departement/update";
+    }
+
+    
 
 @GetMapping(value="page/{pageNumber}")
 public String allDepartements(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam(defaultValue="nomDep") String sortField, @RequestParam(defaultValue="asc") String sortDirection)   {
@@ -86,6 +93,7 @@ public String allDepartements(Model model, @PathVariable("pageNumber") int curre
 
         color(model);
         
+        model.addAttribute("sampleEntity", new Departement());
         model.addAttribute("departements", departements);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("currentPage", currentPage);
@@ -240,8 +248,7 @@ public String saveDepartement(Model model, @Valid @NotNull @ModelAttribute("samp
         } catch (Exception e) {
             model.addAttribute("message",e);
             }
-//            return "redirect:/departements/page/1";
-        return "history.go(-2)";
+           return "redirect:/departements/page/1";
         }
 
     

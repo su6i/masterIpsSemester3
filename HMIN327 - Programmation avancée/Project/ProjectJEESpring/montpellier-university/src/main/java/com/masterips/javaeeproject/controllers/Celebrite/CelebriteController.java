@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,6 +72,7 @@ public String display() {
 
 //  Celebrities pagination
 @GetMapping("page/{pageNumber}")
+@Secured(value = { "ROLE_ADMIN","ROLE_VOYAGISTE","ROLE_TOURISTE"}) 
 public String allCelebrities(Model model, @PathVariable("pageNumber") int currentPage, @RequestParam(defaultValue="numCelebrite") String sortField, @RequestParam(defaultValue="asc") String sortDirection)   {
     try {
         Sort sort = Sort.by(sortField);
@@ -97,6 +99,7 @@ public String allCelebrities(Model model, @PathVariable("pageNumber") int curren
 
 
 //    Celebrities card
+  @Secured(value = { "ROLE_ADMIN","ROLE_VOYAGISTE","ROLE_TOURISTE"}) 
   @GetMapping("card/page/{pageNumber}")
   public String allCelebritiesCard(Model model, @PathVariable("pageNumber") int currentPage) {
       try {
@@ -137,6 +140,7 @@ public String allCelebrities(Model model, @PathVariable("pageNumber") int curren
 //  Celebrite New Form
 //  Celebrite update form
 //  Celebrite Details Form
+  @Secured(value = { "ROLE_ADMIN"}) 
   @GetMapping(value = {"{mode}", "{mode}/{id}"})
   public String celebriteForm(Model model, @ModelAttribute("sampleEntity") Celebrite sampleEntity, @PathVariable(value="id") Optional<Long> id, @PathVariable(value="mode") String mode) {
       color(model);
@@ -169,6 +173,7 @@ public String allCelebrities(Model model, @PathVariable("pageNumber") int curren
 //	Celebrite New
 //	Celebrite Update
 @PostMapping
+@Secured(value = { "ROLE_ADMIN"}) 
 public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("sampleEntity") Celebrite sampleEntity, BindingResult result, RedirectAttributes ra){
     
 //    Monument monument = sampleEntity.setMonument(appService.getMonument(sampleEntity.getMonument().getCodeM()));
@@ -189,6 +194,7 @@ public String saveCelebrite(Model model, @Valid @NotNull @ModelAttribute("sample
 
 
 //    Celebrity delete
+	@Secured(value = { "ROLE_ADMIN"}) 
     @GetMapping("delete/{id}")
     public String deleteCelebriteById(Model model, @PathVariable long id, RedirectAttributes ra) {
         try {

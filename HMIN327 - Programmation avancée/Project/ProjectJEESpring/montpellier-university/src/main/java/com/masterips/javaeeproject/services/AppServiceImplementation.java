@@ -16,12 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.masterips.javaeeproject.dao.LieuRepository;
 import com.masterips.javaeeproject.dao.MonumentRepository;
+import com.masterips.javaeeproject.dao.UserRepository;
 import com.masterips.javaeeproject.dao.CelebriteRepository;
 import com.masterips.javaeeproject.dao.CrudCelebriteRepo;
 import com.masterips.javaeeproject.dao.DepartementRepository;
 
 import com.masterips.javaeeproject.entities.Lieu;
 import com.masterips.javaeeproject.entities.Monument;
+import com.masterips.javaeeproject.entities.User;
 import com.masterips.javaeeproject.exceptions.EntitiesNotFoundException;
 import com.masterips.javaeeproject.entities.Celebrite;
 import com.masterips.javaeeproject.entities.Departement;
@@ -47,8 +49,8 @@ public class AppServiceImplementation implements AppService {
 	@Autowired
 	private DepartementRepository departementRepository;
 	
-//	@Autowired
-//    private ModelMapper modelMapper;
+	@Autowired
+	private UserRepository userRepository;
 
 	
 	
@@ -316,6 +318,8 @@ public class AppServiceImplementation implements AppService {
 	}
 
 
+
+
 	
 //	public void updateCelebriteObject(Celebrite celebrite) {
 //		Celebrite newCelebrite = crudCelebriteRepo.findById(celebrite.getNumCelebrite());
@@ -326,8 +330,30 @@ public class AppServiceImplementation implements AppService {
 
 
 
+//	---------------------------------- User ----------------------------------
 
+	
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 
+	@Override
+	public User getUser(String email) {
+		return userRepository.findById(email).orElseThrow(() -> new EntitiesNotFoundException(email, "Can't find entered User with email: "));
+
+	}
+
+	@Override
+	public User addUser(User user) {
+		return userRepository.save(user);
+
+	}
+
+	@Override
+	public int deleteUser(String user) {
+		return userRepository.deleteUser(user);
+	}
 
 
 	

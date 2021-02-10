@@ -31,8 +31,6 @@ public interface MonumentRepository extends JpaRepository<Monument, String> {
 	@Query("select m from Monument m where  m.nomM like CONCAT('%',:x,'%')")
 	public List<Monument> getByNameMonumentContaining(@Param("x") String nom);
 	
-	
-	
 	@Modifying
 	@Query("delete from Monument m where  m.codeM = ?1")
 	public int deleteMonumentById(String codeM);
