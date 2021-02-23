@@ -1,4 +1,3 @@
-![visitors](https://counter.gofiber.io/badge/su6i/masterIpsSemester3)
 
 # Master IPS, Third Semester
 
